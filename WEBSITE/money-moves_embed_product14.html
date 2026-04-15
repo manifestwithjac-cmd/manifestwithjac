@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Money Moves Overnight Rewire | Manifest With Jac</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    :root{
+      --white:#ffffff;
+      --ink:#0b0b0f;
+      --purple:#af81e4;
+      --aqua:#80e8dd;
+      --pink:#e784ba;
+      --mint:#b7f6af;
+      --peach:#f9c1a0;
+      --sky:#7cc2f6;
+
+      --shadow: 0 18px 55px rgba(16, 10, 25, 0.14);
+      --soft-shadow: 0 10px 30px rgba(16, 10, 25, 0.10);
+      --ring: 0 0 0 1px rgba(11,11,15,.08), 0 10px 30px rgba(11,11,15,.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html, body{ height:100%; }
+    body{
+      font-family:'Montserrat', sans-serif;
+      color:var(--ink);
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(175,129,228,.35), transparent 55%),
+        radial-gradient(1000px 700px at 90% 18%, rgba(128,232,221,.32), transparent 55%),
+        radial-gradient(900px 600px at 15% 85%, rgba(231,132,186,.30), transparent 60%),
+        radial-gradient(850px 500px at 85% 88%, rgba(124,194,246,.28), transparent 58%),
+        linear-gradient(180deg, #ffffff 0%, #fff8ff 55%, #ffffff 100%);
+    }
+
+    /* sparkle overlay */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.40;
+      mix-blend-mode:soft-light;
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(255,255,255,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 22%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 78%, rgba(255,255,255,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 55% 18%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 92% 62%, rgba(255,255,255,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 45% 85%, rgba(255,255,255,.8) 0 1px, transparent 2px);
+      background-size:240px 240px;
+      animation:twinkle 6.5s linear infinite;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-40px;
+      pointer-events:none;
+      opacity:.32;
+      filter:blur(12px);
+      background:
+        conic-gradient(from 220deg at 60% 35%,
+          rgba(175,129,228,.22),
+          rgba(128,232,221,.22),
+          rgba(231,132,186,.22),
+          rgba(183,246,175,.18),
+          rgba(249,193,160,.18),
+          rgba(124,194,246,.20),
+          rgba(175,129,228,.22));
+      animation:aura 10s ease-in-out infinite alternate;
+      mix-blend-mode:multiply;
+    }
+    @keyframes twinkle{
+      0%{ transform:translate3d(0,0,0); opacity:.28; }
+      50%{ opacity:.48; }
+      100%{ transform:translate3d(-60px, -40px, 0); opacity:.28; }
+    }
+    @keyframes aura{
+      0%{ transform:rotate(0deg) scale(1); opacity:.25; }
+      100%{ transform:rotate(10deg) scale(1.06); opacity:.38; }
+    }
+
+    .container{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card{
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 4.2vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(700px 330px at 18% 0%, rgba(175,129,228,.20), transparent 65%),
+        radial-gradient(620px 320px at 88% 12%, rgba(128,232,221,.18), transparent 62%),
+        radial-gradient(560px 280px at 10% 95%, rgba(231,132,186,.16), transparent 62%),
+        radial-gradient(720px 300px at 90% 95%, rgba(249,193,160,.14), transparent 62%);
+      pointer-events:none;
+      opacity:.95;
+    }
+
+    .inner{ position: relative; }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      background: rgba(255,255,255,.82);
+      box-shadow: var(--ring);
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .pill .gem{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--aqua));
+      box-shadow: 0 0 0 4px rgba(231,132,186,.18);
+    }
+
+    h1{
+      margin: 18px 0 10px;
+      font-family:'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+      font-size: clamp(2.25rem, 4.6vw, 3.9rem);
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--aqua), var(--sky), var(--peach), var(--purple));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      text-shadow: 0 0 22px rgba(175,129,228,.16);
+      text-align:center;
+    }
+
+    .sub{
+      text-align:center;
+      color: rgba(11,11,15,.78);
+      font-weight: 500;
+      line-height: 1.9;
+      font-size: 1.08rem;
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    .divider{
+      width: min(780px, 92%);
+      height: 1px;
+      margin: 24px auto;
+      background: linear-gradient(90deg, transparent, rgba(175,129,228,.55), rgba(128,232,221,.55), rgba(231,132,186,.55), transparent);
+      opacity: .55;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .box{
+      grid-column: span 12;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .box::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(90deg, rgba(231,132,186,.20), rgba(175,129,228,.20), rgba(128,232,221,.18), rgba(124,194,246,.18), rgba(249,193,160,.16));
+      opacity:.35;
+      filter: blur(16px);
+      pointer-events:none;
+    }
+    .box .binner{ position: relative; }
+
+    h2{
+      font-family:'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+      text-align:center;
+      margin: 28px 0 12px;
+      color: rgba(11,11,15,.95);
+    }
+
+    .headline{
+      font-family:'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      color: rgba(11,11,15,.92);
+      letter-spacing: .01em;
+    }
+    .copy{
+      color: rgba(11,11,15,.76);
+      font-weight: 500;
+      line-height: 1.9;
+      font-size: 1.02rem;
+    }
+    .copy p{ margin: 0 0 12px; }
+    .copy p:last-child{ margin-bottom: 0; }
+
+    .list{
+      margin-top: 12px;
+      padding-left: 0;
+      list-style: none;
+      display:grid;
+      gap: 10px;
+    }
+    .list li{
+      padding: 12px 14px 12px 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(11,11,15,.08);
+      position: relative;
+      color: rgba(11,11,15,.78);
+      font-weight: 600;
+      line-height: 1.7;
+    }
+    .list li::before{
+      content:"✓";
+      position:absolute;
+      left: 14px;
+      top: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 9px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(183,246,175,.75), rgba(128,232,221,.60));
+      border: 1px solid rgba(11,11,15,.08);
+      font-weight: 900;
+      color: rgba(11,11,15,.92);
+    }
+
+    .quote{
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+      color: rgba(11,11,15,.80);
+      font-weight: 600;
+      line-height: 1.9;
+    }
+    .quote strong{ font-weight: 900; }
+
+    .ctaRow{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 14px 18px;
+      border-radius: 999px;
+      text-decoration:none;
+      text-align:center;
+      font-family:'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(11,11,15,.10);
+      box-shadow: 0 14px 34px rgba(11,11,15,.14);
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .btn.primary{
+      color:#0b0b0f;
+      background: linear-gradient(90deg, var(--mint), var(--aqua), var(--sky), var(--peach), var(--pink));
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 18px 44px rgba(11,11,15,.18); }
+
+    .micro{
+      margin-top: 10px;
+      text-align:center;
+      color: rgba(11,11,15,.58);
+      font-weight: 600;
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    .checkoutWrap{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .footer{
+      text-align:center;
+      padding: 26px 10px 40px;
+      color: rgba(11,11,15,.55);
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+
+    .sticky{ 
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+      margin-bottom: 14px;
+    }
+
+    .stickyBar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--ring);
+      backdrop-filter: blur(10px);
+    }
+    .stickyBar .left{
+      font-weight: 800;
+      color: rgba(11,11,15,.78);
+      font-size: .95rem;
+      line-height: 1.3;
+    }
+    .stickyBar .miniBtn{
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-family:'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(11,11,15,.10);
+      color:#0b0b0f;
+      background: linear-gradient(90deg, var(--mint), var(--aqua), var(--sky), var(--peach), var(--pink));
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    @media (min-width: 900px){
+      .box.span6{ grid-column: span 6; }
+    }
+
+    .tc-v2-embeddable-target{ width: 100%; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="sticky">
+      <div class="stickyBar">
+        <div class="left">Press play tonight. Wake up different.</div>
+        <a class="miniBtn" href="#checkout">Get access</a>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="inner">
+
+        <div style="text-align:center;">
+          <div class="pill"><span class="gem"></span> Manifest With Jac</div>
+        </div>
+
+        <h1>MONEY MOVES OVERNIGHT REWIRE</h1>
+        <p class="sub"><strong>Subconscious Rewiring While You Sleep</strong></p>
+        <p class="sub" style="margin-top:10px;">
+          You've been doing everything "right." You're journaling. You're affirming. You're visualizing the life.<br>
+          You know abundance is everywhere. You believe in the energy. You're INTO this stuff.<br><br>
+          <strong>So why does your bank account still make your stomach drop?</strong>
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#checkout">YES. GIVE ME INSTANT ACCESS</a>
+        </div>
+        <div class="micro">Instant access after purchase.</div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p><strong>Here's what nobody tells you:</strong> your effort is creating resistance.</p>
+              <p>The harder you try to manifest money, the more you're reinforcing the exact pattern you're trying to escape.</p>
+              <p>Every time you:</p>
+            </div>
+            <ul class="list">
+              <li>Force yourself to "feel abundant" while secretly panicking about bills</li>
+              <li>Repeat affirmations that your body doesn't believe yet</li>
+              <li>Try to "raise your vibration" while your system is screaming</li>
+            </ul>
+            <div class="quote">
+              Your conscious mind says “I’m worthy of abundance.”<br>
+              Your subconscious whispers: <strong>“But what if it all falls apart?”</strong><br><br>
+              And that whisper? That’s running 95% of your financial reality.
+            </div>
+          </div>
+        </div>
+
+        <h2>The truth most manifestation coaches won’t say out loud</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p>You can't think your way out of a subconscious block.</p>
+              <p>You can't hustle your way into a new money story.</p>
+              <p>You can't "good vibe" yourself past patterns that were wired in before you even knew what money was.</p>
+              <p><strong>The wealth channel is blocked</strong> not because you're doing it wrong, but because you're trying too hard.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>What if you could rewire it… while you sleep?</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p>No more forcing. No more "trying to manifest." No more exhausting yourself with the mental gymnastics of pretending everything's fine when it's not.</p>
+              <p><strong>Just press play. Close your eyes.</strong> Let your subconscious do what it's designed to do.</p>
+              <p><strong>Money Moves Overnight Rewire</strong> is a subconscious reprogramming audio that bypasses your conscious resistance entirely.</p>
+              <p>While you sleep, your mind is installing a new operating system around money.</p>
+            </div>
+            <ul class="list">
+              <li>Money feels safe, not scary</li>
+              <li>Receiving feels normal, not guilty</li>
+              <li>Abundance feels like your default, not something you have to “achieve”</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>This is for you if:</h2>
+        <div class="box">
+          <div class="binner">
+            <ul class="list">
+              <li>You open your bank app like you're expecting bad news</li>
+              <li>You see a charge post and instantly start rearranging your week in your head</li>
+              <li>You get paid and your first thought is “okay, what do I need to pay?”</li>
+              <li>You tell yourself you'll treat yourself when things are “caught up” but they never feel caught up</li>
+              <li>You avoid your credit card account until the last second because looking at it makes you feel sick</li>
+              <li>You buy something and then mentally punish yourself for 3 days</li>
+              <li>You're tired of feeling like you can't exhale until every bill is paid</li>
+              <li>You want the “money stress” part of your personality to just… go away</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>What you actually want...</h2>
+        <div class="grid">
+          <div class="box span6"><div class="binner"><div class="quote">To check your bank account without your stomach dropping.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="quote">To stop doing math in your head at 2am.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="quote">To get paid and feel happy… not like it's all going to bills.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="quote">For money to stop feeling like something that disappears the second it shows up.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="quote">To feel ahead for once.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="quote">To buy what you want without mentally punishing yourself.</div></div></div>
+          <div class="box span12"><div class="binner"><div class="quote">To stop feeling like you have to hustle to deserve rest.</div></div></div>
+        </div>
+
+        <h2>How it works</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p><strong>Money Moves Overnight Rewire</strong> uses subconscious reprogramming to rewrite the automatic patterns running your relationship with money.</p>
+              <p>You don't need to believe it. You don't need to “feel it” yet. You don't need to do anything except listen.</p>
+              <p>Your subconscious absorbs it while your conscious mind sleeps.</p>
+              <p><strong>No resistance. No overthinking. No forcing.</strong></p>
+              <p>Just a gentle, powerful rewiring happening in the background while you rest.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>What's Included</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="headline">Money Moves Script Track</div>
+            <div class="copy">A carefully crafted rewiring track designed to:</div>
+            <ul class="list">
+              <li>Release old patterns of scarcity, worry, and “waiting for the other shoe to drop”</li>
+              <li>Install new defaults around receiving, having, and enjoying money</li>
+              <li>Reprogram your system to recognize abundance as safe and normal</li>
+              <li>Open your awareness to money showing up in easy, surprising, everyday ways</li>
+            </ul>
+            <div class="headline" style="margin-top:14px;">Two Formats</div>
+            <ul class="list">
+              <li><strong>13-Minute Sleep Intro Track</strong> — play once as you're falling asleep</li>
+              <li><strong>8-Hour Looped Sleep Track</strong> — let it run while you sleep for deep integration</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>BONUSES (Free When You Get Money Moves Today)</h2>
+        <div class="grid">
+          <div class="box span6">
+            <div class="binner">
+              <div class="headline">BONUS #1: The Money Frequency Reset (Audio Track)</div>
+              <div class="copy">A 10-minute clearing session to release the “waiting for bad news” frequency and tune into wealth, ease, and supported abundance. Use anytime you feel yourself slipping back into old patterns.</div>
+            </div>
+          </div>
+          <div class="box span6">
+            <div class="binner">
+              <div class="headline">BONUS #2: Worthy Activation Meditation</div>
+              <div class="copy">Your introduction to subconscious reprogramming, a guided meditation that activates the deep knowing that you're worthy of receiving. The foundation every money shift needs.</div>
+            </div>
+          </div>
+          <div class="box span12">
+            <div class="binner">
+              <div class="headline">BONUS #3: “Money Is Moving” Micro-Shift Journal Prompts (PDF)</div>
+              <div class="copy">5 prompts designed to catch your brain in the act of noticing abundance and train your awareness to SEE money movement that’s already happening around you.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Here’s what happens when you use this</h2>
+        <div class="grid">
+          <div class="box span6"><div class="binner"><div class="headline">Week 1</div><div class="copy">You’ll notice yourself feeling… lighter. Like something loosened. You might catch yourself NOT spiraling when you check your bank account. Small, but noticeable.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">Week 2</div><div class="copy">Money starts showing up in weird, normal ways. A refund you forgot about. A discount that makes you smile. A client pays early. You start to feel like… something’s shifting.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">Week 3–4</div><div class="copy">The constant low-grade money anxiety? It’s quieter. You’re not doing the 2am math anymore. You buy something without the guilt spiral. You feel like you can breathe.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">By Week 8</div><div class="copy">Money feels… boring. In the best way. It’s just there. Moving. Flowing. You’re not obsessing. You’re just living like someone who expects things to work out. Because they do.</div></div></div>
+        </div>
+
+        <h2>The difference between this and everything else you’ve tried</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p>Most tools ask you to FEEL abundant before you have proof.</p>
+              <p>That’s exhausting. And it doesn’t work when you're wired for survival.</p>
+              <p><strong>Money Moves</strong> doesn’t ask you to pretend. It meets you where you are and does the heavy lifting while you sleep.</p>
+              <p>You wake up different. Not all at once. But consistently. Cumulatively. Noticeably.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>The Science</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p>Neuroscience shows that most behavior is controlled by subconscious patterns formed early in life.</p>
+              <p>If those patterns are rooted in fear, scarcity, or “it’s never enough,” then no amount of conscious effort will override them.</p>
+              <p>Your mind is most receptive during sleep when the analytical part quiets down and new programming can slip past the gatekeeper.</p>
+              <p><strong>This isn’t woo-woo.</strong> It’s how your brain works and we’re using it in your favor.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Stop trying to manifest. Start reprogramming.</h2>
+        <div class="box">
+          <div class="binner">
+            <div class="copy">
+              <p>You don’t need another course. You don’t need to “figure it out.” You don’t need to work harder at abundance.</p>
+              <p>You need to stop blocking it.</p>
+              <p>And the only way to do that is to go deeper than conscious thought.</p>
+              <p><strong>Money Moves Overnight Rewire</strong> does that for you.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Ready to stop trying and start rewiring?</h2>
+        <div class="ctaRow">
+          <a class="btn primary" href="#checkout">GET MONEY MOVES OVERNIGHT REWIRE</a>
+        </div>
+        <div class="micro">Press play tonight. Wake up different.</div>
+
+        <h2 id="checkout">Get access</h2>
+        <p class="sub">Checkout is embedded below. Complete your purchase and you’ll receive your access details by email.</p>
+
+        <div class="checkoutWrap">
+          <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="14" data-thrivecart-embeddable="tc-jacnicole-14-O4FPYW"></div>
+<script async src="https://tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-14-O4FPYW"></script>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <h2>FAQ</h2>
+        <div class="grid">
+          <div class="box span6"><div class="binner"><div class="headline">Do I have to believe in this for it to work?</div><div class="copy">Nope. That’s the point. Your subconscious absorbs the programming while you sleep.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">How long until I see results?</div><div class="copy">Some notice shifts within days. Others more gradually over 2–4 weeks. The reprogramming is happening either way.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">Can I listen during the day?</div><div class="copy">Yes. The 13-minute track is great for naps, meditation, or rest. The 8-hour track is designed for overnight use.</div></div></div>
+          <div class="box span6"><div class="binner"><div class="headline">What if I fall asleep before the track ends?</div><div class="copy">Perfect. That’s exactly what’s supposed to happen.</div></div></div>
+          <div class="box span12"><div class="binner"><div class="headline">Is this a replacement for therapy?</div><div class="copy">No. This is a subconscious reprogramming tool for money patterns. If you’re dealing with trauma or mental health concerns, please work with a licensed professional.</div></div></div>
+          <div class="box span12"><div class="binner"><div class="headline">What makes this different from affirmations?</div><div class="copy">Affirmations can create resistance (“I’m abundant” while your body screams “we’re not”). This speaks to your subconscious during your most receptive state: sleep.</div></div></div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="footer">
+          © Palacios Creatives LLC (Manifest With Jac) 2026<br><br>
+          <strong>Disclaimer:</strong> Palacios Creatives LLC (doing business as Manifest With Jac) does not guarantee or make any representations about your ability to achieve results or earn money through our content, programs, or strategies. You acknowledge that any financial outcomes depend on various factors, including your personal effort, commitment, and individual circumstances. No specific earnings or success results are promised, and past results do not guarantee future outcomes. By engaging with our offerings, you take full responsibility for your own growth and results.
+        </div>
+
+      </div>
+    </section>
+  </div>
+</body>
+</html>

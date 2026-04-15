@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline Jump Sleep Portal™ | Manifest With Jac</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #08060f;
+    --pink: #EEC7DD;
+    --lavender: #CFC5E1;
+    --blue: #CED9ED;
+    --mauve: #DEC5DF;
+    --sage: #D6E8DA;
+    --text: #f8f4ff;
+    --muted: rgba(248,244,255,0.5);
+    --border: rgba(207,197,225,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 0% 0%, rgba(206,217,237,0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(207,197,225,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 60% at 100% 100%, rgba(238,199,221,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(214,232,218,0.08) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star { position: absolute; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+  @keyframes twinkle { 0%, 100% { opacity: 0.08; } 50% { opacity: 0.55; } }
+
+  /* STICKY BANNER */
+  .countdown-banner {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2a0f20 100%);
+    border-bottom: 1px solid rgba(238,199,221,0.2);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .banner-text { font-size: 13px; color: rgba(248,244,255,0.8); }
+  .banner-text strong { color: var(--pink); font-weight: 600; }
+  .timer-wrap { display: flex; align-items: center; gap: 4px; }
+  .timer-block { display: flex; flex-direction: column; align-items: center; background: rgba(207,197,225,0.1); border: 1px solid rgba(207,197,225,0.2); padding: 6px 12px; border-radius: 6px; min-width: 50px; }
+  .timer-num { font-size: 22px; font-weight: 700; line-height: 1; background: linear-gradient(135deg, var(--pink), var(--lavender)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-variant-numeric: tabular-nums; }
+  .timer-label { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .timer-sep { font-size: 20px; color: var(--lavender); opacity: 0.5; margin-bottom: 12px; }
+  .expired-msg { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-direction: column; align-items: center; }
+
+  /* TOP SKIP */
+  .skip-top {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(207,197,225,0.18);
+    border-radius: 20px;
+    padding: 26px 28px 22px;
+    text-align: center;
+    margin: 36px 0 28px;
+  }
+
+  .skip-top-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--lavender); display: block; margin-bottom: 8px; }
+  .skip-top-text { font-size: 14px; color: rgba(248,244,255,0.58); line-height: 1.65; margin-bottom: 16px; }
+  .skip-top-text strong { color: var(--pink); font-weight: 600; }
+
+  .btn-skip-top {
+    display: block;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    border: none;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 8px;
+  }
+
+  .btn-skip-top:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(238,199,221,0.3); }
+  .skip-top-sub { font-size: 11px; color: rgba(248,244,255,0.18); font-style: italic; display: block; }
+
+  /* DIVIDER */
+  .section-divider { width: 100%; display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(207,197,225,0.25), transparent); }
+  .divider-txt { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+  /* HERO */
+  .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--lavender); margin-bottom: 16px; }
+
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(44px, 10vw, 70px);
+    font-weight: 600;
+    line-height: 1.0;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #CED9ED 0%, #ffffff 15%, #EEC7DD 30%, #CFC5E1 45%, #ffffff 58%, #DEC5DF 72%, #D6E8DA 85%, #CED9ED 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: iridescent 6s ease infinite;
+  }
+
+  @keyframes iridescent { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(248,244,255,0.6);
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .hero-desc { font-size: 14px; color: rgba(248,244,255,0.6); text-align: center; line-height: 1.8; max-width: 520px; margin-bottom: 32px; }
+
+  /* PRICE HERO */
+  .price-hero {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .price-big {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 64px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .price-big sup { font-size: 28px; }
+  .price-old { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+  .price-value { font-size: 11px; color: var(--sage); letter-spacing: 0.1em; text-transform: uppercase; }
+  .price-note { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 24px; }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    border: none;
+    border-radius: 14px;
+    padding: 18px 24px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 30px rgba(238,199,221,0.22);
+    max-width: 500px;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(238,199,221,0.38); }
+  .btn-sub { font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.06em; margin-bottom: 40px; }
+
+  /* SECTION LABELS */
+  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lavender); text-align: center; margin-bottom: 20px; display: block; }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .section-desc { font-size: 14px; color: var(--muted); text-align: center; line-height: 1.7; max-width: 500px; margin-bottom: 32px; }
+
+  /* FOR YOU IF */
+  .for-items { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 540px; margin-bottom: 40px; }
+
+  .for-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: rgba(248,244,255,0.75);
+    line-height: 1.55;
+  }
+
+  .for-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* WHAT IT DOES */
+  .portal-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 540px; margin-bottom: 40px; }
+
+  .portal-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+  }
+
+  .portal-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .portal-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .portal-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* METHOD */
+  .method-box {
+    width: 100%;
+    max-width: 540px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(238,199,221,0.18);
+    border-radius: 20px;
+    padding: 32px 28px;
+    margin-bottom: 40px;
+  }
+
+  .method-box h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .method-box p { font-size: 14px; color: rgba(248,244,255,0.68); line-height: 1.8; margin-bottom: 16px; }
+  .method-box p:last-child { margin-bottom: 0; }
+  .method-box strong { color: var(--text); font-weight: 500; }
+
+  .subliminal-sequence {
+    background: rgba(238,199,221,0.06);
+    border: 1px solid rgba(238,199,221,0.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .subliminal-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavender); margin-bottom: 10px; display: block; }
+
+  .subliminal-nums {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--pink), var(--lavender), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.1em;
+  }
+
+  /* VALUE STACK */
+  .value-stack { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 540px; margin-bottom: 20px; }
+
+  .value-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    gap: 16px;
+  }
+
+  .value-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .value-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .value-price { font-size: 13px; color: var(--lavender); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+
+  .value-total {
+    width: 100%;
+    max-width: 540px;
+    background: linear-gradient(135deg, rgba(206,217,237,0.07), rgba(238,199,221,0.07));
+    border: 1px solid rgba(238,199,221,0.2);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .total-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .total-values { text-align: right; }
+  .total-was { font-size: 14px; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
+  .total-now {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 36px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  /* WHY I BUILT */
+  .story-box {
+    width: 100%;
+    max-width: 540px;
+    margin-bottom: 40px;
+  }
+
+  .story-box p { font-size: 14px; color: rgba(248,244,255,0.68); line-height: 1.85; margin-bottom: 14px; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .story-box strong { color: var(--text); font-weight: 500; }
+
+  /* RESULTS */
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 540px; margin-bottom: 40px; }
+
+  .result-col {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 18px;
+  }
+
+  .result-col-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lavender); margin-bottom: 14px; display: block; }
+
+  .result-item { font-size: 12px; color: rgba(248,244,255,0.65); line-height: 1.55; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .result-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .result-item::before { content: '✦ '; color: var(--pink); font-size: 10px; }
+
+  /* GUARANTEE */
+  .guarantee-box {
+    width: 100%;
+    max-width: 540px;
+    background: linear-gradient(135deg, rgba(214,232,218,0.06), rgba(206,217,237,0.06));
+    border: 1px solid rgba(214,232,218,0.2);
+    border-radius: 20px;
+    padding: 28px 28px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .guarantee-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+  .guarantee-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .guarantee-text { font-size: 13px; color: rgba(248,244,255,0.65); line-height: 1.75; }
+
+  /* ABOUT */
+  .about-box {
+    width: 100%;
+    max-width: 540px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .about-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .certs { display: flex; flex-direction: column; gap: 6px; }
+  .cert-item { font-size: 12px; color: rgba(248,244,255,0.45); letter-spacing: 0.03em; }
+
+  /* CHECKOUT */
+  .checkout-box {
+    width: 100%;
+    max-width: 540px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(238,199,221,0.2);
+    border-radius: 24px;
+    padding: 32px 28px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .checkout-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .checkout-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  /* DISCLAIMER */
+  .disclaimer { width: 100%; max-width: 540px; font-size: 11px; color: rgba(248,244,255,0.2); line-height: 1.8; text-align: center; margin-bottom: 32px; }
+  .disclaimer strong { color: rgba(248,244,255,0.35); font-weight: 500; }
+
+  /* BOTTOM SKIP */
+  .skip-bottom { width: 100%; max-width: 540px; text-align: center; padding-top: 8px; }
+  .skip-bottom-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(248,244,255,0.2); margin-bottom: 12px; display: block; }
+
+  .btn-skip-bottom {
+    display: inline-block;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(248,244,255,0.4);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-skip-bottom:hover { background: rgba(255,255,255,0.07); color: rgba(248,244,255,0.65); }
+  .skip-bottom-sub { font-size: 11px; color: rgba(248,244,255,0.15); font-style: italic; margin-top: 8px; display: block; }
+
+  footer { position: relative; z-index: 1; text-align: center; padding: 32px 24px; border-top: 1px solid rgba(207,197,225,0.08); }
+  footer p { font-size: 11px; color: rgba(248,244,255,0.18); line-height: 1.8; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 18px 60px; }
+    .results-grid { grid-template-columns: 1fr; }
+    .countdown-banner { gap: 10px; }
+    .checkout-box { padding: 24px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY TIMER BANNER -->
+<div class="countdown-banner">
+  <div class="banner-text"><strong>⚡ $4.44 offer — this page only</strong> · Returns to $7.77 when timer hits zero</div>
+  <div class="timer-wrap" id="timerDisplay">
+    <div class="timer-block"><div class="timer-num" id="timerMins">15</div><div class="timer-label">Min</div></div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block"><div class="timer-num" id="timerSecs">00</div><div class="timer-label">Sec</div></div>
+  </div>
+</div>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+
+  <!-- TOP SKIP -->
+  <div class="skip-top">
+    <span class="skip-top-eyebrow">✦ you're almost there ✦</span>
+    <p class="skip-top-text">Your free masterclass is one step away — but first, a <strong>one-time offer</strong> that disappears when you leave this page.</p>
+    <a href="https://manifestwithjac.netlify.app/money-loves-me-masterclass" class="btn-skip-top">No thanks — take me to the Money Loves Me masterclass →</a>
+    <span class="skip-top-sub">I'll skip this offer and pay full price if I want it later.</span>
+  </div>
+
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <span class="divider-txt">or grab this first</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="eyebrow">✦ Jac Nicole Presents ✦</div>
+  <h1>Timeline Jump<br>Sleep Portal™</h1>
+  <p class="hero-sub">Press play before bed.<br>Wake up in a new timeline.</p>
+  <p class="hero-desc">You're literally about to let your sleep do the manifesting for you. I've spent years studying the subconscious, SATS, subliminal architecture, and nervous system safety so you don't have to — and I built the exact portal I wish existed when I was stuck doing all the right things and still waking up in the same reality.</p>
+
+  <div class="price-hero">
+    <div>
+      <div class="price-big" id="priceDisplay"><sup>$</sup>4<span style="font-size:30px;letter-spacing:-0.02em;">.44</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;text-align:left;">
+      <span class="price-old" id="priceWas">$7.77</span>
+      <span class="price-value" id="priceSave">Timer price ✦</span>
+    </div>
+  </div>
+  <p class="price-note" style="margin-bottom:6px;">$197 value · Lifetime access</p>
+
+  <a href="#checkout" class="btn-primary">Press Play Tonight — $4.44 →</a>
+  <p class="btn-sub">Instant access · Listen tonight · Lifetime access</p>
+
+  <p style="font-size:14px;color:rgba(248,244,255,0.55);text-align:center;line-height:1.7;max-width:500px;margin-bottom:48px;">Your sleep is the most powerful reprogramming window you have. And almost nobody uses it intentionally. Until now. ✨</p>
+
+  <!-- FOR YOU IF -->
+  <span class="section-label">this is for you if</span>
+  <div class="for-items">
+    <div class="for-item"><span class="for-icon">✦</span><span>You want to manifest on command — not occasionally, not "when the energy aligns"</span></div>
+    <div class="for-item"><span class="for-icon">✦</span><span>You've been doing the inner work but something deeper still hasn't shifted</span></div>
+    <div class="for-item"><span class="for-icon">✦</span><span>You keep getting wins that disappear just as fast and you know something is running in the background</span></div>
+    <div class="for-item"><span class="for-icon">✦</span><span>You're done working harder than the girls who make it look effortless</span></div>
+    <div class="for-item"><span class="for-icon">✦</span><span>You're ready to wake up as the version of you who already has everything</span></div>
+  </div>
+
+  <a href="#checkout" class="btn-primary">I'm Ready — $4.44 →</a>
+  <p class="btn-sub" style="margin-bottom:48px;">Instant access · Lifetime access</p>
+
+  <!-- WHAT IT DOES -->
+  <span class="section-label">what the portal does while you sleep</span>
+  <div class="portal-grid">
+    <div class="portal-card">
+      <span class="portal-icon">🌙</span>
+      <div><p class="portal-title">Releases the old timeline</p><p class="portal-desc">The fear-based program you inherited — running on repeat every single night without you knowing. This dissolves it at the root while you sleep.</p></div>
+    </div>
+    <div class="portal-card">
+      <span class="portal-icon">⚡</span>
+      <div><p class="portal-title">Bypasses your critical mind entirely</p><p class="portal-desc">We go straight into Theta — the SATS state — where your subconscious is wide open and has zero defenses up. No more affirmations hitting a wall.</p></div>
+    </div>
+    <div class="portal-card">
+      <span class="portal-icon">✨</span>
+      <div><p class="portal-title">Installs your desire as new software</p><p class="portal-desc">Your wish fulfilled — your specific scene — written directly onto your subconscious identity. Not suggested. Installed.</p></div>
+    </div>
+    <div class="portal-card">
+      <span class="portal-icon">🔁</span>
+      <div><p class="portal-title">Saturates the new identity 50×</p><p class="portal-desc">The proprietary 123456 / 654321 / 561234 subliminal layering technique runs all night until the old story literally runs out of room to exist.</p></div>
+    </div>
+    <div class="portal-card">
+      <span class="portal-icon">💫</span>
+      <div><p class="portal-title">Rewires your nervous system to receive</p><p class="portal-desc">Your body stops bracing for disappointment and starts expecting everything to work out. Safety at the cellular level.</p></div>
+    </div>
+    <div class="portal-card">
+      <span class="portal-icon">🦋</span>
+      <div><p class="portal-title">Anchors you into the delusional timeline</p><p class="portal-desc">Where money appears randomly, opportunities find you, and things just work out — because that's simply who you are now.</p></div>
+    </div>
+  </div>
+
+  <!-- METHOD -->
+  <div class="method-box">
+    <span class="section-label" style="text-align:left;margin-bottom:8px;">The Quantum Sleep Recoding™ Method</span>
+    <h3>What is SATS — and why does it work so much faster than daytime manifesting?</h3>
+    <p><strong>SATS (State Akin To Sleep)</strong> is Neville Goddard's most powerful — and most underused — technique. It's the hypnagogic state right before sleep when your subconscious mind drops its defenses completely. The critical faculty goes offline. The gatekeeper steps away. And whatever identity you inhabit in that state gets installed as your new reality.</p>
+    <p>Most people try to manifest during the day when the conscious mind is actively arguing with every affirmation. The Quantum Sleep Recoding™ method targets the exact moment when the argument stops — when your subconscious is fully open, fully receptive, and fully available to receive new programming.</p>
+    <p>We drop you into SATS using theta-frequency audio engineering, then layer in subliminal identity recoding — feeding your subconscious the version of you who already has the life you want. Not once. All night.</p>
+
+    <div class="subliminal-sequence">
+      <span class="subliminal-label">My proprietary subliminal layering sequence</span>
+      <div class="subliminal-nums">123456 · 654321 · 561234</div>
+    </div>
+
+    <p>This sequence runs continuously throughout the night — cycling through different subliminal patterns so the subconscious never gets to "tune it out." Each rotation deepens the install. By morning, the old story has been saturated out of existence.</p>
+  </div>
+
+  <a href="#checkout" class="btn-primary">Start Recoding Tonight — $4.44 →</a>
+  <p class="btn-sub" style="margin-bottom:48px;">Instant access · Lifetime access</p>
+
+  <!-- VALUE STACK -->
+  <span class="section-label">everything you're getting</span>
+  <div class="value-stack">
+    <div class="value-item">
+      <div><p class="value-name">The Full Sleep Portal Track</p><p class="value-desc">15 minutes of hypnotic guided entry that drops you into SATS — then all-night subliminal saturation that runs while you sleep. Press play once. Let it work all night.</p></div>
+      <span class="value-price">$197</span>
+    </div>
+    <div class="value-item">
+      <div><p class="value-name">The 123456 Subliminal Stack</p><p class="value-desc">The proprietary layering technique that recodes faster than anything you've tried before. Three rotating sequences that run all night until the old story has nowhere left to live.</p></div>
+      <span class="value-price">$997</span>
+    </div>
+    <div class="value-item">
+      <div><p class="value-name">The Quantum Glow-Up™ Framework</p><p class="value-desc">Embedded throughout the entire portal — nervous system safety, quantum alignment, identity shift. All three. Every single night.</p></div>
+      <span class="value-price">$997</span>
+    </div>
+  </div>
+
+  <div class="value-total">
+    <span class="total-label">Total value</span>
+    <div class="total-values">
+      <div class="total-was">$2,191</div>
+      <div class="total-now" id="totalNow">$4.44 🥂</div>
+    </div>
+  </div>
+
+  <!-- WHY I BUILT IT -->
+  <span class="section-label">why I built this</span>
+  <h2 class="section-title" style="margin-bottom:20px;">I was winning the day<br>and losing the night.</h2>
+  <div class="story-box">
+    <p>I did everything right — scripted, visualized, affirmed, read all of Neville. And I kept waking up in the same timeline. Then I realized: while I was doing all the right things during the day, I was falling asleep in fear and scarcity every night. For 8 hours, my subconscious ran the middle-class programming I'd been handed as a kid — quietly dismantling everything I built during the day.</p>
+    <p><strong>Sleep isn't just rest. It's the most powerful reprogramming window you have. And almost nobody uses it intentionally.</strong></p>
+    <p>So I built the tool. And the women who use it consistently? They don't describe it as effort. They describe waking up different. ✨</p>
+  </div>
+
+  <!-- RESULTS -->
+  <span class="section-label">real results</span>
+  <div class="results-grid">
+    <div class="result-col">
+      <span class="result-col-title">Client wins</span>
+      <div class="result-item">Hospital bills paid in full by anonymous donors</div>
+      <div class="result-item">Winning free trips from giveaways and sweepstakes</div>
+      <div class="result-item">Huge client contracts and raises at work</div>
+      <div class="result-item">Gaining the courage to leave toxic relationships</div>
+      <div class="result-item">Manifesting invoices and checks down to the exact dollar</div>
+      <div class="result-item">Manifesting exact items they were going to purchase — for free</div>
+    </div>
+    <div class="result-col">
+      <span class="result-col-title">My biggest timeline jumps</span>
+      <div class="result-item">~$8k months to $40k+ months in my businesses</div>
+      <div class="result-item">New company made 6-figures its first year</div>
+      <div class="result-item">Lost 50lbs in 6 months</div>
+      <div class="result-item">3-week trip to Hawaii from a single visualization</div>
+      <div class="result-item">Dream collaborations with zero pitching or chasing</div>
+      <div class="result-item">Waking up every day with an intangible calm that makes reality feel flowy and safe</div>
+    </div>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee-box">
+    <span class="guarantee-icon">🛡</span>
+    <h3 class="guarantee-title">7-Night Guarantee</h3>
+    <p class="guarantee-text">Listen for 7 nights. Feel zero shift. Get a full refund. No questions. No hoops. If you use this for 7 nights and feel no difference in how you're waking up, how you're moving through your days, or how your body relates to money — email me and I'll refund every cent. That's how confident I am in what this does.</p>
+  </div>
+
+  <!-- CLOSING CTA -->
+  <h2 class="section-title" style="margin-bottom:8px;">If you're ready to press play tonight,<br>your timeline is waiting. 🌙</h2>
+  <p class="section-desc">Enter your details below and you'll have access within minutes.</p>
+
+  <!-- CHECKOUT -->
+  <div class="checkout-box" id="checkout">
+    <h3 class="checkout-title">Timeline Jump Sleep Portal™</h3>
+    <p class="checkout-sub" id="checkoutSub">One-time offer · $4.44 · Instant lifetime access</p>
+
+    <div
+      class="tc-v2-embeddable-target"
+      data-thrivecart-account="jacnicole"
+      data-thrivecart-tpl="v2"
+      data-thrivecart-product="19"
+      data-thrivecart-embeddable="tc-jacnicole-19-PI09CD">
+    </div>
+    <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-19-PI09CD"></script>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-box">
+    <p class="about-name">Jac Nicole</p>
+    <div class="certs">
+      <div class="cert-item">✦ Certified REVEAL™ Manifestation & Law of Attraction Practitioner — ICAHP</div>
+      <div class="cert-item">✦ Certified Breathwork Facilitator — ICAHP</div>
+      <div class="cert-item">✦ Certified Consciousness Reprogramming Practitioner — CTAA</div>
+      <div class="cert-item">✦ Certified EFT & TFT Tapping Practitioner — CTAA</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM SKIP -->
+  <div class="skip-bottom">
+    <span class="skip-bottom-label">not ready right now?</span>
+    <a href="https://manifestwithjac.netlify.app/money-loves-me-masterclass" class="btn-skip-bottom">No thanks — take me to the Money Loves Me masterclass</a>
+    <span class="skip-bottom-sub">I'll skip this offer and pay full price if I want it later.</span>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" style="margin-top:32px;">
+    <p><strong>Results Disclaimer.</strong> Results shared on this page are real but not guaranteed or typical. Individual outcomes vary based on consistency of use, personal history, and other factors. This product is for personal development and subconscious reprogramming purposes only.</p>
+    <br>
+    <p><strong>Health Disclaimer.</strong> By purchasing you confirm you are in good physical and mental health. This audio is not recommended for those with epilepsy, severe anxiety disorders, active psychosis, or cardiovascular conditions without consulting a physician first. Not for use while driving or operating machinery.</p>
+    <br>
+    <p><strong>Refund Policy.</strong> 7-night guarantee as stated above. All other sales are final due to the instant digital nature of the product. By purchasing you agree to these terms.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© Celestara Collective Inc. · Manifest With Jac · All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Stars
+  var colors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
+  var starsEl = document.getElementById('stars');
+  for (var i = 0; i < 60; i++) {
+    var s = document.createElement('div');
+    var sz = (1 + Math.random() * 2.5);
+    s.className = 'star';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.width = sz + 'px';
+    s.style.height = sz + 'px';
+    s.style.background = colors[Math.floor(Math.random() * colors.length)];
+    s.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    s.style.setProperty('--delay', (Math.random() * 6) + 's');
+    s.style.opacity = String(0.1 + Math.random() * 0.4);
+    starsEl.appendChild(s);
+  }
+
+  // Email pre-fill
+  var params = new URLSearchParams(window.location.search);
+  var email = params.get('email');
+  if (email) {
+    var target = document.querySelector('.tc-v2-embeddable-target');
+    if (target) target.setAttribute('data-thrivecart-customer-email', decodeURIComponent(email));
+  }
+
+  // TIMER — localStorage protected
+  var STORAGE_KEY = 'tjsp_oto_expiry';
+  var DURATION = 15 * 60;
+
+  var minsEl = document.getElementById('timerMins');
+  var secsEl = document.getElementById('timerSecs');
+  var timerDisplay = document.getElementById('timerDisplay');
+  var priceDisplay = document.getElementById('priceDisplay');
+  var priceWas = document.getElementById('priceWas');
+  var priceSave = document.getElementById('priceSave');
+  var totalNow = document.getElementById('totalNow');
+  var checkoutSub = document.getElementById('checkoutSub');
+
+  // Update all buy buttons
+  function updateBtns(text) {
+    var btns = document.querySelectorAll('.btn-primary');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].textContent = text;
+    }
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function onExpire() {
+    timerDisplay.innerHTML = '<span class="expired-msg">Offer expired — price returned to $7.77</span>';
+    priceDisplay.innerHTML = '<sup>$</sup>7<span style="font-size:30px;letter-spacing:-0.02em;">.77</span>';
+    if (priceWas) priceWas.style.display = 'none';
+    if (priceSave) priceSave.textContent = 'Regular price';
+    if (totalNow) totalNow.textContent = '$7.77 🥂';
+    if (checkoutSub) checkoutSub.textContent = 'One-time · $7.77 · Instant lifetime access';
+    updateBtns('Press Play Tonight — $7.77 →');
+  }
+
+  function tick(expiryTime) {
+    var interval = setInterval(function() {
+      var remaining = Math.floor((expiryTime - Date.now()) / 1000);
+      if (remaining <= 0) { clearInterval(interval); onExpire(); return; }
+      minsEl.textContent = pad(Math.floor(remaining / 60));
+      secsEl.textContent = pad(remaining % 60);
+      if (remaining <= 60) {
+        var red = 'font-size:22px;font-weight:700;line-height:1;background:linear-gradient(135deg,#ff7a7a,#e87fca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-variant-numeric:tabular-nums;';
+        minsEl.style.cssText = red;
+        secsEl.style.cssText = red;
+      }
+    }, 1000);
+  }
+
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    var expiryTime;
+    if (stored) {
+      expiryTime = parseInt(stored, 10);
+      if (Date.now() >= expiryTime) { onExpire(); }
+      else {
+        var rem = Math.floor((expiryTime - Date.now()) / 1000);
+        minsEl.textContent = pad(Math.floor(rem / 60));
+        secsEl.textContent = pad(rem % 60);
+        tick(expiryTime);
+      }
+    } else {
+      expiryTime = Date.now() + (DURATION * 1000);
+      localStorage.setItem(STORAGE_KEY, expiryTime.toString());
+      tick(expiryTime);
+    }
+  } catch(e) {
+    tick(Date.now() + (DURATION * 1000));
+  }
+
+});
+</script>
+</body>
+</html>

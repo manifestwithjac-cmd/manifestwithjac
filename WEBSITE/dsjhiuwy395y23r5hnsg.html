@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One-Time Offer | Thank You, Debt</title>
+
+  <!-- Fonts: bold, clean, sans-serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --white:#ffffff;
+      --ink:#0b0b0f; /* black for text */
+      --purple:#af81e4;
+      --aqua:#80e8dd;
+      --pink:#e784ba;
+      --mint:#b7f6af;
+      --peach:#f9c1a0;
+      --sky:#7cc2f6;
+
+      --shadow: 0 18px 55px rgba(16, 10, 25, 0.14);
+      --soft-shadow: 0 10px 30px rgba(16, 10, 25, 0.10);
+      --ring: 0 0 0 1px rgba(11,11,15,.08), 0 10px 30px rgba(11,11,15,.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body{
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+
+      /* Girly, magical, bright base */
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(175,129,228,.35), transparent 55%),
+        radial-gradient(1000px 700px at 90% 18%, rgba(128,232,221,.32), transparent 55%),
+        radial-gradient(900px 600px at 15% 85%, rgba(231,132,186,.30), transparent 60%),
+        radial-gradient(850px 500px at 85% 88%, rgba(124,194,246,.28), transparent 58%),
+        linear-gradient(180deg, #ffffff 0%, #fff8ff 55%, #ffffff 100%);
+    }
+
+    /* Sparkle glitter overlay (pure CSS, no images) */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .38;
+      mix-blend-mode: soft-light;
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(255,255,255,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 22%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 78%, rgba(255,255,255,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 55% 18%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 92% 62%, rgba(255,255,255,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 45% 85%, rgba(255,255,255,.8) 0 1px, transparent 2px);
+      background-size: 240px 240px;
+      animation: twinkle 6.5s linear infinite;
+    }
+
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -40px;
+      pointer-events: none;
+      opacity: .35;
+      filter: blur(10px);
+      background:
+        conic-gradient(from 220deg at 60% 35%,
+          rgba(175,129,228,.22),
+          rgba(128,232,221,.22),
+          rgba(231,132,186,.22),
+          rgba(183,246,175,.18),
+          rgba(249,193,160,.18),
+          rgba(124,194,246,.20),
+          rgba(175,129,228,.22));
+      animation: aura 10s ease-in-out infinite alternate;
+      mix-blend-mode: multiply;
+    }
+
+    @keyframes twinkle{
+      0%{ transform: translate3d(0,0,0); opacity:.28; }
+      50%{ opacity:.46; }
+      100%{ transform: translate3d(-60px, -40px, 0); opacity:.28; }
+    }
+    @keyframes aura{
+      0%{ transform: rotate(0deg) scale(1); opacity:.25; }
+      100%{ transform: rotate(10deg) scale(1.05); opacity:.38; }
+    }
+
+    .container{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Top ribbon + header */
+    .header{
+      text-align: center;
+      padding: 28px 18px 10px;
+    }
+
+    .badge{
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--ring);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .badge .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--aqua));
+      box-shadow: 0 0 0 4px rgba(231,132,186,.18);
+    }
+
+    h1{
+      margin: 18px auto 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+
+      /* Iridescent “money magick” headline */
+      background: linear-gradient(90deg,
+        var(--purple),
+        var(--pink),
+        var(--aqua),
+        var(--sky),
+        var(--peach),
+        var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 22px rgba(175,129,228,.18);
+    }
+
+    .subheadline{
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: rgba(11,11,15,.82);
+      font-weight: 500;
+    }
+
+    .subheadline em{
+      font-style: normal;
+      font-weight: 800;
+      color: rgba(11,11,15,.92);
+      padding: 0 .2em;
+      border-radius: 6px;
+      background: linear-gradient(90deg, rgba(128,232,221,.35), rgba(231,132,186,.25));
+    }
+
+    /* Optional hero art (add your image file + set src) */
+    .hero-art{
+      width: min(560px, 92%);
+      margin: 18px auto 0;
+      display: block;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(11,11,15,.08);
+      background: rgba(255,255,255,.6);
+    }
+
+    /* Timer */
+    .urgency-timer{
+      margin: 22px auto 14px;
+      padding: 18px 18px;
+      max-width: 860px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--soft-shadow);
+      border: 1px solid rgba(11,11,15,.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .urgency-timer::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--aqua), var(--sky), var(--peach));
+      opacity:.25;
+      filter: blur(12px);
+      pointer-events:none;
+    }
+
+    .urgency-timer-inner{
+      position: relative;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      text-align:center;
+    }
+
+    .urgency-timer p{
+      font-weight: 800;
+      letter-spacing: .02em;
+      color: rgba(11,11,15,.86);
+    }
+
+    .timer{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      padding: 10px 16px;
+      border-radius: 14px;
+      background: rgba(11,11,15,.06);
+      border: 1px solid rgba(11,11,15,.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+    }
+
+    .timer-tag{
+      font-weight: 700;
+      font-size: .95rem;
+      color: rgba(11,11,15,.7);
+    }
+
+    /* Main card */
+    .main-content{
+      margin: 18px 0 30px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(11,11,15,.08);
+      border-radius: var(--radius-xl);
+      padding: clamp(26px, 4vw, 54px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-content::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(600px 300px at 20% 0%, rgba(175,129,228,.20), transparent 65%),
+        radial-gradient(540px 280px at 88% 10%, rgba(128,232,221,.18), transparent 60%),
+        radial-gradient(520px 260px at 10% 95%, rgba(231,132,186,.16), transparent 62%),
+        radial-gradient(620px 260px at 90% 95%, rgba(249,193,160,.14), transparent 62%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .content-inner{ position: relative; }
+
+    .section{
+      margin-bottom: 34px;
+    }
+
+    h2{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      font-size: clamp(1.45rem, 2.7vw, 2.05rem);
+      text-align: center;
+      margin-bottom: 14px;
+      color: rgba(11,11,15,.95);
+    }
+
+    .section p{
+      font-size: 1.03rem;
+      color: rgba(11,11,15,.80);
+      margin: 10px 0;
+      line-height: 1.85;
+    }
+
+    .highlight{
+      font-weight: 900;
+      background: linear-gradient(90deg, rgba(175,129,228,.25), rgba(128,232,221,.25), rgba(231,132,186,.22));
+      padding: 0 .25em;
+      border-radius: 8px;
+      color: rgba(11,11,15,.92);
+    }
+
+    /* What's Included */
+    .whats-included{
+      margin: 28px 0 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .whats-included::before{
+      content:"";
+      position:absolute;
+      inset: -2px;
+      background: linear-gradient(90deg, rgba(175,129,228,.22), rgba(128,232,221,.22), rgba(231,132,186,.20), rgba(124,194,246,.20));
+      opacity: .35;
+      filter: blur(14px);
+      pointer-events:none;
+    }
+
+    .whats-included h3{
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+    }
+
+    .benefit-item{
+      position: relative;
+      display:flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(11,11,15,.08);
+      margin-bottom: 14px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .benefit-item:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(11,11,15,.10);
+    }
+
+    .check-icon{
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display:grid;
+      place-items: center;
+      font-weight: 900;
+      color: rgba(11,11,15,.92);
+      background: linear-gradient(135deg, rgba(183,246,175,.80), rgba(128,232,221,.70));
+      border: 1px solid rgba(11,11,15,.08);
+    }
+
+    .benefit-text h4{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      letter-spacing: .01em;
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+      color: rgba(11,11,15,.92);
+    }
+
+    .benefit-text p{
+      margin: 0;
+      font-size: .98rem;
+      color: rgba(11,11,15,.76);
+      line-height: 1.7;
+    }
+
+    /* Price block */
+    .price-section{
+      text-align: center;
+      padding: 28px 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+      margin: 26px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-section::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--aqua), var(--sky), var(--peach));
+      opacity: .18;
+      filter: blur(16px);
+      pointer-events:none;
+    }
+
+    .original-price{
+      position: relative;
+      font-weight: 700;
+      color: rgba(11,11,15,.50);
+      text-decoration: line-through;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .price-subtext{
+      position: relative;
+      font-weight: 700;
+      color: rgba(11,11,15,.74);
+    }
+
+    .tripwire-price{
+      position: relative;
+      margin: 10px 0 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      letter-spacing: -0.02em;
+
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--aqua));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 26px rgba(231,132,186,.18);
+    }
+
+    .savings{
+      position: relative;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      background: rgba(11,11,15,.92);
+      color: #fff;
+      font-size: .95rem;
+    }
+
+    /* CTA */
+    .cta-button{
+      display:block;
+      width:100%;
+      max-width: 560px;
+      margin: 18px auto 10px;
+      padding: 18px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #0b0b0f;
+      background: linear-gradient(90deg, var(--mint), var(--aqua), var(--sky), var(--peach), var(--pink));
+      box-shadow: 0 14px 34px rgba(11,11,15,.14);
+      border: 1px solid rgba(11,11,15,.10);
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .cta-button::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.8), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,.55), transparent 45%);
+      transform: rotate(12deg);
+      opacity: .55;
+      pointer-events:none;
+      transition: opacity .2s ease;
+    }
+
+    .cta-button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px rgba(11,11,15,.18);
+    }
+    .cta-button:hover::after{ opacity:.75; }
+
+    .cta-subtext{
+      text-align:center;
+      font-weight: 600;
+      color: rgba(11,11,15,.62);
+      font-size: .95rem;
+      margin-bottom: 18px;
+    }
+
+    /* Why now list */
+    .xlist{
+      list-style: none;
+      padding-left: 0;
+      margin-top: 14px;
+    }
+    .xlist li{
+      margin-bottom: 12px;
+      padding: 12px 14px 12px 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(11,11,15,.08);
+      position: relative;
+      color: rgba(11,11,15,.78);
+      font-weight: 600;
+    }
+    .xlist li span{
+      position:absolute;
+      left: 14px;
+      top: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 9px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(231,132,186,.70), rgba(175,129,228,.55));
+      border: 1px solid rgba(11,11,15,.08);
+      font-weight: 900;
+    }
+
+    /* Quote block */
+    .quote{
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(11,11,15,.08);
+      border-left: 6px solid rgba(175,129,228,.55);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+      margin: 24px 0;
+    }
+    .quote p{ color: rgba(11,11,15,.78); }
+    .quote .sig{
+      text-align:right;
+      font-weight: 900;
+      color: rgba(11,11,15,.72);
+      margin-top: 8px;
+    }
+
+    /* Guarantee */
+    .guarantee{
+      text-align:center;
+      padding: 22px 18px;
+      margin: 24px 0 8px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+    }
+    .guarantee-badge{
+      width: 68px;
+      height: 68px;
+      border-radius: 22px;
+      margin: 0 auto 10px;
+      display:grid;
+      place-items:center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: rgba(11,11,15,.92);
+      background: linear-gradient(135deg, rgba(183,246,175,.75), rgba(128,232,221,.65), rgba(124,194,246,.55));
+      border: 1px solid rgba(11,11,15,.08);
+    }
+    .guarantee h3{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .guarantee p{ color: rgba(11,11,15,.74); }
+
+    /* Final reminder */
+    .final{
+      text-align: center;
+      padding: 22px 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(11,11,15,.08);
+      box-shadow: var(--soft-shadow);
+      margin-top: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .final::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(90deg, rgba(231,132,186,.20), rgba(175,129,228,.20), rgba(128,232,221,.18), rgba(249,193,160,.16));
+      opacity:.35;
+      filter: blur(16px);
+      pointer-events:none;
+    }
+    .final .inner{ position: relative; }
+
+    /* Footer */
+    .footer{
+      text-align: center;
+      padding: 26px 10px 40px;
+      color: rgba(11,11,15,.55);
+      font-size: .92rem;
+    }
+    .footer a{ color: rgba(11,11,15,.72); font-weight: 700; }
+
+    /* Mobile */
+    @media (max-width: 768px){
+      .container{ padding: 16px; }
+      .urgency-timer{ padding: 16px; }
+      .benefit-item{ padding: 14px; }
+      .timer{ font-size: 1.6rem; }
+      .cta-button{ padding: 16px 18px; font-size: .95rem; }
+    }
+  
+    .decline-link{
+      display:inline-block;
+      font-weight: 800;
+      text-decoration: none;
+      color: rgba(11,11,15,.62);
+      border-bottom: 1px dashed rgba(11,11,15,.30);
+      padding-bottom: 2px;
+      transition: color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .decline-link:hover{
+      color: rgba(11,11,15,.82);
+      border-color: rgba(11,11,15,.55);
+      transform: translateY(-1px);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge"><span class="dot"></span> Congratulations on Your Purchase! <span style="font-weight:800; opacity:.8;">Check your email for details!</span></div>
+
+      <h1>Wait! Your Wealth Channel<br>Isn't Fully Open Yet ✨</h1>
+
+      <p class="subheadline">
+        You just activated <em>Money Moves</em> while you sleep... but there's ONE thing blocking your full overflow.
+      </p>
+
+      <!-- Optional: add your cover image (put the file in the same folder and update src) -->
+      <!-- <img class="hero-art" src="money-magnet-cover.png" alt="The 24-Hour Money Magnet Game cover"> -->
+    </div>
+
+    <!-- Urgency Timer -->
+    <div class="urgency-timer">
+      <div class="urgency-timer-inner">
+        <p>⏳ THIS OFFER DISAPPEARS IN:</p>
+        <div class="timer" id="countdown">14:59</div>
+        <div class="timer-tag">Leave this page and it's gone.</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="content-inner">
+
+        <div class="section">
+          <h2>Here's What Most People Don't Realize…</h2>
+          <p>
+            You can reprogram your money beliefs all night long with <em>Money Moves</em>… but if your nervous system is still holding
+            <span class="highlight">shame around debt</span>, your body will sabotage every dollar that tries to come in.
+          </p>
+
+          <p style="margin-top: 16px;">
+            Because here's the truth: <strong>Debt shame is the #1 energetic block to wealth.</strong>
+          </p>
+
+          <p>
+            It doesn't matter how many affirmations you listen to. It doesn't matter how hard you work.
+            If your subconscious believes "I'm bad with money" or "I'll never get ahead" because of past debt…
+            <span class="highlight">your wealth channel stays closed.</span>
+          </p>
+
+          <p style="margin-top: 16px; font-size: 1.07rem;">
+            <strong>That's exactly why I created <em>Thank You, Debt.</em></strong>
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>The Missing Piece to Your Money Transformation</h2>
+          <p>
+            <em>Thank You, Debt</em> isn't just another “mindset course.” It's a <strong>nervous system recalibration + energetic upgrade</strong>
+            that releases the shame keeping your body in scarcity… so you can finally hold wealth, feel safe, and pay off debt in divine timing
+            <em>without self-punishment.</em>
+          </p>
+          <p style="margin-top: 12px;">This program includes:</p>
+        </div>
+
+        <!-- What's Included -->
+        <div class="whats-included">
+          <h3>What You're Getting Today 💎</h3>
+
+          <div class="benefit-item">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>PHASE 1: REFRAME</h4>
+              <p>Release the shame that's been programmed into you. Your debt was support, not sabotage. Unhook your nervous system from the panic-fix cycle and remember that worthiness was never tied to a number.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>PHASE 2: REWIRE</h4>
+              <p>Using guided theta-state visualization and EFT tapping, you'll reprogram how your system relates to money. This shifts your entire frequency from debt panic to peace, reverence, and eventual release.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>PHASE 3: RECLAIM</h4>
+              <p>Walk differently, not because everything is paid off yet, but because you're no longer in panic every time money moves. You've cleared the shame, rewired the story, and now your system knows how to HOLD wealth without collapsing.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>BONUS: 8-Hour Debt-Crushing Subliminal Sleep Track</h4>
+              <p>While you sleep, this track installs new wealth codes deep into your subconscious so your debt stops holding you back and you can open your wealth channel fully. Perfect companion to Money Moves.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>EFT Tapping Scripts + Video Sessions</h4>
+              <p>Professionally guided tapping sessions to release shame, activate gratitude for all currency, and anchor your new wealthy identity at the cellular level.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item" style="margin-bottom:0;">
+            <div class="check-icon">✓</div>
+            <div class="benefit-text">
+              <h4>Daily Integration Rituals</h4>
+              <p>Simple practices to ground your new frequency, reframe money language, and embody wealth even while debt exists. This is where lasting transformation happens.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Section -->
+        <div class="price-section">
+          <p class="original-price">Regular Price: $97</p>
+          <p class="price-subtext">Your Special One-Time Price:</p>
+          <div class="tripwire-price">$27</div>
+          <div class="savings">✨ Save $70 Today Only</div>
+          <p style="margin-top: 12px; color: rgba(11,11,15,.70); font-weight: 600;">
+            This price will NEVER be offered again after you leave this page.
+          </p>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="https://stan.store/manifestwithjac/p/thank-you-debt-add-on" class="cta-button">Yes! Complete My Wealth Activation</a>
+        <p class="cta-subtext">🔒 Secure checkout • Instant access • One-time payment</p>
+        <p class="cta-subtext" style="margin-top:-8px;">
+          <a href="#" class="decline-link" onclick="return declineOffer(event);">No thanks, I'll pass on clearing debt shame ✋</a>
+        </p>
+
+
+        <!-- Why Now -->
+        <div class="section" style="margin-top: 24px;">
+          <h2>Why You Need This NOW</h2>
+          <p>
+            You just invested in reprogramming your money beliefs with <em>Money Moves</em>. That's powerful.
+            But if your body is still carrying shame from past debt decisions, it will:
+          </p>
+
+          <ul class="xlist">
+            <li><span>✗</span> Block incoming money because “you don't deserve it yet”</li>
+            <li><span>✗</span> Keep you in a panic-fix cycle around payments</li>
+            <li><span>✗</span> Make you feel guilty every time you spend or invest</li>
+            <li><span>✗</span> Sabotage your manifestation before it can fully land</li>
+          </ul>
+
+          <p style="margin-top: 18px; font-size: 1.08rem;">
+            <strong>But when you clear the shame? Everything changes.</strong>
+          </p>
+
+          <p>
+            Suddenly, money flows without guilt. Payments feel like gratitude, not punishment.
+            And your nervous system finally feels SAFE to hold wealth because you've neutralized the one thing that was keeping you small.
+          </p>
+        </div>
+
+        <!-- Quote -->
+        <div class="quote">
+          <p style="font-style: italic;">
+            “I never expected to be someone with over six figures in debt. Not because I was irresponsible, but because I was trying.
+            <span class="highlight">This work helped me stop making debt a personal failure</span> and start seeing it as an energetic portal. A lifeline. A mirror.”
+          </p>
+          <div class="sig">— Jac Nicole, Creator</div>
+        </div>
+
+        <!-- Final CTA -->
+        <a href="https://stan.store/manifestwithjac/p/thank-you-debt-add-on" class="cta-button">Complete My Wealth Channel Now</a>
+        <p class="cta-subtext">This offer expires in <span id="countdown2" style="font-weight: 900;">14:59</span></p>
+
+        <!-- Guarantee -->
+        <div class="guarantee">
+          <div class="guarantee-badge">✓</div>
+          <h3>My Personal Promise to You</h3>
+          <p>
+            If <em>Thank You, Debt</em> doesn't shift how you feel about money, debt, and your capacity to hold wealth within the first 7 days,
+            just email me and I'll refund you personally. No questions asked.
+          </p>
+        </div>
+
+        <!-- Final Reminder -->
+        <div class="final">
+          <div class="inner">
+            <h2 style="margin-bottom: 8px;">One Last Thing…</h2>
+            <p style="font-size: 1.05rem;">
+              You didn't buy <em>Money Moves</em> to stay the same. You bought it because you're ready for an identity shift.
+              <span class="highlight">This is the final piece.</span>
+            </p>
+            <p style="margin-top: 10px; font-size: 1.03rem;">
+              Clear the shame. Open the channel. Become the woman who holds wealth with zero apology.
+            </p>
+
+            <a href="https://stan.store/manifestwithjac/p/thank-you-debt-add-on" class="cta-button" style="margin-top: 16px;">Yes, I'm Ready, Give Me Access</a>
+            <p class="cta-subtext" style="margin-top: 8px; margin-bottom: 0;">
+              <a href="#" class="decline-link" onclick="return declineOffer(event);">No thanks, I’d rather keep the debt story running my nervous system.</a>
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© 2026 Jac Nicole. All rights reserved.</p>
+      <p style="margin-top: 8px;">Questions? Email: <a href="mailto:hello@manifestwithjac.com">hello@manifestwithjac.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    
+    // "No thanks" click: attempt to close, fallback to blank page
+    function declineOffer(e){
+      if (e) e.preventDefault();
+      try { window.close(); } catch (err) {}
+      // Fallbacks (many browsers block window.close unless opened by script)
+      try { window.location.href = 'about:blank'; } catch (err) {}
+      return false;
+    }
+
+    // 15-minute countdown timer
+    let timeLeft = 15 * 60;
+
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      const display = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+      const el1 = document.getElementById('countdown');
+      const el2 = document.getElementById('countdown2');
+
+      if (el1) el1.textContent = display;
+      if (el2) el2.textContent = display;
+
+      if (timeLeft > 0) {
+        timeLeft--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        if (el1) el1.textContent = 'EXPIRED';
+        if (el2) el2.textContent = 'EXPIRED';
+      }
+    }
+
+    updateTimer();
+  </script>
+</body>
+</html>

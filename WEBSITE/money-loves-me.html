@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Loves Me — Free Masterclass | Manifest With Jac</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #08060f;
+    --pink: #EEC7DD;
+    --lavender: #CFC5E1;
+    --blue: #CED9ED;
+    --mauve: #DEC5DF;
+    --sage: #D6E8DA;
+    --text: #f8f4ff;
+    --muted: rgba(248,244,255,0.5);
+    --border: rgba(207,197,225,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 0% 0%, rgba(206,217,237,0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(207,197,225,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 60% at 100% 100%, rgba(238,199,221,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(214,232,218,0.1) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgPulse 10s ease-in-out infinite;
+  }
+
+  @keyframes bgPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star { position: absolute; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+  @keyframes twinkle { 0%, 100% { opacity: 0.08; } 50% { opacity: 0.55; } }
+
+  .wrap { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 64px 24px 80px; display: flex; flex-direction: column; align-items: center; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--lavender); margin-bottom: 20px; animation: fadeUp 0.7s ease forwards 0.1s; opacity: 0; }
+
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(56px, 13vw, 86px);
+    font-weight: 600;
+    line-height: 1.0;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #CED9ED 0%, #ffffff 15%, #EEC7DD 30%, #CFC5E1 45%, #ffffff 58%, #DEC5DF 72%, #D6E8DA 85%, #CED9ED 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: iridescent 6s ease infinite, fadeUp 0.7s ease forwards 0.2s;
+    opacity: 0;
+  }
+
+  @keyframes iridescent { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+  .headline-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(248,244,255,0.6);
+    text-align: center;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.3s;
+  }
+
+  /* WHO THIS IS FOR */
+  .for-section {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+
+  .for-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .for-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .for-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: rgba(248,244,255,0.75);
+    line-height: 1.55;
+  }
+
+  .for-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* WHAT YOU'LL LEARN */
+  .learn-section {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+  }
+
+  .learn-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .learn-items { display: flex; flex-direction: column; gap: 12px; }
+
+  .learn-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    color: rgba(248,244,255,0.75);
+    line-height: 1.6;
+  }
+
+  .learn-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: white;
+    font-weight: 700;
+  }
+
+  /* WHAT HAPPENS INSIDE */
+  .inside-section {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+
+  .inside-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .inside-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .inside-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .inside-card-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+  .inside-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .inside-card-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* FORM */
+  .form-box {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(207,197,225,0.2);
+    border-radius: 24px;
+    padding: 36px 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.6s;
+  }
+
+  .form-label { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); text-align: center; margin-bottom: 8px; }
+  .form-sublabel { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 22px; font-style: italic; }
+
+  .fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 15px 18px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.25s ease;
+    -webkit-appearance: none;
+  }
+
+  input::placeholder { color: rgba(255,255,255,0.22); }
+  input:focus { border-color: rgba(238,199,221,0.45); }
+  input.error { border-color: rgba(251,113,133,0.6); }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    border: none;
+    border-radius: 12px;
+    padding: 17px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+  }
+
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(238,199,221,0.35); }
+  .privacy { font-size: 11px; color: rgba(255,255,255,0.18); text-align: center; margin-top: 12px; }
+
+  /* ABOUT */
+  .about { margin-top: 52px; width: 100%; max-width: 500px; text-align: center; opacity: 0; animation: fadeUp 0.7s ease forwards 0.8s; }
+
+
+  .about-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--lavender); margin-bottom: 16px; }
+  .about-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .about-body { font-size: 14px; color: rgba(248,244,255,0.65); line-height: 1.8; margin-bottom: 16px; text-align: left; }
+  .about-body strong { color: var(--text); font-weight: 500; }
+  .certs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; width: 100%; }
+  .cert-item { font-size: 12px; color: rgba(248,244,255,0.55); letter-spacing: 0.04em; text-align: left; line-height: 1.5; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; }
+  .stat { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+  .stat-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32px; font-weight: 600; background: linear-gradient(135deg, #f8f4ff, var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; line-height: 1.4; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 48px 20px 60px; }
+    .form-box { padding: 28px 20px; }
+    .inside-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="eyebrow">✦ free masterclass ✦</div>
+  <h1>Money<br>Loves Me</h1>
+  <p class="headline-sub">become the woman money is magnetically drawn to —<br>regulated, overflowing, and unavoidable</p>
+
+  <!-- FORM -->
+  <div class="form-box">
+    <p class="form-label">get instant free access</p>
+    <p class="form-sublabel">Watch when you can actually sit with it. This one works.</p>
+    <div class="fields">
+      <input type="text" id="input-name" placeholder="First name" autocomplete="given-name" />
+      <input type="email" id="input-email" placeholder="Email address" autocomplete="email" />
+    </div>
+    <button class="btn-submit" id="submit-btn">I'm Ready — Send Me the Masterclass →</button>
+    <p class="privacy">No spam. Unsubscribe anytime.</p>
+  </div>
+
+
+  <!-- WHO THIS IS FOR -->
+  <div class="for-section">
+    <p class="for-label">this is for you if</p>
+    <div class="for-items">
+      <div class="for-item">
+        <span class="for-icon">✦</span>
+        <span>You've done the affirmations, vision boards, scripting, 369, the whisper method — and money still feels hard</span>
+      </div>
+      <div class="for-item">
+        <span class="for-icon">✦</span>
+        <span>You're tired of the income roller coaster — good months, then nothing — and you're ready for money that actually stays</span>
+      </div>
+      <div class="for-item">
+        <span class="for-icon">✦</span>
+        <span>You know in the depths of your soul you are meant for the big life — you just can't figure out why it's not showing up yet</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <div class="inside-section">
+    <p class="inside-label">what we cover</p>
+    <div class="inside-grid">
+      <div class="inside-card">
+        <span class="inside-card-icon">⚡</span>
+        <p class="inside-card-title">Quantum Alignment</p>
+        <p class="inside-card-desc">Why your inner world is creating your outer reality — and how to shift it</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-card-icon">🌊</span>
+        <p class="inside-card-title">Nervous System Safety</p>
+        <p class="inside-card-desc">Why your body is blocking money — even when you consciously want it</p>
+      </div>
+      <div class="inside-card">
+        <span class="inside-card-icon">👑</span>
+        <p class="inside-card-title">Embodied Identity</p>
+        <p class="inside-card-desc">How to become her before the money comes — not after</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU'LL GET -->
+  <div class="learn-section">
+    <p class="learn-label">you'll leave with</p>
+    <div class="learn-items">
+      <div class="learn-item">
+        <div class="learn-dot">✦</div>
+        <span>A real understanding of why affirmations, vision boards, and surface-level methods haven't moved the needle — and what's actually going on underneath</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-dot">✦</div>
+        <span>A live EFT tapping sequence that starts rewiring your nervous system's relationship with money in real time — while you watch</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-dot">✦</div>
+        <span>Tangible action steps to start living as the woman who is already overflowing — so reality has no choice but to catch up</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-dot">✦</div>
+        <span>The exact framework Jac used to go from six figures of business debt to consistent $30-40K months and a 3-week trip to Hawaii — without the hustle</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about">
+    <p class="about-label">✦ the full story ✦</p>
+    <p class="about-name">I didn't just study this.<br>I lived my way through it.</p>
+
+    <p class="about-body">I'm Jac — a multi-business entrepreneur and subconscious reprogramming specialist. Through deep identity work, I've completely transformed what my businesses are capable of calling in — including contracts and partnerships with Fortune 500 companies and NBA teams. Not because I hustled harder. Because I became someone different at the identity level first, and my reality reorganized around that.</p>
+
+    <p class="about-body">Before any of that, I was waking up at 3am shuffling money so bills wouldn't bounce. Building businesses while terrified every slow week would break everything. Saying all the right things about abundance while my nervous system ran a completely different program underneath.</p>
+
+    <p class="about-body">I also lived in a marriage that felt disconnected and lost. I carried weight in my body that went so much deeper than physical. I kept hitting the same ceiling no matter what I did externally.</p>
+
+    <p class="about-body">The shift happened when I stopped trying to fix my circumstances and started changing my identity — at the subconscious level, at the nervous system level, at the cellular level. I lost 50lbs. I rebuilt a marriage that is now my safest, most beautiful place. I retired my mom. I created income streams that flow without trading hours for dollars.</p>
+
+    <p class="about-body" style="margin-bottom:28px;">Now I'm obsessed with helping other women build their own fuck yes life — through the <strong>Quantum Glow-Up™ Method.</strong></p>
+
+    <div class="certs">
+      <div class="cert-item">✦ Certified REVEAL™ Manifestation & Law of Attraction Practitioner</div>
+      <div class="cert-item">✦ Certified Subconscious Reprogramming & Consciousness Practitioner</div>
+      <div class="cert-item">✦ Certified EFT / TFT Tapping Practitioner — CTAA</div>
+      <div class="cert-item">✦ Certified Breathwork Facilitator — ICAHP</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">$500K+</span>
+        <span class="stat-label">Lifetime business sales</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10</span>
+        <span class="stat-label">Active income streams</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$40K+</span>
+        <span class="stat-label">Monthly revenue</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">50lbs</span>
+        <span class="stat-label">Lost through identity work</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var colors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
+  var starsEl = document.getElementById('stars');
+  for (var i = 0; i < 70; i++) {
+    var s = document.createElement('div');
+    var sz = (1 + Math.random() * 2.5);
+    s.className = 'star';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.width = sz + 'px';
+    s.style.height = sz + 'px';
+    s.style.background = colors[Math.floor(Math.random() * colors.length)];
+    s.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    s.style.setProperty('--delay', (Math.random() * 6) + 's');
+    s.style.opacity = String(0.1 + Math.random() * 0.4);
+    starsEl.appendChild(s);
+  }
+
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    var name = document.getElementById('input-name').value.trim();
+    var emailEl = document.getElementById('input-email');
+    var email = emailEl.value.trim();
+    if (!name || !email || email.indexOf('@') === -1) {
+      emailEl.classList.add('error');
+      setTimeout(function() { emailEl.classList.remove('error'); }, 1800);
+      return;
+    }
+
+    // Submit to Kit via fetch then redirect
+    var btn = document.getElementById('submit-btn');
+    btn.textContent = 'One sec...';
+    btn.style.opacity = '0.7';
+
+    var kitData = new FormData();
+    kitData.append('email_address', email);
+    kitData.append('fields[first_name]', name);
+    fetch('https://app.kit.com/forms/9288648/subscriptions', {
+      method: 'POST',
+      body: kitData,
+      mode: 'no-cors'
+    });
+
+    // Redirect after 1.5s — gives fetch time to fire
+    setTimeout(function() {
+      window.location.href = 'https://manifestwithjac.netlify.app/timeline-jump-offer';
+    }, 1500);
+  });
+});
+</script>
+</body>
+</html>

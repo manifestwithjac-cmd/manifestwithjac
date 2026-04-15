@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In — Manifest With Jac</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08060c;
+    --bg2: #0e0a14;
+    --bg3: #13101a;
+    --purple: #9b6fc4;
+    --purple-light: #c49ee8;
+    --pink: #e87fca;
+    --pink-light: #f5a8dc;
+    --iridescent: linear-gradient(135deg, #c49ee8, #e87fca, #89d4e8, #c49ee8);
+    --iridescent2: linear-gradient(135deg, #9b6fc4, #e87fca, #7ec8e3);
+    --cream: #f5f0f8;
+    --muted: #8a7a9a;
+    --border: rgba(155,111,196,0.2);
+    --border2: rgba(155,111,196,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(155,111,196,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 80% 80%, rgba(232,127,202,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .grad-text {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* COUNTDOWN BANNER */
+  .countdown-banner {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2a0f20 100%);
+    border-bottom: 1px solid rgba(232,127,202,0.25);
+    padding: 14px 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .countdown-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(245,240,248,0.75);
+  }
+
+  .countdown-text strong {
+    color: var(--pink);
+    font-weight: 600;
+  }
+
+  .countdown-timer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .timer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(155,111,196,0.12);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    min-width: 56px;
+  }
+
+  .timer-num {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .timer-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .timer-sep {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--purple);
+    margin-bottom: 14px;
+    opacity: 0.6;
+  }
+
+  .expired-msg {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* CONFIRM HERO */
+  .confirm {
+    padding: 72px 0 56px;
+    text-align: center;
+  }
+
+  .confirm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(155,111,196,0.12);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--purple-light);
+    margin-bottom: 28px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .confirm-badge::before {
+    content: '✓';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--iridescent2);
+    border-radius: 50%;
+    font-size: 10px;
+    color: white;
+    font-weight: 700;
+  }
+
+  .confirm h1 {
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 20px;
+    animation: fadeDown 0.6s ease 0.1s both;
+  }
+
+  .confirm-sub {
+    font-size: 16px;
+    color: rgba(245,240,248,0.6);
+    max-width: 420px;
+    margin: 0 auto 12px;
+    line-height: 1.7;
+    animation: fadeDown 0.6s ease 0.2s both;
+  }
+
+  .confirm-note {
+    font-size: 12px;
+    color: var(--muted);
+    animation: fadeDown 0.6s ease 0.25s both;
+  }
+
+  .confirm-note span { color: var(--pink); }
+
+  /* OTO */
+  .oto {
+    padding: 0 0 80px;
+    animation: fadeUp 0.8s ease 0.35s both;
+  }
+
+  .divider-text {
+    text-align: center;
+    position: relative;
+    margin: 0 0 40px;
+  }
+
+  .divider-text::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--border2);
+  }
+
+  .divider-text span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .oto-eyebrow {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .oto-headline {
+    text-align: center;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .oto-sub {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(245,240,248,0.55);
+    margin-bottom: 40px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* URGENCY */
+  .urgency {
+    text-align: center;
+    padding: 16px 20px;
+    border: 1px solid rgba(232,127,202,0.25);
+    background: rgba(232,127,202,0.05);
+    margin-bottom: 28px;
+  }
+
+  .urgency p {
+    font-size: 13px;
+    color: var(--pink-light);
+    line-height: 1.6;
+  }
+
+  .urgency strong { font-weight: 600; color: var(--pink); }
+
+  /* PRODUCT CARD */
+  .product-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--iridescent2);
+  }
+
+  .card-inner { padding: 40px; }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    border: 1px solid rgba(232,127,202,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .card-title span {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    background: rgba(155,111,196,0.1);
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card-tagline {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--purple-light);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .card-body {
+    font-size: 14px;
+    color: rgba(245,240,248,0.68);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  /* METHOD BOX */
+  .method-box {
+    background: rgba(155,111,196,0.06);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--purple);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+
+  .method-box h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+
+  .method-box p {
+    font-size: 13px;
+    color: rgba(245,240,248,0.65);
+    line-height: 1.85;
+  }
+
+  .method-box p strong {
+    color: var(--purple-light);
+    font-weight: 500;
+  }
+
+  /* INCLUDES */
+  .card-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+    padding: 24px;
+    background: rgba(155,111,196,0.05);
+    border: 1px solid var(--border2);
+  }
+
+  .card-includes li {
+    font-size: 13px;
+    color: rgba(245,240,248,0.75);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    line-height: 1.5;
+  }
+
+  .card-includes li::before {
+    content: '✦';
+    color: var(--pink);
+    font-size: 8px;
+    flex-shrink: 0;
+  }
+
+  /* PRICE */
+  .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .price-now {
+    font-size: 56px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .price-now sup {
+    font-size: 24px;
+    color: var(--purple-light);
+    vertical-align: super;
+  }
+
+  .price-stack { display: flex; flex-direction: column; gap: 2px; }
+  .price-was { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+  .price-save { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pink); }
+  .price-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 4px; }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-block;
+    background: var(--iridescent2);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 32px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(155,111,196,0.45);
+  }
+
+  .btn-skip {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: 16px;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-skip:hover { color: rgba(245,240,248,0.45); }
+
+  /* WHAT HAPPENS */
+  .what-happens {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+
+  .what-happens h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 20px;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: start;
+    font-size: 13px;
+    color: rgba(245,240,248,0.65);
+    line-height: 1.65;
+  }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--iridescent2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border2);
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p { font-size: 11px; color: var(--muted); line-height: 1.8; }
+
+  @media (max-width: 540px) {
+    .price-row { flex-direction: column; align-items: flex-start; }
+    .card-inner { padding: 28px 20px; }
+    .card-includes { padding: 18px; }
+    .countdown-banner { gap: 12px; }
+    .timer-block { min-width: 48px; padding: 6px 10px; }
+    .timer-num { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COUNTDOWN BANNER -->
+<div class="countdown-banner" id="countdownBanner">
+  <div class="countdown-text">
+    <strong>$4.44 offer expires in</strong> — price returns to $7.77 when timer hits zero
+  </div>
+  <div class="countdown-timer" id="timerDisplay">
+    <div class="timer-block">
+      <div class="timer-num" id="timerMins">05</div>
+      <div class="timer-label">Min</div>
+    </div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block">
+      <div class="timer-num" id="timerSecs">00</div>
+      <div class="timer-label">Sec</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMATION HERO -->
+<section class="confirm">
+  <div class="container">
+    <div class="confirm-badge">You're officially in</div>
+    <h1>Your download is<br><span class="grad-text">on its way.</span> ✨</h1>
+    <p class="confirm-sub">Check your inbox — your freebie is headed to you right now. Check your spam folder just in case.</p>
+    <p class="confirm-note">Didn't receive it within 5 minutes? <span>Email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9cf4f9f0f0f3dcf1fdf2f5faf9efe8ebf5e8f4f6fdffb2fff3f1">[email&#160;protected]</a></span></p>
+  </div>
+</section>
+
+<!-- OTO -->
+<section class="oto">
+  <div class="container">
+
+    <div class="divider-text">
+      <span>Before you go — a one-time offer</span>
+    </div>
+
+    <span class="oto-eyebrow">Only available on this page · Timer is live · Price goes up when it hits zero</span>
+    <h2 class="oto-headline">While your subconscious is open,<br>let it <span class="grad-text">shift overnight.</span></h2>
+    <p class="oto-sub">You just took the first step. This is the one that rewires while you sleep.</p>
+
+    <div class="urgency">
+      <p>This offer is available <strong>on this page only</strong> and will not appear again. The $4.44 price disappears when the timer hits zero — it returns to $7.77.</p>
+    </div>
+
+    <div class="product-card">
+      <div class="card-inner">
+
+        <div style="text-align:center;margin-bottom:28px;">
+          <span class="card-tag">One-Time Offer · $4.44 Only</span>
+          <h3 class="card-title" style="margin-top:16px;">Timeline Jump<br><span>Sleep Portal™</span></h3>
+          <div class="card-method" style="display:inline-flex;margin-top:12px;">◇ Quantum Sleep Recoding™</div>
+          <p class="card-tagline" style="margin-top:14px;">The overnight audio that rewrites your reality while you rest.</p>
+        </div>
+
+        <p class="card-body">Your subconscious doesn't sleep. While your conscious mind is offline, the deepest programming runs completely unguarded — and that's exactly when this audio does its most powerful work. The Timeline Jump Sleep Portal is built on the Quantum Sleep Recoding™ method, combining SATS, theta-state audio, and layered subliminal identity recoding to shift you into the timeline where the life you want already exists.</p>
+
+        <div class="method-box">
+          <h4>How Quantum Sleep Recoding™ Works</h4>
+          <p><strong>SATS (State Akin To Sleep)</strong> is Neville Goddard's most powerful manifestation technique — the hypnagogic state right before sleep when your subconscious is fully open and completely receptive. In this state, whatever identity you inhabit gets installed as your new reality. Most people try to manifest during the day when the conscious mind is actively blocking everything. The Quantum Sleep Recoding™ method targets the exact moment the gatekeeper goes offline. It drops you into SATS using theta-frequency audio to deepen receptivity, then layers in subliminal identity recoding — feeding your subconscious the version of you who already has the life you desire. You press play. You drift. Your subconscious does the rest.</p>
+        </div>
+
+        <ul class="card-includes">
+          <li>SATS-based overnight audio — plays as you fall asleep</li>
+          <li>Theta-frequency engineering to deepen subconscious receptivity</li>
+          <li>Layered subliminal identity recoding throughout</li>
+          <li>Timeline jump visualization built into the audio</li>
+          <li>Instant delivery — in your inbox within minutes</li>
+          <li>Yours forever — play every single night</li>
+        </ul>
+
+        <div style="text-align:center;">
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:14px;margin-bottom:4px;">
+            <div class="price-now" id="priceDisplay"><sup>$</sup>4<span style="font-size:32px;letter-spacing:-0.02em;">.44</span></div>
+            <div class="price-stack">
+              <span class="price-was" id="priceWas">$7.77</span>
+              <span class="price-save" id="priceSave">Timer price</span>
+            </div>
+          </div>
+          <span class="price-label" style="display:block;margin-bottom:32px;">One-time · Instant access</span>
+        </div>
+
+        <!-- Email pre-fill: grabs ?email= from URL and injects into ThriveCart embed -->
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+          (function() {
+            var params = new URLSearchParams(window.location.search);
+            var email = params.get('email');
+            document.addEventListener('DOMContentLoaded', function() {
+              var target = document.querySelector('.tc-v2-embeddable-target');
+              if (target && email) {
+                target.setAttribute('data-thrivecart-customer-email', decodeURIComponent(email));
+              }
+            });
+          })();
+        </script>
+
+        <!-- ThriveCart Embedded Checkout -->
+        <div 
+          class="tc-v2-embeddable-target" 
+          data-thrivecart-account="jacnicole" 
+          data-thrivecart-tpl="v2" 
+          data-thrivecart-product="19" 
+          data-thrivecart-embeddable="tc-jacnicole-19-M64PUM">
+        </div>
+        <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-19-M64PUM"></script>
+
+      </div>
+    </div>
+
+    <div class="what-happens">
+      <h4>What happens next</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <span>Click the button above and complete your purchase — takes less than 60 seconds.</span>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <span>You'll receive an email with instant access to your Timeline Jump Sleep Portal audio.</span>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <span>Tonight, press play as you lie down, drift into SATS, and wake up in a different timeline.</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="btn-skip">No thanks — I'll skip this and pay full price later</a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© Celestara Collective Inc. / Manifest With Jac · All rights reserved.<br>
+    Results are not guaranteed. This product is for personal development purposes only and is not a substitute for professional medical or psychological care.</p>
+  </div>
+</footer>
+
+<script>
+  let timeLeft = 5 * 60;
+  const minsEl = document.getElementById('timerMins');
+  const secsEl = document.getElementById('timerSecs');
+  const timerDisplay = document.getElementById('timerDisplay');
+  const priceDisplay = document.getElementById('priceDisplay');
+  const priceWas = document.getElementById('priceWas');
+  const priceSave = document.getElementById('priceSave');
+  const cardTag = document.querySelector('.card-tag');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function onExpire() {
+    timerDisplay.innerHTML = '<span class="expired-msg">Offer expired — price returned to $7.77</span>';
+    if (priceDisplay) priceDisplay.innerHTML = '<sup>$</sup>7<span style="font-size:32px;letter-spacing:-0.02em;">.77</span>';
+    if (priceWas) priceWas.style.display = 'none';
+    if (priceSave) priceSave.style.display = 'none';
+    if (cardTag) cardTag.textContent = 'One-Time Offer · $7.77';
+  }
+
+  function tick() {
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+      onExpire();
+      return;
+    }
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    minsEl.textContent = pad(mins);
+    secsEl.textContent = pad(secs);
+    if (timeLeft <= 60) {
+      secsEl.style.cssText = 'font-size:24px;font-weight:600;line-height:1;background:linear-gradient(135deg,#ff7a7a,#e87

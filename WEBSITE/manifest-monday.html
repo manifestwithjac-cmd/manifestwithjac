@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest Monday | @manifestwithjac</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #CED9ED;
+    --lavender: #CFC5E1;
+    --mauve: #DEC5DF;
+    --blush: #EEC7DD;
+    --sage: #D6E8DA;
+  }
+
+  html, body {
+    background: #12101a !important;
+    color: #f8f4ff;
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 0% 0%, rgba(206,217,237,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(207,197,225,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 60% at 100% 100%, rgba(238,199,221,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(214,232,218,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 80% at 50% 50%, rgba(222,197,223,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgShift 12s ease-in-out infinite;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(206,217,237,0.06) 0%,
+      rgba(207,197,225,0.08) 25%,
+      rgba(238,199,221,0.06) 50%,
+      rgba(214,232,218,0.05) 75%,
+      rgba(206,217,237,0.06) 100%
+    );
+    background-size: 400% 400%;
+    animation: iridBg 10s ease infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes bgShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes iridBg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Floating space elements */
+  .space-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.75;
+    filter: drop-shadow(0 0 12px rgba(238,199,221,0.4));
+  }
+  .space-float img { width: 100%; height: 100%; object-fit: contain; }
+  .sf-1 { width: 150px; height: 150px; top: 3%; left: -10px; animation: floatA 8s ease-in-out infinite; }
+  .sf-2 { width: 110px; height: 110px; top: 18%; right: -5px; animation: floatB 10s ease-in-out infinite; }
+  .sf-3 { width: 100px; height: 100px; bottom: 28%; left: 2%; animation: floatC 12s ease-in-out infinite; }
+  .sf-4 { width: 130px; height: 130px; bottom: 8%; right: -5px; animation: floatA 9s ease-in-out infinite 2s; }
+  .sf-5 { width: 90px; height: 90px; top: 48%; left: -5px; animation: floatB 11s ease-in-out infinite 1s; }
+
+  @keyframes floatA {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(5deg); }
+  }
+  @keyframes floatB {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(-4deg); }
+  }
+  @keyframes floatC {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-22px) rotate(6deg); }
+  }
+
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.6; }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(52px, 12vw, 82px);
+    font-weight: 600;
+    line-height: 1.0;
+    text-align: center;
+    margin-bottom: 14px;
+    background: linear-gradient(
+      135deg,
+      #CED9ED 0%,
+      #ffffff 15%,
+      #EEC7DD 28%,
+      #CFC5E1 42%,
+      #ffffff 55%,
+      #DEC5DF 68%,
+      #D6E8DA 80%,
+      #CED9ED 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: iridescent 6s ease infinite;
+  }
+
+  @keyframes iridescent {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: rgba(206,217,237,0.7);
+    text-align: center;
+    line-height: 1.65;
+    max-width: 400px;
+    margin-bottom: 48px;
+  }
+
+  .screen {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  .screen.active { display: flex; }
+
+  /* CARDS */
+  .cards-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(248,244,255,0.4);
+    margin-bottom: 24px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .card {
+    background: rgba(206,217,237,0.05);
+    border: 1px solid rgba(207,197,225,0.15);
+    border-radius: 20px;
+    padding: 32px 18px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .card:hover { transform: translateY(-3px); border-color: rgba(238,199,221,0.35); }
+
+  .card.selected {
+    border-color: rgba(238,199,221,0.6);
+    box-shadow: 0 0 28px rgba(238,199,221,0.2), 0 16px 36px rgba(0,0,0,0.5);
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .card-glyph { font-size: 34px; line-height: 1; pointer-events: none; }
+  .card-word {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #f8f4ff;
+    pointer-events: none;
+  }
+  .card-whisper {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(248,244,255,0.35);
+    pointer-events: none;
+  }
+
+  /* EMAIL */
+  #screen-email { max-width: 420px; }
+
+  .chosen-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 36px;
+    padding: 26px 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(244,114,182,0.18);
+    border-radius: 18px;
+    width: 100%;
+  }
+
+  .chosen-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lavender); }
+  .chosen-glyph { font-size: 42px; }
+  .chosen-word {
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--blush));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gate-text {
+    font-size: 15px;
+    color: rgba(248,244,255,0.5);
+    text-align: center;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .gate-text strong { color: #f8f4ff; font-weight: 500; }
+
+  .fields { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 15px 18px;
+    font-family: 'Outfit', Georgia, sans-serif;
+    font-size: 15px;
+    color: #f8f4ff;
+    outline: none;
+    transition: border-color 0.25s ease;
+    -webkit-appearance: none;
+  }
+  input::placeholder { color: rgba(255,255,255,0.22); }
+  input:focus { border-color: rgba(244,114,182,0.4); }
+  input.error { border-color: rgba(251,113,133,0.6); }
+
+  .btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--blush), var(--lavender));
+    border: none;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: 'Outfit', Georgia, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(244,114,182,0.32); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .privacy { font-size: 11px; color: rgba(255,255,255,0.18); text-align: center; margin-top: 10px; }
+
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: rgba(248,244,255,0.35);
+    font-family: 'Outfit', Georgia, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+    -webkit-appearance: none;
+  }
+  .btn-ghost:hover { color: rgba(248,244,255,0.7); }
+
+  /* READING */
+  #screen-reading { max-width: 520px; }
+
+  .reading-card {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(244,114,182,0.13);
+    border-radius: 22px;
+    padding: 44px 36px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .reading-glyph { font-size: 50px; display: block; margin-bottom: 14px; }
+  .reading-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f8f4ff, var(--blush));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  .reading-subtitle { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); margin-bottom: 28px; }
+  .reading-divider { width: 56px; height: 1px; background: linear-gradient(90deg, transparent, rgba(238,199,221,0.5), transparent); margin: 0 auto 28px; }
+  .reading-body {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(248,244,255,0.85);
+    white-space: pre-line;
+    text-align: left;
+  }
+  .reading-affirmation {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--blush);
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .cta-box {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(244,114,182,0.07), rgba(167,139,250,0.07));
+    border: 1px solid rgba(244,114,182,0.18);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+  }
+  .cta-box p { font-size: 14px; color: rgba(248,244,255,0.5); line-height: 1.6; margin-bottom: 18px; }
+  .btn-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--blush), var(--lavender));
+    border-radius: 10px;
+    padding: 13px 28px;
+    font-family: 'Outfit', Georgia, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(238,199,221,0.35); }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 44px 18px 60px; }
+    .cards-grid { gap: 10px; }
+    .card { padding: 26px 14px; }
+    .reading-card { padding: 32px 22px; }
+  }
+
+  /* PORTAL OFFER CARD */
+  .portal-offer {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(238,199,221,0.2);
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 0 40px rgba(238,199,221,0.05);
+  }
+  .portal-offer-top {
+    background: linear-gradient(135deg, rgba(206,217,237,0.08), rgba(238,199,221,0.1));
+    padding: 28px 28px 22px;
+    text-align: center;
+    border-bottom: 1px solid rgba(207,197,225,0.1);
+  }
+  .portal-offer-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #CFC5E1; display: block; margin-bottom: 10px; }
+  .portal-offer-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, #EEC7DD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .portal-offer-tagline { font-size: 13px; color: rgba(248,244,255,0.5); font-style: italic; }
+  .portal-offer-body { padding: 22px 28px; }
+  .portal-offer-desc { font-size: 13px; color: rgba(248,244,255,0.65); line-height: 1.75; margin-bottom: 18px; }
+  .portal-offer-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(207,197,225,0.1);
+  }
+  .portal-include { font-size: 12px; color: rgba(248,244,255,0.6); }
+  .portal-offer-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .portal-price-now {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 52px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, #EEC7DD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .portal-price-value { font-size: 13px; color: rgba(248,244,255,0.35); text-decoration: line-through; }
+  .btn-portal {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #EEC7DD, #CFC5E1);
+    border: none;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(238,199,221,0.35); }
+  .portal-guarantee { font-size: 11px; color: rgba(248,244,255,0.28); text-align: center; }
+
+
+  .portal-timer-wrap {
+    background: linear-gradient(135deg, rgba(206,217,237,0.08), rgba(238,199,221,0.08));
+    border: 1px solid rgba(238,199,221,0.18);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .portal-timer-label { font-size: 12px; color: rgba(248,244,255,0.7); }
+  .portal-timer-label strong { color: #EEC7DD; font-weight: 600; }
+  .portal-timer-digits { display: flex; align-items: center; gap: 4px; }
+  .portal-timer-block { display: flex; flex-direction: column; align-items: center; background: rgba(207,197,225,0.1); border-radius: 6px; padding: 5px 10px; min-width: 42px; }
+  .portal-timer-num { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #EEC7DD, #CFC5E1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; font-variant-numeric: tabular-nums; }
+  .portal-timer-unit { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(248,244,255,0.35); margin-top: 2px; }
+  .portal-timer-sep { font-size: 18px; color: #CFC5E1; opacity: 0.5; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- Floating brand space elements -->
+<div class="space-float sf-1"><img src="https://manifestwithjac.netlify.app/gradient-planet.png" alt="" /></div>
+<div class="space-float sf-2"><img src="https://manifestwithjac.netlify.app/crescent-moon.png" alt="" /></div>
+<div class="space-float sf-3"><img src="https://manifestwithjac.netlify.app/gradient-stars.png" alt="" /></div>
+<div class="space-float sf-4"><img src="https://manifestwithjac.netlify.app/shooting-star-gradient.png" alt="" /></div>
+<div class="space-float sf-5"><img src="https://manifestwithjac.netlify.app/ufo-2.png" alt="" /></div>
+
+<div class="wrap">
+  <div class="eyebrow">✦ manifest monday ✦</div>
+  <h1>Your Word<br><em>Chose You</em></h1>
+  <p class="subtitle">Four words. One is already yours. Trust the first one that pulls you in.</p>
+
+  <!-- Screen 1: Cards -->
+  <div class="screen active" id="screen-cards">
+    <p class="cards-label">Which word calls to you?</p>
+    <div class="cards-grid">
+      <div class="card" data-word="receive">
+        <span class="card-glyph">🌙</span>
+        <span class="card-word">Receive</span>
+        <span class="card-whisper">open</span>
+      </div>
+      <div class="card" data-word="expand">
+        <span class="card-glyph">✨</span>
+        <span class="card-word">Expand</span>
+        <span class="card-whisper">becoming</span>
+      </div>
+      <div class="card" data-word="trust">
+        <span class="card-glyph">🔮</span>
+        <span class="card-word">Trust</span>
+        <span class="card-whisper">surrender</span>
+      </div>
+      <div class="card" data-word="claim">
+        <span class="card-glyph">👑</span>
+        <span class="card-word">Claim</span>
+        <span class="card-whisper">identity</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Email Gate -->
+  <div class="screen" id="screen-email">
+    <div class="chosen-box">
+      <span class="chosen-label">your word</span>
+      <span class="chosen-glyph" id="chosen-glyph"></span>
+      <span class="chosen-word" id="chosen-word-display"></span>
+    </div>
+    <p class="gate-text">
+      Your reading is ready.<br>
+      <strong>Drop your email to unlock it.</strong><br>
+      <span style="font-size:13px;display:block;margin-top:6px;">Your word has a message — and it's specifically for you.</span>
+    </p>
+    <div class="fields">
+      <input type="text" id="input-name" placeholder="First name" autocomplete="given-name" />
+      <input type="email" id="input-email" placeholder="Email address" autocomplete="email" />
+    </div>
+    <button class="btn-primary" id="submit-btn">Reveal My Reading →</button>
+    <p class="privacy">No spam. Just your reading + weekly Monday magic.</p>
+    <button class="btn-ghost" id="back-to-cards">← choose again</button>
+  </div>
+
+  <!-- Screen 3: Reading -->
+  <div class="screen" id="screen-reading">
+    <div class="reading-card">
+      <span class="reading-glyph" id="reading-glyph"></span>
+      <h2 class="reading-title" id="reading-title"></h2>
+      <p class="reading-subtitle" id="reading-subtitle"></p>
+      <div class="reading-divider"></div>
+      <p class="reading-body" id="reading-body"></p>
+      <p class="reading-affirmation" id="reading-affirmation"></p>
+    </div>
+    <!-- Timeline Jump offer -->
+    <div class="portal-offer">
+      <div class="portal-offer-top">
+        <span class="portal-offer-eyebrow">✦ while your subconscious is open ✦</span>
+        <h3 class="portal-offer-title">Timeline Jump<br>Sleep Portal™</h3>
+        <p class="portal-offer-tagline">Press play before bed. Wake up in a new timeline.</p>
+      </div>
+      <div class="portal-offer-body">
+        <p class="portal-offer-desc">Your subconscious doesn't sleep. While your conscious mind goes offline, the deepest programming runs completely unguarded — and that's exactly when this audio does its most powerful work. The Timeline Jump Sleep Portal uses SATS (Neville Goddard's most powerful technique), theta-frequency audio engineering, and the proprietary 123456 · 654321 · 561234 subliminal layering sequence to install the version of you who already has everything she desires. It runs all night, cycling through rotations so your subconscious never tunes it out. By morning, the old story has been saturated out of existence. No effort. Just press play.</p>
+        <div class="portal-offer-includes">
+          <div class="portal-include">✦ SATS-based overnight guided entry — drops you into theta state</div>
+          <div class="portal-include">✦ Proprietary 123456 · 654321 · 561234 subliminal layering — runs all night</div>
+          <div class="portal-include">✦ Nervous system safety recoding at the cellular level</div>
+          <div class="portal-include">✦ Timeline jump visualization installed while you sleep</div>
+          <div class="portal-include">✦ Instant access · Yours forever · Play every single night</div>
+        </div>
+
+        <!-- Timer -->
+        <div class="portal-timer-wrap" id="portalTimerWrap">
+          <span class="portal-timer-label">⚡ <strong id="portalPriceLabel">$4.44</strong> offer — expires in</span>
+          <div class="portal-timer-digits">
+            <div class="portal-timer-block">
+              <span class="portal-timer-num" id="portalMins">15</span>
+              <span class="portal-timer-unit">min</span>
+            </div>
+            <span class="portal-timer-sep">:</span>
+            <div class="portal-timer-block">
+              <span class="portal-timer-num" id="portalSecs">00</span>
+              <span class="portal-timer-unit">sec</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-offer-price">
+          <span class="portal-price-now" id="portalPrice">$4<span style="font-size:28px">.44</span></span>
+          <div style="display:flex;flex-direction:column;gap:3px;text-align:left;">
+            <span class="portal-price-value" id="portalWas">$7.77</span>
+            <span style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#D6E8DA;" id="portalSave">timer price ✦</span>
+          </div>
+        </div>
+
+        <!-- ThriveCart -->
+        <div
+          class="tc-v2-embeddable-target"
+          data-thrivecart-account="jacnicole"
+          data-thrivecart-tpl="v2"
+          data-thrivecart-product="19"
+          data-thrivecart-embeddable="tc-jacnicole-19-M64PUM">
+        </div>
+        <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-19-M64PUM"></script>
+
+        <p class="portal-guarantee">🛡 7-night guarantee — feel no shift, get a full refund</p>
+      </div>
+    </div>
+    <button class="btn-ghost" id="back-to-start">← start over</button>
+  </div>
+</div>
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Stars
+  var starsEl = document.getElementById('stars');
+  for (var i = 0; i < 60; i++) {
+    var s = document.createElement('div');
+    var starColors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
+    var sc = starColors[Math.floor(Math.random() * starColors.length)];
+    var sz = (1 + Math.random() * 2.5);
+    s.className = 'star';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.width = sz + 'px';
+    s.style.height = sz + 'px';
+    s.style.background = sc;
+    s.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    s.style.setProperty('--delay', (Math.random() * 6) + 's');
+    s.style.opacity = String(0.1 + Math.random() * 0.5);
+    starsEl.appendChild(s);
+  }
+
+  var readings = {
+    receive: {
+      glyph: '🌙',
+      title: 'Receive',
+      subtitle: 'The Portal Is Open',
+      body: 'You chose Receive — which means some part of you already knows you\'ve been blocking it. Not on purpose. Your nervous system learned a long time ago that having things feels unsafe. Wanting too much leads to disappointment.\n\nBut here\'s the truth: receiving IS the work. Letting it in, staying open when something good shows up, not immediately bracing for it to disappear — that\'s the frequency shift everything else has been trying to teach you.\n\nThis week, your only job is to notice where you deflect. And let yourself receive instead.',
+      affirmation: '"I am safe to receive. The more I open, the more flows in."'
+    },
+    expand: {
+      glyph: '✨',
+      title: 'Expand',
+      subtitle: 'You Are Not Who You Were',
+      body: 'You chose Expand — and that\'s not an accident. You\'re in a chapter where the old version of you doesn\'t fit anymore. The identity you\'ve been running on — the one built from what was safe, what was proven, what didn\'t cost too much — she\'s too small for what\'s coming.\n\nExpansion doesn\'t always feel good. It feels like outgrowing friendships. Like wanting things that seem unrealistic. Like being deeply unsatisfied with what used to be enough.\n\nThat restlessness? That\'s not a problem. That\'s your identity stretching to match your next level. Let it.',
+      affirmation: '"I give myself full permission to outgrow who I used to be."'
+    },
+    trust: {
+      glyph: '🔮',
+      title: 'Trust',
+      subtitle: 'The Universe Is Not Late',
+      body: 'You chose Trust — which tells me you\'re in a waiting period and it\'s messing with your head. You\'ve done the work. You\'ve shifted. And your 3D reality hasn\'t caught up yet.\n\nHere\'s what nobody tells you: the 3D lags. Your physical reality is always reflecting old data — the person you were weeks or months ago. What you\'re seeing right now is not a verdict on who you\'ve become.\n\nTrust isn\'t passive. It\'s deciding the version of you who already has what she wants is real — even when the evidence isn\'t here yet. Keep moving like it\'s done. It is.',
+      affirmation: '"My reality is catching up to who I\'ve already become."'
+    },
+    claim: {
+      glyph: '👑',
+      title: 'Claim',
+      subtitle: 'Say It Like You Mean It',
+      body: 'You chose Claim — and this one is direct. You already know what you want. You\'ve thought about it, visualized it, maybe even come close. But there\'s a part of you that keeps stopping short of actually declaring it\'s yours.\n\nClaiming isn\'t arrogant. It\'s collapsing the distance between who you are now and who you\'ve always been on the inside. The woman with everything she wants isn\'t a future version of you — she\'s already in you, waiting for you to stop asking for permission to exist.\n\nThis week: claim one thing out loud. No caveats. No \'I hope.\' Just: this is mine.',
+      affirmation: '"I don\'t wait for permission. I claim what is already mine."'
+    }
+  };
+
+  var selectedWord = null;
+
+  function showScreen(id) {
+    var screens = document.querySelectorAll('.screen');
+    for (var i = 0; i < screens.length; i++) {
+      screens[i].classList.remove('active');
+      screens[i].style.display = 'none';
+    }
+    var el = document.getElementById('screen-' + id);
+    el.style.display = 'flex';
+    el.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function reset() {
+    selectedWord = null;
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('selected'); }
+    document.getElementById('input-name').value = '';
+    document.getElementById('input-email').value = '';
+    showScreen('cards');
+  }
+
+  // Card clicks
+  var cards = document.querySelectorAll('.card');
+  for (var i = 0; i < cards.length; i++) {
+    (function(card) {
+      card.addEventListener('click', function() {
+        var allCards = document.querySelectorAll('.card');
+        for (var j = 0; j < allCards.length; j++) { allCards[j].classList.remove('selected'); }
+        card.classList.add('selected');
+        selectedWord = card.getAttribute('data-word');
+        var r = readings[selectedWord];
+        document.getElementById('chosen-glyph').textContent = r.glyph;
+        document.getElementById('chosen-word-display').textContent = r.title;
+        setTimeout(function() { showScreen('email'); }, 400);
+      });
+    })(cards[i]);
+  }
+
+  // Submit
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    var name = document.getElementById('input-name').value.trim();
+    var emailEl = document.getElementById('input-email');
+    var email = emailEl.value.trim();
+    if (!name || !email || email.indexOf('@') === -1) {
+      emailEl.classList.add('error');
+      setTimeout(function() { emailEl.classList.remove('error'); }, 1800);
+      return;
+    }
+    // Submit to Kit via fetch (no-cors — fires and forgets, we control the UX)
+    var kitData = new FormData();
+    kitData.append('email_address', email);
+    kitData.append('fields[first_name]', name);
+    kitData.append('fields[chosen_word]', selectedWord);
+    fetch('https://app.kit.com/forms/9322434/subscriptions', {
+      method: 'POST',
+      body: kitData,
+      mode: 'no-cors'
+    });
+
+    var r = readings[selectedWord];
+    document.getElementById('reading-glyph').textContent = r.glyph;
+    document.getElementById('reading-title').textContent = r.title;
+    document.getElementById('reading-subtitle').textContent = r.subtitle;
+    document.getElementById('reading-body').textContent = r.body;
+    document.getElementById('reading-affirmation').textContent = r.affirmation;
+    showScreen('reading');
+  });
+
+  document.getElementById('back-to-cards').addEventListener('click', reset);
+  document.getElementById('back-to-start').addEventListener('click', reset);
+
+});
+
+  // Portal offer timer — localStorage protected
+  (function() {
+    var KEY = 'tjsp_oto_expiry';
+    var MINS = document.getElementById('portalMins');
+    var SECS = document.getElementById('portalSecs');
+    var WRAP = document.getElementById('portalTimerWrap');
+    var PRICE = document.getElementById('portalPrice');
+    var WAS = document.getElementById('portalWas');
+    var SAVE = document.getElementById('portalSave');
+    var LABEL = document.getElementById('portalPriceLabel');
+
+    function pad(n) { return String(n).padStart(2,'0'); }
+
+    function expire() {
+      if (WRAP) WRAP.innerHTML = '<span class="portal-timer-label" style="color:rgba(248,244,255,0.35);font-style:italic;">Offer expired — price returned to $7.77</span>';
+      if (PRICE) PRICE.innerHTML = '$7<span style="font-size:28px">.77</span>';
+      if (WAS) WAS.style.display = 'none';
+      if (SAVE) SAVE.style.display = 'none';
+      if (LABEL) LABEL.textContent = '$7.77';
+    }
+
+    function tick(expiry) {
+      var iv = setInterval(function() {
+        var rem = Math.floor((expiry - Date.now()) / 1000);
+        if (rem <= 0) { clearInterval(iv); expire(); return; }
+        if (MINS) MINS.textContent = pad(Math.floor(rem / 60));
+        if (SECS) SECS.textContent = pad(rem % 60);
+      }, 1000);
+    }
+
+    try {
+      var stored = localStorage.getItem(KEY);
+      var expiry;
+      if (stored) {
+        expiry = parseInt(stored, 10);
+        if (Date.now() >= expiry) { expire(); return; }
+        var rem = Math.floor((expiry - Date.now()) / 1000);
+        if (MINS) MINS.textContent = pad(Math.floor(rem / 60));
+        if (SECS) SECS.textContent = pad(rem % 60);
+        tick(expiry);
+      } else {
+        expiry = Date.now() + (15 * 60 * 1000);
+        localStorage.setItem(KEY, expiry.toString());
+        tick(expiry);
+      }
+    } catch(e) { tick(Date.now() + (15 * 60 * 1000)); }
+  })();
+
+</script>
+</body>
+</html>
