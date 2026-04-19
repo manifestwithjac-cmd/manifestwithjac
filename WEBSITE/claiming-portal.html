@@ -170,15 +170,21 @@
     border: 1px solid rgba(238,199,221,0.3);
     color: var(--blush); font-family: 'Outfit', sans-serif; font-weight: 300;
     font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
-    cursor: none; transition: all 0.3s;
+    cursor: pointer; transition: all 0.3s; width: 100%;
   }
   .form-wrap button:hover {
     background: linear-gradient(135deg, rgba(238,199,221,0.22), rgba(207,197,225,0.18));
     border-color: var(--blush); color: #fff;
   }
+  .form-wrap button:disabled { opacity: 0.6; cursor: default; }
   .privacy-note {
     font-size: 11px; text-align: center;
     color: rgba(240,234,248,0.2); letter-spacing: 0.05em;
+  }
+  .error-msg {
+    font-size: 12px; text-align: center;
+    color: rgba(238,199,221,0.7); letter-spacing: 0.05em;
+    display: none;
   }
 
   .brand-sig {
@@ -227,9 +233,12 @@
   <div class="optin-wrap">
     <p class="step-label">Step one</p>
     <div class="form-wrap">
-      <input type="text" id="firstName" placeholder="First name" />
-      <input type="email" id="email" placeholder="Email address" />
-      <button type="button" onclick="handleSubmit()">Activate My Portal ✦</button>
+      <input type="text" id="firstName" placeholder="First Name" />
+      <input type="email" id="email" placeholder="Email Address" />
+      <button type="button" id="submitBtn" onclick="handleSubmit()">
+        <span id="btnText">Activate My Portal ✦</span>
+        <span id="btnLoading" style="display:none">Opening your portal...</span>
+      </button>
       <p class="privacy-note">No spam. Ever. Just frequency.</p>
     </div>
   </div>
@@ -266,14 +275,37 @@ document.querySelectorAll('button, input').forEach(el => {
   el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; });
 });
 
-function handleSubmit() {
+async function handleSubmit() {
   const name = document.getElementById('firstName').value.trim();
   const email = document.getElementById('email').value.trim();
-  if (!name || !email) {
-    alert('Please enter your name and email to continue ✦');
+
+  if (!email) {
+    document.getElementById('email').focus();
     return;
   }
-  window.location.href = '/claiming-portal-activation.html';
+
+  const btn = document.getElementById('submitBtn');
+  document.getElementById('btnText').style.display = 'none';
+  document.getElementById('btnLoading').style.display = 'inline';
+  btn.disabled = true;
+
+  try {
+    // Post to ConvertKit form API
+    const formData = new FormData();
+    formData.append('email_address', email);
+    formData.append('fields[first_name]', name);
+
+    await fetch('https://app.kit.com/forms/9344728/subscriptions', {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors' // ConvertKit doesn't need CORS for form submissions
+    });
+  } catch(e) {
+    // Even if fetch errors, redirect — Kit may still capture via no-cors
+  }
+
+  // Always redirect to activation page
+  window.location.href = 'https://manifestwithjac.netlify.app/claiming-portal-activation.html';
 }
 </script>
 </body>
