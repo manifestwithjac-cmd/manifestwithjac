@@ -13,11 +13,9 @@
     --blush: #EEC7DD;
     --sage: #D6E8DA;
     --deep: #0a0812;
-    --mid: #110e1a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -27,41 +25,29 @@
     font-weight: 300;
     overflow-x: hidden;
     cursor: none;
+    min-height: 100vh;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 8px; height: 8px;
     background: var(--blush);
     border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
+    position: fixed; pointer-events: none; z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s;
     mix-blend-mode: screen;
   }
   .cursor-ring {
     width: 32px; height: 32px;
     border: 1px solid rgba(238,199,221,0.4);
     border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
+    position: fixed; pointer-events: none; z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+    transition: transform 0.15s ease-out;
   }
 
-  /* Stars background */
-  .stars {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .star {
-    position: absolute;
-    border-radius: 50%;
+    position: absolute; border-radius: 50%;
     animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
     animation-delay: var(--delay, 0s);
   }
@@ -70,80 +56,46 @@
     to { opacity: 0.9; transform: scale(1.2); }
   }
 
-  /* Nebula glow orbs */
   .nebula {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 0;
+    position: fixed; border-radius: 50%; filter: blur(80px);
+    pointer-events: none; z-index: 0;
     animation: nebula-drift 12s ease-in-out infinite alternate;
   }
   @keyframes nebula-drift {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(20px, -20px) scale(1.05); }
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(20px,-20px) scale(1.05); }
   }
 
-  /* Layout */
   .page {
-    position: relative;
-    z-index: 1;
+    position: relative; z-index: 1;
     min-height: 100vh;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
     padding: 60px 24px;
-    position: relative;
   }
 
+  /* Portal rings */
   .portal-ring-wrap {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 40px;
+    position: relative; width: 160px; height: 160px;
+    margin: 0 auto 40px; flex-shrink: 0;
   }
   .portal-ring {
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    position: absolute;
-    inset: 0;
+    width: 160px; height: 160px; border-radius: 50%;
+    position: absolute; inset: 0;
     animation: spin var(--spd, 8s) linear infinite;
   }
-  .ring-1 {
-    border: 1px solid rgba(206,217,237,0.3);
-    --spd: 12s;
-  }
-  .ring-2 {
-    inset: 12px;
-    border: 1px solid rgba(207,197,225,0.25);
-    --spd: 8s;
-    animation-direction: reverse;
-  }
-  .ring-3 {
-    inset: 24px;
-    border: 1px solid rgba(222,197,223,0.3);
-    --spd: 15s;
-  }
+  .ring-1 { border: 1px solid rgba(206,217,237,0.3); --spd: 12s; }
+  .ring-2 { inset: 12px; border: 1px solid rgba(207,197,225,0.25); --spd: 8s; animation-direction: reverse; }
+  .ring-3 { inset: 24px; border: 1px solid rgba(222,197,223,0.3); --spd: 15s; }
   .portal-core {
-    position: absolute;
-    inset: 36px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(238,199,221,0.15) 0%, rgba(207,197,225,0.1) 50%, transparent 100%);
+    position: absolute; inset: 36px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(238,199,221,0.15), rgba(207,197,225,0.1), transparent);
     animation: pulse-core 4s ease-in-out infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--blush);
   }
   @keyframes pulse-core {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
+    0%,100% { transform: scale(1); opacity: 0.7; }
     50% { transform: scale(1.1); opacity: 1; }
   }
   @keyframes spin {
@@ -152,444 +104,92 @@
   }
 
   .eyebrow {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 200;
-    font-size: 11px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--lavender);
-    margin-bottom: 16px;
-    opacity: 0;
-    animation: fade-up 1s ease forwards 0.3s;
+    font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--lavender); margin-bottom: 16px; text-align: center;
+    opacity: 0; animation: fade-up 1s ease forwards 0.3s;
   }
-
   h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(48px, 10vw, 88px);
-    line-height: 1;
-    letter-spacing: -0.01em;
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(48px, 10vw, 88px); line-height: 1; text-align: center;
     margin-bottom: 8px;
-    opacity: 0;
-    animation: fade-up 1s ease forwards 0.5s;
+    opacity: 0; animation: fade-up 1s ease forwards 0.5s;
   }
   h1 em {
     font-style: italic;
     background: linear-gradient(135deg, var(--blush), var(--lavender), var(--periwinkle));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-
   .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: clamp(18px, 3vw, 24px);
-    color: rgba(240,234,248,0.6);
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fade-up 1s ease forwards 0.7s;
-  }
-
-  .scroll-cue {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fade-up 1s ease forwards 1.5s;
-  }
-  .scroll-cue span {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(240,234,248,0.3);
-  }
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(238,199,221,0.4), transparent);
-    animation: scroll-drop 2s ease-in-out infinite;
-  }
-  @keyframes scroll-drop {
-    0%, 100% { transform: scaleY(1); opacity: 0.4; }
-    50% { transform: scaleY(0.5); opacity: 0.1; }
-  }
-
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 80px 24px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 3vw, 24px); color: rgba(240,234,248,0.6);
+    text-align: center; margin-bottom: 16px;
+    opacity: 0; animation: fade-up 1s ease forwards 0.7s;
   }
 
   .divider {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, rgba(207,197,225,0.4), transparent);
-    margin: 0 auto;
-    opacity: 0;
-    transition: opacity 0.9s ease;
+    width: 40px; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(207,197,225,0.4), transparent);
+    margin: 0 auto 40px;
+    opacity: 0; animation: fade-up 1s ease forwards 0.85s;
   }
-  .divider.visible { opacity: 1; }
 
-  /* ── INTRO TEXT ── */
+  .intro {
+    max-width: 540px; margin: 0 auto 48px;
+    opacity: 0; animation: fade-up 1s ease forwards 0.9s;
+  }
   .intro p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 3.5vw, 28px);
-    line-height: 1.7;
-    text-align: center;
-    color: rgba(240,234,248,0.85);
+    font-size: clamp(17px, 2.8vw, 21px); line-height: 1.8;
+    text-align: center; color: rgba(240,234,248,0.65);
   }
-  .intro p + p { margin-top: 24px; }
-  .intro strong {
-    font-weight: 400;
-    color: var(--blush);
-  }
+  .intro p + p { margin-top: 14px; }
+  .intro strong { font-weight: 400; color: var(--blush); }
   .intro em { font-style: italic; color: var(--lavender); }
 
-  /* ── ACTIVATION STEPS ── */
-  .activation-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--sage);
-    text-align: center;
-    margin-bottom: 48px;
+  .optin-wrap {
+    width: 100%; max-width: 420px; margin: 0 auto;
+    opacity: 0; animation: fade-up 1s ease forwards 1.1s;
   }
-
-  .step {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 24px;
-    align-items: start;
-    margin-bottom: 48px;
-    padding: 28px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(207,197,225,0.1);
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s, border-color 0.3s;
+  .step-label {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--sage); text-align: center; margin-bottom: 20px; opacity: 0.7;
   }
-  .step:hover {
-    background: rgba(238,199,221,0.04);
-    border-color: rgba(238,199,221,0.2);
-  }
-  .step::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(238,199,221,0.03), transparent);
-    pointer-events: none;
-  }
-
-  .step-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-style: italic;
-    color: rgba(238,199,221,0.25);
-    line-height: 1;
-    text-align: center;
-  }
-
-  .step-content h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 22px;
-    color: var(--blush);
-    margin-bottom: 10px;
-  }
-  .step-content p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: rgba(240,234,248,0.65);
-  }
-
-  /* ── AFFIRMATION BLOCK ── */
-  .affirmation-block {
-    background: linear-gradient(135deg, rgba(207,197,225,0.06), rgba(238,199,221,0.04));
-    border: 1px solid rgba(207,197,225,0.15);
-    border-radius: 2px;
-    padding: 48px 36px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .affirmation-block::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 50% 50%, rgba(238,199,221,0.05), transparent 60%);
-    animation: rotate-glow 20s linear infinite;
-  }
-  @keyframes rotate-glow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .affirmation-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: rgba(214,232,218,0.6);
-    margin-bottom: 32px;
-    position: relative;
-  }
-
-  .affirmations {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-  }
-  .affirmations li {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 3vw, 24px);
-    font-style: italic;
-    color: rgba(240,234,248,0.9);
-    line-height: 1.4;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(207,197,225,0.1);
-    transition: color 0.3s;
-  }
-  .affirmations li:last-child { border-bottom: none; }
-  .affirmations li:hover { color: var(--blush); }
-
-  /* ── TAPPING SEQUENCE ── */
-  .tapping-intro {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .tapping-intro p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: rgba(240,234,248,0.6);
-  }
-  .tapping-intro p + p { margin-top: 12px; }
-
-  .tapping-points {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .tap-point {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    padding: 20px 24px;
-    background: rgba(255,255,255,0.02);
-    border-left: 2px solid rgba(206,217,237,0.2);
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .tap-point:hover {
-    border-left-color: var(--periwinkle);
-    background: rgba(206,217,237,0.04);
-  }
-
-  .tap-location {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--periwinkle);
-    min-width: 90px;
-    padding-top: 2px;
-    opacity: 0.7;
-  }
-  .tap-statement {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-style: italic;
-    line-height: 1.5;
-    color: rgba(240,234,248,0.85);
-  }
-
-  /* ── CLOSING ── */
-  .closing {
-    text-align: center;
-  }
-  .closing h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(32px, 6vw, 52px);
-    line-height: 1.2;
-    margin-bottom: 24px;
-  }
-  .closing h2 em {
-    font-style: italic;
-    color: var(--rose);
-  }
-  .closing p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: rgba(240,234,248,0.6);
-    margin-bottom: 48px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 18px 48px;
-    background: transparent;
-    border: 1px solid rgba(238,199,221,0.4);
-    color: var(--blush);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: none;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, color 0.3s;
-  }
-  .cta-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(238,199,221,0.08), rgba(207,197,225,0.08));
-    transform: translateX(-100%);
-    transition: transform 0.4s ease;
-  }
-  .cta-btn:hover {
-    border-color: var(--blush);
-    color: #fff;
-  }
-  .cta-btn:hover::before {
-    transform: translateX(0);
-  }
-
-  .brand-sig {
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(240,234,248,0.2);
-    text-align: center;
-    padding: 60px 0 40px;
-  }
-
-  /* ── OPT-IN FORM ── */
-  .optin-section {
-    background: linear-gradient(135deg, rgba(207,197,225,0.05), rgba(206,217,237,0.03));
-    border-top: 1px solid rgba(207,197,225,0.1);
-    border-bottom: 1px solid rgba(207,197,225,0.1);
-    padding: 80px 24px;
-    text-align: center;
-  }
-  .optin-section h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(28px, 5vw, 44px);
-    line-height: 1.3;
-    margin-bottom: 16px;
-  }
-  .optin-section h2 em { font-style: italic; color: var(--lavender); }
-  .optin-section p {
-    font-size: 15px;
-    color: rgba(240,234,248,0.5);
-    margin-bottom: 40px;
-  }
-
-  .form-wrap {
-    max-width: 420px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  .form-wrap { display: flex; flex-direction: column; gap: 14px; }
   .form-wrap input {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(207,197,225,0.2);
-    color: #f0eaf8;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-    padding: 16px 20px;
-    outline: none;
-    transition: border-color 0.3s;
-    -webkit-appearance: none;
+    color: #f0eaf8; font-family: 'Outfit', sans-serif; font-weight: 300;
+    font-size: 15px; padding: 16px 20px; outline: none;
+    transition: border-color 0.3s; -webkit-appearance: none; border-radius: 0;
   }
   .form-wrap input::placeholder { color: rgba(240,234,248,0.25); }
   .form-wrap input:focus { border-color: rgba(238,199,221,0.5); }
-
   .form-wrap button {
     padding: 18px;
-    background: linear-gradient(135deg, rgba(238,199,221,0.15), rgba(207,197,225,0.15));
+    background: linear-gradient(135deg, rgba(238,199,221,0.12), rgba(207,197,225,0.1));
     border: 1px solid rgba(238,199,221,0.3);
-    color: var(--blush);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    cursor: none;
-    transition: all 0.3s;
+    color: var(--blush); font-family: 'Outfit', sans-serif; font-weight: 300;
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    cursor: none; transition: all 0.3s;
   }
   .form-wrap button:hover {
-    background: linear-gradient(135deg, rgba(238,199,221,0.25), rgba(207,197,225,0.2));
-    border-color: var(--blush);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(238,199,221,0.22), rgba(207,197,225,0.18));
+    border-color: var(--blush); color: #fff;
   }
-
   .privacy-note {
-    font-size: 11px;
-    color: rgba(240,234,248,0.2);
-    letter-spacing: 0.05em;
+    font-size: 11px; text-align: center;
+    color: rgba(240,234,248,0.2); letter-spacing: 0.05em;
   }
 
-  /* Section headers */
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--sage);
-    text-align: center;
-    margin-bottom: 16px;
-    opacity: 0.7;
+  .brand-sig {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(240,234,248,0.15); text-align: center; margin-top: 60px;
+    opacity: 0; animation: fade-up 1s ease forwards 1.3s;
   }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(28px, 5vw, 42px);
-    text-align: center;
-    line-height: 1.2;
-    margin-bottom: 48px;
-  }
-  .section-title em { font-style: italic; color: var(--rose); }
 
-  /* iridescent shimmer text */
-  .shimmer {
-    background: linear-gradient(90deg, var(--blush), var(--lavender), var(--periwinkle), var(--sage), var(--rose), var(--blush));
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer-move 6s linear infinite;
-  }
-  @keyframes shimmer-move {
-    from { background-position: 0% center; }
-    to { background-position: 300% center; }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
@@ -597,180 +197,48 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
-<!-- Stars -->
 <div class="stars" id="stars"></div>
 
-<!-- Nebula orbs -->
-<div class="nebula" style="width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(207,197,225,0.07),transparent 70%);animation-delay:0s;"></div>
+<div class="nebula" style="width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(207,197,225,0.07),transparent 70%);"></div>
 <div class="nebula" style="width:500px;height:500px;bottom:-100px;right:-100px;background:radial-gradient(circle,rgba(238,199,221,0.06),transparent 70%);animation-delay:-6s;animation-direction:reverse;"></div>
 <div class="nebula" style="width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(206,217,237,0.04),transparent 70%);animation-delay:-3s;"></div>
 
 <div class="page">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="portal-ring-wrap">
-      <div class="portal-ring ring-1"></div>
-      <div class="portal-ring ring-2"></div>
-      <div class="portal-ring ring-3"></div>
-      <div class="portal-core">✦</div>
-    </div>
-
-    <p class="eyebrow">Manifest With Jac — A Free Activation</p>
-    <h1>The <em>Claiming</em><br>Portal</h1>
-    <p class="hero-sub">You didn't stumble here. You were called.</p>
-
-    <div class="scroll-cue">
-      <div class="scroll-line"></div>
-      <span>Enter</span>
-    </div>
+  <div class="portal-ring-wrap">
+    <div class="portal-ring ring-1"></div>
+    <div class="portal-ring ring-2"></div>
+    <div class="portal-ring ring-3"></div>
+    <div class="portal-core">✦</div>
   </div>
 
-  <!-- INTRO -->
-  <div class="divider" id="d1"></div>
-  <section class="intro" id="s1">
+  <p class="eyebrow">Manifest With Jac — A Free Activation</p>
+  <h1>The <em>Claiming</em><br>Portal</h1>
+  <p class="hero-sub">You didn't stumble here. You were called.</p>
+
+  <div class="divider"></div>
+
+  <div class="intro">
     <p>When you typed <strong>"claim"</strong> — something already shifted.</p>
     <p>That wasn't just a comment. That was your subconscious saying <em>yes</em> before your conscious mind could talk you out of it.</p>
-    <p>This portal is your activation. Move through it slowly. Let it land in your body, not just your mind.</p>
-    <p>Whatever you're claiming — <strong>money, love, your person, your life</strong> — it already exists. We're just collapsing the distance.</p>
-  </section>
+    <p>Whatever you're claiming — <strong>money, love, your person, your life</strong> — it already exists. Leave your name and I'll send you inside.</p>
+  </div>
 
-  <!-- OPT-IN -->
-  <div class="optin-section" id="optin">
-    <p class="eyebrow" style="opacity:1;animation:none;color:var(--lavender);font-size:11px;letter-spacing:0.35em;text-transform:uppercase;margin-bottom:16px;">Step one</p>
-    <h2>Enter the Portal.<br><em>Leave your name here.</em></h2>
-    <p>So I know where to send the rest of your magic.</p>
+  <div class="optin-wrap">
+    <p class="step-label">Step one</p>
     <div class="form-wrap">
-      <input type="text" placeholder="First name" />
-      <input type="email" placeholder="Email address" />
-      <button type="button">Activate My Portal ✦</button>
+      <input type="text" id="firstName" placeholder="First name" />
+      <input type="email" id="email" placeholder="Email address" />
+      <button type="button" onclick="handleSubmit()">Activate My Portal ✦</button>
       <p class="privacy-note">No spam. Ever. Just frequency.</p>
     </div>
   </div>
-
-  <!-- ACTIVATION STEPS -->
-  <div class="divider" id="d2"></div>
-  <section id="s2">
-    <p class="section-label">The activation</p>
-    <h2 class="section-title">How to move<br><em>through this</em></h2>
-
-    <p class="activation-label">Three parts. Ten minutes. A reality shift.</p>
-
-    <div class="step">
-      <div class="step-num">I</div>
-      <div class="step-content">
-        <h3>Find stillness</h3>
-        <p>Put your phone down. Or don't — but go somewhere quiet for a second. Put a hand on your chest. Take one slow breath in through your nose, out through your mouth. Just one. That's your signal to your nervous system that it's safe to receive right now.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">II</div>
-      <div class="step-content">
-        <h3>Name what you're claiming</h3>
-        <p>Say it out loud if you can. Or whisper it. Or just let it exist fully in your mind without shrinking it. Don't explain why you want it. Don't justify it. Just let yourself want it, fully, without apology. This is the part most people skip — and it's everything.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">III</div>
-      <div class="step-content">
-        <h3>Move through the activation below</h3>
-        <p>Read slowly. Let each line land. This isn't something you rush. You're not reading — you're installing. By the time you reach the end, something will feel different. Trust that.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- AFFIRMATIONS -->
-  <div class="divider" id="d3"></div>
-  <section id="s3">
-    <p class="section-label">Identity activation</p>
-    <h2 class="section-title">Read these like<br><em>they are already true</em></h2>
-
-    <div class="affirmation-block">
-      <p class="affirmation-label">Because they are.</p>
-      <ul class="affirmations">
-        <li>I exist in a reality where everything I want is already moving toward me.</li>
-        <li>I don't chase. I become. And what's mine finds me.</li>
-        <li>My nervous system is safe with overflow. I am allowed to have more.</li>
-        <li>I am not waiting to be chosen. I am the one who chooses.</li>
-        <li>The version of me that has everything I'm claiming — she's not ahead of me. She is me.</li>
-        <li>What I desire is not a fantasy. It's a frequency I am tuning into right now.</li>
-        <li>I release the conditioning that told me to want less. That was never mine to carry.</li>
-        <li>I am the woman money moves toward. I am the one love returns to. I am the one reality bends for.</li>
-        <li>I claim it all. Without guilt. Without apology. Without needing to earn it first.</li>
-        <li class="shimmer">I am already her.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- TAPPING -->
-  <div class="divider" id="d4"></div>
-  <section id="s4">
-    <p class="section-label">EFT Tapping Sequence</p>
-    <h2 class="section-title">Now let your<br><em>body believe it too</em></h2>
-
-    <div class="tapping-intro">
-      <p>Tap each point gently 5–7 times while you say the statement out loud.</p>
-      <p>Your subconscious lives in your body — not your mind. This is how we install it at the root.</p>
-    </div>
-
-    <div class="tapping-points">
-      <div class="tap-point">
-        <span class="tap-location">Karate chop</span>
-        <span class="tap-statement">Even though part of me still wonders if this is really for me — I'm open to knowing that it is.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Eyebrow</span>
-        <span class="tap-statement">I've been taught to keep my desires small.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Side of eye</span>
-        <span class="tap-statement">But that was conditioning. That was never the truth of who I am.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Under eye</span>
-        <span class="tap-statement">I am safe to want more. I am safe to receive more.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Under nose</span>
-        <span class="tap-statement">My body is learning that overflow is my new normal.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Chin</span>
-        <span class="tap-statement">I trust myself with everything I've been calling in.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Collarbone</span>
-        <span class="tap-statement">I don't have to earn it. I just have to become her.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Under arm</span>
-        <span class="tap-statement">Everything I've claimed is already moving toward me.</span>
-      </div>
-      <div class="tap-point">
-        <span class="tap-location">Top of head</span>
-        <span class="tap-statement">I am already her. It is already done. I receive it all now.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLOSING -->
-  <div class="divider" id="d5"></div>
-  <section class="closing" id="s5">
-    <h2>You just <em>activated</em><br>something real.</h2>
-    <p>That tapping sequence just told your nervous system something it may have never fully believed before — that it's safe to have what you want. That's not nothing. That's everything.</p>
-    <p>This is just the beginning of what's available to you. Inside my world, we go so much deeper than this. The Money Magnet Game is your next step — it's free, it's audio, and it's going to shift something in you in the next 24 hours.</p>
-    <a href="https://manifestwithjac.com" class="cta-btn">Enter My World — It's Free ✦</a>
-  </section>
 
   <p class="brand-sig">Manifest With Jac · manifestwithjac.com</p>
 
 </div>
 
 <script>
-// Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -783,46 +251,30 @@ function animateCursor() {
 }
 animateCursor();
 
-// Generate stars
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 150; i++) {
   const s = document.createElement('div');
   s.className = 'star';
   const size = Math.random() * 2.5 + 0.5;
   const colors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
-  const col = colors[Math.floor(Math.random() * colors.length)];
-  s.style.cssText = `
-    width:${size}px;height:${size}px;
-    left:${Math.random()*100}%;top:${Math.random()*100}%;
-    background:${col};
-    --dur:${2+Math.random()*4}s;
-    --delay:${Math.random()*4}s;
-  `;
+  s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};--dur:${2+Math.random()*4}s;--delay:${Math.random()*4}s;`;
   starsEl.appendChild(s);
 }
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('section, .divider').forEach(el => observer.observe(el));
-
-// Hover cursor expansion
-document.querySelectorAll('a, button, .step, .tap-point, .affirmations li').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.width = '16px'; cursor.style.height = '16px';
-    ring.style.width = '48px'; ring.style.height = '48px';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.width = '8px'; cursor.style.height = '8px';
-    ring.style.width = '32px'; ring.style.height = '32px';
-  });
+document.querySelectorAll('button, input').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='48px'; ring.style.height='48px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; });
 });
+
+function handleSubmit() {
+  const name = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!name || !email) {
+    alert('Please enter your name and email to continue ✦');
+    return;
+  }
+  window.location.href = '/claiming-portal-activation.html';
+}
 </script>
 </body>
 </html>
