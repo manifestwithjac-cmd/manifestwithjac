@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Activation — The Claiming Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --periwinkle: #CED9ED;
+    --lavender: #CFC5E1;
+    --rose: #DEC5DF;
+    --blush: #EEC7DD;
+    --sage: #D6E8DA;
+    --deep: #0a0812;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0a0812;
+    color: #f0eaf8;
+    font-family: 'Outfit', Georgia, sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+    min-height: 100vh;
+  }
+  .cursor {
+    width: 8px; height: 8px; background: #EEC7DD; border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%); mix-blend-mode: screen;
+    transition: width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px; border: 1px solid rgba(238,199,221,0.4); border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%); transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+  }
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star {
+    position: absolute; border-radius: 50%;
+    animation: twinkle var(--dur,3s) ease-in-out infinite alternate;
+    animation-delay: var(--delay,0s);
+  }
+  @keyframes twinkle { from{opacity:0.1;transform:scale(0.8);} to{opacity:0.9;transform:scale(1.2);} }
+  .nebula {
+    position: fixed; border-radius: 50%; filter: blur(90px);
+    pointer-events: none; z-index: 0;
+    animation: ndrift 14s ease-in-out infinite alternate;
+  }
+  @keyframes ndrift { from{transform:translate(0,0);} to{transform:translate(15px,-15px);} }
+  .page { position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 60px 24px; position: relative;
+  }
+  .burst-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 48px; flex-shrink: 0; }
+  .burst-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 1px solid rgba(238,199,221,0.5);
+    animation: burst 3s ease-out infinite;
+  }
+  .burst-ring:nth-child(2) { animation-delay: 1s; }
+  .burst-ring:nth-child(3) { animation-delay: 2s; }
+  @keyframes burst { 0%{transform:scale(0.2);opacity:0.8;} 100%{transform:scale(1.8);opacity:0;} }
+  .burst-core {
+    position: absolute; inset: 60px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(238,199,221,0.2), rgba(207,197,225,0.1), transparent);
+    animation: corepulse 3s ease-in-out infinite;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #EEC7DD;
+  }
+  @keyframes corepulse { 0%,100%{transform:scale(1);opacity:0.8;} 50%{transform:scale(1.15);opacity:1;} }
+
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #D6E8DA;
+    margin-bottom: 20px; opacity: 0; animation: fadeup 1s ease forwards 0.3s;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
+    font-size: clamp(44px,9vw,76px); line-height: 1.1; margin-bottom: 20px;
+    opacity: 0; animation: fadeup 1s ease forwards 0.5s;
+  }
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg,#EEC7DD,#CFC5E1,#CED9ED);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+    font-size: clamp(18px,3vw,23px); color: rgba(240,234,248,0.55);
+    max-width: 480px; line-height: 1.6;
+    opacity: 0; animation: fadeup 1s ease forwards 0.7s;
+  }
+  .scroll-cue {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeup 1s ease forwards 1.4s;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(238,199,221,0.5), transparent);
+    animation: drop 2s ease-in-out infinite;
+  }
+  .scroll-cue span { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(240,234,248,0.25); }
+  @keyframes drop { 0%,100%{transform:scaleY(1);opacity:0.5;} 50%{transform:scaleY(0.4);opacity:0.1;} }
+  @keyframes fadeup { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .divider {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(207,197,225,0.35), transparent);
+    margin: 0 auto; opacity: 0; transition: opacity 0.9s ease;
+  }
+  .divider.visible { opacity: 1; }
+
+  /* SHARED */
+  .section { max-width: 680px; margin: 0 auto; padding: 80px 24px; }
+  .sec-label { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: #D6E8DA; text-align: center; margin-bottom: 16px; opacity: 0.7; }
+  .sec-title {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
+    font-size: clamp(28px,5vw,44px); text-align: center; line-height: 1.2; margin-bottom: 48px;
+  }
+  .sec-title em { font-style: italic; color: #DEC5DF; }
+
+  /* BREATH */
+  .breath-block { background: rgba(255,255,255,0.02); border: 1px solid rgba(207,197,225,0.1); padding: 48px 36px; text-align: center; }
+  .breath-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(18px,3vw,24px); font-style: italic; line-height: 1.9; color: rgba(240,234,248,0.8); }
+  .breath-text strong { font-style: normal; font-weight: 400; color: #D6E8DA; }
+  .breath-circle-wrap { position: relative; width: 100px; height: 100px; margin: 40px auto 12px; }
+  .breath-circle { width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(214,232,218,0.3); position: absolute; animation: breathe 7s ease-in-out infinite; }
+  .breath-inner { position: absolute; inset: 18px; border-radius: 50%; background: radial-gradient(circle,rgba(214,232,218,0.12),transparent); animation: breathe 7s ease-in-out infinite; }
+  @keyframes breathe { 0%,100%{transform:scale(0.85);opacity:0.5;} 50%{transform:scale(1.1);opacity:1;} }
+  .breath-label-text { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(214,232,218,0.5); text-align: center; }
+
+  /* STEPS */
+  .steps-intro { text-align: center; margin-bottom: 40px; }
+  .steps-intro p { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(17px,2.8vw,21px); font-style: italic; line-height: 1.7; color: rgba(240,234,248,0.6); }
+  .step-card {
+    display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+    margin-bottom: 16px; padding: 28px 24px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(207,197,225,0.08);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .step-card:hover { background: rgba(238,199,221,0.04); border-color: rgba(238,199,221,0.18); }
+  .step-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-style: italic; color: rgba(238,199,221,0.2); line-height: 1; text-align: center; }
+  .step-card h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: 20px; color: #EEC7DD; margin-bottom: 8px; }
+  .step-card p { font-size: 14px; line-height: 1.8; color: rgba(240,234,248,0.6); }
+
+  /* AFFIRMATIONS */
+  .aff-block {
+    background: linear-gradient(135deg,rgba(207,197,225,0.05),rgba(238,199,221,0.03));
+    border: 1px solid rgba(207,197,225,0.12); padding: 52px 36px; text-align: center; position: relative; overflow: hidden;
+  }
+  .aff-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(207,197,225,0.07),transparent 60%); pointer-events:none; }
+  .aff-sublabel { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(214,232,218,0.5); margin-bottom: 36px; }
+  .affirmations { list-style: none; position: relative; }
+  .affirmations li {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(17px,2.8vw,22px); font-style: italic;
+    color: rgba(240,234,248,0.88); line-height: 1.5; padding: 18px 0;
+    border-bottom: 1px solid rgba(207,197,225,0.08); transition: color 0.4s, padding-left 0.3s; cursor: default;
+  }
+  .affirmations li:last-child { border-bottom: none; }
+  .affirmations li:hover { color: #fff; padding-left: 8px; }
+  .shimmer {
+    font-size: clamp(20px,3.5vw,28px) !important; border-bottom: none !important; padding: 20px 0 !important;
+    background: linear-gradient(90deg,#EEC7DD,#CFC5E1,#CED9ED,#D6E8DA,#DEC5DF,#EEC7DD) !important;
+    background-size: 300% !important;
+    -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important;
+    animation: shim 5s linear infinite !important;
+  }
+  @keyframes shim { from{background-position:0% center;} to{background-position:300% center;} }
+
+  /* TAPPING */
+  .tap-intro { text-align: center; margin-bottom: 36px; }
+  .tap-intro p { font-size: 15px; line-height: 1.8; color: rgba(240,234,248,0.55); }
+  .tap-intro p + p { margin-top: 10px; }
+  .tap-points { display: flex; flex-direction: column; gap: 10px; }
+  .tap-point {
+    display: flex; gap: 20px; align-items: flex-start; padding: 20px 24px;
+    background: rgba(255,255,255,0.015); border-left: 2px solid rgba(206,217,237,0.15);
+    transition: border-color 0.3s, background 0.3s, transform 0.2s; cursor: default;
+  }
+  .tap-point:hover { border-left-color: #CED9ED; background: rgba(206,217,237,0.04); transform: translateX(4px); }
+  .tap-loc { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #CED9ED; min-width: 90px; padding-top: 3px; opacity: 0.6; flex-shrink: 0; }
+  .tap-stmt { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; font-style: italic; line-height: 1.55; color: rgba(240,234,248,0.85); }
+
+  /* INTEGRATION */
+  .integration-block { background: rgba(255,255,255,0.02); border: 1px solid rgba(214,232,218,0.1); padding: 48px 36px; text-align: center; }
+  .integration-block p { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(17px,2.8vw,22px); font-style: italic; line-height: 1.8; color: rgba(240,234,248,0.75); }
+  .integration-block p + p { margin-top: 16px; }
+  .integration-block strong { font-style: normal; font-weight: 400; color: #D6E8DA; }
+
+  /* TIMELINE JUMP OFFER */
+  .offer-section { max-width: 680px; margin: 0 auto; padding: 80px 24px 100px; }
+  .offer-header { text-align: center; margin-bottom: 48px; }
+  .offer-header p { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: #D6E8DA; margin-bottom: 20px; opacity: 0.7; }
+  .offer-header h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(28px,5vw,48px); line-height: 1.2; margin-bottom: 20px; }
+  .offer-header h2 em { font-style: italic; color: #DEC5DF; }
+  .offer-header > p:last-child { font-size: 15px; line-height: 1.8; color: rgba(240,234,248,0.55); max-width: 520px; margin: 0 auto; }
+
+  .offer-card {
+    background: linear-gradient(135deg,rgba(207,197,225,0.06),rgba(238,199,221,0.04));
+    border: 1px solid rgba(207,197,225,0.18); position: relative; overflow: hidden;
+  }
+  .offer-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(207,197,225,0.5),transparent); }
+  .offer-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(207,197,225,0.3),transparent); }
+
+  .offer-name { padding: 40px 36px 0; text-align: center; }
+  .offer-name p { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #D6E8DA; margin-bottom: 14px; opacity: 0.8; }
+  .offer-name h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(22px,4vw,32px); color: #f0eaf8; margin-bottom: 16px; line-height: 1.3; }
+  .offer-name > p:last-child { font-size: 14px; line-height: 1.8; color: rgba(240,234,248,0.5); max-width: 460px; margin: 0 auto 32px; }
+
+  .includes { display: flex; flex-direction: column; gap: 12px; max-width: 480px; margin: 0 auto 32px; text-align: left; padding: 0 36px; }
+  .include-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(207,197,225,0.08); }
+  .include-item span:first-child { color: #CFC5E1; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .include-item h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; color: #f0eaf8; font-style: italic; margin-bottom: 4px; font-weight: 400; }
+  .include-item p { font-size: 13px; line-height: 1.75; color: rgba(240,234,248,0.45); }
+
+  /* TIMER */
+  .timer-section { padding: 36px 36px 0; text-align: center; border-top: 1px solid rgba(207,197,225,0.08); border-bottom: 1px solid rgba(207,197,225,0.08); }
+  .timer-label { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #EEC7DD; margin-bottom: 24px; }
+  .timer-label.expired { color: rgba(240,234,248,0.3); }
+  .timer-digits { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; }
+  .digit-group { text-align: center; }
+  .digit { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(42px,8vw,64px); font-weight: 300; line-height: 1; color: #EEC7DD; letter-spacing: 0.05em; transition: color 0.5s; }
+  .digit.expired { color: rgba(240,234,248,0.3); }
+  .digit-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(240,234,248,0.35); margin-top: 6px; }
+  .colon { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(42px,8vw,64px); font-weight: 300; color: rgba(240,234,248,0.3); margin-bottom: 18px; }
+  .price-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 32px; }
+  .price-original { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; color: rgba(240,234,248,0.3); text-decoration: line-through; font-style: italic; }
+  .price-sale { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(32px,5vw,48px); color: #EEC7DD; font-weight: 300; transition: font-size 0.5s, color 0.5s; }
+  .price-sale.expired { font-size: 20px; color: rgba(240,234,248,0.3); }
+  .price-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #D6E8DA; opacity: 0.7; }
+
+  /* THRIVECART */
+  .tc-wrap { padding: 32px 24px 40px; }
+
+  .skip-link { text-align: center; margin-top: 24px; font-size: 12px; color: rgba(240,234,248,0.2); letter-spacing: 0.1em; }
+
+  .brand-sig { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(240,234,248,0.15); text-align: center; padding-bottom: 48px; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+<div class="nebula" style="width:700px;height:700px;top:-250px;left:-250px;background:radial-gradient(circle,rgba(207,197,225,0.07),transparent 70%);"></div>
+<div class="nebula" style="width:600px;height:600px;bottom:-200px;right:-200px;background:radial-gradient(circle,rgba(238,199,221,0.06),transparent 70%);animation-delay:-7s;animation-direction:reverse;"></div>
+<div class="nebula" style="width:400px;height:400px;top:40%;left:30%;background:radial-gradient(circle,rgba(206,217,237,0.04),transparent 70%);animation-delay:-3s;"></div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="burst-wrap">
+      <div class="burst-ring"></div>
+      <div class="burst-ring"></div>
+      <div class="burst-ring"></div>
+      <div class="burst-core">✦</div>
+    </div>
+    <p class="hero-eyebrow">The Claiming Portal is open</p>
+    <h1>You're <em>in.</em></h1>
+    <p class="hero-sub">The moment you pressed that button, something in the quantum field shifted. This wasn't an accident. Move through this slowly.</p>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span>Begin</span>
+    </div>
+  </div>
+
+  <!-- BREATH -->
+  <div class="divider reveal"></div>
+  <div class="section reveal">
+    <p class="sec-label">Before we begin</p>
+    <h2 class="sec-title">Land in <em>your body first</em></h2>
+    <div class="breath-block">
+      <p class="breath-text">
+        Put one hand on your chest.<br>
+        One hand on your belly.<br><br>
+        <strong>Breathe in slowly for 4 counts.</strong><br>
+        Hold for 2.<br>
+        <strong>Out for 6.</strong><br><br>
+        Do that once.<br>
+        That's your nervous system receiving permission to expand.
+      </p>
+      <div class="breath-circle-wrap">
+        <div class="breath-circle"></div>
+        <div class="breath-inner"></div>
+      </div>
+      <p class="breath-label-text" id="breathLabel">inhale...</p>
+    </div>
+  </div>
+
+  <!-- HOW TO -->
+  <div class="divider reveal"></div>
+  <div class="section reveal">
+    <p class="sec-label">The activation</p>
+    <h2 class="sec-title">Three parts. <em>One shift.</em></h2>
+    <div class="steps-intro">
+      <p>This isn't something you consume.<br>It's something you move through.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">I</div>
+      <div>
+        <h3>Name what you're claiming</h3>
+        <p>Say it out loud right now. Or whisper it. Don't shrink it, don't explain it, don't justify why you want it. Just let yourself want it — fully, without apology. Money. Love. Your person. Your life. Whatever it is. Name it like it's already yours.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">II</div>
+      <div>
+        <h3>Read the identity statements like truth</h3>
+        <p>Not like affirmations you're hoping become real. Like facts you're remembering. Your subconscious can't tell the difference between what's real and what you vividly feel as real. So we're going to use that.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">III</div>
+      <div>
+        <h3>Do the tapping sequence</h3>
+        <p>This is where it lands in your body, not just your mind. EFT tapping rewires the subconscious beliefs that have been blocking you — the ones that live in your nervous system and quietly sabotage everything. Say it out loud. This is the part most people skip. Don't skip it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AFFIRMATIONS -->
+  <div class="divider reveal"></div>
+  <div class="section reveal">
+    <p class="sec-label">Identity activation</p>
+    <h2 class="sec-title">Read these like <em>they are already true</em></h2>
+    <div class="aff-block">
+      <p class="aff-sublabel">Because they are.</p>
+      <ul class="affirmations">
+        <li>I exist in a reality where everything I want is already moving toward me.</li>
+        <li>I don't chase. I become. And what's mine finds me.</li>
+        <li>My nervous system is learning that overflow is safe. That more is safe. That I am safe.</li>
+        <li>I am not waiting to be chosen. I am the one who chooses.</li>
+        <li>The version of me that has everything I'm claiming — she's not ahead of me. She is me, right now, underneath the conditioning.</li>
+        <li>What I desire is not a fantasy. It's a frequency I am actively tuning into.</li>
+        <li>I release the belief that I have to earn my way to what I want. That was never the truth.</li>
+        <li>I am the woman money moves toward. I am the one love returns to. I am the one life conspires for.</li>
+        <li>I don't need permission to want what I want. I just claim it.</li>
+        <li>Everything I've been calling in is already looking for me too.</li>
+        <li class="shimmer">I am already her. It is already done.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAPPING -->
+  <div class="divider reveal"></div>
+  <div class="section reveal">
+    <p class="sec-label">EFT Tapping Sequence</p>
+    <h2 class="sec-title">Now let your <em>body believe it too</em></h2>
+    <div class="tap-intro">
+      <p>Tap each point gently 5–7 times while saying the statement out loud.</p>
+      <p>Your subconscious lives in your body — not your mind. This is how we install the shift at the root.</p>
+    </div>
+    <div class="tap-points">
+      <div class="tap-point"><span class="tap-loc">Karate Chop</span><span class="tap-stmt">Even though part of me still wonders if this is really for me — I'm open to knowing that it is.</span></div>
+      <div class="tap-point"><span class="tap-loc">Eyebrow</span><span class="tap-stmt">I've been taught to keep my desires small and realistic.</span></div>
+      <div class="tap-point"><span class="tap-loc">Side of Eye</span><span class="tap-stmt">But that was conditioning. That was never the truth of who I am.</span></div>
+      <div class="tap-point"><span class="tap-loc">Under Eye</span><span class="tap-stmt">I am safe to want more. I am safe to receive more.</span></div>
+      <div class="tap-point"><span class="tap-loc">Under Nose</span><span class="tap-stmt">My body is learning that overflow is my new normal.</span></div>
+      <div class="tap-point"><span class="tap-loc">Chin</span><span class="tap-stmt">I trust myself with everything I've been calling in.</span></div>
+      <div class="tap-point"><span class="tap-loc">Collarbone</span><span class="tap-stmt">I don't have to earn it. I just have to become her.</span></div>
+      <div class="tap-point"><span class="tap-loc">Under Arm</span><span class="tap-stmt">Everything I've claimed is already moving toward me right now.</span></div>
+      <div class="tap-point"><span class="tap-loc">Top of Head</span><span class="tap-stmt">I am already her. It is already done. I receive it all now.</span></div>
+    </div>
+  </div>
+
+  <!-- INTEGRATION -->
+  <div class="divider reveal"></div>
+  <div class="section reveal">
+    <p class="sec-label">Integration</p>
+    <h2 class="sec-title">Close your eyes for <em>60 seconds</em></h2>
+    <div class="integration-block">
+      <p>Wrap your arms around yourself. Squeeze gently.</p>
+      <p>Feel what just shifted — even if it's subtle. Even if it's just a tiny loosening somewhere in your chest. <strong>That's real.</strong></p>
+      <p>Your nervous system just received a new signal. Your subconscious just heard something it may have never fully believed before.</p>
+      <p>Let it land before you move on.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE JUMP OFFER -->
+  <div class="divider reveal"></div>
+  <div class="offer-section reveal">
+
+    <div class="offer-header">
+      <p>One more thing before you go</p>
+      <h2>Keep the portal open <em>while you sleep.</em></h2>
+      <p>You just activated something real. The Timeline Jump Sleep Portal™ is designed to keep that rewiring going overnight — while your subconscious is most receptive. Whatever you claimed today, this deepens it while you rest.</p>
+    </div>
+
+    <div class="offer-card">
+
+      <div class="offer-name">
+        <p>Timeline Jump Sleep Portal™</p>
+        <h3>A portal that runs all night.<br><em style="color:#CFC5E1;">Your subconscious does the rest.</em></h3>
+        <p>Press play before bed. Drift off. Wake up in a different energetic reality. This is the offer that makes the activation you just did stick.</p>
+      </div>
+
+      <div class="includes">
+        <div class="include-item">
+          <span>✦</span>
+          <div>
+            <h4>Guided Theta Journey</h4>
+            <p>A guided audio that walks you into theta brainwave state — the exact frequency where your subconscious is wide open and resistance drops. You'll drift off before it even ends.</p>
+          </div>
+        </div>
+        <div class="include-item">
+          <span>✦</span>
+          <div>
+            <h4>Overnight Subliminal Track</h4>
+            <p>Plays all night while you sleep. Identity-level reprogramming running in the background — rewriting the subconscious beliefs that have been quietly blocking what you're claiming. You do nothing. Your mind does everything.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timer-section">
+        <p class="timer-label" id="timerLabel">This price disappears in</p>
+        <div class="timer-digits">
+          <div class="digit-group">
+            <div class="digit" id="mm">15</div>
+            <div class="digit-label">minutes</div>
+          </div>
+          <div class="colon">:</div>
+          <div class="digit-group">
+            <div class="digit" id="ss">00</div>
+            <div class="digit-label">seconds</div>
+          </div>
+        </div>
+        <div class="price-row">
+          <span class="price-original">$7</span>
+          <span class="price-sale" id="priceSale">$4.44</span>
+          <span class="price-tag" id="priceTag">today only</span>
+        </div>
+      </div>
+
+      <!-- THRIVECART EMBED -->
+      <div class="tc-wrap">
+        <div class="tc-v2-embeddable-target"
+          data-thrivecart-account="jacnicole"
+          data-thrivecart-tpl="v2"
+          data-thrivecart-product="19"
+          data-thrivecart-embeddable="tc-jacnicole-19-KMPP5H">
+        </div>
+        <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-19-KMPP5H"></script>
+      </div>
+
+    </div>
+
+    <p class="skip-link">No thanks, I'll pass on this one.</p>
+  </div>
+
+  <p class="brand-sig">Manifest With Jac · manifestwithjac.com</p>
+
+</div>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+function animateCursor(){
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+  rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+document.querySelectorAll('a,button,.tap-point,.affirmations li,.step-card,.include-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='16px';cursor.style.height='16px';ring.style.width='48px';ring.style.height='48px';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='32px';ring.style.height='32px';});
+});
+
+// Stars
+const starsEl=document.getElementById('stars');
+for(let i=0;i<160;i++){
+  const s=document.createElement('div');s.className='star';
+  const size=Math.random()*2.5+0.5;
+  const colors=['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
+  s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};--dur:${2+Math.random()*5}s;--delay:${Math.random()*5}s;`;
+  starsEl.appendChild(s);
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.divider').forEach(el=>observer.observe(el));
+
+// Breath label
+let inhale=true;
+setInterval(()=>{
+  document.getElementById('breathLabel').textContent=inhale?'inhale...':'exhale...';
+  inhale=!inhale;
+},3500);
+
+// Countdown timer
+let totalSecs=15*60;
+function updateTimer(){
+  if(totalSecs<=0){
+    document.getElementById('timerLabel').textContent='Offer expired';
+    document.getElementById('timerLabel').classList.add('expired');
+    document.getElementById('mm').textContent='00';
+    document.getElementById('mm').classList.add('expired');
+    document.getElementById('ss').textContent='00';
+    document.getElementById('ss').classList.add('expired');
+    document.getElementById('priceSale').textContent='$7';
+    document.getElementById('priceSale').classList.add('expired');
+    document.getElementById('priceTag').style.display='none';
+    return;
+  }
+  const m=Math.floor(totalSecs/60);
+  const s=totalSecs%60;
+  document.getElementById('mm').textContent=String(m).padStart(2,'0');
+  document.getElementById('ss').textContent=String(s).padStart(2,'0');
+  totalSecs--;
+  setTimeout(updateTimer,1000);
+}
+updateTimer();
+</script>
+</body>
+</html>
