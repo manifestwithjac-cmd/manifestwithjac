@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Loves Me Masterclass | Manifest With Jac</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #08060f;
+    --pink: #EEC7DD;
+    --lavender: #CFC5E1;
+    --blue: #CED9ED;
+    --mauve: #DEC5DF;
+    --sage: #D6E8DA;
+    --text: #f8f4ff;
+    --muted: rgba(248,244,255,0.5);
+    --border: rgba(207,197,225,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 0% 0%, rgba(206,217,237,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(238,199,221,0.1) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star { position: absolute; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+  @keyframes twinkle { 0%, 100% { opacity: 0.08; } 50% { opacity: 0.5; } }
+
+  /* STICKY BANNER */
+  .countdown-banner {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2a0f20 100%);
+    border-bottom: 1px solid rgba(238,199,221,0.2);
+    padding: 12px 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .banner-text { font-size: 13px; color: rgba(248,244,255,0.8); }
+  .banner-text strong { color: var(--pink); font-weight: 600; }
+
+  .timer-wrap { display: flex; align-items: center; gap: 4px; }
+
+  .timer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(207,197,225,0.1);
+    border: 1px solid rgba(207,197,225,0.2);
+    padding: 6px 12px;
+    border-radius: 6px;
+    min-width: 50px;
+  }
+
+  .timer-num {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .timer-label { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .timer-sep { font-size: 20px; color: var(--lavender); opacity: 0.5; margin-bottom: 12px; }
+  .expired-msg { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  .wrap { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; display: flex; flex-direction: column; align-items: center; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--lavender); margin-bottom: 14px; }
+
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(44px, 10vw, 68px);
+    font-weight: 600;
+    line-height: 1.0;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #CED9ED 0%, #ffffff 15%, #EEC7DD 30%, #CFC5E1 45%, #ffffff 58%, #DEC5DF 72%, #D6E8DA 85%, #CED9ED 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: iridescent 6s ease infinite;
+  }
+
+  @keyframes iridescent { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+  .hero-sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 32px; line-height: 1.6; font-style: italic; }
+
+  /* VIDEO */
+  .video-wrap {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(238,199,221,0.06);
+  }
+
+  .video-wrap iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+
+  .video-note { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 52px; font-style: italic; }
+
+  /* DIVIDER */
+  .divider { width: 100%; display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(207,197,225,0.25), transparent); }
+  .divider-text { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+  /* UPSELL */
+  .upsell-eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lavender); text-align: center; margin-bottom: 12px; }
+
+  .upsell-headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(30px, 6vw, 48px);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .upsell-sub { font-size: 15px; color: var(--muted); text-align: center; line-height: 1.7; max-width: 520px; margin-bottom: 36px; }
+  .upsell-sub strong { color: var(--text); font-weight: 500; }
+
+  /* PRODUCT CARD */
+  .product-card {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(238,199,221,0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 0 40px rgba(238,199,221,0.05);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, rgba(206,217,237,0.07), rgba(238,199,221,0.07));
+    padding: 32px 36px;
+    text-align: center;
+    border-bottom: 1px solid rgba(207,197,225,0.1);
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    border: 1px solid rgba(207,197,225,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 42px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .card-tagline { font-size: 14px; color: var(--muted); font-style: italic; }
+
+  .card-body-wrap { padding: 32px 36px; }
+
+  .card-description { font-size: 14px; color: rgba(248,244,255,0.7); line-height: 1.8; margin-bottom: 28px; }
+
+  /* PORTALS */
+  .portals { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+  .portal {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+
+  .portal-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .portal-content {}
+  .portal-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .portal-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  /* INCLUDES */
+  .includes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; padding: 22px; background: rgba(255,255,255,0.02); border-radius: 14px; border: 1px solid var(--border); }
+
+  .include-item { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: rgba(248,244,255,0.7); line-height: 1.5; }
+  .include-dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--lavender)); flex-shrink: 0; margin-top: 5px; }
+
+  /* PRICE */
+  .price-section { text-align: center; margin-bottom: 24px; }
+
+  .price-expired-notice {
+    display: none;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .price-row { display: flex; align-items: baseline; justify-content: center; gap: 16px; margin-bottom: 6px; }
+
+  .price-now {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 64px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8f4ff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .price-now sup { font-size: 28px; }
+
+  .price-stack { display: flex; flex-direction: column; gap: 4px; text-align: left; }
+  .price-was { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+  .price-save { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); }
+  .price-note { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+
+  .btn-buy {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    border: none;
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    margin-bottom: 12px;
+  }
+
+  .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(238,199,221,0.35); }
+  .guarantee { font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.05em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 44px 18px 60px; }
+    .card-header { padding: 24px 20px; }
+    .card-body-wrap { padding: 24px 20px; }
+    .countdown-banner { gap: 10px; }
+  }
+</style>
+<script>!function(w,d,s,n,e,r,a){(w._tpq=w._tpq||[]).push(["init",n,e]),(r=d.createElement(s)).type="text/javascript",r.src="https://a.trstplse.com/app/js/api.min.js",r.async=!0,(a=d.getElementsByTagName(s)[0]).parentNode.insertBefore(r,a)}(window,document,"script",14213,"")};</script>
+</head>
+<body>
+
+<!-- COUNTDOWN BANNER -->
+<div class="countdown-banner" id="countdownBanner">
+  <div class="banner-text"><strong>🎉 Welcome gift — $67 for a limited time</strong> · Returns to $97 when timer hits zero</div>
+  <div class="timer-wrap" id="timerDisplay">
+    <div class="timer-block">
+      <div class="timer-num" id="timerMins">60</div>
+      <div class="timer-label">Min</div>
+    </div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block">
+      <div class="timer-num" id="timerSecs">00</div>
+      <div class="timer-label">Sec</div>
+    </div>
+  </div>
+</div>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="eyebrow">✦ your free masterclass ✦</div>
+  <h1>Money Loves Me</h1>
+  <p class="hero-sub">Watch it when you can actually sit with it. Not between pickups and dinner. Give it space.</p>
+
+  <div class="video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/k1PxQzQjmeA?rel=0&modestbranding=1"
+      title="Money Loves Me Masterclass"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="video-note">✦ Tap along with the EFT sequence inside — your nervous system starts shifting in real time ✦</p>
+
+  <!-- UPSELL -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-text">ready to go all the way in?</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <p class="upsell-eyebrow">the next level</p>
+  <h2 class="upsell-headline">You just learned the Source Body Method.<br>Money Multiverse™ is the full rewire.</h2>
+  <p class="upsell-sub">The masterclass gave you the framework and a taste of EFT. <strong>Money Multiverse™ takes you through all three pieces of the Source Body Method (the Quantum Glow-Up™ Method) — quantum alignment, nervous system safety, and embodied identity — at depth.</strong> Four portals. Audio first. Built to rewire the subconscious layer where money blocks actually live.</p>
+
+  <div class="product-card">
+    <div class="card-header">
+      <span class="card-tag">Audio-First Program · 30% Off · Instant Access</span>
+      <h3 class="card-title">Money Multiverse™</h3>
+      <p class="card-tagline">"You don't have a money problem. You have an identity problem."</p>
+    </div>
+    <div class="card-body-wrap">
+      <p class="card-description">You know the framework now. This is the experience. Four portals that take you through every layer of subconscious money identity — clearing the past wounds, releasing the productivity ceiling, bringing your power back online, and fusing you into the quantum version of yourself that money already flows to. Not a course. Not coaching. A complete experiential rewire.</p>
+
+      <div class="portals">
+        <div class="portal">
+          <div class="portal-num">1</div>
+          <div class="portal-content">
+            <p class="portal-name">Past Self — Wealth Reclamation</p>
+            <p class="portal-desc">Clears inherited money wounds, generational scarcity, and the fear absorbed before you had words for it. Teaching audio + EFT + journal prompts.</p>
+          </div>
+        </div>
+        <div class="portal">
+          <div class="portal-num">2</div>
+          <div class="portal-content">
+            <p class="portal-name">Present Self — The Prover Identity</p>
+            <p class="portal-desc">Releases the pattern that says you have to earn your worth through exhaustion. Teaching audio + EFT + journal prompts.</p>
+          </div>
+        </div>
+        <div class="portal">
+          <div class="portal-num">3</div>
+          <div class="portal-content">
+            <p class="portal-name">Shadow Self — Hidden Power</p>
+            <p class="portal-desc">Brings back online the version of you that's been keeping quiet. Teaching audio + EFT + journal prompts.</p>
+          </div>
+        </div>
+        <div class="portal">
+          <div class="portal-num">4</div>
+          <div class="portal-content">
+            <p class="portal-name">Multiverse Self — Quantum Identity Fusion</p>
+            <p class="portal-desc">Integration. Every version of you collapses into one coherent identity — the woman money moves toward. Subconscious recoding session + journal prompts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="includes">
+        <div class="include-item"><div class="include-dot"></div><span>Sacred Geometry "Recoded to Receive" bonus session — bypasses conscious resistance, installs the receiver identity directly</span></div>
+        <div class="include-item"><div class="include-dot"></div><span>Timeline Jump Sleep Portal™ — runs overnight while you sleep so the rewrite keeps going</span></div>
+        <div class="include-item"><div class="include-dot"></div><span>Instant lifetime access — audio first, start listening in 5 minutes</span></div>
+      </div>
+
+      <div class="price-section">
+        <div class="price-expired-notice" id="expiredNotice">The $67 offer has expired — Money Multiverse™ is now available at its regular price of $97.</div>
+        <div id="priceRow">
+          <div class="price-now" id="priceDisplay"><sup>$</sup>67</div>
+          <div id="priceStack" style="margin-top:8px;">
+            <span class="price-was" style="font-size:18px;color:rgba(248,244,255,0.4);text-decoration:line-through;display:block;margin-bottom:6px;">$97</span>
+            <span style="display:inline-block;background:linear-gradient(135deg,var(--pink),var(--lavender));color:white;font-size:14px;font-weight:700;letter-spacing:0.08em;padding:6px 18px;border-radius:20px;">30% OFF</span>
+          </div>
+        </div>
+        <p class="price-note" style="margin-top:14px;margin-bottom:24px;">One-time · Instant lifetime access · No subscriptions</p>
+      </div>
+
+      <div
+        class="tc-v2-embeddable-target"
+        data-thrivecart-account="jacnicole"
+        data-thrivecart-tpl="v2"
+        data-thrivecart-product="23"
+        data-thrivecart-embeddable="tc-jacnicole-23-QSDAKN">
+      </div>
+      <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-23-QSDAKN"></script>
+      <p class="guarantee">✦ Instant access · Yours forever · Start listening in 5 minutes</p>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Stars
+  var colors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
+  var starsEl = document.getElementById('stars');
+  for (var i = 0; i < 60; i++) {
+    var s = document.createElement('div');
+    var sz = (1 + Math.random() * 2.5);
+    s.className = 'star';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.width = sz + 'px';
+    s.style.height = sz + 'px';
+    s.style.background = colors[Math.floor(Math.random() * colors.length)];
+    s.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    s.style.setProperty('--delay', (Math.random() * 6) + 's');
+    s.style.opacity = String(0.1 + Math.random() * 0.4);
+    starsEl.appendChild(s);
+  }
+
+  // TIMER — localStorage protected
+  var STORAGE_KEY = 'mlm_upsell_expiry';
+  var DURATION = 60 * 60; // 60 minutes in seconds
+
+  var minsEl = document.getElementById('timerMins');
+  var secsEl = document.getElementById('timerSecs');
+  var timerDisplay = document.getElementById('timerDisplay');
+  var priceDisplay = document.getElementById('priceDisplay');
+  var priceStack = document.getElementById('priceStack');
+  var expiredNotice = document.getElementById('expiredNotice');
+  var buyBtn = document.getElementById('buyBtn');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function onExpire() {
+    // Update banner
+    timerDisplay.innerHTML = '<span class="expired-msg">Offer expired — price returned to $97</span>';
+    // Update price
+    priceDisplay.innerHTML = '<sup>$</sup>97';
+    priceStack.style.display = 'none';
+    // Show expired notice
+    expiredNotice.style.display = 'block';
+    // Update button
+    buyBtn.textContent = 'Get Money Multiverse™ — $97 →';
+  }
+
+  function startTimer(expiryTime) {
+    var interval = setInterval(function() {
+      var now = Date.now();
+      var remaining = Math.floor((expiryTime - now) / 1000);
+
+      if (remaining <= 0) {
+        clearInterval(interval);
+        onExpire();
+        return;
+      }
+
+      var mins = Math.floor(remaining / 60);
+      var secs = remaining % 60;
+      minsEl.textContent = pad(mins);
+      secsEl.textContent = pad(secs);
+
+      // Last 60 seconds — turn red
+      if (remaining <= 60) {
+        minsEl.style.cssText = 'font-size:22px;font-weight:700;line-height:1;background:linear-gradient(135deg,#ff7a7a,#e87fca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-variant-numeric:tabular-nums;';
+        secsEl.style.cssText = 'font-size:22px;font-weight:700;line-height:1;background:linear-gradient(135deg,#ff7a7a,#e87fca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-variant-numeric:tabular-nums;';
+      }
+    }, 1000);
+  }
+
+  // Check localStorage
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    var expiryTime;
+
+    if (stored) {
+      expiryTime = parseInt(stored, 10);
+      var remaining = Math.floor((expiryTime - Date.now()) / 1000);
+
+      if (remaining <= 0) {
+        // Already expired — show expired state immediately
+        onExpire();
+        return;
+      } else {
+        // Resume timer
+        var mins = Math.floor(remaining / 60);
+        var secs = remaining % 60;
+        minsEl.textContent = pad(mins);
+        secsEl.textContent = pad(secs);
+        startTimer(expiryTime);
+      }
+    } else {
+      // First visit — set expiry
+      expiryTime = Date.now() + (DURATION * 1000);
+      localStorage.setItem(STORAGE_KEY, expiryTime.toString());
+      startTimer(expiryTime);
+    }
+  } catch(e) {
+    // localStorage not available — just run timer normally
+    var fallbackExpiry = Date.now() + (DURATION * 1000);
+    startTimer(fallbackExpiry);
+  }
+
+});
+</script>
+</body>
+</html>

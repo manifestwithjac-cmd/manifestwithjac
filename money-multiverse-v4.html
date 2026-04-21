@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Multiverse™ — Jac Nicole</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08060c;
+    --bg2: #0e0a14;
+    --bg3: #13101a;
+    --purple: #9b6fc4;
+    --purple-light: #c49ee8;
+    --pink: #e87fca;
+    --pink-light: #f5a8dc;
+    --iridescent: linear-gradient(135deg, #c49ee8, #e87fca, #89d4e8, #c49ee8);
+    --iridescent2: linear-gradient(135deg, #9b6fc4, #e87fca, #7ec8e3);
+    --cream: #f5f0f8;
+    --muted: #8a7a9a;
+    --border: rgba(155,111,196,0.2);
+    --border2: rgba(155,111,196,0.1);
+    --glow-purple: rgba(155,111,196,0.15);
+    --glow-pink: rgba(232,127,202,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(155,111,196,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 80% 80%, rgba(232,127,202,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── UTILITIES ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  .grad-text {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(155,111,196,0.5), transparent);
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    display: inline-block;
+    background: var(--iridescent2);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 48px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(155,111,196,0.4);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid var(--purple);
+    color: var(--purple-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-ghost:hover {
+    background: var(--glow-purple);
+    border-color: var(--purple-light);
+  }
+
+  .btn-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  .cta-block {
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(155,111,196,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 9vw, 100px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .tm {
+    font-size: 0.35em;
+    vertical-align: super;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: rgba(245,240,248,0.55);
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+  }
+
+  .hero-hook {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 400;
+    color: var(--cream);
+    max-width: 560px;
+    line-height: 1.45;
+    margin: 0 auto 48px;
+  }
+
+  .hero-hook em {
+    font-style: italic;
+    font-weight: 300;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── PAIN ── */
+  .pain {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .pain-intro {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--cream);
+    margin-bottom: 48px;
+    max-width: 560px;
+  }
+
+  .pain-intro em {
+    font-style: italic;
+    font-weight: 300;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pain-list {
+    list-style: none;
+    margin-bottom: 48px;
+  }
+
+  .pain-list li {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border2);
+    font-size: 15px;
+    color: rgba(245,240,248,0.72);
+    line-height: 1.7;
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .pain-list li::before {
+    content: '—';
+    color: var(--purple);
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+  .pain-closer {
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.5;
+    border-left: 2px solid var(--purple);
+    padding-left: 24px;
+    max-width: 540px;
+  }
+
+  .pain-closer strong {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
+  /* ── TRUTH ── */
+  .truth { padding: 100px 0; text-align: center; }
+
+  .truth h2 {
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 28px;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .truth-body {
+    font-size: 15px;
+    color: rgba(245,240,248,0.65);
+    max-width: 520px;
+    margin: 0 auto 20px;
+    line-height: 1.85;
+    text-align: left;
+  }
+
+  .truth-quote {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--purple-light);
+    max-width: 500px;
+    margin: 40px auto 0;
+    line-height: 1.5;
+    border-left: 2px solid var(--pink);
+    padding-left: 24px;
+    text-align: left;
+  }
+
+  /* ── REWIRE DEEP ── */
+  .rewire {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .rewire-headline {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .rewire-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 64px;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  .rewire-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 56px;
+  }
+
+  .rewire-method {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    padding: 40px 40px 40px 36px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 28px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .rewire-method:hover {
+    border-color: var(--border);
+  }
+
+  .rewire-method::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--iridescent2);
+  }
+
+  .rewire-icon {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .rewire-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .rewire-content h3 span {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rewire-content p {
+    font-size: 14px;
+    color: rgba(245,240,248,0.65);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .rewire-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pink);
+    border: 1px solid rgba(232,127,202,0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── AFTER ── */
+  .after {
+    padding: 100px 0;
+  }
+
+  .after h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .after-sub {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  .after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border2);
+    margin-bottom: 48px;
+  }
+
+  .after-item {
+    background: var(--bg);
+    padding: 26px 28px;
+    font-size: 14px;
+    color: rgba(245,240,248,0.78);
+    line-height: 1.6;
+    display: flex;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .after-item::before {
+    content: '✦';
+    color: var(--pink);
+    font-size: 9px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .after-quote {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--purple-light);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── PORTALS ── */
+  .portals {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .portals h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .portals-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 56px;
+    max-width: 440px;
+  }
+
+  .portal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 56px;
+  }
+
+  .portal-item {
+    border-top: 1px solid var(--border2);
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 24px;
+  }
+
+  .portal-item:last-child { border-bottom: 1px solid var(--border2); }
+
+  .portal-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+
+  .portal-num .num {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .portal-num .label {
+    color: var(--muted);
+    font-size: 9px;
+  }
+
+  .portal-content h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .portal-content p {
+    font-size: 14px;
+    color: rgba(245,240,248,0.62);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .portal-includes {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+  }
+
+  /* ── STORY ── */
+  .story { padding: 100px 0; }
+
+  .story h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+
+  .story-body {
+    font-size: 15px;
+    color: rgba(245,240,248,0.7);
+    line-height: 1.9;
+    max-width: 580px;
+    margin-bottom: 20px;
+  }
+
+  .story-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border2);
+    margin-top: 56px;
+  }
+
+  .result-block {
+    background: var(--bg);
+    padding: 40px 36px;
+  }
+
+  .result-block h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+  }
+
+  .result-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .result-block ul li {
+    font-size: 13px;
+    color: rgba(245,240,248,0.68);
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .result-block ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* ── INCLUDES ── */
+  .includes {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .includes h2 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 48px;
+    line-height: 1.2;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--border2);
+    margin-bottom: 32px;
+  }
+
+  .include-item {
+    background: var(--bg2);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .include-item.featured {
+    border: 1px solid rgba(155,111,196,0.3);
+    background: var(--bg3);
+  }
+
+  .include-item.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--iridescent2);
+  }
+
+  .include-icon {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .include-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .include-item h4 span {
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .include-item p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .bonus-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border2);
+    margin-top: 2px;
+    margin-bottom: 48px;
+  }
+
+  .bonus-item {
+    background: var(--bg2);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bonus-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--iridescent2);
+  }
+
+  .bonus-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .bonus-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .bonus-item p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── OBJECTION ── */
+  .objection { padding: 100px 0; text-align: center; }
+
+  .objection h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+
+  .objection h2 em {
+    font-style: italic;
+    font-weight: 300;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .objection-body {
+    font-size: 15px;
+    color: rgba(245,240,248,0.68);
+    max-width: 480px;
+    margin: 0 auto 20px;
+    line-height: 1.85;
+    text-align: left;
+  }
+
+  .objection-reframe {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--purple-light);
+    max-width: 460px;
+    margin: 36px auto 40px;
+    line-height: 1.5;
+  }
+
+  /* ── FOR/NOT FOR ── */
+  .for-section {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .for-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border2);
+  }
+
+  .for-block {
+    background: var(--bg2);
+    padding: 48px 40px;
+  }
+
+  .for-block h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 28px;
+  }
+
+  .for-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .for-block ul li {
+    font-size: 14px;
+    color: rgba(245,240,248,0.7);
+    line-height: 1.65;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .for-block.yes ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--purple-light);
+    font-size: 13px;
+  }
+
+  .for-block.no ul li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* ── PRICING ── */
+  .pricing { padding: 100px 0; text-align: center; }
+
+  .price-card {
+    display: inline-block;
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    padding: 56px 64px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--iridescent2);
+  }
+
+  .price-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--iridescent2);
+    opacity: 0.4;
+  }
+
+  .price-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .price-amount {
+    font-size: 88px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+
+  .price-amount sup {
+    font-size: 32px;
+    vertical-align: super;
+    color: var(--purple-light);
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+
+  .price-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+    text-align: left;
+  }
+
+  .price-list li {
+    font-size: 13px;
+    color: rgba(245,240,248,0.65);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .price-list li::before {
+    content: '✦';
+    color: var(--pink);
+    font-size: 8px;
+    flex-shrink: 0;
+  }
+
+  .price-context {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 20px;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 20px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .final-cta h2 em {
+    font-style: italic;
+    font-weight: 300;
+    background: var(--iridescent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .final-body {
+    font-size: 15px;
+    color: rgba(245,240,248,0.62);
+    max-width: 420px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border2);
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .after-grid, .story-results, .includes-grid, .for-grid, .bonus-wrap {
+      grid-template-columns: 1fr;
+    }
+    .portal-item { grid-template-columns: 1fr; gap: 12px; }
+    .rewire-method { grid-template-columns: 1fr; }
+    .price-card { padding: 40px 28px; }
+  }
+</style>
+<script>!function(w,d,s,n,e,r,a){(w._tpq=w._tpq||[]).push(["init",n,e]),(r=d.createElement(s)).type="text/javascript",r.src="https://a.trstplse.com/app/js/api.min.js",r.async=!0,(a=d.getElementsByTagName(s)[0]).parentNode.insertBefore(r,a)}(window,document,"script",14213,"")};</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Jac Nicole Presents</p>
+    <h1><span class="grad-text">Money<br>Multiverse</span><span class="tm">™</span></h1>
+    <p class="hero-tagline">4 portals · Audio first · No Zoom calls · Just you & your earbuds</p>
+    <p class="hero-hook">You know you're meant for a big life.<br><em>It's time your subconscious agreed.</em></p>
+    <a href="#checkout" class="btn-primary">Enter The Multiverse — $97</a>
+    <span class="btn-sub">Instant access · Listen anywhere · Lifetime access</span>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="container">
+    <span class="section-label">The Pattern You Keep Repeating</span>
+    <p class="pain-intro">You work too hard for your life to still <em>feel like this.</em></p>
+    <ul class="pain-list">
+      <li>You scroll past someone's vacation photos and feel that quiet ache — the one you won't fully admit out loud. You work just as hard. Maybe harder. But she's living the life and you're calculating whether you can afford takeout this week.</li>
+      <li>You know you're meant for MORE. Not a little more — a big life. Expansive, electric, fully yours. But something invisible keeps pulling you back to the same ceiling, the same stress, the same "someday."</li>
+      <li>You've tried manifesting. The affirmations. The vision boards. The gratitude lists. The frequency videos on YouTube. And your bank account hasn't gotten the memo.</li>
+      <li>You've started calling yourself "realistic" — because it hurts less than admitting you've given up on the life you actually want.</li>
+      <li>There's always something. Always a timing issue. Money carries an emotional weight you can't quite explain. You're surviving well. But you're not yet living.</li>
+    </ul>
+    <p class="pain-closer">This isn't a mindset problem. This isn't a "work harder" problem.<br><strong>This is a subconscious identity problem.</strong> And it lives below everything you've tried.</p>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- TRUTH -->
+<section class="truth">
+  <div class="container">
+    <span class="section-label">The Missing Piece</span>
+    <h2>Everything you've tried only touched <span class="grad-text">5% of the problem.</span></h2>
+    <p class="truth-body">Surface-level manifestation works on the conscious mind. But your subconscious — the part running 95% of your automatic thoughts, reactions, and decisions — was never touched. It's still running the original programming. The inherited beliefs. The generational wounds. The quiet message that big lives are for other people.</p>
+    <p class="truth-body">You can't affirm your way out of a nervous system pattern. You can't vision board past a subconscious identity that doesn't believe it's safe to receive.</p>
+    <p class="truth-quote">"The problem was never your vision board. It was a program running in your subconscious that no affirmation has ever touched — until now."</p>
+    <div class="cta-block" style="margin-top:48px;">
+      <a href="#checkout" class="btn-ghost">Rewire It Now — $97</a>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- REWIRE DEEP — THE STAR OF THE SHOW -->
+<section class="rewire">
+  <div class="container">
+    <span class="section-label">How The Rewire Actually Happens</span>
+    <h2 class="rewire-headline">This isn't just audio. This is <span class="grad-text">deep subconscious surgery.</span></h2>
+    <p class="rewire-sub">Three distinct modalities work together in every portal to reach the layer where your actual programming lives — not just your conscious mind.</p>
+
+    <div class="rewire-methods">
+
+      <div class="rewire-method">
+        <div class="rewire-icon">⚡</div>
+        <div class="rewire-content">
+          <h3><span>EFT Tapping</span> — Rewiring the Nervous System</h3>
+          <p>EFT (Emotional Freedom Technique) is a clinically proven method that uses tapping on acupressure points to send calming signals directly to the amygdala — the part of your brain that triggers the stress response. Every time you've felt that tightness checking your account, that freeze before buying something, that low-grade anxiety around money — that's your nervous system firing an alarm. EFT turns the alarm off at the source.</p>
+          <p>Each portal includes a dedicated EFT session that clears the specific block that portal targets. You're not thinking your way out of the pattern. You're tapping it out of your body.</p>
+          <span class="rewire-tag">Included in every portal</span>
+        </div>
+      </div>
+
+      <div class="rewire-method">
+        <div class="rewire-icon">◇</div>
+        <div class="rewire-content">
+          <h3><span>Sacred Geometry</span> — Bypassing Conscious Resistance</h3>
+          <p>Your conscious mind is a gatekeeper. It filters, argues, doubts. Sacred geometry works differently — it communicates directly with the subconscious through visual and vibrational frequencies that bypass the analytical mind entirely. The geometric patterns carry encoded information that the deeper mind recognizes and responds to, without the ego getting in the way.</p>
+          <p>The full "Recoded to Receive" session uses sacred geometry to clear scarcity codes and install the energetic blueprint of a woman who receives effortlessly — while you simply relax and let it work.</p>
+          <span class="rewire-tag">Full session included</span>
+        </div>
+      </div>
+
+      <div class="rewire-method">
+        <div class="rewire-icon">🌀</div>
+        <div class="rewire-content">
+          <h3><span>Subconscious Recoding</span> — Installing the New Identity</h3>
+          <p>The deepest work happens in Portal Four — the Multiverse Self integration. This isn't a teaching audio. This is a full subconscious recoding session designed to collapse every version of you into one coherent identity: the woman who IS the frequency money moves toward. Using layered audio techniques including subliminal messaging, binaural-adjacent tones, and identity-level suggestion, this session installs the new default at the deepest level of your subconscious.</p>
+          <p>Pair it with the Timeline Jump Sleep Portal and the recoding continues overnight — when your subconscious is completely open and unguarded.</p>
+          <span class="rewire-tag">Portal four + sleep portal</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-block">
+      <a href="#checkout" class="btn-primary">Start The Rewire — $97</a>
+      <span class="btn-sub">Instant access · Lifetime access</span>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- AFTER -->
+<section class="after">
+  <div class="container-wide">
+    <div class="container" style="padding:0;">
+      <span class="section-label">There Is A Version of You Already Calibrated to This</span>
+      <h2>She doesn't hustle. She receives.</h2>
+      <p class="after-sub">Not because she's different from you. Because she became someone different at the level that actually counts.</p>
+    </div>
+    <div class="after-grid">
+      <div class="after-item">Books the trip without the three-day spiral</div>
+      <div class="after-item">Opens her banking app with curiosity not dread</div>
+      <div class="after-item">Adds to cart without the mental negotiation</div>
+      <div class="after-item">Tips generously without doing silent math</div>
+      <div class="after-item">Handles the unexpected without collapsing</div>
+      <div class="after-item">Watches her money grow. Compound. Overflow.</div>
+      <div class="after-item">Doesn't downplay her desires to seem grounded</div>
+      <div class="after-item">Moves through life like it's on her side</div>
+    </div>
+    <p class="after-quote">"It's not about accumulating more — it's about inhabiting a completely different experience of wealth."</p>
+    <div class="cta-block" style="margin-top:48px;">
+      <a href="#checkout" class="btn-primary">Become Her — $97</a>
+      <span class="btn-sub">Instant access · Lifetime access</span>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- PORTALS -->
+<section class="portals">
+  <div class="container">
+    <span class="section-label">The 4 Portals That Rewire Everything</span>
+    <h2>Before your wealth channel can open,<br>we clear what's blocking it.</h2>
+    <p class="portals-sub">At all four levels. Nothing gets left behind.</p>
+
+    <div class="portal-list">
+      <div class="portal-item">
+        <div class="portal-num">
+          <span class="num">I</span>
+          <span class="label">Portal One</span>
+        </div>
+        <div class="portal-content">
+          <h3>Past Self — Wealth Reclamation</h3>
+          <p>This is where the original files live. The inherited beliefs, the fear absorbed before you had words for it, the generational money wounds passed down without anyone realizing. The hushed conversations about bills. The "we can't afford that" energy. We go back, see what got lodged in there, and release it at the root.</p>
+          <span class="portal-includes">Teaching Audio · EFT Tapping Session · Journal Prompts</span>
+        </div>
+      </div>
+      <div class="portal-item">
+        <div class="portal-num">
+          <span class="num">II</span>
+          <span class="label">Portal Two</span>
+        </div>
+        <div class="portal-content">
+          <h3>Present Self — The Prover Identity</h3>
+          <p>There's a version of you working overtime right now. She measures her worth in how much she produces. She believes rest has to be earned. She can't stop — because if she stops, something might fall apart. This portal lets her finally put the weight down so you can stop earning your way to overflow and start receiving it.</p>
+          <span class="portal-includes">Teaching Audio · EFT Tapping Session · Journal Prompts</span>
+        </div>
+      </div>
+      <div class="portal-item">
+        <div class="portal-num">
+          <span class="num">III</span>
+          <span class="label">Portal Three</span>
+        </div>
+        <div class="portal-content">
+          <h3>Shadow Self — The Hidden Power</h3>
+          <p>There's a part of you that knows exactly how powerful you are. She's also the part you've been keeping quiet — because somewhere you learned that being too successful, too visible, wanting too much meant something bad would happen. This portal brings her fully back online.</p>
+          <span class="portal-includes">Teaching Audio · EFT Tapping Session · Journal Prompts</span>
+        </div>
+      </div>
+      <div class="portal-item">
+        <div class="portal-num">
+          <span class="num">IV</span>
+          <span class="label">Portal Four</span>
+        </div>
+        <div class="portal-content">
+          <h3>Multiverse Self — Quantum Identity Fusion</h3>
+          <p>This is the integration. Where every version of you collapses into one coherent identity. The woman who IS the frequency money moves toward. This portal uses full subconscious recoding — not just teaching, not just tapping, but deep identity installation at the subconscious level. She becomes your new permanent default.</p>
+          <span class="portal-includes">Teaching Audio · Full Subconscious Recoding Session · Journal Prompts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a href="#checkout" class="btn-primary">Enter All 4 Portals — $97</a>
+      <span class="btn-sub">Instant access · Lifetime access</span>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- STORY -->
+<section class="story">
+  <div class="container">
+    <span class="section-label">From Someone Who Lived It</span>
+    <h2>I didn't study this.<br>I <span class="grad-text">lived my way through it.</span></h2>
+    <p class="story-body">I built multiple six-figure businesses while quietly terrified every slow week meant it was all falling apart. I said all the right things about abundance while something underneath kept running the same old program. I was doing everything right. And it still felt like struggle.</p>
+    <p class="story-body">I also lived in a marriage that felt disconnected and lost. I carried weight in my body that went so much deeper than physical. I knew I was meant for more. I just couldn't figure out why it kept feeling so far away.</p>
+    <p class="story-body">And then everything shifted. Not because I hustled harder. Not because I found the right strategy. Because I changed who I was being at the subconscious level — the layer where it actually counts.</p>
+    <p class="story-body">I lost 50lbs. I rebuilt a marriage that is now my safest, most beautiful place. I retired my mom. I created multiple income streams that flow while I sleep, while I travel, while I simply live. I stopped waiting for permission.</p>
+    <p class="story-body" style="color:rgba(245,240,248,0.88); font-style:italic;">Now I'm obsessed with showing other women how to do the same.</p>
+
+    <div class="story-results">
+      <div class="result-block">
+        <h4>What Others Have Created</h4>
+        <ul>
+          <li>$2K hospital bill paid in full by anonymous donors — completely unexpected</li>
+          <li>Manifesting invoices down to the exact dollar they'd written</li>
+          <li>Items they were about to purchase — gifted to them for free</li>
+          <li>Unexpected raises and promotions at jobs they'd been stuck at for years</li>
+          <li>Doubling income within 90 days of doing this work</li>
+          <li>Landing major contracts within weeks of completing the portals</li>
+        </ul>
+      </div>
+      <div class="result-block">
+        <h4>What I've Created</h4>
+        <ul>
+          <li>Grew from ~$8K months to $40K+ months across my businesses</li>
+          <li>Built a brand new company to 6-figures in its first year</li>
+          <li>Normalized $50K months as my new baseline</li>
+          <li>Paid off multiple five figures of debt</li>
+          <li>Built 8 income streams that flow without trading hours for dollars</li>
+          <li>Generated over $500K in lifetime business sales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- INCLUDES -->
+<section class="includes">
+  <div class="container">
+    <span class="section-label">Everything You're Getting</span>
+    <h2>Everything needed to rewire at the root.</h2>
+    <div class="includes-grid">
+      <div class="include-item featured">
+        <span class="include-icon">⚡</span>
+        <h4><span>EFT Tapping</span> for Every Portal</h4>
+        <p>Clears the block where it actually lives — at the nervous system level. Not in your head. Each portal has its own dedicated session targeting that portal's specific wound.</p>
+      </div>
+      <div class="include-item featured">
+        <span class="include-icon">◇</span>
+        <h4><span>Sacred Geometry</span> Recoding Session</h4>
+        <p>Full "Recoded to Receive" session. Sacred geometry bypasses conscious resistance and installs the receiver identity directly into the subconscious while you simply relax.</p>
+      </div>
+      <div class="include-item featured">
+        <span class="include-icon">🌀</span>
+        <h4><span>Subconscious</span> Recoding — Portal Four</h4>
+        <p>Not just a teaching. A full identity installation session using layered audio to collapse all versions of you into the woman money moves toward — at the deepest level.</p>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🎧</span>
+        <h4>4 Audio Portals</h4>
+        <p>Deep teaching and identity-level reprogramming in every session. Press play anywhere.</p>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📝</span>
+        <h4>Journal Prompts for Every Portal</h4>
+        <p>Anchor the new identity into your body — not just something you thought about once.</p>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🎬</span>
+        <h4>EFT Guide + Start Here Video</h4>
+        <p>Know exactly what you're doing before you enter the first portal. Zero confusion.</p>
+      </div>
+    </div>
+
+    <div class="bonus-wrap">
+      <div class="bonus-item">
+        <span class="bonus-label">Bonus</span>
+        <h4>🌙 Timeline Jump Sleep Portal</h4>
+        <p>Your subconscious doesn't sleep. This overnight audio installs the receiver identity while you rest — so the rewire keeps going all night long. Pair it with the Portal Four recoding for maximum depth.</p>
+      </div>
+      <div class="bonus-item">
+        <span class="bonus-label">Also Included</span>
+        <h4>◇ Full Sacred Geometry Session</h4>
+        <p>This isn't a preview — you're getting the complete "Recoded to Receive" session. While your mind relaxes, the geometric frequencies clear scarcity codes and anchor the energetic blueprint of a woman who receives effortlessly.</p>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a href="#checkout" class="btn-primary">Get Instant Access — $97</a>
+      <span class="btn-sub">Start listening in the next 5 minutes</span>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- OBJECTION -->
+<section class="objection">
+  <div class="container">
+    <span class="section-label">If You're On The Fence</span>
+    <h2>If you're worried $97 is too much to spend on yourself — that's <em>exactly why you need this.</em></h2>
+    <p class="objection-body">You're telling yourself to be smart. To save it. That you can't afford to waste money on something that might not work. You've been here before and you don't want to feel stupid again.</p>
+    <p class="objection-body">But here's the truth: you've already spent way more than $97 staying exactly where you are. Another year of the same stress, the same ceiling, the same quiet ache watching other people live the life you know is meant for you — that's the real cost.</p>
+    <p class="objection-body">The real question isn't whether you can afford this. It's whether you can afford another year of your nervous system running the same old program while you consciously want something completely different.</p>
+    <p class="objection-reframe">"This isn't spending money. This is investing in the identity that stops leaking it."</p>
+    <a href="#checkout" class="btn-primary">I'm Ready — $97</a>
+    <span class="btn-sub">Instant access · Lifetime access</span>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- FOR / NOT FOR -->
+<section class="for-section">
+  <div class="container-wide">
+    <div class="for-grid">
+      <div class="for-block yes">
+        <h3>This is for you if</h3>
+        <ul>
+          <li>You know deep in your bones you're meant for a big life — and you're done waiting for proof</li>
+          <li>You're tired of working hard for a life that still feels like struggle</li>
+          <li>You've tried manifesting on the surface level and you know there's a deeper layer you haven't touched</li>
+          <li>You want everything to shift — money, relationships, body, your entire experience of being alive</li>
+          <li>You're ready to stop entertaining the old story no matter what your circumstances look like</li>
+          <li>You want someone who has actually lived this transformation — not just studied it</li>
+        </ul>
+      </div>
+      <div class="for-block no">
+        <h3>This is not for you if</h3>
+        <ul>
+          <li>You think manifestation is completely ridiculous and you need hard proof before trying</li>
+          <li>You want a 17-step system and practical financial advice</li>
+          <li>You need the external world to shift before you're willing to assume a new identity</li>
+          <li>You want surface-level motivation, not root-level rewiring</li>
+          <li>You're not ready to go all the way in</li>
+          <li>You want someone to go easy on your excuses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- PRICING -->
+<section class="pricing" id="checkout">
+  <div class="container">
+    <span class="section-label">One-Time Investment</span>
+    <div class="price-card">
+      <span class="price-eyebrow">Money Multiverse™</span>
+      <div class="price-amount"><sup>$</sup>97</div>
+      <p class="price-note">One-time · Lifetime access · Instant delivery</p>
+      <ul class="price-list">
+        <li>4 Audio Portals</li>
+        <li>EFT Tapping Session for Every Portal</li>
+        <li>Sacred Geometry Recoding Session</li>
+        <li>Portal Four Full Subconscious Recoding</li>
+        <li>Journal Prompts for Every Portal</li>
+        <li>EFT Guide + Start Here Video</li>
+        <li>Timeline Jump Sleep Portal (Bonus)</li>
+      </ul>
+      <p class="price-context">Less than a night out. A complete identity rewrite.</p>
+    </div>
+    <!-- ThriveCart Embed -->
+    <div style="margin-top: 48px;">
+      <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="17" data-thrivecart-embeddable="tc-jacnicole-17-EHWCYO"></div>
+      <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-17-EHWCYO"></script>
+    </div>
+  </div>
+</section>
+
+<span class="divider"></span>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>The big life isn't something you're chasing.<br><em>It's already yours to claim.</em></h2>
+    <p class="final-body">The version of you who has it doesn't look dramatically different from you right now. She just stopped carrying what you're still carrying. Money Multiverse™ is how you put it down.</p>
+    <a href="#checkout" class="btn-primary">I'm Ready For My Fuck Yes Life — $97</a>
+    <span class="btn-sub">Instant access · Lifetime access · Start listening in 5 minutes</span>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="padding: 60px 0; background: var(--bg); border-top: 1px solid var(--border2);">
+  <div class="container">
+    <p style="font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px;">Disclaimer & Terms</p>
+    <div style="font-size: 12px; color: var(--muted); line-height: 1.9; display: flex; flex-direction: column; gap: 16px;">
+
+      <p><strong style="color: rgba(245,240,248,0.5); font-weight: 500;">Earnings Disclaimer.</strong> The income figures and results shared on this page — including those of Jac Nicole and her clients — are real, but they are not typical and are not a guarantee of your results. Individual results will vary based on your background, experience, effort, and many other factors outside of our control. Money Multiverse™ is an educational and subconscious reprogramming product. Nothing on this page should be interpreted as a promise or guarantee of any specific financial outcome.</p>
+
+      <p><strong style="color: rgba(245,240,248,0.5); font-weight: 500;">Health & Breathwork Disclaimer.</strong> Money Multiverse™ includes EFT (Emotional Freedom Technique) tapping sessions and audio content designed for subconscious reprogramming. By purchasing and using this product, you confirm that you are in good physical and mental health and that you are not experiencing any condition that may be contraindicated for breathwork, tapping, or meditative audio practices. This includes but is not limited to: epilepsy, severe anxiety disorders, active psychosis, cardiovascular conditions, or pregnancy (please consult your physician first). If you are unsure whether this product is appropriate for you, please consult a qualified healthcare professional before use.</p>
+
+      <p><strong style="color: rgba(245,240,248,0.5); font-weight: 500;">Not a Substitute for Professional Care.</strong> Money Multiverse™ is not therapy, medical treatment, or psychological counseling. The content within this program is intended for personal growth, mindset work, and subconscious reprogramming purposes only. It is not designed to diagnose, treat, cure, or prevent any physical or mental health condition. This product is not a replacement for working with a licensed therapist, psychologist, psychiatrist, financial advisor, or other qualified professional. If you are currently working with a mental health professional, please consult them before engaging with this material.</p>
+
+      <p><strong style="color: rgba(245,240,248,0.5); font-weight: 500;">No Refunds.</strong> Due to the instant digital nature of this product, all sales are final. Please review the full product description before purchasing.</p>
+
+      <p><strong style="color: rgba(245,240,248,0.5); font-weight: 500;">Intellectual Property.</strong> All content within Money Multiverse™ — including audio recordings, written materials, and all associated content — is the intellectual property of Celestara Collective Inc. / Jac Nicole. Sharing, redistributing, or reproducing any portion of this product without express written permission is strictly prohibited.</p>
+
+      <p>By purchasing Money Multiverse™, you agree to these terms and confirm your understanding of the above disclaimers.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Jac Nicole is a certified EFT practitioner, breathwork facilitator, and manifestation coach. © Celestara Collective Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
