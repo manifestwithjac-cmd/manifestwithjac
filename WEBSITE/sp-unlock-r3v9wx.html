@@ -3,364 +3,375 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manifest Your SP™ — Preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Manifest Your SP™ — Free Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --ink:#1C1218;--ink-soft:#3D2E38;--ink-muted:#7A6873;
-  --rose:#9E4060;--rose-soft:#C47A90;--blush:#E8C4CF;
-  --blush-light:#F7EEF2;--lavender:#C4B8D4;--lavender-light:#F0EBF8;
-  --cream:#FBF8F4;--rule:#DDD0D6;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',sans-serif;
-}
-html{font-size:18px;scroll-behavior:smooth;}
-body{font-family:var(--serif);background:var(--cream);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;}
-.accent-bar{height:5px;background:linear-gradient(90deg,var(--rose) 0%,var(--lavender) 50%,var(--rose-soft) 100%);}
-.page{max-width:740px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(0,0,0,0.08);}
+  :root {
+    --bg: #0e0c14;
+    --border: rgba(206,217,237,0.1);
+    --periwinkle: #CED9ED;
+    --lavender: #CFC5E1;
+    --rose: #DEC5DF;
+    --blush: #EEC7DD;
+    --sage: #D6E8DA;
+    --text: #f0ecf8;
+    --muted: rgba(240,236,248,0.52);
+    --dim: rgba(240,236,248,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.75; overflow-x: hidden; }
 
-/* PREVIEW BANNER */
-.preview-banner{background:var(--ink);color:#fff;text-align:center;padding:14px 24px;font-family:var(--sans);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;position:sticky;top:0;z-index:200;}
-.preview-banner span{color:var(--rose-soft);}
+  /* GATE OVERLAY */
+  #gate {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(14,12,20,0.97);
+    backdrop-filter: blur(20px);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    transition: opacity 0.55s ease;
+  }
+  #gate.out { opacity: 0; pointer-events: none; }
+  #gate.gone { display: none; }
 
-/* COVER */
-.cover{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 64px;text-align:center;overflow:hidden;background:#fff;}
-.cover-arc{position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;border:1px solid var(--blush);opacity:.5;pointer-events:none;}
-.cover-arc-2{position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;border:1px solid var(--lavender);opacity:.4;pointer-events:none;}
-.cover-arc-bl{position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:50%;border:1px solid var(--blush);opacity:.4;pointer-events:none;}
-.cover-byline{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:36px;font-family:var(--sans);}
-.cover-rule{width:64px;height:1px;background:var(--rule);margin:0 auto 36px;}
-.cover-title{font-weight:300;font-size:3.4rem;line-height:1.1;color:var(--ink);margin-bottom:10px;}
-.cover-sp{font-weight:600;font-size:5.8rem;line-height:1;letter-spacing:.06em;color:var(--rose);margin-bottom:6px;}
-.cover-trademark{font-size:.95rem;color:var(--rose-soft);letter-spacing:.12em;font-style:italic;}
-.cover-ornament{font-size:1.2rem;color:var(--lavender);margin:28px 0;letter-spacing:.5em;}
-.cover-subtitle{font-size:1.05rem;font-style:italic;color:var(--ink-soft);line-height:1.65;max-width:460px;margin:0 auto 44px;}
-.cover-quote-box{border:1px solid var(--rule);padding:30px 38px;max-width:520px;margin:0 auto 44px;position:relative;background:var(--cream);}
-.cover-quote-box::before{content:'\201C';position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:3.8rem;color:var(--rose-soft);background:#fff;padding:0 10px;line-height:1;}
-.cover-quote-box p{font-style:italic;font-size:.97rem;color:var(--ink-soft);line-height:1.75;margin-bottom:14px;}
-.cover-quote-box cite{font-style:normal;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);}
-.cover-contents{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);line-height:2.5;font-family:var(--sans);}
+  .gc {
+    background: rgba(207,197,225,0.06);
+    border: 1px solid rgba(222,197,223,0.2);
+    border-radius: 20px;
+    padding: 48px 40px 40px;
+    max-width: 420px; width: 100%; text-align: center;
+  }
+  .gc .ey { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--blush); margin-bottom: 18px; opacity: .8; }
+  .gc h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,6vw,36px); font-weight: 300; line-height: 1.15; margin-bottom: 12px; }
+  .gc h2 em { font-style: italic; color: var(--rose); }
+  .gc .desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 26px; }
+  .gc .inc { display: flex; flex-direction: column; gap: 7px; margin-bottom: 26px; text-align: left; background: rgba(206,217,237,0.05); border-radius: 10px; padding: 16px 18px; }
+  .gc .inc span { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 9px; }
+  .gc .inc span::before { content: '✦'; color: var(--rose); font-size: 9px; flex-shrink: 0; }
+  .gf { display: flex; flex-direction: column; gap: 9px; }
+  .gf input { background: rgba(255,255,255,0.05); border: 1px solid rgba(206,217,237,0.18); border-radius: 8px; padding: 13px 16px; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color .3s; width: 100%; }
+  .gf input::placeholder { color: rgba(240,236,248,0.28); }
+  .gf input:focus { border-color: rgba(222,197,223,0.42); }
+  .gf input.err { border-color: rgba(238,199,221,0.65); }
+  .gbtn { background: linear-gradient(135deg, var(--lavender), var(--rose)); border: none; border-radius: 50px; padding: 14px 32px; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #0e0c14; cursor: pointer; transition: transform .2s, opacity .2s; width: 100%; margin-top: 3px; }
+  .gbtn:hover:not(:disabled) { transform: translateY(-1px); opacity: .9; }
+  .gbtn:disabled { opacity: .5; cursor: not-allowed; }
+  .gfine { font-size: 11px; color: var(--dim); margin-top: 12px; }
 
-/* CHAPTER BREAK */
-.chapter-break{min-height:36vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 64px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:60px 0 0;background:var(--lavender-light);}
-.chapter-number{font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose-soft);margin-bottom:18px;font-family:var(--sans);}
-.chapter-title{font-weight:300;font-size:2.4rem;line-height:1.2;color:var(--ink);margin-bottom:14px;}
-.chapter-title em{font-style:italic;color:var(--rose);}
-.chapter-subtitle{font-style:italic;font-size:1rem;color:var(--ink-muted);}
-.chapter-ornament{color:var(--lavender);font-size:1.1rem;letter-spacing:.6em;margin-top:22px;}
+  /* PAGE */
+  #pg { display: none; }
+  #pg.on { display: block; }
 
-/* CONTENT SECTIONS */
-.section{padding:56px 80px;border-bottom:1px solid var(--blush-light);background:#fff;}
-.section.pink{background:#FFF5F8;}
-.section.lav{background:var(--lavender-light);}
-.section.cream-bg{background:var(--cream);}
-h2.section-title{font-weight:400;font-size:2rem;line-height:1.2;color:var(--ink);margin-bottom:8px;}
-.section-rule{width:44px;height:2px;background:var(--rose);margin-bottom:28px;}
-p{font-size:1rem;color:var(--ink-soft);margin-bottom:20px;line-height:1.85;}
-p.lead{font-size:1.15rem;color:var(--ink);font-style:italic;line-height:1.7;}
-h3.sub{font-weight:500;font-size:1.1rem;color:var(--rose);margin:24px 0 8px;}
-.pq{border-left:3px solid var(--rose);margin:28px 0;padding:14px 0 14px 24px;}
-.pq p{font-size:1.1rem;font-style:italic;color:var(--ink);margin-bottom:0;}
-.hbox{background:var(--blush-light);border:1px solid var(--blush);padding:20px 24px;margin:24px 0;}
-.hbox p{font-style:italic;color:var(--ink);margin-bottom:0;}
-.aff{padding:12px 0;border-bottom:1px solid var(--blush-light);font-style:italic;color:var(--ink);font-size:1rem;}
-.aff:last-child{border-bottom:none;}
+  /* STICKY */
+  .sbar { position: sticky; top: 0; z-index: 100; background: rgba(14,12,20,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 13px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .sbar .sl { font-size: 13px; color: var(--muted); }
+  .sbar .sl strong { color: var(--text); font-weight: 500; }
+  .sbar .si { font-size: 11px; color: var(--dim); display: none; }
+  @media(min-width:560px){ .sbar .si { display: block; } }
+  .sbar a { display: inline-block; background: linear-gradient(135deg,var(--lavender),var(--rose)); color: #0e0c14; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 10px 20px; border-radius: 50px; text-decoration: none; white-space: nowrap; transition: opacity .2s; }
+  .sbar a:hover { opacity: .87; }
 
-/* ══ BLUR ZONE ══ */
-.blur-zone{position:relative;overflow:hidden;}
+  .pbanner { text-align: center; padding: 18px 24px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--border); }
 
-/* Top gradient — transitions cleanly from readable into blur */
-.blur-top-fade{
-  position:absolute;top:0;left:0;right:0;
-  height:140px;
-  background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,0) 100%);
-  z-index:10;pointer-events:none;
-}
+  .toast { display: none; background: rgba(214,232,218,0.08); border: 1px solid rgba(214,232,218,0.2); border-radius: 10px; padding: 13px 20px; text-align: center; font-size: 13px; color: var(--sage); margin: 0 24px 24px; transition: opacity .5s; }
+  .toast.on { display: block; }
 
-.blur-content .section{background:#fff !important;border-bottom:none !important;}
-.blur-content{
-  filter:blur(7px);
-  user-select:none;
-  pointer-events:none;
-  opacity:0.72;
-}
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
-/* ══ FIXED LOCK CARD ══
-   Positioned dynamically by JS to sit right against the page's right edge.
-*/
-.lock-col{
-  position:fixed;
-  top:50%;
-  transform:translateY(-50%) translateX(16px);
-  width:240px;
-  z-index:500;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.25s ease, transform 0.25s ease;
-}
-.lock-col.active{
-  opacity:1;
-  pointer-events:auto;
-  transform:translateY(-50%) translateX(0);
-}
-@media(max-width:1080px){.lock-col{display:none !important;}}
+  /* HERO */
+  .hero { padding: 68px 0 52px; text-align: center; }
+  .hero .ey { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--blush); margin-bottom: 22px; opacity: .75; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px,10vw,74px); font-weight: 300; line-height: 1; letter-spacing: -.01em; margin-bottom: 3px; }
+  .hero h1 span { display: block; font-style: italic; color: var(--rose); }
+  .hero .mt { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); margin: 18px 0 28px; }
+  .hero .stars { display: flex; justify-content: center; gap: 10px; color: var(--lavender); opacity: .45; font-size: 10px; margin-bottom: 32px; }
+  .hero blockquote { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; font-style: italic; color: var(--muted); max-width: 510px; margin: 0 auto; line-height: 1.65; }
+  .hero blockquote cite { display: block; font-style: normal; font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
 
-.lock-card{
-  background:#fff;
-  border:1px solid var(--rule);
-  padding:28px 24px;
-  text-align:center;
-  box-shadow:0 8px 40px rgba(0,0,0,0.12);
-}
-.lock-icon{font-size:1rem;margin-bottom:10px;color:var(--rose-soft);}
-.lock-title{font-family:var(--serif);font-weight:400;font-size:1.45rem;color:var(--ink);margin-bottom:8px;line-height:1.2;}
-.lock-title em{font-style:italic;color:var(--rose);}
-.lock-sub{font-family:var(--sans);font-size:.75rem;color:var(--ink-muted);margin-bottom:14px;line-height:1.6;}
-.lock-div{width:28px;height:1px;background:var(--rule);margin:0 auto 14px;}
-.lock-inc{font-family:var(--sans);font-size:.7rem;color:var(--ink-muted);line-height:2;margin-bottom:16px;text-align:left;}
-.lock-inc span{display:block;}
-.lock-inc span::before{content:'✦  ';color:var(--rose-soft);}
-.lock-price{font-family:var(--serif);font-weight:600;font-size:2.2rem;color:var(--rose);line-height:1;margin-bottom:3px;}
-.lock-plabel{font-family:var(--sans);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px;display:block;}
-.lock-btn{display:block;background:var(--rose);color:#fff;font-family:var(--sans);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;text-decoration:none;transition:background .2s;}
-.lock-btn:hover{background:#7d3050;}
+  .toc { border: 1px solid var(--border); border-radius: 12px; padding: 22px 22px 18px; margin-bottom: 36px; background: rgba(206,217,237,0.03); }
+  .toc .tt { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+  .toc ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .toc li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 9px; }
+  .toc li::before { content: '✦'; color: var(--rose); font-size: 9px; }
 
-/* STICKY BOTTOM BAR — mobile only + fallback */
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:500;background:var(--ink);display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 24px;box-shadow:0 -4px 24px rgba(0,0,0,.3);transform:translateY(100%);transition:transform .35s ease;}
-.sticky-bar.visible{transform:translateY(0);}
-.sticky-bar-text{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(255,255,255,.7);white-space:nowrap;}
-.sticky-bar-price{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:#fff;white-space:nowrap;}
-.sticky-bar-btn{display:inline-block;background:var(--rose);color:#fff;font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s;}
-.sticky-bar-btn:hover{background:#7d3050;}
-/* Only show sticky bar on screens where side card is hidden */
-@media(min-width:1081px){.sticky-bar{display:none !important;}}
+  .div { display: flex; align-items: center; gap: 14px; margin: 48px 0; opacity: .22; }
+  .div::before,.div::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg,transparent,var(--lavender),transparent); }
+  .div span { font-size: 10px; letter-spacing: .2em; color: var(--lavender); }
 
-/* CHECKOUT */
-.checkout-section{background:var(--ink);padding:64px 40px 80px;text-align:center;}
-.checkout-title{font-family:var(--serif);font-weight:300;font-size:2.4rem;color:#fff;line-height:1.2;margin-bottom:10px;}
-.checkout-title em{font-style:italic;color:var(--rose-soft);}
-.checkout-sub{font-family:var(--sans);font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:32px;}
-.checkout-price{font-family:var(--serif);font-weight:600;font-size:3rem;color:#fff;line-height:1;margin-bottom:4px;}
-.checkout-plabel{font-family:var(--sans);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:32px;display:block;}
-.checkout-guarantee{font-family:var(--sans);font-size:.72rem;color:rgba(255,255,255,.35);font-style:italic;margin-top:16px;}
-.footer-brand{padding:24px;text-align:center;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);background:#fff;font-family:var(--sans);}
+  .stag { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); margin-bottom: 7px; }
+  .sh2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,5vw,36px); font-weight: 300; line-height: 1.2; margin-bottom: 26px; }
+  .sh2 em { font-style: italic; color: var(--rose); }
+  .sub { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 30px; margin-top: -18px; }
 
-@media(max-width:600px){
-  .cover,.section,.chapter-break,.checkout-section{padding-left:24px;padding-right:24px;}
-  .cover-title{font-size:2.4rem;}.cover-sp{font-size:3.8rem;}
-  .chapter-title{font-size:1.9rem;}
-}
+  .prose { font-size: 16px; color: rgba(240,236,248,0.78); line-height: 1.8; }
+  .prose p { margin-bottom: 20px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--text); font-weight: 500; }
+  .prose em { font-style: italic; }
+
+  .pull { border-left: 2px solid var(--rose); padding: 14px 0 14px 22px; margin: 32px 0; }
+  .pull p { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; color: var(--blush); line-height: 1.55; font-weight: 300; }
+
+  .lcard { border: 1px solid var(--border); border-radius: 12px; padding: 22px 22px 18px; margin-bottom: 14px; background: rgba(206,217,237,0.03); }
+  .lcard h4 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; margin-bottom: 7px; color: var(--periwinkle); }
+  .lcard p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  .slist { display: flex; flex-direction: column; gap: 10px; margin: 26px 0; }
+  .si2 { background: rgba(206,217,237,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--muted); }
+  .si2 .fr { color: var(--dim); }
+  .si2 .ar { color: var(--rose); margin: 0 7px; }
+  .si2 .to { color: var(--text); }
+
+  .pgrid { display: grid; gap: 8px; margin: 26px 0; }
+  .prow { display: grid; grid-template-columns: 26px 128px 1fr; gap: 12px; align-items: start; padding: 11px 14px; background: rgba(206,217,237,0.03); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
+  .pn { color: var(--rose); font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+  .pname { color: var(--periwinkle); font-weight: 500; }
+  .ploc { color: var(--muted); }
+
+  .rh { display: flex; align-items: center; gap: 14px; margin: 40px 0 20px; }
+  .rl { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--blush); white-space: nowrap; }
+  .rt { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; font-style: italic; color: var(--text); }
+
+  .tseq { display: flex; flex-direction: column; gap: 1px; margin: 18px 0; }
+  .tr { display: grid; grid-template-columns: 108px 1fr; gap: 14px; padding: 13px 14px; border-radius: 8px; transition: background .2s; }
+  .tr:hover { background: rgba(206,217,237,0.04); }
+  .tp { font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--rose); padding-top: 2px; font-weight: 500; }
+  .tt2 { font-size: 14px; color: rgba(240,236,248,0.74); line-height: 1.65; font-style: italic; }
+
+  .alist { display: flex; flex-direction: column; }
+  .ai { display: flex; gap: 18px; padding: 15px 0; border-bottom: 1px solid rgba(206,217,237,0.07); align-items: baseline; }
+  .ai:last-child { border-bottom: none; }
+  .an { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--rose); min-width: 22px; opacity: .55; }
+  .at { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.38; }
+
+  .cta { text-align: center; padding: 68px 0 76px; border-top: 1px solid var(--border); margin-top: 60px; }
+  .cta h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,6vw,40px); font-weight: 300; line-height: 1.2; margin-bottom: 12px; }
+  .cta h3 em { font-style: italic; color: var(--rose); }
+  .cta p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .price { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .pnote { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin-bottom: 26px; }
+  .cbtn { display: block; max-width: 360px; margin: 0 auto 12px; background: linear-gradient(135deg,var(--lavender),var(--rose)); color: #0e0c14; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 16px 40px; border-radius: 50px; text-decoration: none; transition: transform .2s, opacity .2s; }
+  .cbtn:hover { transform: translateY(-2px); opacity: .9; }
+  .cacc { font-size: 12px; color: var(--dim); }
+
+  footer { text-align: center; padding: 30px 24px 38px; font-size: 12px; color: var(--dim); border-top: 1px solid var(--border); letter-spacing: .05em; }
+
+  @media(max-width:480px){
+    .tr { grid-template-columns: 1fr; gap: 3px; }
+    .prow { grid-template-columns: 22px 1fr; }
+    .ploc { display: none; }
+    .gc { padding: 34px 20px 30px; }
+    .hero { padding: 48px 0 36px; }
+  }
 </style>
-<script>!function(w,d,s,n,e,r,a){(w._tpq=w._tpq||[]).push(["init",n,e]),(r=d.createElement(s)).type="text/javascript",r.src="https://a.trstplse.com/app/js/api.min.js",r.async=!0,(a=d.getElementsByTagName(s)[0]).parentNode.insertBefore(r,a)}(window,document,"script",14213,"")};</script>
 </head>
 <body>
-<div class="accent-bar"></div>
-<div class="preview-banner">✦ &nbsp; You're reading a free preview &nbsp;·&nbsp; <span>Unlock everything below</span> &nbsp; ✦</div>
 
-<!-- FIXED LOCK CARD — floats beside the page while blur zone is visible -->
-<div class="lock-col" id="lockCard">
-  <div class="lock-card">
-    <div class="lock-icon">✦</div>
-    <h3 class="lock-title">Unlock<br><em>Manifest Your SP™</em></h3>
-    <p class="lock-sub">Complete identity method + 3-round EFT + SP Frequency Subliminal™ audio. All yours instantly.</p>
-    <div class="lock-div"></div>
-    <div class="lock-inc">
+<!-- GATE OVERLAY -->
+<div id="gate">
+  <div class="gc">
+    <div class="ey">✦ &nbsp;Free Preview&nbsp; ✦</div>
+    <h2>Read the full<br><em>Manifest Your SP™</em><br>preview</h2>
+    <p class="desc">The identity method, 3-round EFT sequence, and all 28 SP Frequency affirmations — drop your email and read it now.</p>
+    <div class="inc">
       <span>The Foundation — 3 quantum laws</span>
       <span>The Identity Shift — 5 upgrades</span>
-      <span>EFT Tapping — 3 full rounds</span>
-      <span>SP Frequency Subliminal™ audio</span>
+      <span>EFT Tapping — full 3-round sequence</span>
+      <span>SP Frequency Subliminal™ — all 28 affirmations</span>
     </div>
-    <div class="lock-price">$27</div>
-    <span class="lock-plabel">one-time · instant access</span>
-    <a href="#checkout-anchor" class="lock-btn">Unlock instant access ↓</a>
+    <div class="gf">
+      <input type="text" id="fn" placeholder="First name" autocomplete="given-name">
+      <input type="email" id="em" placeholder="Your email address" required autocomplete="email">
+      <button class="gbtn" id="gbtn" onclick="sub()">Read the free preview →</button>
+    </div>
+    <p class="gfine">No spam. Just the preview — and the occasional thing from Jac you'll actually want.</p>
   </div>
 </div>
 
-<div class="page">
+<!-- PAGE CONTENT -->
+<div id="pg">
 
-<!-- COVER — fully visible -->
-<div class="cover">
-  <div class="cover-arc"></div><div class="cover-arc-2"></div><div class="cover-arc-bl"></div>
-  <p class="cover-byline">Jac &nbsp;·&nbsp; Manifest With Jac</p>
-  <div class="cover-rule"></div>
-  <h1 class="cover-title">Manifest Your</h1>
-  <div class="cover-sp">SP™</div>
-  <p class="cover-trademark">The Quantum Identity Method</p>
-  <div class="cover-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-  <p class="cover-subtitle">The subconscious identity method for calling in your Specific Person — not through obsession or force, but through becoming the woman who is already chosen.</p>
-  <div class="cover-quote-box">
-    <p>I saw her on social media and decided — not hoped, not wished — decided that I was going to work with her in some capacity. I never reached out. I just held the certainty. A few months later, she messaged me. Within months, she wanted to be business partners. She was a huge name. I didn't chase it. I just became someone whose frequency she couldn't ignore. That's when I knew — this works for any specific person.</p>
-    <cite>— Jac, Certified EFT &amp; TFT Practitioner</cite>
+  <div class="sbar">
+    <div class="sl"><strong>Manifest Your SP™</strong> &nbsp;·&nbsp; $27</div>
+    <div class="si">Guide · EFT · SP Frequency Subliminal™</div>
+    <a href="#checkout-anchor" onclick="document.getElementById('checkout-anchor').scrollIntoView({behavior:'smooth'});return false;">Unlock instant access ↓</a>
   </div>
-  <div class="cover-contents">
-    Part One &nbsp;·&nbsp; The Foundation<br>
-    Part Two &nbsp;·&nbsp; The Identity Shift<br>
-    Part Three &nbsp;·&nbsp; EFT Tapping: The Full Method<br>
-    Bonus &nbsp;·&nbsp; The SP Frequency Subliminal™
+
+  <div class="pbanner">✦ &nbsp; You're reading a free preview · Unlock everything below &nbsp; ✦</div>
+  <div class="toast" id="toast">✨ You're in. Scroll down and read everything.</div>
+
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="ey">The Quantum Identity Method</div>
+      <h1>Manifest Your <span>SP™</span></h1>
+      <div class="mt">Manifest With Jac</div>
+      <div class="stars"><span>✦</span><span>✦</span><span>✦</span></div>
+      <blockquote>
+        The subconscious identity method for calling in your Specific Person — not through obsession or force, but through becoming the woman who is already chosen.
+        <cite>— Jac, Certified EFT &amp; TFT Practitioner</cite>
+      </blockquote>
+    </div>
+
+    <div class="toc">
+      <div class="tt">What's inside this preview</div>
+      <ul>
+        <li>Part One · The Foundation</li>
+        <li>Part Two · The Identity Shift + Law of Thought Transmission</li>
+        <li>Part Three · EFT Tapping: The Full Method</li>
+        <li>Bonus · The SP Frequency Subliminal™</li>
+      </ul>
+    </div>
+
+    <div class="div"><span>✦</span></div>
+
+    <!-- PART ONE -->
+    <div class="stag">Part One</div>
+    <h2 class="sh2">The Foundation: <em>Why SP Manifestation Works</em></h2>
+    <p class="sub">Three quantum laws. One identity shift. Zero chasing.</p>
+    <div class="div"><span>✦</span></div>
+    <div class="prose">
+      <p>Most people approach specific person manifestation like a strategy problem. They script obsessively, monitor their SP's social media, and wonder why nothing shifts. The issue isn't effort — it's identity.</p>
+      <p>The quantum field doesn't respond to wanting. It responds to being. When you're operating from "I hope they choose me," your energy is broadcasting lack. When you're operating from "I am the woman who is chosen," everything changes.</p>
+    </div>
+    <div class="pull"><p>"You don't chase the version of reality you want. You collapse into the identity of the woman who already has it — and watch the 3D rearrange."</p></div>
+    <div class="lcard"><h4>The Law of Assumption</h4><p>Your assumptions about yourself and your SP become your reality. Neville Goddard taught this: assume the feeling of the wish fulfilled. Not hope. Not want. Assume. Walk through your day as the woman who already has this person in her life.</p></div>
+    <div class="lcard"><h4>The Law of Correspondence</h4><p>Your inner world mirrors your outer world — always. If you feel unworthy, your SP mirrors that back. If you feel magnetic and certain, the 3D has no choice but to catch up. The relationship you experience externally is a lagging indicator of your internal state.</p></div>
+    <div class="lcard"><h4>The Law of Vibration</h4><p>Everything is frequency. Your SP is not a person you're trying to control — they're a frequency match. When you embody the version of yourself who is deeply loved, certain, and magnetic, you stop chasing and start attracting.</p></div>
+    <div class="pull"><p>"Your SP is not the destination. You are. When you become the woman who is already loved, the right person has no choice but to show up."</p></div>
+
+    <div class="div"><span>✦</span></div>
+
+    <!-- PART TWO — TEASER ONLY -->
+    <div class="stag">Part Two</div>
+    <h2 class="sh2">The Identity Shift: <em>Becoming the Woman Who Is Chosen</em></h2>
+    <p class="sub">This is where most manifestation content skips.</p>
+    <div class="div"><span>✦</span></div>
+    <div class="prose"><p>The woman who manifests her SP isn't waiting, hoping, or monitoring. She's living. She moves through her day with a quiet, unshakeable certainty — not because she's forcing it, but because she knows.</p>
+    <p>There are 5 specific identity upgrades that move you from "I hope they choose me" to "I am someone worth choosing every time." Here's a taste:</p>
+    </div>
+    <div class="slist">
+      <div class="si2"><span class="fr">"I hope they choose me"</span><span class="ar">→</span><span class="to">"I am someone worth choosing every time"</span></div>
+      <div class="si2"><span class="fr">"Am I enough for them?"</span><span class="ar">→</span><span class="to">"My frequency speaks for itself"</span></div>
+      <div class="si2" style="opacity:0.4;filter:blur(3px);user-select:none;">3 more identity shifts inside the full guide...</div>
+    </div>
+
+    <div class="pull"><p>"She's not delusional. She's just decided. There's a difference between forcing belief and choosing it. She chose."</p></div>
+
+    <div class="prose">
+      <p><strong>There's also a piece in Part Two that almost nobody is talking about</strong> — the Law of Thought Transmission. The reason your SP can't stop thinking about you (or why they've gone quiet). It's the shift that changes everything, and it's inside the full guide.</p>
+    </div>
+
+    <div class="div"><span>✦</span></div>
+
+    <!-- PART THREE — TEASER ONLY -->
+    <div class="stag">Part Three</div>
+    <h2 class="sh2">EFT Tapping: <em>Rewiring the Fear</em></h2>
+    <p class="sub">From anxious wanting to embodied certainty — using your body, not just your mind.</p>
+    <div class="div"><span>✦</span></div>
+    <div class="prose">
+      <p>EFT (Emotional Freedom Technique) is a mind-body tool that clears emotional blocks, calms your nervous system, and rewires the limiting beliefs stored in your subconscious. You tap on specific acupressure points while speaking out loud — your body receives the signal: <em>"I'm safe. I don't have to hold this anymore."</em></p>
+      <p>The full guide includes a <strong>3-round EFT sequence</strong> built specifically for SP work. Each round moves through a complete arc:</p>
+    </div>
+    <div class="slist">
+      <div class="si2"><strong style="color:var(--periwinkle);">Round One — The Truth</strong><br><span style="font-size:13px;">Give voice to what you've been carrying so your body can finally release it.</span></div>
+      <div class="si2"><strong style="color:var(--periwinkle);">Round Two — Allowance</strong><br><span style="font-size:13px;">The softening. The compassion. Often where the first wave of release happens.</span></div>
+      <div class="si2"><strong style="color:var(--periwinkle);">Round Three — Reprogramming</strong><br><span style="font-size:13px;">Plant the new identity. Subconscious rewiring at the level affirmations can't reach.</span></div>
+    </div>
+    <div class="prose" style="margin-top:20px;"><p>The full tapping sequences — every single point, every statement, all 3 rounds — are inside the guide.</p></div>
+
+    <div class="div"><span>✦</span></div>
+
+    <!-- BONUS — TEASER -->
+    <div class="stag">Bonus</div>
+    <h2 class="sh2"><em>The SP Frequency</em> Subliminal™</h2>
+    <p class="sub">28 affirmations. Read aloud each morning. Run overnight while you sleep.</p>
+    <div class="div"><span>✦</span></div>
+
+    <div class="alist">
+      <div class="ai"><span class="an">01</span><span class="at">Of course I am the luckiest woman in the world.</span></div>
+      <div class="ai"><span class="an">02</span><span class="at">Why does everything always work out for me so effortlessly?</span></div>
+      <div class="ai"><span class="an">03</span><span class="at">Of course I am the prize.</span></div>
+      <div class="ai"><span class="an">04</span><span class="at">Of course I am the type of woman who is chosen without asking.</span></div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:12px;padding:22px 22px 18px;margin-top:16px;background:rgba(206,217,237,0.03);text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:var(--muted);margin-bottom:6px;">+ 24 more affirmations inside</p>
+      <p style="font-size:12px;color:var(--dim);">Plus the full subliminal audio — recorded to run overnight while you sleep.</p>
+    </div>
+
+    <div class="div"><span>✦</span></div>
+
+    <!-- CTA -->
+    <div class="cta" id="checkout-anchor">
+      <h3>She's already you. <em>Unlock her.</em></h3>
+      <p>Complete guide · 3-round EFT sequence · SP Frequency Subliminal™ audio. All of it, instantly.</p>
+      <div class="price">$27</div>
+      <div class="pnote">one-time payment · instant access</div>
+
+      <!-- ThriveCart Embed -->
+      <div style="margin: 0 auto; max-width: 560px;">
+        <div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger" data-widget-layout="embeddable_button" data-thrivecart-embeddable-target="tc-jacnicole-24-F60TZH">
+          <div data-size="auto" data-style="rounded" data-align="center" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button">
+            <button class="tc-v2-embeddable-trigger-el button" style="background: linear-gradient(135deg, #CFC5E1, #DEC5DF); border: none; border-radius: 50px; padding: 16px 44px; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #0e0c14; cursor: pointer; width: 100%; max-width: 360px; transition: opacity 0.2s;">
+              <span style="color: #0e0c14; font-size: 14px;">Yes — unlock everything now</span>
+            </button>
+          </div>
+        </div>
+        <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="24" data-thrivecart-embeddable="tc-jacnicole-24-F60TZH"></div>
+        <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-24-F60TZH"></script>
+      </div>
+
+      <p class="cacc" style="margin-top: 16px;">Instant digital access. Guide + subliminal audio. Yours forever.</p>
+    </div>
+
   </div>
+  <footer>© Celestara Collective Inc. · manifestwithjac.com · All rights reserved</footer>
 </div>
 
-<!-- CHAPTER BREAK — visible -->
-<div class="chapter-break">
-  <p class="chapter-number">Part One</p>
-  <h2 class="chapter-title">The Foundation:<br><em>Why SP Manifestation Works</em></h2>
-  <p class="chapter-subtitle">Three quantum laws. One identity shift. Zero chasing.</p>
-  <div class="chapter-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-</div>
-
-<!-- FIRST SECTION — visible -->
-<div class="section">
-  <h2 class="section-title">Why SP Manifestation Works</h2>
-  <div class="section-rule"></div>
-  <p class="lead">Most people approach specific person manifestation like a strategy problem. They script obsessively, monitor their SP's social media, and wonder why nothing shifts. The issue isn't effort — it's identity.</p>
-  <p>The quantum field doesn't respond to wanting. It responds to being. When you're operating from "I hope they choose me," your energy is broadcasting lack. When you're operating from "I am the woman who is chosen," everything changes.</p>
-  <div class="pq">
-    <p>"You don't chase the version of reality you want. You collapse into the identity of the woman who already has it — and watch the 3D rearrange."</p>
-  </div>
-</div>
-
-<!-- ══ BLUR ZONE ══ -->
-<div class="blur-zone" id="blurZone">
-  <div class="blur-top-fade"></div>
-  <div class="blur-content">
-
-    <div class="section">
-      <h3 class="sub">The Law of Assumption</h3>
-      <p>Your assumptions about yourself and your SP become your reality. Assume the feeling of the wish fulfilled. Not hope. Not want. Assume. Walk through your day as the woman who already has this person in her life.</p>
-      <h3 class="sub">The Law of Correspondence</h3>
-      <p>Your inner world mirrors your outer world — always. If you feel unworthy, your SP mirrors that back. If you feel magnetic and certain, the 3D has no choice but to catch up. The relationship you experience externally is a lagging indicator of your internal state.</p>
-      <h3 class="sub">The Law of Vibration</h3>
-      <p>Everything is frequency. Your SP is not a person you're trying to control — they're a frequency match. When you embody the version of yourself who is deeply loved, certain, and magnetic, you stop chasing and start attracting.</p>
-      <div class="hbox"><p>"Your SP is not the destination. You are. When you become the woman who is already loved, the right person has no choice but to show up."</p></div>
-    </div>
-
-    <div class="section pink">
-      <h2 class="section-title">The Identity Shift</h2>
-      <div class="section-rule"></div>
-      <p class="lead">The woman who manifests her SP isn't waiting, hoping, or monitoring. She's living. She moves through her day with a quiet, unshakeable certainty.</p>
-      <p>From "I hope they choose me" → to "I am someone worth choosing every time." From monitoring their behavior → to trusting the quantum field is working. From anxious attachment → to nervous system safety with love.</p>
-      <p>Every morning, before you check your phone, ask yourself: How does she move? How does she think? What does she know that I'm still learning to believe? Then move like her. Speak like her. Make decisions from her frequency — not from the version of you that's still waiting.</p>
-      <div class="pq"><p>"She's not delusional. She's just decided. There's a difference between forcing belief and choosing it. She chose."</p></div>
-    </div>
-
-    <div class="section lav">
-      <h2 class="section-title">What Is EFT Tapping?</h2>
-      <div class="section-rule"></div>
-      <p class="lead">EFT is a mind-body tool that helps you clear emotional blocks, calm your nervous system, and rewire limiting beliefs stored deep in the subconscious.</p>
-      <p>You gently tap on specific acupressure points while speaking out loud the emotions or patterns you want to shift. Your body receives a signal: "I'm safe. I don't have to hold this anymore."</p>
-      <p>Before each session, check in: when I think about this person, how strong does it feel from 0–10? Even a shift from a 7 to a 4 shows your nervous system is releasing what it no longer needs to hold.</p>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">The 3-Round Arc</h2>
-      <div class="section-rule"></div>
-      <p><strong style="color:var(--rose);">Round One — The Truth.</strong> We speak the raw, honest truth. The fear, the longing, the obsession. We give it a voice so the body can finally release it. You can't heal what you won't acknowledge.</p>
-      <p><strong style="color:var(--rose);">Round Two — Allowance.</strong> The softening. The compassion. We say: "It makes sense that I feel this way." Your nervous system is told: you're not bad, you're not broken. This is often where the first wave of release happens — like a deep exhale.</p>
-      <p><strong style="color:var(--rose);">Round Three — Reprogramming.</strong> Now that we've cleared space, we plant something new. Real, grounded beliefs your body can actually start to hold. Subconscious rewiring at the identity level.</p>
-      <div class="hbox"><p>After all three rounds: give yourself a hug, squeeze, deep breath. Sit with one hand on your heart. Ask: what does the woman who already has this person know that I'm practicing believing?</p></div>
-    </div>
-
-    <div class="section pink">
-      <h2 class="section-title">The SP Tapping Sequence</h2>
-      <div class="section-rule"></div>
-      <p class="lead">Three rounds. One full arc of transformation.</p>
-      <h3 class="sub">Round One · The Truth</h3>
-      <p><em>Karate Chop:</em> "Even though a part of me is terrified they won't choose me — even though I've been holding my breath waiting for a sign — I deeply and completely love and accept myself."</p>
-      <p><em>Eyebrow:</em> "What if I'm not enough?" &nbsp; <em>Side of Eye:</em> "I'm afraid they'll choose someone else." &nbsp; <em>Under Eye:</em> "I've been waiting for them to confirm my worth." &nbsp; <em>Top of Head:</em> "I'm finally giving myself permission to feel all of it."</p>
-      <h3 class="sub">Round Two · Allowance</h3>
-      <p><em>Karate Chop:</em> "Even though I've been holding this fear for so long, I acknowledge myself for how hard I've been trying. I choose to offer myself some grace."</p>
-      <p><em>Eyebrow:</em> "It makes sense that I feel this way." &nbsp; <em>Side of Eye:</em> "Of course my nervous system learned to wait for confirmation. That was survival." &nbsp; <em>Top of Head:</em> "I'm choosing to be gentle with myself as I learn a new way of receiving."</p>
-      <h3 class="sub">Round Three · Reprogramming</h3>
-      <p><em>Karate Chop:</em> "I trust myself to be the woman my SP is drawn to. That woman already exists inside me."</p>
-      <p><em>Eyebrow:</em> "My nervous system is learning that love is safe." &nbsp; <em>Side of Eye:</em> "It is safe to be chosen without asking." &nbsp; <em>Top of Head:</em> "I am the woman my SP is drawn to. I already am her. I always was."</p>
-    </div>
-
-    <div class="section lav">
-      <h2 class="section-title">The SP Frequency Subliminal™</h2>
-      <div class="section-rule"></div>
-      <p class="lead">28 identity affirmations. Read aloud each morning. Run overnight while you sleep.</p>
-      <div class="aff">Of course I am the luckiest woman in the world.</div>
-      <div class="aff">Why does everything always work out for me so effortlessly?</div>
-      <div class="aff">Of course I am the prize.</div>
-      <div class="aff">Of course I am magnetic.</div>
-      <div class="aff">Of course I am the type of woman who is chosen without asking.</div>
-      <div class="aff">Why do the right people always feel my frequency?</div>
-      <div class="aff">Of course I am worthy of a love that is easy, certain, and real.</div>
-      <div class="aff">Of course I am safe to be loved.</div>
-      <div class="aff">Of course I am safe to be chosen.</div>
-      <div class="aff">Why does deep love feel so natural and effortless to me?</div>
-      <div class="aff">Of course love flows to me easily and consistently.</div>
-      <div class="aff">Of course I am safe to have everything I desire.</div>
-      <p style="font-style:italic;color:var(--ink-muted);font-size:.88rem;margin-top:16px;margin-bottom:0;">+ 16 more affirmations inside...</p>
-    </div>
-
-    <div class="section cream-bg" style="text-align:center;padding-top:100px;padding-bottom:100px;">
-      <p style="font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--ink);line-height:1.3;margin-bottom:0;">"You already are her.<br><em style="color:var(--rose);">Unlock her.</em>"</p>
-    </div>
-
-  </div><!-- end blur-content -->
-</div><!-- end blur-zone -->
-
-<!-- CHECKOUT -->
-<div class="checkout-section" id="checkout-anchor">
-  <h2 class="checkout-title">She's already you.<br><em>Unlock her.</em></h2>
-  <p class="checkout-sub">Complete your purchase below for instant access to everything.</p>
-  <div class="checkout-price">$27</div>
-  <span class="checkout-plabel">one-time payment · instant access</span>
-
-  <div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger" data-widget-layout="embeddable_button" data-thrivecart-embeddable-target="tc-jacnicole-24-34YDRQ">
-    <div data-size="auto" data-style="rounded" data-align="center" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button">
-      <button class="tc-v2-embeddable-trigger-el button" style="background-color:#9E4060;border-radius:0;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;padding:18px 52px;min-width:260px;">
-        <span class="builder-v2-block builder-v2-block-plaintext" data-block="plaintext" style="color:#ffffff;font-size:13px;" data-block-opts="{&quot;text_editor_toolbar&quot;:&quot;plain&quot;}">Yes — unlock everything now</span>
-      </button>
-    </div>
-  </div>
-  <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="24" data-thrivecart-embeddable="tc-jacnicole-24-34YDRQ"></div>
-  <p class="checkout-guarantee">Instant digital access. Guide + subliminal audio. Yours forever.</p>
-</div>
-
-<div class="footer-brand">© Celestara Collective Inc. &nbsp;·&nbsp; manifestwithjac.com &nbsp;·&nbsp; All rights reserved</div>
-<div class="accent-bar"></div>
-
-</div><!-- end .page -->
-
-<!-- MOBILE STICKY BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <span class="sticky-bar-text">Manifest Your SP™</span>
-  <span class="sticky-bar-price">$27</span>
-  <a href="#checkout-anchor" class="sticky-bar-btn">Unlock now ↓</a>
-</div>
-
-<script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-24-34YDRQ"></script>
 <script>
-  const lockCard = document.getElementById('lockCard');
-  const stickyBar = document.getElementById('stickyBar');
-  const blurZone = document.getElementById('blurZone');
-  const checkout = document.getElementById('checkout-anchor');
-  const cover = document.querySelector('.cover');
+  const KIT = '9357976';
+  const KEY = 'mwj_sp_v1';
 
-  function positionCard() {
-    const page = document.querySelector(".page");
-    const rect = page.getBoundingClientRect();
-    lockCard.style.left = (rect.right + 16) + "px";
+  function boot() {
+    if (localStorage.getItem(KEY) === '1') show(false);
   }
 
-  function update() {
-    positionCard();
-    const bz = blurZone.getBoundingClientRect();
-    const co = checkout.getBoundingClientRect();
-    const blurVisible = bz.top < window.innerHeight && bz.bottom > 0 && co.top > window.innerHeight;
-    lockCard.classList.toggle("active", blurVisible);
-    const coverBottom = cover.getBoundingClientRect().bottom;
-    const checkoutVisible = co.top < window.innerHeight;
-    stickyBar.classList.toggle("visible", coverBottom < 80 && !checkoutVisible);
+  async function sub() {
+    const email = document.getElementById('em').value.trim();
+    const fn = document.getElementById('fn').value.trim();
+    const btn = document.getElementById('gbtn');
+    const el = document.getElementById('em');
+    if (!email || !email.includes('@')) {
+      el.classList.add('err');
+      el.value = '';
+      el.placeholder = 'Please enter a valid email ✦';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'One sec...';
+    try {
+      await fetch(`https://app.kit.com/forms/${KIT}/subscriptions`, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ email_address: email, 'fields[first_name]': fn })
+      });
+    } catch(e) {}
+    localStorage.setItem(KEY, '1');
+    show(true);
   }
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  function show(fresh) {
+    const g = document.getElementById('gate');
+    g.classList.add('out');
+    setTimeout(() => g.classList.add('gone'), 580);
+    document.getElementById('pg').classList.add('on');
+    if (fresh) {
+      const t = document.getElementById('toast');
+      t.classList.add('on');
+      setTimeout(() => { t.style.opacity = '0'; }, 4000);
+    }
+  }
+
+  boot();
 </script>
 </body>
 </html>
