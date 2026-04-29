@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 5/5 Money Magnet Activation — Manifest With Jac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Outfit:wght@300;400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#EEC7DD;--lilac:#CFC5E1;--plum:#DEC5DF;--blue:#CED9ED;--mint:#D6E8DA;--cream:#FBF6F0;--cream-soft:#F6EEE5;--ink:#2A1F2C;--ink-soft:#4A3A50;--ink-muted:#6B5C72;--accent:#A06B8E;--accent-soft:#C49AB6}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.bg-decor{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(238,199,221,.45), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(207,197,225,.4), transparent 45%),
+    radial-gradient(circle at 70% 85%, rgba(214,232,218,.35), transparent 40%),
+    radial-gradient(circle at 10% 75%, rgba(238,199,221,.35), transparent 45%);
+}
+
+.hero{position:relative;z-index:1;min-height:100vh;padding:80px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;font-weight:500}
+h1{font-family:'Fraunces',serif;font-size:clamp(56px,11vw,128px);font-weight:400;line-height:.92;letter-spacing:-.03em;margin-bottom:32px;color:var(--ink)}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.hero-tag{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.6vw,26px);color:var(--ink-soft);max-width:600px;margin:0 auto 48px;font-weight:400;line-height:1.4}
+
+.portal-stamp{display:inline-flex;flex-direction:column;align-items:center;padding:24px 40px;border:1px solid var(--accent-soft);border-radius:4px;background:rgba(255,255,255,.5);backdrop-filter:blur(10px);margin-bottom:48px;position:relative}
+.portal-stamp::before,.portal-stamp::after{content:"✦";position:absolute;color:var(--accent);font-size:14px}
+.portal-stamp::before{top:-8px;left:-8px}
+.portal-stamp::after{bottom:-8px;right:-8px}
+.portal-date{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--accent);letter-spacing:.1em;margin-bottom:6px}
+.portal-big{font-size:42px;font-weight:300;letter-spacing:.05em;line-height:1;margin-bottom:6px;color:var(--ink)}
+.portal-meta{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-muted)}
+
+.cta{display:inline-block;padding:22px 52px;background:var(--ink);color:var(--cream);font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:999px;border:none;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 8px 30px rgba(42,31,44,.15)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(42,31,44,.25)}
+.cta-sub{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,246,240,.7);margin-top:14px}
+
+section{position:relative;z-index:1;padding:100px 24px}
+.wrap{max-width:720px;margin:0 auto}
+.wrap-narrow{max-width:620px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:500;text-align:center}
+h2{font-family:'Fraunces',serif;font-size:clamp(38px,7vw,72px);font-weight:400;line-height:1.0;letter-spacing:-.02em;text-align:center;margin-bottom:48px;color:var(--ink)}
+h2 .it{font-style:italic;color:var(--accent)}
+
+.scene{font-size:20px;line-height:1.6;color:var(--ink-soft);text-align:center;margin:0 auto 28px;max-width:620px;font-weight:300}
+.scene em{font-style:italic;color:var(--ink);font-weight:400}
+.scene strong{font-weight:600;color:var(--ink)}
+
+.stab{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(24px,3.4vw,32px);text-align:center;color:var(--accent);margin:48px auto;max-width:680px;line-height:1.3}
+
+.callout{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--ink);margin:40px auto;max-width:680px;line-height:1.35;padding:32px 24px;border-top:1px solid var(--accent-soft);border-bottom:1px solid var(--accent-soft)}
+.callout strong{font-style:normal;font-weight:600;color:var(--accent)}
+
+.checkpoint{background:linear-gradient(135deg, rgba(238,199,221,.3) 0%, rgba(207,197,225,.3) 100%);border-radius:16px;padding:48px 36px;margin:48px auto;max-width:680px;text-align:center;position:relative}
+.checkpoint::before{content:"5 ✦ 5";position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--cream);padding:4px 18px;font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--accent);letter-spacing:.1em;border:1px solid var(--accent-soft);border-radius:999px}
+.checkpoint p{font-size:18px;line-height:1.65;color:var(--ink);font-weight:300}
+.checkpoint p em{font-style:italic;font-weight:500;color:var(--accent)}
+
+.inside-section{background:var(--cream-soft)}
+.clearings{background:#fff;border:1px solid rgba(160,107,142,.15);border-radius:12px;padding:40px 32px;margin-top:32px;box-shadow:0 4px 30px rgba(42,31,44,.04)}
+.clearing-item{padding:20px 0;border-bottom:1px solid rgba(160,107,142,.1)}
+.clearing-item:last-child{border-bottom:none}
+.clearing-name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.clearing-name::before{content:"✦";color:var(--accent);font-size:14px;flex-shrink:0}
+.clearing-desc{font-size:15px;line-height:1.6;color:var(--ink-soft);font-weight:300;padding-left:24px}
+.clearing-desc em{font-style:italic;color:var(--ink)}
+
+.bonus-box{margin-top:32px;padding:32px;border:1px dashed var(--accent-soft);border-radius:12px;background:rgba(255,255,255,.6)}
+.bonus-list{list-style:none}
+.bonus-list li{padding:10px 0;font-size:15px;color:var(--ink-soft);font-weight:300}
+.bonus-list li strong{color:var(--accent);font-weight:500}
+
+.after-grid{display:grid;gap:24px;margin-top:32px}
+.after-item{padding:32px;background:#fff;border:1px solid rgba(160,107,142,.15);border-radius:12px;box-shadow:0 4px 20px rgba(42,31,44,.04)}
+.after-item h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;color:var(--accent);margin-bottom:10px}
+.after-item p{font-size:15px;line-height:1.65;color:var(--ink-soft);font-weight:300}
+
+.jac-section{padding:120px 24px;text-align:center}
+.jac-quote{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.4vw,24px);line-height:1.6;max-width:680px;margin:0 auto;color:var(--ink)}
+.jac-quote::before{content:"";display:block;width:40px;height:1px;background:var(--accent);margin:0 auto 32px}
+.jac-name{font-family:'Caveat',cursive;font-size:38px;color:var(--accent);font-weight:500;margin-top:32px}
+
+.price-section{padding:140px 24px;text-align:center;background:linear-gradient(180deg, var(--cream) 0%, var(--cream-soft) 100%)}
+.price-pre{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(28px,4vw,40px);color:var(--ink);margin-bottom:24px;line-height:1.3;max-width:560px;margin-left:auto;margin-right:auto}
+.price-pre em{color:var(--accent)}
+.price{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(96px,16vw,180px);line-height:1;color:var(--ink);margin:24px 0 8px}
+.price-meta{font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:48px}
+
+.thrivecart-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.thrivecart-wrap .tc-jac-cta,
+.thrivecart-wrap .tc-v2-embeddable-trigger-el.button{
+  background:var(--ink) !important;color:var(--cream) !important;
+  font-family:'Outfit',sans-serif !important;font-weight:600 !important;
+  font-size:15px !important;letter-spacing:.18em !important;text-transform:uppercase !important;
+  padding:22px 52px !important;border:none !important;border-radius:999px !important;cursor:pointer !important;
+  transition:transform .3s ease,box-shadow .3s ease !important;
+  box-shadow:0 8px 30px rgba(42,31,44,.15) !important;
+}
+.thrivecart-wrap .tc-jac-cta:hover,
+.thrivecart-wrap .tc-v2-embeddable-trigger-el.button:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 12px 40px rgba(42,31,44,.25) !important;
+}
+.thrivecart-wrap .tc-jac-cta span{color:var(--cream) !important;font-size:15px !important}
+.cta-sub-text{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted)}
+
+.faq-item{border-bottom:1px solid rgba(160,107,142,.2);padding:24px 0}
+.faq-q{font-family:'Fraunces',serif;font-weight:500;font-size:19px;color:var(--ink);margin-bottom:12px}
+.faq-a{font-size:15px;line-height:1.7;color:var(--ink-soft);font-weight:300}
+
+footer{padding:40px 24px 60px;text-align:center;font-size:12px;color:var(--ink-muted);letter-spacing:.1em;border-top:1px solid rgba(160,107,142,.15);position:relative;z-index:1}
+footer a{color:var(--accent);text-decoration:none}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.portal-stamp{animation:float 6s ease-in-out infinite}
+
+@media (max-width:600px){
+  section{padding:80px 20px}
+  .clearings{padding:32px 24px}
+  .checkpoint{padding:36px 24px}
+  .price-section{padding:100px 20px}
+  .jac-section{padding:90px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-decor"></div>
+
+<header class="hero">
+  <div class="kicker">✦  a 5/5 portal activation  ✦</div>
+  <h1>
+    The Money Magnet
+    <span class="it">Activation.</span>
+  </h1>
+  <p class="hero-tag">
+    One ceremony. One collective rewire. We open your money channels — for real this time.
+  </p>
+  <div class="portal-stamp">
+    <div class="portal-date">tuesday · may 5 · 2026</div>
+    <div class="portal-big">5 / 5</div>
+    <div class="portal-meta">live on zoom</div>
+  </div>
+  <a href="#enroll" class="cta">
+    I'm in →
+    <span class="cta-sub">$22 · lifetime replay</span>
+  </a>
+</header>
+
+<section>
+  <div class="wrap-narrow">
+    <p class="scene">
+      Let's just be honest for a second.
+    </p>
+    <p class="scene">
+      You're tired. You're tired of working as hard as you do and still feeling like you're <em>this close</em> to falling behind. Tired of refreshing your bank app like it's gonna magically have a different number on it. Tired of doing the affirmations and the journaling and the vision boards and feeling like… <em>okay but where is it.</em>
+    </p>
+    <p class="scene">
+      You see another woman online living the life you KNOW is yours and there's that little ping in your chest. The "why not me yet" ping. And you scroll past it like it didn't just happen.
+    </p>
+    <p class="scene">
+      You keep telling yourself <em>next month, next month, next month</em>.
+    </p>
+    <p class="scene">
+      And next month comes and it's the same fucking thing.
+    </p>
+
+    <div class="stab">
+      So why hasn't anything actually worked?
+    </div>
+
+    <p class="scene">
+      Of course you've tried things. You're not new to this.
+    </p>
+    <p class="scene">
+      The methods. The mantras. The 369. The whisper. The morning routines that lasted 9 days. The frequency videos you fell asleep to. Maybe a coach or two. And yeah — sometimes things move a little. A good week. A nice deposit. <em>See, it's working.</em>
+    </p>
+    <p class="scene">
+      And then it just… stops.
+    </p>
+    <p class="scene">
+      You hit the same invisible ceiling you've been hitting for years and have NO idea why your body keeps recreating the same thing every time.
+    </p>
+
+    <div class="callout">
+      Spoiler: <strong>that's the whole problem right there.</strong>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap-narrow">
+    <h2>
+      You don't have a strategy problem.
+      <br><span class="it">You have a nervous system problem.</span>
+    </h2>
+
+    <p class="scene">
+      Hear me out.
+    </p>
+    <p class="scene">
+      Affirmations, journaling, vision boards, mindset hacks — all that work happens at the <em>conscious</em> level. The brain layer. The "I know better, I am abundance, I am worthy" layer. And that layer of you got the memo years ago. She's been ready.
+    </p>
+    <p class="scene">
+      That's not where you're stuck.
+    </p>
+    <p class="scene">
+      You're stuck in the layer underneath. The one running 95% of the show. Your <strong>nervous system.</strong> The body that learned — way before you had words for it — that money is scary. That having too much is risky. That receiving means something will get taken away. That women like the ones in your bloodline don't get to be <em>that</em> rich.
+    </p>
+    <p class="scene">
+      None of that was your idea. You just inherited it. From your parents. Your grandparents. The girl you sat next to in 4th grade whose mom was always stressed about bills. From every single piece of <em>middle class programming</em> that's been on repeat in the background of your entire life.
+    </p>
+    <p class="scene">
+      It got <em>installed.</em> Quietly. And it's been running you ever since.
+    </p>
+
+    <div class="stab">
+      Until you clear it out at the body level — the pattern just keeps coming back.
+    </div>
+
+    <p class="scene">
+      <strong>That's what 5/5 is for.</strong>
+    </p>
+
+    <div class="checkpoint">
+      <p>
+        And listen — 5/5 isn't a random Tuesday I picked out of a calendar. <em>The 5/5 portal is a cosmic checkpoint.</em> A day that's literally designed for breaking out of stuck patterns, releasing what's been keeping you small, and stepping into a new version of yourself with full courage and full trust. The energy is doing half the work. We're just showing up to ride it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="inside-section">
+  <div class="wrap">
+    <div class="section-label">✦  here's what we're doing  ✦</div>
+    <h2>The 5/5 <span class="it">Activation</span>.</h2>
+
+    <p class="scene" style="margin-bottom:8px">
+      One ceremony. Live, together.
+    </p>
+    <p class="scene">
+      Not a workshop. Not a class. A ceremony — that happens to also rewire your nervous system in real time. (Yes, both. Yes, on purpose.)
+    </p>
+
+    <div class="clearings">
+      <div class="clearing-item">
+        <div class="clearing-name">We open the portal</div>
+        <div class="clearing-desc">5/5 isn't a random Tuesday — it's one of the most magnetic days of the year energetically. We're not wasting it. We open the field, set the intention, and ground in. Bring a candle if you want. This is a vibe.</div>
+      </div>
+      <div class="clearing-item">
+        <div class="clearing-name">We name what's actually been running you</div>
+        <div class="clearing-desc">Not in a "let's analyze your childhood for 45 minutes" way — quick, specific, surgical. Whose voice IS that when you check your bank account? Whose fear are you carrying? Once you can see it, we can clear it.</div>
+      </div>
+      <div class="clearing-item">
+        <div class="clearing-name">We tap through it together</div>
+        <div class="clearing-desc">Live EFT round. We clear the inherited stuff at the body level — the part of you that's been running this pattern since before you could even talk. This is where affirmations alone literally cannot reach. This is where the actual rewire happens.</div>
+      </div>
+      <div class="clearing-item">
+        <div class="clearing-name">We open your money channels</div>
+        <div class="clearing-desc">Old stuff cleared, channels open. Second EFT round + breathwork journey. We install the new identity — the one that's safe to receive, safe to hold, safe to expand. <em>Money loves me. Money trusts me.</em> Your body finally believes it.</div>
+      </div>
+      <div class="clearing-item">
+        <div class="clearing-name">We anchor her in</div>
+        <div class="clearing-desc">The woman money runs to. The one who doesn't flinch when it shows up. The one who buys the thing without the spiral. We embody her live, on the call, before you log off. You will not be the same when you close that Zoom.</div>
+      </div>
+    </div>
+
+    <div class="bonus-box">
+      <ul class="bonus-list">
+        <li>✦ <strong>LIVE ceremony</strong> — Tuesday May 5, 2026 · 11am EST · live on Zoom</li>
+        <li>✦ <strong>Lifetime replay</strong> — yours forever, the portal energy stays imprinted on the recording</li>
+        <li>✦ <strong>Pre-portal prep audio</strong> — drops Monday May 4 to get your body ready</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">✦  what happens after  ✦</div>
+    <h2>What changes after the<br>cord is <span class="it">gone</span>.</h2>
+
+    <div class="after-grid">
+      <div class="after-item">
+        <h3>The bank account spiral just ✦ stops ✦</h3>
+        <p>The dread loop you don't even realize you're in? It quietly disappears. You start checking out of curiosity. You forget to obsess for a day. Then two. Then a week. Then it's not even a thing anymore.</p>
+      </div>
+      <div class="after-item">
+        <h3>Money starts moving toward you</h3>
+        <p>Because you're a different frequency. Unexpected income. A late check coming through. Someone DMing about working with you. Things showing up out of nowhere — because your body is finally a place money can settle into.</p>
+      </div>
+      <div class="after-item">
+        <h3>The receive doesn't feel weird anymore</h3>
+        <p>You stop ✦ unconsciously ✦ pushing it away. You stop spending it the second it arrives to relieve the tension of having it. You can hold it. You can grow it. You can BREATHE around it.</p>
+      </div>
+      <div class="after-item">
+        <h3>You become her</h3>
+        <p>The one money is magnetically drawn to. You don't have to chase, hustle, prove, or pray. She's been there underneath all the conditioning the whole time. We just cleared what was in the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="jac-section">
+  <div class="section-label">✦  hey  ✦</div>
+  <h2>I'm <span class="it">Jac</span>!</h2>
+  <p class="jac-quote">
+    Two years ago I was five figures in business debt and refreshing my bank account every two hours like it was a part-time job. I was hustling. I was working SO hard. And it just wasn't enough.
+    <br><br>
+    Today I'm running multiple businesses, took a 3-week trip to Hawaii without spiraling about money once, and on track for $100K months — and not because I learned more strategy. I had plenty of strategy. I had to rewire the body that was running it.
+    <br><br>
+    I'm a certified breathwork practitioner and EFT facilitator. I teach The Quantum Glow-Up™ Method. The 5/5 Activation is the live, lit-up version of the work I do with my private clients. Think of it as the door.
+  </p>
+  <div class="jac-name">— jac ✦</div>
+</section>
+
+<section class="price-section" id="enroll">
+  <div class="price-pre">
+    One ceremony. <em>One rewire.</em><br>And a whole new frequency.
+  </div>
+  <div class="price">$22</div>
+  <div class="price-meta">one-time · instant access · lifetime replay</div>
+
+  <!-- ============================================================
+       PASTE YOUR THRIVECART **INLINE** EMBED CODE BELOW THIS LINE
+       (Get it from ThriveCart → Product 25 → Embed → "Inline embed"
+       — NOT "Embeddable button")
+       ============================================================ -->
+
+  <div class="thrivecart-wrap">
+    <div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger" data-widget-layout="embeddable_button" data-thrivecart-embeddable-target="tc-jacnicole-25-D54WEE">
+      <div data-size="auto" data-style="rounded" data-align="center" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button">
+        <button class="tc-v2-embeddable-trigger-el button tc-jac-cta">
+          <span>Open my channels →</span>
+        </button>
+      </div>
+    </div>
+    <div class="cta-sub-text">i'll see you on 5/5 ✦</div>
+    <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="25" data-thrivecart-embeddable="tc-jacnicole-25-D54WEE"></div>
+    <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-25-D54WEE"></script>
+  </div>
+
+  <!-- ============================================================
+       END THRIVECART EMBED
+       ============================================================ -->
+</section>
+
+<section>
+  <div class="wrap-narrow">
+    <div class="section-label">✦  the questions  ✦</div>
+    <h2>Things you might be wondering.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">What if I can't be there live?</div>
+      <div class="faq-a">You get the replay for life — the portal energy of 5/5 stays imprinted on the recording. You don't lose anything by watching the next morning. That said, live IS different. Come if you can!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I have never tapped before. Is that okay?</div>
+      <div class="faq-a">Absolutely. I walk you through every single tap point on the call. By the end of the night you'll have it for life — it's the most beginner-friendly nervous system tool there is.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this woo or is it real?</div>
+      <div class="faq-a">Both, on purpose, and unapologetically. EFT and breathwork are clinically backed nervous system regulation tools. The cord-cutting framing is spiritual. The result — a body that no longer panics when money shows up — is real. They're the same thing said two different ways.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will money actually show up after?</div>
+      <div class="faq-a">It rewires the layer that's been blocking it. When and how it lands is yours and the universe's department. But here's what I CAN promise: you don't leave that Zoom the same woman who logged in. And the woman you become is the one money is already trying to find.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:120px 24px;text-align:center;background:linear-gradient(180deg,var(--cream-soft) 0%,var(--cream) 100%)">
+  <div class="wrap-narrow">
+    <h2>5/5 is happening.<br><span class="it">Are you in the room or not?</span></h2>
+    <p class="scene" style="margin-bottom:48px">
+      Tuesday May 5. 11am EST. Your call.
+    </p>
+
+    <div class="thrivecart-wrap">
+      <a href="#enroll" class="cta">
+        Yes I'm in →
+        <span class="cta-sub">$22 · let's open these channels</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Manifest With Jac · <a href="mailto:jac@manifestwithjac.com">jac@manifestwithjac.com</a></p>
+  <p style="margin-top:8px;opacity:.7">All sales final. Lifetime replay access.</p>
+</footer>
+
+</body>
+</html>
