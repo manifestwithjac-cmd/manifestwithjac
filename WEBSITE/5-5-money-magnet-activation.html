@@ -79,6 +79,27 @@ h2 .it{font-style:italic;color:var(--accent)}
 .after-item h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;color:var(--accent);margin-bottom:10px}
 .after-item p{font-size:15px;line-height:1.65;color:var(--ink-soft);font-weight:300}
 
+.proof-section{background:linear-gradient(180deg, var(--cream) 0%, rgba(238,199,221,.15) 50%, var(--cream) 100%);padding:80px 24px}
+.proof-section-mid{padding:60px 24px;background:transparent}
+.proof-section-late{padding:80px 24px;background:linear-gradient(180deg, var(--cream) 0%, rgba(207,197,225,.18) 100%)}
+.proof-section-final{padding:60px 24px 80px;background:transparent}
+.wins-section{padding:80px 24px;background:linear-gradient(180deg, rgba(207,197,225,.18) 0%, var(--cream) 100%)}
+.wins-list{max-width:580px;margin:0 auto;list-style:none;padding:0}
+.wins-list li{position:relative;padding:14px 0 14px 32px;font-family:'Fraunces',serif;font-size:18px;line-height:1.55;color:var(--ink);font-weight:400;font-style:italic}
+.wins-list li::before{content:"✦";color:var(--accent);font-size:14px;position:absolute;left:0;top:18px;font-style:normal}
+.wins-list li em{font-style:italic;color:var(--accent);font-weight:500}
+.wins-footer{font-family:'Fraunces',serif;font-style:italic;font-size:18px;text-align:center;color:var(--ink-soft);max-width:520px;margin:40px auto 0;line-height:1.5}
+.proof-intro{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.4vw,24px);text-align:center;color:var(--ink-soft);max-width:580px;margin:0 auto 56px;line-height:1.5;font-weight:400}
+.proof-mini-label{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:36px;font-weight:500;text-align:center}
+.proof-grid{display:grid;gap:24px;max-width:680px;margin:0 auto}
+.proof-grid-2{display:grid;gap:24px;max-width:680px;margin:0 auto;grid-template-columns:1fr}
+@media(min-width:700px){.proof-grid-2{grid-template-columns:1fr 1fr}}
+.proof-card{background:#fff;border:1px solid rgba(160,107,142,.15);border-radius:12px;padding:36px 32px;box-shadow:0 4px 24px rgba(42,31,44,.05);position:relative}
+.proof-card::before{content:"✦";position:absolute;top:-14px;left:32px;background:var(--cream);color:var(--accent);font-size:18px;padding:0 10px}
+.proof-quote{font-family:'Fraunces',serif;font-size:18px;line-height:1.65;color:var(--ink);font-weight:400;margin-bottom:18px;font-style:italic}
+.proof-quote em{color:var(--accent);font-style:italic;font-weight:500}
+.proof-attr{font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500}
+
 .jac-section{padding:120px 24px;text-align:center}
 .jac-quote{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.4vw,24px);line-height:1.6;max-width:680px;margin:0 auto;color:var(--ink)}
 .jac-quote::before{content:"";display:block;width:40px;height:1px;background:var(--accent);margin:0 auto 32px}
@@ -192,6 +213,34 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
+<section class="proof-section">
+  <div class="wrap-narrow">
+    <div class="section-label">✦  the proof  ✦</div>
+    <p class="proof-intro">
+      every woman who's done this work has one thing in common: she stopped being the version of her that money kept slipping away from. and reality rearranged.
+    </p>
+
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <p class="proof-quote">tapping with jac changed my entire outlook. i am feeling so much more <em>clear and confident in myself.</em> this was the absolute best investment in myself.</p>
+        <p class="proof-attr">— S.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">my experience was <em>life changing.</em> i feel so calm. it's insane how it works. it's helping me so much mentally. such an incredible experience!</p>
+        <p class="proof-attr">— M.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">thank you… <em>this portal made me feel so relaxed</em> and helped me let go of things i couldn't.</p>
+        <p class="proof-attr">— C.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap-narrow">
     <h2>
@@ -279,6 +328,26 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
+<section class="proof-section-mid">
+  <div class="wrap-narrow">
+    <div class="proof-mini-label">✦  women who've sat in this with me  ✦</div>
+
+    <div class="proof-grid-2">
+
+      <div class="proof-card">
+        <p class="proof-quote">wow!! i don't know how you do this! you're so good with your words, how you explain things, your language, the details 🔥 <em>i know that i am learning from the best.</em></p>
+        <p class="proof-attr">— V.M.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">it's definitely been <em>eye opening.</em> the best investment i've made so far in my business.</p>
+        <p class="proof-attr">— V.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <div class="section-label">✦  what happens after  ✦</div>
@@ -305,6 +374,59 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
+<section class="proof-section-late">
+  <div class="wrap">
+    <div class="proof-mini-label">✦  what it actually looks like in real life  ✦</div>
+    <p class="proof-intro" style="margin-bottom:40px">
+      these are women who shifted their identity and watched the receipts follow.
+    </p>
+
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <p class="proof-quote">OMG okay… so i'm in disbelief but i had my <em>first ever over $1000 day!!!</em> THANK YOU SO MUCH FOR ALL YOUR HELP!!!</p>
+        <p class="proof-attr">— A.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">i just hit my first <em>$2K week EVER!!!!</em> this is insane and i know it's just the beginning. i am doing this!</p>
+        <p class="proof-attr">— K.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">eeeee another joined… <em>we're officially at $12K this month!!!</em></p>
+        <p class="proof-attr">— N.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">we started this work 2 days ago and the <em>frequency has totally shifted in me.</em> i had a corporate client reach out and i made the easiest $7,000 cash. like boom — paid immediately. no questions asked. love the feeling when money just flows ✨</p>
+        <p class="proof-attr">— J.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="wins-section">
+  <div class="wrap-narrow">
+    <div class="proof-mini-label">✦  this is normal here  ✦</div>
+    <h2 style="font-size:clamp(32px,5vw,48px);margin-bottom:48px">Things that have happened<br>for women in <span class="it">my world</span>.</h2>
+
+    <ul class="wins-list">
+      <li>hospital bills paid in full by <em>anonymous donors</em></li>
+      <li>winning <em>free trips</em> from giveaways and sweepstakes</li>
+      <li>huge client contracts and raises at work</li>
+      <li>gaining the <em>courage</em> to leave toxic relationships</li>
+      <li>manifesting invoices and checks down to the <em>exact dollar</em></li>
+      <li>manifesting the <em>exact items</em> they were going to purchase — for free</li>
+    </ul>
+
+    <p class="wins-footer">
+      this is what life looks like when she stops blocking the receive.
+    </p>
+  </div>
+</section>
+
 <section class="jac-section">
   <div class="section-label">✦  hey  ✦</div>
   <h2>I'm <span class="it">Jac</span>!</h2>
@@ -316,6 +438,31 @@ footer a{color:var(--accent);text-decoration:none}
     I'm a certified breathwork practitioner and EFT facilitator. I teach The Quantum Glow-Up™ Method. The 5/5 Activation is the live, lit-up version of the work I do with my private clients. Think of it as the door.
   </p>
   <div class="jac-name">— jac ✦</div>
+</section>
+
+<section class="proof-section-final">
+  <div class="wrap-narrow">
+    <div class="proof-mini-label">✦  one more thing before you decide  ✦</div>
+
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <p class="proof-quote">i took your advice and put my favorite song that brings me comfort on. and thought about specific moments that have brought me so much gratitude. i just kept hearing very clearly <em>"just wait."</em> there is nothing to do next, just wait.<br><br>then my client reached out asking <em>"how much for 12 more weeks?"</em> one day of surrender is all it took.</p>
+        <p class="proof-attr">— R.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">and i am currently <em>feeling abundant like never before.</em></p>
+        <p class="proof-attr">— A.S.</p>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">i'm getting <em>so much good news</em> thanks to you 🩷</p>
+        <p class="proof-attr">— D.</p>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section class="price-section" id="enroll">
