@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manifest Your SP™ — Manifest With Jac</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #faf8f5;
@@ -23,36 +23,55 @@
     --accent-bg2: #f0ebfa;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:'Tenor Sans',sans-serif; font-size:15px; line-height:1.7; overflow-x:hidden; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:15px; line-height:1.7; overflow-x:hidden; }
   .container { max-width:640px; margin:0 auto; padding:0 24px; }
   nav { padding:20px 24px; text-align:center; border-bottom:0.5px solid var(--border); background:var(--surface); }
-  .nav-brand { font-family:'Cormorant Garamond',serif; font-size:13px; letter-spacing:0.2em; color:var(--dim); text-transform:uppercase; text-decoration:none; }
+  .nav-brand { font-family:'DM Serif Display',serif; font-size:13px; letter-spacing:0.2em; color:var(--dim); text-transform:uppercase; text-decoration:none; }
   .hero { background:linear-gradient(160deg,#fdf0f8 0%,#f0ebfa 50%,#faf8f5 100%); padding:70px 24px 50px; text-align:center; }
   .eyebrow { font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--pink); margin-bottom:20px; display:block; }
-  h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(48px,10vw,76px); font-weight:300; line-height:1.0; margin-bottom:16px; color:var(--text); }
+  h1 { font-family:'DM Serif Display',serif; font-size:clamp(48px,10vw,76px); font-weight:400; line-height:1.05; margin-bottom:16px; color:var(--text); }
   h1 em { font-style:italic; color:var(--pink); }
-  .hero-tagline { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,4vw,24px); font-style:italic; color:var(--muted); font-weight:300; margin-bottom:28px; line-height:1.4; }
+  .hero-tagline { font-family:'DM Serif Display',serif; font-size:clamp(18px,4vw,24px); font-style:italic; color:var(--muted); font-weight:300; margin-bottom:28px; line-height:1.4; }
   .video-wrap { margin:0 auto 28px; border-radius:16px; overflow:hidden; border:0.5px solid var(--border); aspect-ratio:9/16; max-width:280px; position:relative; background:#f0ebfa; }
   .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
   .hero-truth { background:var(--surface); border:0.5px solid var(--border); border-radius:16px; padding:28px; margin:0 0 28px; text-align:left; }
   .hero-truth p { font-size:15px; margin-bottom:14px; }
   .hero-truth p:last-child { margin-bottom:0; }
   .hero-truth strong { color:var(--text); font-weight:500; }
-  .btn-primary { display:block; background:linear-gradient(135deg,var(--pink),var(--lavender)); color:#fff; font-family:'Tenor Sans',sans-serif; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; padding:16px 32px; border-radius:60px; text-decoration:none; border:none; cursor:pointer; width:100%; max-width:380px; margin:0 auto 10px; transition:opacity 0.2s,transform 0.2s; text-align:center; }
+  .btn-primary { display:block; background:linear-gradient(135deg,var(--pink),var(--lavender)); color:#fff; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; padding:16px 32px; border-radius:60px; text-decoration:none; border:none; cursor:pointer; width:100%; max-width:380px; margin:0 auto 10px; transition:opacity 0.2s,transform 0.2s; text-align:center; }
   .btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
-  .btn-white { display:block; background:#fff; color:var(--pink); font-family:'Tenor Sans',sans-serif; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; padding:16px 32px; border-radius:60px; text-decoration:none; border:none; cursor:pointer; width:100%; max-width:380px; margin:0 auto 10px; transition:opacity 0.2s; text-align:center; }
+  .btn-white { display:block; background:#fff; color:var(--pink); font-family:'Inter',sans-serif; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; padding:16px 32px; border-radius:60px; text-decoration:none; border:none; cursor:pointer; width:100%; max-width:380px; margin:0 auto 10px; transition:opacity 0.2s; text-align:center; }
   .btn-white:hover { opacity:0.9; }
   .btn-ghost { display:block; text-align:center; font-size:12px; color:var(--dim); text-decoration:none; letter-spacing:0.08em; margin-top:8px; }
-  .price-label { font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--dim); margin-bottom:4px; text-align:center; }
-  .price { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--text); text-align:center; line-height:1; margin-bottom:20px; }
+  .flash-banner {
+    background: linear-gradient(135deg, #c4679a, #8b6db0);
+    padding: 20px 24px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .flash-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+  .flash-title { font-family:'DM Serif Display',serif; font-size: 22px; font-weight: 300; color: #fff; margin-bottom: 8px; }
+  .flash-code { font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+  .flash-code strong { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.15em; }
+  .countdown { display: flex; justify-content: center; gap: 12px; }
+  .countdown-block { text-align: center; }
+  .countdown-num { font-family:'DM Serif Display',serif; font-size: 28px; font-weight: 400; color: #fff; line-height: 1; display: block; }
+  .countdown-unit { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .countdown-sep { font-family:'DM Serif Display',serif; font-size: 24px; color: rgba(255,255,255,0.5); align-self: flex-start; margin-top: 2px; }
+  .price-original { font-family:'DM Serif Display',serif; font-size: 24px; font-weight: 300; color: var(--dim); text-decoration: line-through; text-align: center; line-height: 1; margin-bottom: 4px; }
+  .price-sale { font-family:'DM Serif Display',serif; font-size: 52px; font-weight: 300; color: var(--pink); text-align: center; line-height: 1; margin-bottom: 4px; }
+  .price-note { font-size: 11px; color: var(--pink); text-align: center; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .price { font-family:'DM Serif Display',serif; font-size:52px; font-weight:300; color:var(--text); text-align:center; line-height:1; margin-bottom:20px; }
   .access-note { font-size:12px; color:var(--dim); text-align:center; margin-top:8px; }
   .micro-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--dim); text-align:center; display:block; margin-bottom:6px; }
   .cta-block { padding:36px 0; text-align:center; }
   .section { padding:52px 0; border-top:0.5px solid var(--border2); }
   .section-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--pink); margin-bottom:14px; display:block; }
-  h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(30px,6vw,46px); font-weight:300; line-height:1.15; margin-bottom:20px; color:var(--text); }
+  h2 { font-family:'DM Serif Display',serif; font-size:clamp(30px,6vw,46px); font-weight:300; line-height:1.15; margin-bottom:20px; color:var(--text); }
   h2 em { font-style:italic; color:var(--pink); }
-  h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--text); margin-bottom:8px; }
+  h3 { font-family:'DM Serif Display',serif; font-size:20px; font-weight:400; color:var(--text); margin-bottom:8px; }
   p { color:var(--muted); margin-bottom:16px; line-height:1.8; }
   p:last-child { margin-bottom:0; }
   .divider { display:flex; align-items:center; justify-content:center; gap:10px; margin:20px 0; color:var(--rose); font-size:12px; }
@@ -67,7 +86,7 @@
   .story-block p { font-size:15px; line-height:1.85; }
   .accent-block2 { background:var(--accent-bg2); border-radius:16px; padding:28px; margin-bottom:16px; }
   .pullquote { border-left:3px solid var(--rose); padding:16px 20px; margin:24px 0; background:var(--accent-bg); border-radius:0 12px 12px 0; }
-  .pullquote p { font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; font-weight:300; color:var(--text); line-height:1.6; margin:0; }
+  .pullquote p { font-family:'DM Serif Display',serif; font-size:20px; font-style:italic; font-weight:300; color:var(--text); line-height:1.6; margin:0; }
   .pullquote cite { display:block; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--dim); margin-top:8px; font-style:normal; }
   .cta-banner { background:linear-gradient(135deg,var(--pink),var(--lavender)); border-radius:20px; padding:36px 28px; text-align:center; margin:48px 0; }
   .cta-banner h2 { color:#fff; margin-bottom:8px; font-size:clamp(24px,5vw,36px); }
@@ -78,7 +97,7 @@
   .cta-banner .access-note { color:rgba(255,255,255,0.6); }
   .module { display:flex; gap:18px; padding:22px 0; border-bottom:0.5px solid var(--border2); align-items:flex-start; }
   .module:last-child { border-bottom:none; }
-  .module-num { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--rose); line-height:1; flex-shrink:0; width:38px; margin-top:-2px; }
+  .module-num { font-family:'DM Serif Display',serif; font-size:34px; font-weight:300; color:var(--rose); line-height:1; flex-shrink:0; width:38px; margin-top:-2px; }
   .module-content h3 { margin-bottom:4px; font-size:17px; }
   .module-content p { font-size:14px; }
   .bonus-block { background:linear-gradient(135deg,#fdf0f8,#f0ebfa); border:0.5px solid var(--rose); border-radius:16px; padding:24px; margin-top:16px; }
@@ -86,7 +105,7 @@
   .ethics-block { background:var(--surface); border:0.5px solid var(--border); border-radius:16px; padding:28px; }
   .faq-item { padding:18px 0; border-bottom:0.5px solid var(--border2); }
   .faq-item:last-child { border-bottom:none; }
-  .faq-q { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; color:var(--text); margin-bottom:8px; }
+  .faq-q { font-family:'DM Serif Display',serif; font-size:19px; font-weight:400; color:var(--text); margin-bottom:8px; }
   .faq-a { font-size:14px; margin:0; }
   .final-hero { background:linear-gradient(160deg,#fdf0f8,#f0ebfa); padding:64px 24px 20px; text-align:center; }
   .checkout-wrap { padding:20px 0 40px; }
@@ -96,6 +115,22 @@
 <body>
 
 <nav><a href="https://manifestwithjac.com" class="nav-brand">Manifest With Jac</a></nav>
+
+<!-- FLASH SALE BANNER -->
+<div class="flash-banner">
+  <p class="flash-label">⚡ Flash Sale — Limited Time</p>
+  <p class="flash-title">Manifest Your SP™ is on sale</p>
+  <p class="flash-code">Use code <strong style="background:rgba(255,255,255,0.15);color:#FFE4F3;padding:4px 14px;border-radius:20px;font-weight:700;letter-spacing:0.2em;font-size:15px;">OBSESSED</strong> at checkout — 59% off</p>
+  <div class="countdown" id="countdown">
+    <div class="countdown-block"><span class="countdown-num" id="days">07</span><span class="countdown-unit">days</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-block"><span class="countdown-num" id="hours">00</span><span class="countdown-unit">hrs</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-block"><span class="countdown-num" id="mins">00</span><span class="countdown-unit">min</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-block"><span class="countdown-num" id="secs">00</span><span class="countdown-unit">sec</span></div>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -117,8 +152,9 @@
     </div>
 
     <div class="cta-block">
-      <span class="micro-label">one-time payment</span>
-      <p class="price">$27</p>
+      <p class="price-original">$27</p>
+      <p class="price-sale">$11</p>
+      <p class="price-note">USE CODE: <strong style="color:var(--pink);font-weight:700;">OBSESSED</strong> AT CHECKOUT — 59% OFF</p>
       <a href="#checkout" class="btn-primary">He's Already Mine — Give Me Access</a>
       <a href="https://manifestwithjac.netlify.app/sp-unlock-r3v9wx" class="btn-ghost">Read a free preview first →</a>
       <p class="access-note">Instant access. Yours forever.</p>
@@ -126,7 +162,7 @@
   </div>
 </div>
 
-<!-- TESTIMONIALS — right under hero -->
+<!-- TESTIMONIALS -->
 <div class="container">
   <section class="section">
     <span class="section-label">Real results</span>
@@ -159,8 +195,9 @@
 <!-- CTA after for you -->
 <div class="container">
   <div class="cta-block" style="border-top:0.5px solid var(--border2);">
-    <span class="micro-label">one-time payment</span>
-    <p class="price">$27</p>
+    <p class="price-original">$27</p>
+    <p class="price-sale">$11</p>
+    <p class="price-note">USE CODE: <strong style="color:var(--pink);font-weight:700;">OBSESSED</strong> — 59% OFF</p>
     <a href="#checkout" class="btn-primary">He's Already Mine — Give Me Access</a>
     <p class="access-note">Instant access. Yours forever.</p>
   </div>
@@ -186,7 +223,7 @@
     </div>
 
     <div class="accent-block2">
-      <p style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--lavender);margin-bottom:10px;font-family:'Tenor Sans',sans-serif;">The Law of Thought Transmission</p>
+      <p style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--lavender);margin-bottom:10px;font-family:'Inter',sans-serif;">The Law of Thought Transmission</p>
       <p>Your thoughts have a frequency. And that frequency transmits to him — before you ever say a word.</p>
       <p style="margin:0;">When you shift your internal state, he feels it. <strong>That's when he texts. That's when he confesses. That's when he comes back.</strong> This is the layer the free TikToks aren't teaching you. It's inside.</p>
     </div>
@@ -200,8 +237,9 @@
   <div class="cta-banner">
     <h2>Ready to become the woman<br>he <em>can't stop thinking about?</em></h2>
     <p>Guide + tapping + subliminal audio. One payment, forever yours.</p>
-    <span class="price-label">one-time payment</span>
-    <p class="price" style="color:#fff;">$27</p>
+    <p style="font-size:22px;font-family:'DM Serif Display',serif;text-decoration:line-through;color:rgba(255,255,255,0.5);margin-bottom:4px;">$27</p>
+    <p style="font-family:'DM Serif Display',serif;font-size:52px;font-weight:300;color:#fff;line-height:1;margin-bottom:4px;">$11</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.1em;margin-bottom:20px;">CODE: <strong style="color:#FFE4F3;font-weight:700;">OBSESSED</strong> — 59% OFF</p>
     <a href="#checkout" class="btn-white">I Feel It — Take Me In</a>
     <p class="access-note" style="color:rgba(255,255,255,0.6);">Instant access. Yours forever.</p>
   </div>
@@ -253,8 +291,9 @@
 <!-- CTA 4 -->
 <div class="container">
   <div class="cta-block" style="border-top:0.5px solid var(--border2);">
-    <span class="micro-label">one-time payment</span>
-    <p class="price">$27</p>
+    <p class="price-original">$27</p>
+    <p class="price-sale">$11</p>
+    <p class="price-note">USE CODE: <strong style="color:var(--pink);font-weight:700;">OBSESSED</strong> — 59% OFF</p>
     <a href="#checkout" class="btn-primary">This Is Mine — Give Me Access</a>
     <p class="access-note">Instant access. Yours forever.</p>
   </div>
@@ -317,8 +356,9 @@
     <p style="font-size:16px;max-width:400px;margin:0 auto 36px;color:var(--muted);">The woman who has her SP — who moves through her day in certainty, who is chosen without asking — she exists right now. Underneath the conditioning. This is how you find her.</p>
 
     <div id="checkout" class="checkout-wrap">
-      <span class="micro-label">one-time payment</span>
-      <p class="price">$27</p>
+      <p class="price-original">$27</p>
+      <p class="price-sale">$11</p>
+      <p class="price-note">USE CODE: <strong style="color:var(--pink);font-weight:700;">OBSESSED</strong> AT CHECKOUT — 59% OFF</p>
       <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="24" data-thrivecart-embeddable="tc-jacnicole-24-RB59A9"></div>
       <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-24-RB59A9"></script>
       <p class="access-note" style="margin-top:14px;">Instant digital access · Yours forever · © Celestara Collective Inc.</p>
@@ -331,5 +371,27 @@
   <p style="font-size:10px;color:#aaa;max-width:580px;margin:0 auto;line-height:1.6;"><strong>Disclaimer:</strong> This product is intended for personal growth, subconscious reprogramming, and nervous system regulation. Results vary by individual. Manifest Your SP™ does not guarantee specific outcomes and is not a substitute for professional mental health support. By purchasing, you agree to use this content responsibly and ethically. This program is not intended to facilitate harassment, stalking, or any non-consensual behavior toward another person. Celestara Collective Inc. is not liable for how this content is used. Please seek professional support if needed.</p>
 </footer>
 
+
+<script>
+  const endDate = new Date('2026-05-14T23:59:59');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = endDate - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<p style="color:#fff;font-size:14px;">Sale has ended</p>';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('secs').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
