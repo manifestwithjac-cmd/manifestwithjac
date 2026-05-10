@@ -45,7 +45,6 @@
     height: auto;
     display: block;
     border-radius: 6px;
-    box-shadow: 0 30px 80px -20px rgba(10, 10, 10, 0.25), 8px 8px 0 var(--gold);
   }
 
   .cover-eyebrow { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--light-gray); text-transform: uppercase; margin-bottom: 24px; font-weight: 500; display: block; }
@@ -149,9 +148,34 @@
   .testimonials-sub { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gray); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 500; }
   .testimonials-sub strong { color: var(--red); font-weight: 700; }
 
-  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 720px; margin: 40px auto 0; }
-  .testimonial-card { background: white; border: 2px solid var(--black); border-radius: 4px; padding: 12px; box-shadow: 4px 4px 0 var(--gold); overflow: hidden; }
-  .testimonial-card img { width: 100%; height: auto; display: block; border-radius: 2px; }
+  .testimonials-grid {
+    column-count: 2;
+    column-gap: 18px;
+    max-width: 720px;
+    margin: 40px auto 0;
+  }
+
+  .testimonial-card {
+    background: white;
+    border: 2px solid var(--black);
+    border-radius: 4px;
+    padding: 14px;
+    box-shadow: 4px 4px 0 var(--gold);
+    overflow: hidden;
+    margin-bottom: 18px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+  }
+
+  .testimonial-card:nth-child(3n) { box-shadow: 4px 4px 0 var(--red); }
+
+  .testimonial-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+  }
 
   .testimonials-caption { text-align: center; margin-top: 32px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--black); font-weight: 600; }
 
@@ -368,10 +392,9 @@
   @media (max-width: 560px) {
     body { font-size: 17px; }
     .container { padding: 30px 16px 60px; }
-    .hero-mockup { box-shadow: 0 20px 50px -15px rgba(10, 10, 10, 0.2), 5px 5px 0 var(--gold); }
     .hero-mockup-wrap { margin-bottom: 28px; }
     .stats-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { column-count: 1; }
     .product-card { grid-template-columns: 1fr; gap: 18px; padding: 28px 22px; box-shadow: 4px 4px 0 var(--black); }
     .product-action { padding-top: 18px; border-top: 1.5px solid var(--border); align-items: stretch; gap: 16px; }
     .product-price-row { flex-direction: row; align-items: baseline; gap: 14px; justify-content: flex-start; }
@@ -630,10 +653,28 @@
 
     <div class="testimonials-grid">
       <div class="testimonial-card">
-        <img src="testimonial-1.jpg" alt="Client testimonial — money manifestation results">
+        <img src="win-1.jpeg" alt="Client win — 5 sales today">
       </div>
       <div class="testimonial-card">
-        <img src="testimonial-2.jpg" alt="Client testimonial — money manifestation results">
+        <img src="win-2.jpeg" alt="Client win — first $1000 day">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-3.jpeg" alt="Client win — $2000 client signed after EFT session">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-4.jpeg" alt="Client win — raised rates without overthinking">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-5.jpeg" alt="Client win — best investment in business">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-6.jpeg" alt="Client win — $12k month">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-7.jpeg" alt="Client win — $3000 MRR">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-8.jpeg" alt="Client win — first $2k week ever">
       </div>
     </div>
 
