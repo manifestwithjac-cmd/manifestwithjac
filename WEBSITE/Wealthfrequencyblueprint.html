@@ -216,6 +216,35 @@
     box-shadow: 2px 2px 0 var(--black);
   }
 
+  .urgency-banner {
+    background: var(--red);
+    color: white;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    text-align: center;
+    box-shadow: 3px 3px 0 var(--gold);
+  }
+  .urgency-banner-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: block;
+    color: var(--gold-light);
+  }
+  .urgency-banner-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: white;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .urgency-banner-text strong { color: var(--gold-light); font-weight: 700; }
+
   .featured-tagline {
     font-family: 'Inter', sans-serif;
     font-size: 0.74rem;
@@ -377,24 +406,6 @@
   .product-btn { display: inline-block; padding: 14px 26px; background: var(--gold); color: var(--black); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s ease; box-shadow: 3px 3px 0 var(--gold-dark); white-space: nowrap; font-weight: 700; }
   .product-btn:hover { background: var(--gold-light); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--gold-dark); }
 
-  /* VAULT CARD */
-  .vault-card { margin-top: 40px; background: var(--black); color: white; border: 2px solid var(--black); border-radius: 4px; padding: 48px 36px; box-shadow: 6px 6px 0 var(--gold); text-align: center; position: relative; }
-  .vault-tagline { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px; font-weight: 700; display: block; }
-  .vault-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.2rem, 5.5vw, 3.2rem); line-height: 1.1; color: white; margin-bottom: 20px; letter-spacing: -0.02em; }
-  .vault-title em { font-style: italic; color: var(--gold-light); font-weight: 700; }
-  .vault-desc { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: var(--gold-light); line-height: 1.7; max-width: 520px; margin: 0 auto 28px; font-weight: 500; }
-  .vault-desc strong { color: white; font-weight: 700; }
-
-  .vault-includes { display: flex; flex-direction: column; gap: 12px; max-width: 480px; margin: 0 auto 32px; text-align: left; }
-  .vault-includes li { font-family: 'Playfair Display', serif; font-size: 1rem; color: white; padding-left: 26px; position: relative; line-height: 1.55; list-style: none; font-weight: 500; }
-  .vault-includes li::before { content: '★'; position: absolute; left: 0; color: var(--gold); font-size: 0.85rem; top: 4px; }
-  .vault-includes li strong { color: var(--gold-light); font-weight: 700; }
-
-  .vault-btn { display: inline-block; padding: 20px 40px; background: var(--gold); color: var(--black); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.92rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s ease; box-shadow: 4px 4px 0 var(--gold-dark); font-weight: 700; }
-  .vault-btn:hover { background: var(--gold-light); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--gold-dark); }
-  .vault-meta { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gold-light); letter-spacing: 0.06em; margin-top: 14px; font-weight: 500; opacity: 0.8; }
-  .vault-founding { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.92rem; color: var(--gold-light); margin-top: 8px; font-weight: 600; }
-
   .footer-mark { margin-top: 60px; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--light-gray); text-align: center; font-weight: 500; }
 
   @media (max-width: 560px) {
@@ -410,7 +421,6 @@
     .step { padding: 26px 22px; box-shadow: 4px 4px 0 var(--black); }
     .step-num { width: 48px; height: 48px; font-size: 1.3rem; }
     .callout { padding: 32px 24px; box-shadow: 4px 4px 0 var(--gold); }
-    .vault-card { padding: 36px 24px; box-shadow: 4px 4px 0 var(--gold); }
     .featured-card { padding: 32px 24px; box-shadow: 5px 5px 0 var(--gold); }
     .stats-card { box-shadow: 3px 3px 0 var(--gold); }
     .stats-card.s2 { box-shadow: 3px 3px 0 var(--red); }
@@ -432,7 +442,7 @@
     <span class="cover-eyebrow">Manifest With Jac</span>
     <h1 class="cover-title">The Wealth<br><em>Frequency</em><br>Blueprint<span class="tm-mark">™</span></h1>
     <div class="gold-line"></div>
-    <p class="cover-sub">The simple formula for manifesting <em>money</em> — and the real reason it hasn't worked yet.</p>
+    <p class="cover-sub">You don't have a <em>money</em> problem. You have a <em>frequency</em> problem. This is the rewire.</p>
   </section>
 
   <!-- VIDEO -->
@@ -719,13 +729,19 @@
       <span class="featured-tagline">★ The Deepest Money Rewire</span>
       <h3 class="featured-name">Money <em>Multiverse</em>™</h3>
       <img src="money-multiverse-mockup.png" alt="Money Multiverse — luxury digital program mockup with audio library, journal prompts, and crystals" class="featured-mockup">
-      <p class="featured-desc">A 4-portal audio energy healing rewire that clears the subconscious blocks sabotaging every dollar that tries to find you. <strong>EFT tapping, chakra-clearing breathwork, sacred geometry, and full identity recoding</strong> work together to dissolve every block keeping money out — and install the woman money moves toward as your permanent default.</p>
+
+      <div class="urgency-banner">
+        <span class="urgency-banner-label">⚡ Huge Update Coming Soon</span>
+        <p class="urgency-banner-text">Last chance to lock in <strong>$97</strong> before the full overhaul drops and the price jumps to <strong>$222</strong>. Buy now and get every new asset added — <strong>free, forever.</strong></p>
+      </div>
+
+      <p class="featured-desc">A 4-portal audio rewire for the woman who's done budgeting the life she actually wants. <strong>Money Multiverse gets you to the woman who books the trip, pays the bill, raises her standards, and lets money expand her life — instead of the one who calculates, second-guesses, and watches everyone else live it.</strong></p>
       <ul class="featured-includes">
-        <li><strong>Portal One · Past Self.</strong> Ancestral money clearing</li>
-        <li><strong>Portal Two · Present Self.</strong> Prover-identity clearing</li>
-        <li><strong>Portal Three · Shadow Self.</strong> Power awakening</li>
-        <li><strong>Portal Four · Multiverse Self.</strong> Wealth-identity recoding</li>
-        <li><strong>Bonus · Thank You, Debt 3-phase audio program</strong></li>
+        <li><strong>Four portals</strong> with audio teachings, EFT tapping scripts, and journal prompts — clearing ancestral money fear, the prover-identity pattern, hidden self-worth blocks, and the income ceiling keeping money out</li>
+        <li><strong>A chakra-clearing breathwork ceremony</strong> so wealth feels safe in your body instead of stressful in your nervous system</li>
+        <li><strong>A quantum subconscious recoding session using sacred geometry</strong> so you can hold surplus without wondering where it has to go</li>
+        <li><strong>The Wealthy Woman Install™</strong> — the overnight subliminal that installs the woman whose life money expands, not the one whose life money contracts and budgets</li>
+        <li><strong>Bonus · Thank You, Debt™</strong> — release the shame around debt so you can pay for the bougie gym, the kids' college, the things that make your life feel like yours, without the math in your head</li>
       </ul>
       <div class="featured-price-row">
         <span class="featured-price-was">$497</span>
@@ -739,6 +755,22 @@
     <span class="supporting-label">★ Or explore the other audio programs ★</span>
 
     <div class="product-grid">
+
+      <!-- WEALTHY AS FUCK STACK -->
+      <div class="product-card" id="wealthy-as-fuck">
+        <div class="product-info">
+          <p class="product-tagline">★ For Staying in the Frequency</p>
+          <h3 class="product-name">Wealthy As <em>Fuck</em>™ Audio Stack</h3>
+          <p class="product-desc">For the woman who wants to walk through her day knowing money is on its way. <strong>10 audios — 5 subliminals for overnight reprogramming + 5 rampage affirmations to drill the frequency in while you drive, walk, get ready, or do anything else.</strong> Press play and become the woman money is obsessed with.</p>
+        </div>
+        <div class="product-action">
+          <div class="product-price-row">
+            <p class="product-price">$47</p>
+            <span class="product-price-suffix">Lifetime Access</span>
+          </div>
+          <a href="https://manifestwithjac.netlify.app/wealthy-as-fuck" class="product-btn">Get It →</a>
+        </div>
+      </div>
 
       <!-- THANK YOU DEBT -->
       <div class="product-card" id="thank-you-debt">
@@ -788,24 +820,6 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- VAULT UPSELL -->
-    <div class="vault-card">
-      <span class="vault-tagline">★ Or Get Everything ★</span>
-      <h3 class="vault-title">Just grab the<br><em>House of Her™ Vault</em></h3>
-      <p class="vault-desc">All of the above. Plus a <strong>growing library of subliminals, EFT tapping sessions, and every new release I create</strong> from this day forward — automatically unlocked. One charge. Lifetime access.</p>
-
-      <ul class="vault-includes">
-        <li><strong>All audio programs included</strong> — Money Multiverse, La La Land, Thank You Debt, Sleep Portal, Manifest Your SP</li>
-        <li><strong>Growing subliminal library</strong> — new tracks added regularly</li>
-        <li><strong>Growing EFT tapping library</strong> — guided rounds for every block</li>
-        <li><strong>Every future product, automatically yours</strong> — the vault grows, your access doesn't expire</li>
-      </ul>
-
-      <a href="https://www.skool.com/house-of-her" class="vault-btn">Get Lifetime Vault Access →</a>
-      <p class="vault-meta">One-time payment · Lifetime access · Every future addition included</p>
-      <p class="vault-founding">Founding member pricing — locked in for life as the vault expands</p>
     </div>
 
   </section>
