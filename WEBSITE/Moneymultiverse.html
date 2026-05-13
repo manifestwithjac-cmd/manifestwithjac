@@ -242,10 +242,93 @@
   .hero-visual {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 320px;
     width: 100%;
+  }
+
+  .hero-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5.5vw, 3rem);
+    font-weight: 800;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 1.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .hero-wordmark em {
+    font-style: italic;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+  .hero-wordmark sup {
+    font-size: 0.4em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--gold-deep);
+    vertical-align: super;
+    margin-left: 0.15em;
+  }
+
+  /* URGENCY ALERT — price increase warning */
+  .urgency-alert {
+    padding: 3rem 0;
+    background: var(--bg-soft);
+  }
+  .urgency-alert-card {
+    background: var(--ink);
+    color: white;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 6px 6px 0 var(--gold-deep);
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .urgency-alert-card { padding: 3rem 3.5rem; }
+  }
+  .urgency-alert-eyebrow {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'Inter', 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  .urgency-alert-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .urgency-alert-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.7;
+    font-weight: 500;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .urgency-alert-body strong {
+    color: var(--gold-soft);
+    font-weight: 700;
+  }
+  .urgency-alert-body em {
+    font-style: italic;
+    color: white;
+    font-weight: 600;
   }
 
   .hero-orbit {
@@ -1352,6 +1435,7 @@
     <div class="hero-grid">
       <div class="hero-visual">
         <img src="mm-mockup.png" alt="Money Multiverse — luxury digital program mockup with laptop, phone, journal, headphones, and crystals" class="hero-orbit">
+        <div class="hero-wordmark">Money <em>Multiverse</em><sup>™</sup></div>
       </div>
 
       <div class="hero-content">
@@ -1375,6 +1459,20 @@
     </div>
   </div>
 </header>
+
+<!-- PRICE INCREASE ALERT -->
+<section class="urgency-alert">
+  <div class="container-narrow">
+    <div class="urgency-alert-card">
+      <span class="urgency-alert-eyebrow">⚡ Final Chance at This Price ⚡</span>
+      <h3 class="urgency-alert-title">More is being added. The price is going up.</h3>
+      <p class="urgency-alert-body">
+        Money Multiverse is being expanded with <strong>more video trainings, more energy clearings, and more EFT sessions</strong> — all rolling out over the coming weeks. As soon as the full overhaul is live, the price moves to <strong>$497</strong>. <em>This is your last window to lock in $197 — and you'll get every single new addition added to your library for free, forever.</em>
+      </p>
+      <a href="#join" class="cta-loud" style="margin-top: 1.5rem;">LOCK IN $197 BEFORE IT'S GONE 💸</a>
+    </div>
+  </div>
+</section>
 
 <!-- AUTHORITY — what I've accomplished (MOVED ABOVE TESTIMONIALS) -->
 <section class="authority">
@@ -1586,9 +1684,9 @@
         <h3>Shadow Self</h3>
         <div class="portal-tagline">Power Awakening</div>
         <p>
-          We clear what's been keeping the most powerful part of you small. The conditioning that taught you to stay safe, stay liked, stay invisible. Chakra-clearing breathwork moves the energy locking her down <strong>so the woman who unapologetically wants more — and lets herself take up the room — finally walks back into her body.</strong>
+          We clear what's been keeping the most powerful part of you small. The conditioning that taught you to stay safe, stay liked, stay invisible. EFT tapping unhooks the patterns from your body <strong>so the woman who unapologetically wants more — and lets herself take up the room — finally walks back in.</strong>
         </p>
-        <div class="portal-includes">Teaching audio · Breathwork + EFT · Journal prompts</div>
+        <div class="portal-includes">Teaching audio · EFT clearing · Journal prompts</div>
       </div>
       <div class="portal">
         <div class="portal-num">Portal Four</div>
@@ -1825,7 +1923,7 @@
         <div class="eyebrow mb-1">Hi, I'm Jac ✦</div>
         <h2 class="display-l">The woman who built this from the floor up.</h2>
         <p>
-          I've been a business owner since I was 16. I ran a multi six-figure coaching practice and went almost six figures into debt following coaches who kept me in a state of conviction. I clawed my way out. Paid off five figures. And rebuilt from a completely different foundation.
+          I've been a business owner since I was 16. I ran a multi six-figure coaching practice and went almost six figures into debt chasing the perfect strategy and doing surface-level identity work — which doesn't fucking work. I clawed my way out. Paid off five figures. And rebuilt from a completely different foundation.
         </p>
         <p>
           When I started doing the energy work for real (not just affirmations and vision boards but actually <strong>moving energy</strong> through my body) my life rearranged itself in months. I went from $5K to $40K+ months. <strong>Pulled in over half a million dollars in sales.</strong> Multiple Fortune 500 companies and NBA teams started working with me. Clients started paying me thousands without ever getting on a phone call. I take my family on multiple luxury vacations a year — including a 3-week Hawaii trip I paid for 8 people on. Lost 50 lbs because my body finally felt safe. Built a brand new company that did six figures its first year.
