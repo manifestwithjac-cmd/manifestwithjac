@@ -328,26 +328,28 @@
   @media (min-width: 1000px) { .photo-row.cols-3 { grid-template-columns: repeat(3, 1fr); } }
 
   .photo-slot {
-    border-radius: 12px;
-    background: transparent;
-    display: block;
-    box-shadow: 0 20px 50px -20px rgba(10, 10, 20, 0.15);
-    position: relative;
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    padding: 14px;
+    box-shadow: 4px 4px 0 var(--gold-deep);
     overflow: hidden;
+    display: block;
     transition: all 0.4s;
   }
 
+  .photo-slot:nth-child(3n) { box-shadow: 4px 4px 0 var(--gold); }
+
   .photo-slot:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 30px 60px -20px rgba(10, 10, 20, 0.2);
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--gold-deep);
   }
 
   .photo-slot img {
     width: 100%;
     height: auto;
-    object-fit: contain;
-    border-radius: 12px;
     display: block;
+    border-radius: 2px;
   }
 
   .photo-slot-icon,
@@ -1348,15 +1350,11 @@
 <header class="hero">
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-content">
-        <div class="trust-bar">
-          <span>4 Audio Portals</span>
-          <span class="dot">●</span>
-          <span>Energy Healing</span>
-          <span class="dot">●</span>
-          <span>Lifetime Access</span>
-        </div>
+      <div class="hero-visual">
+        <img src="mm-mockup.png" alt="Money Multiverse — luxury digital program mockup with laptop, phone, journal, headphones, and crystals" class="hero-orbit">
+      </div>
 
+      <div class="hero-content">
         <h1 class="display-xl hero-title">
           Release your money blocks <span class="circle-emphasis">in 4 portals</span> 💸
         </h1>
@@ -1373,10 +1371,6 @@
             <span>Lifetime entry</span>
           </div>
         </div>
-      </div>
-
-      <div class="hero-visual">
-        <img src="mm-mockup.png" alt="Money Multiverse — luxury digital program mockup with laptop, phone, journal, headphones, and crystals" class="hero-orbit">
       </div>
     </div>
   </div>
@@ -1504,7 +1498,6 @@
       </p>
 
       <img src="jac-laugh-side.webp" alt="Jac laughing in black off-shoulder dress with gold watch and hoops" class="jac-photo-inline-lg">
-      <p class="jac-photo-caption">★ This is what it feels like ★</p>
     </div>
   </div>
 </section>
@@ -1528,7 +1521,6 @@
       </div>
 
       <img src="jac-gold-hands.webp" alt="Jac in black dress with layered gold necklaces and rings, hands on chest" class="jac-photo-inline-lg">
-      <p class="jac-photo-caption">★ Source Body Method™ ★</p>
 
       <p>
         The women breaking the ceiling aren't thinking different thoughts. <strong>They've cleared the energy.</strong> The blocks moved out at the body level. The frequency shifted. And reality rearranged itself around who they actually are underneath all of it.
@@ -1569,7 +1561,6 @@
     </div>
 
     <img src="jac-breathwork.webp" alt="Jac in meditation pose with hands on heart and belly" class="jac-photo-inline-lg" style="margin: 1rem auto 3rem;">
-    <p class="jac-photo-caption">★ This is the work ★</p>
 
     <div class="portal-grid">
       <div class="portal">
