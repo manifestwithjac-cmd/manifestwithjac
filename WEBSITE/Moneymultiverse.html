@@ -344,6 +344,15 @@
     transition: all 0.4s;
   }
 
+  /* When the slot contains an image, drop the forced tall aspect ratio so landscape screenshots fit naturally */
+  .photo-slot:has(img) {
+    aspect-ratio: auto;
+    padding: 0;
+    border: 2px solid var(--gold);
+    background: white;
+    min-height: unset;
+  }
+
   .photo-slot:hover {
     transform: translateY(-4px);
     box-shadow: 0 30px 60px -20px rgba(10, 10, 20, 0.2);
@@ -351,11 +360,11 @@
 
   .photo-slot img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-radius: 16px;
-    position: absolute;
-    inset: 0;
+    position: relative;
+    display: block;
   }
 
   .photo-slot-icon {
@@ -1394,6 +1403,8 @@
         I went from <span class="iridescent-bg">$5K months</span> to <span class="iridescent-bg">$40K+ months</span> and pulled in <span class="iridescent-bg">over half a million dollars in sales</span> <span class="underline-drawn">in less than a year</span> 💸
       </h2>
 
+      <img src="jac-smile-sitting.webp" alt="Jac smiling on cream chair in black long-sleeve dress with gold jewelry" class="jac-photo-inline-lg" style="max-width: 360px;">
+
       <div class="callout-box">
         Not by working harder. Not by another strategy. Not by another mastermind. <strong>By moving the stuck energy that was blocking the money from coming to me.</strong>
       </div>
@@ -1504,6 +1515,9 @@
       <p class="pain-line-md" style="margin-top: 1.25rem;">
         You want money that <span class="highlight-gold">expands your life — not contracts it.</span>
       </p>
+
+      <img src="jac-laugh-side.webp" alt="Jac laughing in black off-shoulder dress with gold watch and hoops" class="jac-photo-inline-lg">
+      <p class="jac-photo-caption">★ This is what it feels like ★</p>
     </div>
   </div>
 </section>
@@ -1526,7 +1540,7 @@
         Struggle is common.<br><span class="iridescent-bg">Struggle is not normal.</span>
       </div>
 
-      <img src="jac-third-eye.webp" alt="Jac with three fingers to her third eye in meditation pose" class="jac-photo-inline-lg">
+      <img src="jac-gold-hands.webp" alt="Jac in black dress with layered gold necklaces and rings, hands on chest" class="jac-photo-inline-lg">
       <p class="jac-photo-caption">★ Source Body Method™ ★</p>
 
       <p>
@@ -1935,6 +1949,8 @@
 <!-- FINAL CTA -->
 <section class="final">
   <div class="container-narrow">
+    <img src="jac-cream-sweater.webp" alt="Jac laughing in cream off-shoulder sweater looking up and away" class="jac-photo-inline-lg" style="max-width: 320px; margin-bottom: 2rem;">
+
     <h2>Move the energy. <span class="iridescent-bg">Watch reality rearrange.</span> 💸</h2>
     <p class="final-sub">
       Four portals. Lifetime access. $197. The rewire your bank account has been waiting for.
