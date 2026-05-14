@@ -598,19 +598,11 @@ strong { font-weight: 700; color: var(--ink); }
 
 .checkout-zone {
   margin: 2rem auto 0;
-  min-height: 200px;
+  min-height: 400px;
 }
-.checkout-zone-placeholder {
-  background: var(--cream-deep);
-  border: 1px dashed var(--gold);
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
+.checkout-zone .tc-v2-embeddable-target {
+  width: 100%;
+  min-height: 400px;
 }
 
 /* FAQ */
@@ -950,10 +942,8 @@ footer p {
       <div class="pricing-price-suffix">One Time · Lifetime Access · Instant Delivery</div>
 
       <div class="checkout-zone">
-        <div class="checkout-zone-placeholder">
-          ↓ ThriveCart checkout will embed here<br>
-          <span style="opacity: 0.6;">(Send Jac the embed code when product is built)</span>
-        </div>
+        <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="27" data-thrivecart-embeddable="tc-jacnicole-27-0WGSPE"></div>
+        <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-27-0WGSPE"></script>
       </div>
     </div>
   </div>
