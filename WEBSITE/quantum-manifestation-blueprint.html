@@ -3,172 +3,446 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Quantum Manifestation Blueprint™ — Manifest With Jac</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<title>The Quantum Manifestation Blueprint™ | Manifest With Jac</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #faf8f5;
-    --lavender: #a597c9;
-    --rose: #c49ab8;
-    --blush: #d9a8c4;
-    --sage: #8fb0a0;
-    --periwinkle: #8fa4c8;
-    --dark: #1a1625;
-    --mid: #4a4260;
-    --dim: rgba(26,22,37,0.42);
+    --bg: #fefcf7;
+    --black: #0a0a0a;
+    --dark: #1a1a1a;
+    --gold: #c9a449;
+    --gold-light: #e8d28a;
+    --gold-dark: #a07f30;
+    --red: #d63838;
+    --gray: #2a2a2a;
+    --mid: #4a4a4a;
+    --light-gray: #888;
+    --border: #e8e3d5;
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--dark); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
-  .blob { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; animation: drift 22s ease-in-out infinite alternate; }
-  .blob-1 { width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(165,151,201,0.15), transparent 70%); top: -150px; left: -150px; }
-  .blob-2 { width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(196,154,184,0.12), transparent 70%); top: 40%; right: -200px; animation-delay: -8s; }
-  .blob-3 { width: 700px; height: 300px; background: radial-gradient(ellipse, rgba(143,164,200,0.1), transparent 70%); bottom: 10%; left: 20%; animation-delay: -4s; }
-  @keyframes drift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,20px) scale(1.05); } }
-  .page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 24px 120px; }
+  body { background: var(--bg); color: var(--black); font-family: 'Playfair Display', serif; font-weight: 500; line-height: 1.65; overflow-x: hidden; font-size: 18px; }
 
-  /* COVER */
-  .cover { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 0; position: relative; }
-  .cover-eyebrow { font-size: 0.67rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blush); margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
-  .cover-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 9vw, 6.2rem); line-height: 1.0; color: var(--dark); margin-bottom: 10px; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
-  .cover-title em { font-style: italic; color: var(--lavender); }
-  .cover-tm { font-size: 0.6rem; letter-spacing: 0.3em; color: var(--dim); margin-bottom: 32px; opacity: 0; animation: fadeUp 1s 0.8s forwards; }
-  .cover-divider { width: 100px; height: 1px; background: linear-gradient(90deg, transparent, var(--rose), transparent); margin: 0 auto 32px; opacity: 0; animation: fadeUp 1s 1s forwards; }
-  .cover-sub { font-size: 1.05rem; color: var(--mid); max-width: 420px; line-height: 1.85; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
-  .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 1s 2s forwards; color: var(--dim); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
-  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--rose), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
-
-  /* VIDEO */
-  .video-section { padding: 0 0 80px; }
-  .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 1px solid rgba(196,154,184,0.2); box-shadow: 0 8px 60px rgba(165,151,201,0.1); }
-  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
 
   /* SHARED */
-  .section-label { font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blush); margin-bottom: 20px; display: block; }
+  .eyebrow { display: inline-block; background: var(--black); color: var(--gold-light); font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; padding: 9px 20px; border-radius: 100px; font-weight: 600; }
+  .gold-line { width: 100px; height: 2px; background: var(--gold); margin: 32px auto; }
+  .section-label { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); display: block; font-weight: 700; margin-bottom: 18px; }
 
-  /* INTRO */
-  .intro { padding: 70px 0 50px; border-top: 1px solid rgba(196,154,184,0.18); text-align: center; }
-  .intro-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.25; color: var(--dark); margin-bottom: 24px; }
-  .intro-title em { font-style: italic; color: var(--lavender); }
-  .intro-body { font-size: 0.95rem; color: var(--mid); max-width: 580px; margin: 0 auto; line-height: 1.95; }
+  /* COVER */
+  .cover { text-align: center; padding: 30px 0 50px; }
 
-  /* CALLOUT */
-  .callout { background: linear-gradient(135deg, rgba(165,151,201,0.07), rgba(196,154,184,0.07)); border: 1px solid rgba(196,154,184,0.22); border-radius: 14px; padding: 36px; margin: 44px 0; text-align: center; }
-  .callout p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.15rem, 2.8vw, 1.55rem); line-height: 1.7; color: var(--dark); }
-  .callout p em { color: var(--lavender); font-style: normal; }
-  .callout .attr { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--dim); margin-top: 16px; display: block; text-transform: uppercase; }
+  /* HERO MOCKUP */
+  .hero-mockup-wrap {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .cover-eyebrow { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--light-gray); text-transform: uppercase; margin-bottom: 24px; font-weight: 500; display: block; }
+  .cover-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 0.98; color: var(--black); letter-spacing: -0.02em; margin-bottom: 32px; }
+  .cover-title em { font-style: italic; color: var(--gold-dark); font-weight: 700; }
+  .cover-title .tm-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.32em;
+    font-weight: 700;
+    color: var(--gold-dark);
+    vertical-align: super;
+    margin-left: 0.04em;
+    letter-spacing: 0;
+    line-height: 1;
+    font-style: normal;
+  }
+  .cover-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.3rem, 3vw, 1.65rem); color: var(--gray); max-width: 540px; margin: 0 auto; line-height: 1.45; font-weight: 500; }
+  .cover-sub em { color: var(--red); font-style: normal; font-weight: 700; }
+
+  /* VIDEO */
+  .video-section { margin-bottom: 60px; }
+  .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid var(--black); border-radius: 4px; box-shadow: 6px 6px 0 var(--gold); background: var(--black); }
+  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+  /* ABOUT JAC */
+  .about-section { padding: 50px 0; border-top: 2px solid var(--black); }
+  .about-header { text-align: center; margin-bottom: 40px; }
+  .about-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.1; color: var(--black); margin-bottom: 24px; letter-spacing: -0.02em; }
+  .about-title em { font-style: italic; color: var(--gold-dark); font-weight: 700; }
+  .about-intro { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--gray); max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 500; }
+  .about-intro strong { color: var(--red); font-weight: 700; }
+  .about-intro em { color: var(--gold-dark); font-style: italic; font-weight: 600; }
+
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+  .stats-card { background: white; border: 2px solid var(--black); border-radius: 4px; padding: 28px 26px; box-shadow: 4px 4px 0 var(--gold); }
+  .stats-card.s2 { box-shadow: 4px 4px 0 var(--red); }
+  .stats-label { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 18px; display: block; font-weight: 700; }
+  .stats-card.s2 .stats-label { color: var(--red); }
+  .stats-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .stats-list li { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--black); padding-left: 26px; position: relative; line-height: 1.6; font-weight: 500; }
+  .stats-list li::before { content: '★'; position: absolute; left: 0; color: var(--gold); font-size: 0.85rem; top: 4px; }
+  .stats-card.s2 .stats-list li::before { color: var(--red); }
+  .stats-list li strong { color: var(--red); font-weight: 700; }
+  .stats-card.s2 .stats-list li strong { color: var(--gold-dark); }
+
+  /* MIRROR CALLOUT */
+  .callout { background: var(--black); color: white; border-radius: 4px; padding: 44px 36px; margin: 50px 0; text-align: center; box-shadow: 6px 6px 0 var(--gold); }
+  .callout-label { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; display: block; font-weight: 700; }
+  .callout-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.3rem, 3vw, 1.7rem); color: white; line-height: 1.4; max-width: 560px; margin: 0 auto; font-weight: 500; }
+  .callout-text em { color: var(--gold-light); font-style: normal; font-weight: 700; }
 
   /* FORMULA */
-  .formula-header { text-align: center; margin-bottom: 56px; padding-top: 70px; border-top: 1px solid rgba(196,154,184,0.18); }
-  .formula-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2rem, 6vw, 3.8rem); line-height: 1.1; color: var(--dark); margin-bottom: 12px; }
-  .formula-title em { font-style: italic; color: var(--lavender); }
-  .formula-sub { font-size: 0.88rem; color: var(--dim); max-width: 400px; margin: 0 auto; }
+  .formula-section { padding: 50px 0; }
+  .formula-header { text-align: center; margin-bottom: 50px; }
+  .formula-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.1; color: var(--black); letter-spacing: -0.02em; }
+  .formula-title em { font-style: italic; color: var(--gold-dark); font-weight: 700; }
 
-  .formula { position: relative; }
-  .formula::before { content: ''; position: absolute; left: 35px; top: 35px; bottom: 35px; width: 1px; background: linear-gradient(to bottom, rgba(196,154,184,0.2), rgba(165,151,201,0.4), rgba(143,176,160,0.2)); z-index: 0; }
+  .step { background: white; border: 2px solid var(--black); border-radius: 4px; padding: 32px 30px; margin-bottom: 24px; box-shadow: 6px 6px 0 var(--black); }
+  .step-num-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .step-num { width: 56px; height: 56px; background: var(--black); color: var(--gold-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; flex-shrink: 0; }
+  .step-tag { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); font-weight: 700; }
+  .step-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2; color: var(--black); margin-bottom: 18px; letter-spacing: -0.01em; }
+  .step-title em { font-style: italic; color: var(--gold-dark); font-weight: 600; }
+  .step-body { font-family: 'Playfair Display', serif; font-size: 1.08rem; color: var(--gray); line-height: 1.7; margin-bottom: 14px; font-weight: 500; }
+  .step-body strong { color: var(--red); font-weight: 700; }
+  .step-note { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--gold-dark); display: block; padding-top: 14px; border-top: 1px solid var(--border); margin-top: 18px; font-weight: 600; }
 
-  .step { display: grid; grid-template-columns: 70px 1fr; gap: 0 24px; margin-bottom: 12px; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .step.visible { opacity: 1; transform: translateY(0); }
-  .step-num-wrap { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; padding-top: 4px; }
-  .step-num { width: 70px; height: 70px; border-radius: 50%; background: white; border: 1.5px solid rgba(196,154,184,0.3); box-shadow: 0 4px 20px rgba(165,151,201,0.1); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--rose); flex-shrink: 0; transition: all 0.3s ease; }
-  .step:hover .step-num { border-color: var(--rose); box-shadow: 0 6px 28px rgba(196,154,184,0.2); }
+  .expand-card { background: var(--bg); border: 1.5px solid var(--gold); border-radius: 4px; padding: 22px 24px; margin-top: 22px; }
+  .expand-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 12px; font-weight: 700; }
+  .expand-body { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gray); line-height: 1.65; margin-bottom: 14px; font-weight: 500; }
+  .expand-body strong { color: var(--red); font-weight: 700; }
+  .nudge { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gold-dark); text-decoration: none; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s ease; }
+  .nudge:hover { color: var(--red); }
 
-  .step-card { background: white; border: 1px solid rgba(196,154,184,0.14); border-radius: 16px; padding: 26px 28px; margin-bottom: 16px; box-shadow: 0 2px 18px rgba(165,151,201,0.06); transition: all 0.3s ease; position: relative; overflow: hidden; }
-  .step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.3s; }
-  .step:hover .step-card { transform: translateX(3px); box-shadow: 0 6px 28px rgba(165,151,201,0.1); }
-  .step:hover .step-card::before { opacity: 1; }
-  .step-1 .step-card::before { background: linear-gradient(90deg, var(--blush), var(--lavender)); }
-  .step-2 .step-card::before { background: linear-gradient(90deg, var(--lavender), var(--periwinkle)); }
-  .step-3 .step-card::before { background: linear-gradient(90deg, var(--rose), var(--blush)); }
-  .step-4 .step-card::before { background: linear-gradient(90deg, var(--periwinkle), var(--sage)); }
-  .step-5 .step-card::before { background: linear-gradient(90deg, var(--sage), var(--lavender)); }
-
-  .step-tag { font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--blush); margin-bottom: 8px; display: block; }
-  .step-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(1.3rem, 3.5vw, 1.7rem); line-height: 1.2; color: var(--dark); margin-bottom: 12px; }
-  .step-title em { font-style: italic; color: var(--lavender); }
-  .step-body { font-size: 0.88rem; color: var(--mid); line-height: 1.9; }
-  .step-body strong { color: var(--dark); font-weight: 500; }
-  .step-body + .step-body { margin-top: 12px; }
-  .step-note { display: inline-block; margin-top: 14px; font-size: 0.76rem; color: var(--rose); background: rgba(196,154,184,0.08); border: 1px solid rgba(196,154,184,0.2); border-radius: 100px; padding: 4px 14px; }
-
-  /* EXPAND CARDS */
-  .expand-card { background: rgba(165,151,201,0.05); border: 1px solid rgba(165,151,201,0.18); border-radius: 12px; padding: 20px 22px; margin-top: 16px; }
-  .expand-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--lavender); margin-bottom: 10px; display: block; }
-  .expand-body { font-size: 0.85rem; color: var(--mid); line-height: 1.9; }
-  .expand-body strong { color: var(--dark); font-weight: 500; }
-
-  /* NUDGE PILL */
-  .nudge { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 0.78rem; color: white; background: linear-gradient(135deg, var(--lavender), var(--rose)); border-radius: 100px; padding: 7px 16px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 3px 14px rgba(165,151,201,0.25); }
-  .nudge:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(165,151,201,0.35); }
-
-  /* PULL */
-  .pull { border-left: 2px solid var(--rose); padding: 14px 22px; margin: 24px 0; background: rgba(196,154,184,0.05); border-radius: 0 8px 8px 0; }
-  .pull p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.08rem; color: var(--mid); line-height: 1.65; }
+  /* CIRCUMSTANCES CALLOUT */
+  .circumstances { background: white; border: 2px solid var(--red); border-left: 8px solid var(--red); border-radius: 4px; padding: 32px 32px; margin: 40px 0; box-shadow: 4px 4px 0 var(--black); }
+  .circumstances-label { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; display: block; font-weight: 700; }
+  .circumstances-text { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--black); line-height: 1.65; font-weight: 500; }
+  .circumstances-text strong { color: var(--red); font-weight: 700; }
+  .circumstances-text em { font-style: italic; color: var(--gold-dark); font-weight: 600; }
 
   /* FAQ */
-  .faq-section { padding: 70px 0; border-top: 1px solid rgba(196,154,184,0.18); }
-  .faq-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--dark); line-height: 1.2; margin-bottom: 10px; }
-  .faq-title em { font-style: italic; color: var(--lavender); }
-  .faq-sub { font-size: 0.88rem; color: var(--dim); margin-bottom: 40px; }
-  .faq-item { border-bottom: 1px solid rgba(196,154,184,0.16); padding: 22px 0; }
-  .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 400; color: var(--dark); cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-  .faq-q span { flex: 1; }
-  .faq-toggle { color: var(--rose); font-size: 1.3rem; flex-shrink: 0; transition: transform 0.3s ease; line-height: 1; margin-top: 2px; user-select: none; }
-  .faq-toggle.open { transform: rotate(45deg); }
-  .faq-a { font-size: 0.88rem; color: var(--mid); line-height: 1.95; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
-  .faq-a.open { max-height: 400px; padding-top: 14px; }
-  .faq-a p + p { margin-top: 12px; }
+  .faq-section { padding: 50px 0; }
+  .faq-header { text-align: center; margin-bottom: 40px; }
+  .faq-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); color: var(--black); letter-spacing: -0.02em; }
+  .faq-title em { font-style: italic; color: var(--gold-dark); }
+  .faq-item { background: white; border: 2px solid var(--black); border-radius: 4px; margin-bottom: 16px; overflow: hidden; }
+  .faq-question { padding: 22px 26px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--black); }
+  .faq-question:hover { background: var(--bg); }
+  .faq-toggle { font-family: 'Inter', sans-serif; font-size: 1.4rem; color: var(--gold-dark); font-weight: 400; }
+  .faq-answer { padding: 0 26px 22px; font-family: 'Playfair Display', serif; font-size: 1.02rem; color: var(--gray); line-height: 1.7; display: none; font-weight: 500; }
+  .faq-answer strong { color: var(--red); font-weight: 700; }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); display: inline-block; }
 
-  /* TRUTH */
-  .truth { padding: 70px 0; border-top: 1px solid rgba(196,154,184,0.18); }
-  .truth-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; color: var(--dark); margin-bottom: 22px; }
-  .truth-title em { font-style: italic; color: var(--lavender); }
-  .truth-body { font-size: 0.93rem; color: var(--mid); line-height: 1.95; margin-bottom: 18px; max-width: 620px; }
+  /* TESTIMONIALS */
+  .testimonials-section { padding: 50px 0; }
+  .testimonials-header { text-align: center; margin-bottom: 40px; }
+  .testimonials-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2rem, 5.5vw, 3.2rem); line-height: 1.15; color: var(--black); margin-bottom: 18px; letter-spacing: -0.02em; }
+  .testimonials-title em { font-style: italic; color: var(--gold-dark); font-weight: 700; }
+  .testimonials-sub { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gray); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 500; }
+  .testimonials-sub strong { color: var(--red); font-weight: 700; }
 
-  /* CTA */
-  .cta-section { padding: 80px 0 0; border-top: 1px solid rgba(196,154,184,0.18); text-align: center; }
-  .cta-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; color: var(--dark); margin-bottom: 20px; }
-  .cta-title em { font-style: italic; color: var(--lavender); }
-  .cta-body { font-size: 0.93rem; color: var(--mid); max-width: 460px; margin: 0 auto 36px; line-height: 1.95; }
-  .cta-btn { display: inline-block; padding: 16px 44px; background: linear-gradient(135deg, var(--lavender), var(--rose)); color: white; border-radius: 100px; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 24px rgba(165,151,201,0.28); }
-  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(165,151,201,0.38); }
-  .cta-sub { font-size: 0.76rem; color: var(--dim); margin-top: 16px; }
-  .cta-or { font-size: 0.72rem; color: var(--dim); margin: 28px 0 14px; letter-spacing: 0.12em; text-transform: uppercase; }
-  .cta-products { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .cta-product { font-size: 0.8rem; color: var(--mid); border: 1px solid rgba(196,154,184,0.3); border-radius: 100px; padding: 7px 18px; text-decoration: none; transition: all 0.3s ease; }
-  .cta-product:hover { border-color: var(--rose); color: var(--rose); }
+  .testimonials-grid {
+    column-count: 2;
+    column-gap: 18px;
+    max-width: 720px;
+    margin: 40px auto 0;
+  }
 
-  .footer-mark { margin-top: 70px; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(26,22,37,0.2); text-align: center; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade.visible { opacity: 1; transform: translateY(0); }
+  .testimonial-card {
+    background: white;
+    border: 2px solid var(--black);
+    border-radius: 4px;
+    padding: 14px;
+    box-shadow: 4px 4px 0 var(--gold);
+    overflow: hidden;
+    margin-bottom: 18px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+  }
+
+  .testimonial-card:nth-child(3n) { box-shadow: 4px 4px 0 var(--red); }
+
+  .testimonial-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .testimonials-caption { text-align: center; margin-top: 32px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--black); font-weight: 600; }
+
+  /* MINI STORE */
+  .store-section { padding: 60px 0; border-top: 2px solid var(--black); }
+  .store-header { text-align: center; margin-bottom: 50px; }
+  .store-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.1; color: var(--black); margin-bottom: 18px; letter-spacing: -0.02em; }
+  .store-title em { font-style: italic; color: var(--gold-dark); font-weight: 700; }
+  .store-sub { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gray); max-width: 500px; margin: 0 auto; line-height: 1.7; font-weight: 500; }
+
+  /* FEATURED PRODUCT — Money Multiverse hero */
+  .featured-card {
+    background: var(--black);
+    color: white;
+    border: 2px solid var(--black);
+    border-radius: 4px;
+    padding: 40px 36px;
+    margin-bottom: 36px;
+    box-shadow: 8px 8px 0 var(--gold);
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  .featured-card:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--gold); }
+
+  .featured-tag {
+    position: absolute;
+    top: -14px;
+    left: 32px;
+    background: var(--red);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    box-shadow: 2px 2px 0 var(--black);
+  }
+
+  .urgency-banner {
+    background: var(--red);
+    color: white;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    text-align: center;
+    box-shadow: 3px 3px 0 var(--gold);
+  }
+  .urgency-banner-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: block;
+    color: var(--gold-light);
+  }
+  .urgency-banner-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: white;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .urgency-banner-text strong { color: var(--gold-light); font-weight: 700; }
+
+  .featured-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .featured-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5.5vw, 3rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 14px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .featured-name em { font-style: italic; color: var(--gold-light); font-weight: 700; }
+
+  .featured-desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .featured-desc strong { color: white; font-weight: 700; }
+
+  .featured-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    list-style: none;
+  }
+
+  .featured-includes li {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.98rem;
+    color: white;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .featured-includes li::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.85rem;
+    top: 3px;
+  }
+
+  .featured-includes li strong { color: var(--gold-light); font-weight: 700; }
+
+  .featured-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .featured-price-was {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--light-gray);
+    text-decoration: line-through;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 2px;
+    font-weight: 600;
+  }
+
+  .featured-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .featured-price-suffix {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  .featured-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 20px 36px;
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0 var(--gold-dark);
+    font-weight: 700;
+  }
+
+  .featured-btn:hover {
+    background: var(--gold-light);
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--gold-dark);
+  }
+
+  .featured-mockup {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 8px auto 24px;
+    max-width: 600px;
+  }
+
+  /* SUPPORTING PRODUCTS */
+  .supporting-label {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin: 50px 0 28px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .product-grid { display: flex; flex-direction: column; gap: 24px; }
+  .product-card { background: white; border: 2px solid var(--black); border-radius: 4px; padding: 32px 32px; box-shadow: 6px 6px 0 var(--black); display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; transition: all 0.2s ease; }
+  .product-card:hover { transform: translate(-1px, -1px); box-shadow: 7px 7px 0 var(--black); }
+
+  .product-info { flex: 1; }
+  .product-name { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.15; letter-spacing: -0.01em; }
+  .product-name em { font-style: italic; color: var(--gold-dark); font-weight: 600; }
+  .product-tagline { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; font-weight: 700; }
+  .product-desc { font-family: 'Playfair Display', serif; font-size: 1.02rem; color: var(--gray); line-height: 1.65; font-weight: 500; }
+  .product-desc strong { color: var(--red); font-weight: 700; }
+
+  .product-action { text-align: center; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .product-price-row { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .product-price { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
+  .product-price-suffix { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--light-gray); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+  .product-btn { display: inline-block; padding: 14px 26px; background: var(--gold); color: var(--black); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s ease; box-shadow: 3px 3px 0 var(--gold-dark); white-space: nowrap; font-weight: 700; }
+  .product-btn:hover { background: var(--gold-light); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--gold-dark); }
+
+  .footer-mark { margin-top: 60px; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--light-gray); text-align: center; font-weight: 500; }
 
   @media (max-width: 560px) {
-    .formula::before { left: 28px; }
-    .step { grid-template-columns: 56px 1fr; gap: 0 16px; }
-    .step-num { width: 56px; height: 56px; font-size: 1.3rem; }
-    .step-card { padding: 20px 18px; }
-    .callout { padding: 24px 20px; }
+    body { font-size: 17px; }
+    .container { padding: 30px 16px 60px; }
+    .hero-mockup-wrap { margin-bottom: 28px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { column-count: 1; }
+    .product-card { grid-template-columns: 1fr; gap: 18px; padding: 28px 22px; box-shadow: 4px 4px 0 var(--black); }
+    .product-action { padding-top: 18px; border-top: 1.5px solid var(--border); align-items: stretch; gap: 16px; }
+    .product-price-row { flex-direction: row; align-items: baseline; gap: 14px; justify-content: flex-start; }
+    .product-btn { width: 100%; text-align: center; padding: 16px 22px; box-sizing: border-box; }
+    .step { padding: 26px 22px; box-shadow: 4px 4px 0 var(--black); }
+    .step-num { width: 48px; height: 48px; font-size: 1.3rem; }
+    .callout { padding: 32px 24px; box-shadow: 4px 4px 0 var(--gold); }
+    .featured-card { padding: 32px 24px; box-shadow: 5px 5px 0 var(--gold); }
+    .stats-card { box-shadow: 3px 3px 0 var(--gold); }
+    .stats-card.s2 { box-shadow: 3px 3px 0 var(--red); }
+    .testimonial-card { box-shadow: 3px 3px 0 var(--gold); }
+    .video-wrap { box-shadow: 4px 4px 0 var(--gold); }
+    .circumstances { box-shadow: 3px 3px 0 var(--black); padding: 26px 24px; }
   }
 </style>
 </head>
 <body>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
-<div class="page">
+<div class="container">
 
   <!-- COVER -->
   <section class="cover">
-    <span class="cover-eyebrow">Manifest With Jac ✦ manifestwithjac.com</span>
-    <h1 class="cover-title">The Quantum<br><em>Manifestation</em><br>Blueprint</h1>
-    <p class="cover-tm">™</p>
-    <div class="cover-divider"></div>
-    <p class="cover-sub">The simple formula for manifesting anything you desire — and the real reason it hasn't worked yet.</p>
-    <div class="scroll-hint"><div class="scroll-line"></div><span>keep reading</span></div>
+    <div class="hero-mockup-wrap">
+      <img src="jac-elegant-seated.webp" alt="Jac, manifestation mentor, seated elegantly in warm natural light" class="hero-mockup">
+    </div>
+    <span class="cover-eyebrow">Manifest With Jac</span>
+    <h1 class="cover-title">The Quantum<br><em>Manifestation</em><br>Blueprint<span class="tm-mark">™</span></h1>
+    <div class="gold-line"></div>
+    <p class="cover-sub">The simple formula for manifesting <em>anything</em> you desire — and the real reason it hasn't worked yet.</p>
   </section>
 
   <!-- VIDEO -->
@@ -178,205 +452,374 @@
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="intro fade">
-    <span class="section-label">Before we get into the formula</span>
-    <h2 class="intro-title">Have you noticed that the more you<br><em>focus on something,</em><br>the slower it comes?</h2>
-    <p class="intro-body">A watched pot never boils. The harder you obsess, check, and wonder why it hasn't shown up yet — the further away it feels. But the second you get distracted and stop watching? There it is. That's not a coincidence. That's how this works.</p>
+  <!-- ABOUT JAC -->
+  <section class="about-section">
+    <div class="about-header">
+      <span class="eyebrow">★ Hi, I'm Jac ★</span>
+      <h2 class="about-title" style="margin-top:24px;">I teach this because<br><em>I've lived it.</em></h2>
+      <p class="about-intro">I went from <strong>~$8K months to $40K+ months</strong> in less than a year. Pulled in <strong>over half a million dollars in sales</strong>. Manifested dream clients including <strong>NBA teams and multiple Fortune 500 companies</strong> paying me thousands without ever getting on a phone call. A <strong>3-week trip to Hawaii for 8 people</strong> from a single visualization. Multiple luxury family vacations a year. And I've helped <strong>hundreds of women</strong> manifest money, soulmates, babies, healing, and the fuck-yes life — using the exact same formula every single time. <em>This works for anything. The desire changes. The process never does.</em></p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stats-card s1">
+        <span class="stats-label">My Manifestation Receipts</span>
+        <ul class="stats-list">
+          <li><strong>~$8K months → $40K+ months</strong> in less than a year</li>
+          <li><strong>Over half a million in sales</strong> across my businesses</li>
+          <li>Brand new company hit <strong>6-figures in its first year</strong></li>
+          <li>Manifested a <strong>3-week trip to Hawaii</strong> from a single visualization — paid for 8 people</li>
+          <li><strong>Multiple Fortune 500 + NBA</strong> contracts with zero pitching</li>
+          <li>Wake up every day in <strong>quiet calm</strong> that makes reality feel safe and flowy</li>
+        </ul>
+      </div>
+
+      <div class="stats-card s2">
+        <span class="stats-label">Real Wins (Clients)</span>
+        <ul class="stats-list">
+          <li>Manifested their <strong>specific person</strong> and reconciled relationships</li>
+          <li>Hospital bills <strong>paid in full by anonymous donors</strong></li>
+          <li>Manifesting checks and refunds <strong>down to the exact dollar</strong></li>
+          <li><strong>The body, the baby, the move</strong> — desires far beyond money</li>
+          <li>First-ever <strong>$1K days</strong>, $2K weeks, $10K months</li>
+          <li>Manifesting the <strong>exact thing they wanted — for free</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEIPTS — strongest wins, scattered between sections -->
+  <section class="testimonials-section" style="padding: 30px 0 20px;">
+    <div class="testimonials-header">
+      <span class="eyebrow">★ Real Receipts ★</span>
+      <h2 class="testimonials-title" style="margin-top:24px; font-size: clamp(1.7rem, 4.5vw, 2.5rem);">A few of the wins<br><em>that don't lie.</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <img src="win-9.jpeg" alt="Client win — easiest $7000 cash, paid immediately">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-6.jpeg" alt="Client win — $12k month">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-2.jpeg" alt="Client win — first $1000 day">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-8.jpeg" alt="Client win — first $2k week ever">
+      </div>
+    </div>
   </section>
 
   <!-- MIRROR CALLOUT -->
-  <div class="callout fade">
-    <p>Your reality is just a mirror.<br><br>
-    What your subconscious believes is true — that's what gets reflected back in your life. Not what you say. Not what you post. What you actually believe at the deepest level.<br><br>
-    Change the image, and the reflection has no choice but to change too.<br><br>
-    <em>That's the whole formula. Everything below is how you actually do it.</em></p>
+  <div class="callout">
+    <span class="callout-label">★ The Mirror Principle ★</span>
+    <p class="callout-text">Your reality is a <em>mirror.</em> If it keeps reflecting the same thing back — it's because the woman looking at it hasn't changed yet. <em>Reality matches who you are being, not what you keep asking for.</em></p>
   </div>
 
-  <!-- FORMULA HEADER -->
-  <div class="formula-header fade">
-    <span class="section-label">The Method</span>
-    <h2 class="formula-title">The <em>Quantum</em><br>Manifestation Formula™</h2>
-    <p class="formula-sub">Five steps. Same process every time. Works for anything — love, a new body, a baby, a new life. The process never changes.</p>
-  </div>
+  <!-- FORMULA -->
+  <section class="formula-section">
+    <div class="formula-header">
+      <span class="eyebrow">★ The Formula ★</span>
+      <h2 class="formula-title" style="margin-top:24px;">The Quantum Manifestation<br><em>Formula™</em></h2>
+    </div>
 
-  <!-- STEPS -->
-  <div class="formula">
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-num-row">
+        <div class="step-num">1</div>
+        <span class="step-tag">Step One — The Clarity</span>
+      </div>
+      <h3 class="step-title">Get clear on <em>what you desire</em></h3>
+      <p class="step-body">Not what looks good on someone else's life. Not what you think you're supposed to want. <strong>What do YOU actually desire — and how does it feel to already have it?</strong> Get so specific you can feel it in your body. What does your everyday life look like when it's already yours?</p>
+      <p class="step-body">Your subconscious needs a clear, felt target. <strong>Vague desires get vague results.</strong> The more specific and the more felt — the faster reality can rearrange to match it.</p>
+      <span class="step-note">Practice feeling it — not just naming it.</span>
+    </div>
 
-    <div class="step step-1" data-step>
-      <div class="step-num-wrap"><div class="step-num">1</div></div>
-      <div class="step-card">
-        <span class="step-tag">Step One</span>
-        <h3 class="step-title">Get <em>clear</em> on what you desire</h3>
-        <p class="step-body">Not what looks good on someone else's life. Not what you think you're supposed to want. What do YOU actually desire — and how does it feel to have it? Get so specific you can feel it in your body. What does your everyday life look like when it's already yours? Your subconscious needs a clear, felt target. Vague desires get vague results.</p>
-        <span class="step-note">Practice feeling it — not just naming it</span>
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-num-row">
+        <div class="step-num">2</div>
+        <span class="step-tag">Step Two — The Awareness</span>
+      </div>
+      <h3 class="step-title">Notice <em>what comes up</em></h3>
+      <p class="step-body">When you really feel into having what you desire — what happens in your body? Does it feel like a <strong>hell yes, this is mine</strong>? Or does it feel a little scary, uncomfortable, like <strong>yeah right, not for me</strong>?</p>
+      <p class="step-body">That reaction is your self-concept showing you exactly what it believes you're available for. <strong>That's the block.</strong> And now that you can see it — you can clear it.</p>
+      <span class="step-note">You can never outmanifest your self-concept.</span>
+      <div class="expand-card">
+        <span class="expand-label">★ But what if I can't identify my block?</span>
+        <p class="expand-body">Sometimes nothing obvious comes up — you just feel numb, blank, or stuck. <strong>That blankness IS data.</strong> It usually means the block lives deeper than your conscious mind can access — which is exactly why surface-level methods never move it. <strong>That's exactly what Money Multiverse™ was built for</strong> — a 4-portal audio rewire that bypasses conscious resistance and clears the block at the root, no matter what you're calling in.</p>
+        <a href="#money-multiverse" class="nudge">See Money Multiverse below ↓</a>
       </div>
     </div>
 
-    <div class="step step-2" data-step>
-      <div class="step-num-wrap"><div class="step-num">2</div></div>
-      <div class="step-card">
-        <span class="step-tag">Step Two</span>
-        <h3 class="step-title">Notice what <em>comes up</em></h3>
-        <p class="step-body">When you really feel into having what you desire — what happens in your body? Does it feel like a <strong>hell yes, this is mine</strong>? Or does it feel a little scary, uncomfortable, like <strong>yeah right</strong>? That reaction is your self concept showing you exactly what it believes you're available for. That's the block. And now that you can see it — you can clear it.</p>
-        <span class="step-note">You can never outmanifest your self concept</span>
-        <div class="expand-card">
-          <span class="expand-label">But what if I can't identify my block?</span>
-          <p class="expand-body">Sometimes nothing obvious comes up — you just feel numb, blank, or stuck. That blankness IS data. It usually means the block lives deeper than your conscious mind can access, which is exactly why surface-level methods never move it. <strong>This is the work we do together.</strong> Inside House of Her I'll help you find it, name it, and clear it at the root.</p>
-          <a href="https://manifestwithjac.com" class="nudge">Find your block inside House of Her™ →</a>
-        </div>
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-num-row">
+        <div class="step-num">3</div>
+        <span class="step-tag">Step Three — The Identity</span>
+      </div>
+      <h3 class="step-title">Assume it's <em>already yours</em></h3>
+      <p class="step-body">This is the law of assumption. You stop chasing the desire and assume it's already done. Instead of <strong>"I want this so bad"</strong> — you transmute that energy into <strong>"I am so grateful this is already mine."</strong> You live from the end result.</p>
+      <p class="step-body">The universe doesn't respond to what you say. <strong>It responds to what you actually believe is true.</strong> And what you believe is what gets mirrored back.</p>
+      <span class="step-note">Transmute want into gratitude for already having it.</span>
+      <div class="expand-card">
+        <span class="expand-label">★ But what if it just feels fake?</span>
+        <p class="expand-body">It will at first — and that's completely normal. If you've spent years believing something isn't possible for you, your body isn't going to flip a switch overnight. That tight, forced feeling? <strong>That's your nervous system saying it doesn't feel safe yet.</strong> That's exactly why Step Four exists. The nervous system work is what makes this step feel true — calm, settled, real. Not forced.</p>
+        <a href="#money-multiverse" class="nudge">See the audio programs ↓</a>
       </div>
     </div>
 
-    <div class="step step-3" data-step>
-      <div class="step-num-wrap"><div class="step-num">3</div></div>
-      <div class="step-card">
-        <span class="step-tag">Step Three</span>
-        <h3 class="step-title">Assume it's <em>already yours</em></h3>
-        <p class="step-body">This is the law of assumption. You stop chasing the desire and assume it's already done. Instead of "I want this so bad" — you shift and transmute that energy into "I am so grateful this is already mine." You live from the end result. The universe doesn't respond to what you say — it responds to what you actually believe is true. And what you believe is what gets mirrored back.</p>
-        <span class="step-note">Transmute want into gratitude for already having it</span>
-        <div class="expand-card">
-          <span class="expand-label">What if it just feels fake?</span>
-          <p class="expand-body">It will at first — and that's completely normal. If you've spent years believing something isn't possible for you, your body isn't going to flip a switch overnight. That tight, forced feeling when you try to feel grateful for something you don't have yet? That's your nervous system saying it doesn't feel safe yet. <strong>That's exactly why step four exists.</strong> The nervous system work is what makes this step feel true — calm, settled, real. Not forced.</p>
-          <a href="https://manifestwithjac.com" class="nudge">Do the work that makes it feel real →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="step step-4" data-step>
-      <div class="step-num-wrap"><div class="step-num">4</div></div>
-      <div class="step-card">
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-num-row">
+        <div class="step-num">4</div>
         <span class="step-tag">Step Four — The Most Missed Piece</span>
-        <h3 class="step-title">Do the daily <em>nervous system work</em></h3>
-        <p class="step-body">Your nervous system has been conditioned by every experience you've ever had. So even when you consciously say "this is already mine" — underneath, your subconscious might be running a completely different story. Your body tenses. The old pattern kicks in. Limiting beliefs come up. Your brain loves homeostasis. It loves to keep you in what feels safe and familiar — even when familiar means stuck.</p>
-        <p class="step-body">The daily nervous system work — breathwork, EFT tapping, subconscious recoding, subliminals — is your energetic gym. You go to the physical gym to work on your physical body. This is the gym for your energy. What you normalize will materialize.</p>
-        <span class="step-note">This is what makes assuming it's yours actually feel true</span>
-        <div class="expand-card">
-          <span class="expand-label">What does a daily practice actually look like?</span>
-          <p class="expand-body">It looks different every single day — and that's the point. Some days it's 10 minutes of quiet meditation in the morning. Another day it's a full breathwork session. Some days it's a quick EFT round before bed. Some days it's just holding the frequency and choosing not to spiral. There's no one thing you must do every day. It's about leaning in when you need the support and showing up consistently — even when it's small.</p>
-          <a href="https://manifestwithjac.com" class="nudge">Your energetic gym is inside House of Her™ →</a>
-        </div>
+      </div>
+      <h3 class="step-title">Do the daily <em>nervous system work</em></h3>
+      <p class="step-body">Your nervous system has been conditioned by every experience you've ever had. So even when you consciously say <strong>"this is already mine"</strong> — underneath, your subconscious might be running a completely different story. Your body tenses. The old pattern kicks in. <strong>Your brain loves homeostasis. It loves to keep you in what feels safe and familiar — even when familiar means stuck.</strong></p>
+      <p class="step-body">The daily nervous system work — breathwork, EFT tapping, subconscious recoding, subliminals — is your <strong>energetic gym.</strong> You go to the physical gym to work on your body. This is the gym for your energy. <strong>What you normalize will materialize.</strong></p>
+      <span class="step-note">This is what makes assuming it's yours actually feel true.</span>
+      <div class="expand-card">
+        <span class="expand-label">★ What does a daily practice actually look like?</span>
+        <p class="expand-body">It looks different every single day — and that's the point. Some days it's 10 minutes of quiet meditation. Another day a full breathwork session. Some days a quick EFT round before bed. Some days it's just holding the frequency and choosing not to spiral. <strong>There's no one thing you must do every day.</strong> It's about leaning in when you need support and showing up consistently — even when it's small.</p>
+        <a href="#money-multiverse" class="nudge">Get Money Multiverse ↓</a>
       </div>
     </div>
 
-    <div class="step step-5" data-step>
-      <div class="step-num-wrap"><div class="step-num">5</div></div>
-      <div class="step-card">
-        <span class="step-tag">Step Five</span>
-        <h3 class="step-title">Take action <em>from her</em> —<br>not toward her</h3>
-        <p class="step-body">Aligned action only. You don't obsess. You don't force. You never take action from a place of panic or lack. You move when it feels exciting, happy, passionate — when it's a genuine yes in your body. Your energetic state of being is what calls in your desire, not the action itself. So you take action based on the feeling, not based on what you think you're supposed to be doing. Every decision comes from that new identity — and reality rearranges to match who you're being, not what you're doing.</p>
-        <span class="step-note">Aligned action feels exciting. Never forced.</span>
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-num-row">
+        <div class="step-num">5</div>
+        <span class="step-tag">Step Five — The Proof</span>
       </div>
+      <h3 class="step-title">Take action <em>from her</em><br>— not toward her</h3>
+      <p class="step-body">Aligned action only. You don't obsess. You don't force. You never take action from a place of panic or lack. <strong>You move when it feels exciting, happy, passionate</strong> — when it's a genuine yes in your body.</p>
+      <p class="step-body">Your energetic state of being is what calls in your desire — <strong>not the action itself.</strong> So you take action based on the feeling, not based on what you think you're supposed to be doing. Every decision comes from that new identity — and reality rearranges to match who you're being, not what you're doing.</p>
+      <span class="step-note">Aligned action feels exciting. Never forced.</span>
     </div>
 
-  </div>
-
-  <!-- 3D CALLOUT -->
-  <div class="callout fade" style="margin-top:60px;">
-    <p>And finally — <em>ignore your current circumstances.</em><br><br>
-    Your current reality is just old data. It's a reflection of old beliefs and old decisions — not who you are anymore, and not where you're going. When things feel like they're falling apart after you start this work, that's actually a really good sign. Your life is clearing out everything that's no longer aligned with your highest timeline. It's making room.<br><br>
-    <em>Hold the frequency. That's old data. Your reality is already shifting.</em></p>
-  </div>
+    <!-- CIRCUMSTANCES CALLOUT -->
+    <div class="circumstances">
+      <span class="circumstances-label">★ And finally —</span>
+      <p class="circumstances-text"><strong>Ignore your current circumstances.</strong> Your current reality is just old data — a reflection of old beliefs and old decisions, not who you are anymore and not where you're going. When things feel like they're falling apart after you start this work, that's actually a really good sign. <em>Your life is clearing out everything that's no longer aligned with your highest timeline. It's making room.</em></p>
+    </div>
+  </section>
 
   <!-- FAQ -->
-  <section class="faq-section fade">
-    <span class="section-label">Questions that always come up</span>
-    <h2 class="faq-title">Still have <em>questions?</em></h2>
-    <p class="faq-sub">The ones she asks every single time — answered.</p>
+  <section class="faq-section">
+    <div class="faq-header">
+      <span class="eyebrow">★ Real Questions ★</span>
+      <h2 class="faq-title" style="margin-top:24px;">Frequently <em>Asked</em></h2>
+    </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
         <span>How long does this actually take?</span>
         <span class="faq-toggle">+</span>
       </div>
-      <div class="faq-a">
-        <p>The honest answer is — it depends, and the timeline is completely in your hands. I've seen women manifest something in hours. I've seen others work at it for years because they keep doing everything at the surface level without touching the subconscious work. The faster you align with the frequency of already having it — through the nervous system work, the identity shift, the daily practice — the faster your reality responds. There's no set timeline. There's only how committed you are to doing the actual work.</p>
+      <div class="faq-answer">
+        <p>The honest answer is — it depends, and the timeline is completely in your hands. I've seen women manifest something in hours. I've seen others work at it for years because they keep doing everything at the surface level without touching the subconscious. <strong>The faster you align with the frequency of already having it — through the nervous system work, the identity shift, the daily practice — the faster your reality responds.</strong> There's no set timeline. There's only how committed you are.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
         <span>What if things get WORSE after I start?</span>
         <span class="faq-toggle">+</span>
       </div>
-      <div class="faq-a">
-        <p>This is actually a really good sign — even though it doesn't feel like it in the moment. When you decide to call in a new reality, your life starts clearing out everything that's no longer aligned with your highest timeline. The relationship that wasn't right. The job that was keeping you small. The patterns that were keeping you stuck. It can feel like things are falling apart. They're not. They're making room.</p>
-        <p>Your only job in those moments is to hold the frequency. Don't let the 3D shake you. That's just old data clearing out. Keep going.</p>
+      <div class="faq-answer">
+        <p>This is actually a really good sign — even though it doesn't feel like it in the moment. When you decide to call in a new reality, your life starts clearing out everything that's no longer aligned with your highest timeline. The relationship that wasn't right. The job that was keeping you small. The patterns that kept you stuck. <strong>It can feel like things are falling apart. They're not. They're making room.</strong></p>
+        <p>Your only job in those moments is to hold the frequency. Don't let the 3D shake you. <strong>That's just old data clearing out. Keep going.</strong></p>
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
         <span>How do I know aligned action vs. just avoiding things?</span>
         <span class="faq-toggle">+</span>
       </div>
-      <div class="faq-a">
-        <p>Aligned action feels exciting. Happy. Passionate. Even if it's a little scary — it still has that genuine pull toward it. Avoidance feels like resistance, numbness, or dread dressed up as "waiting for the right time."</p>
-        <p>The more you do the nervous system work, the more in tune with yourself you become — and the easier it gets to know the difference. You stop second-guessing. You start trusting the pull.</p>
+      <div class="faq-answer">
+        <p>Aligned action feels exciting. Happy. Passionate. Even if it's a little scary — it still has that genuine pull toward it. <strong>Avoidance feels like resistance, numbness, or dread dressed up as "waiting for the right time."</strong></p>
+        <p>The more you do the nervous system work, the more in tune with yourself you become — and the easier it gets to know the difference. You stop second-guessing. <strong>You start trusting the pull.</strong></p>
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span>Do I have to do all four tools every single day?</span>
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span>Does this work for things other than money?</span>
         <span class="faq-toggle">+</span>
       </div>
-      <div class="faq-a">
-        <p>No. It's not about doing everything every day — it's about showing up consistently in whatever way you need. Some days a 10-minute meditation is exactly right. Some days you need a full breathwork session. Some days it's a quick EFT round before you go to sleep. The key is consistency, not intensity. Keep going to your energetic gym — even when it's small.</p>
-        <a href="https://manifestwithjac.com" class="nudge">Start your energetic gym inside House of Her™ →</a>
+      <div class="faq-answer">
+        <p>Yes — that's the whole point. The desire changes. The process never does. I've used this exact formula and watched clients use it for <strong>their specific person, reconciled relationships, the body they wanted, the baby, the move, the healing, the career.</strong> Money is just the one people talk about most because it's the most measurable. <strong>Reality is reality. The formula doesn't care what you're calling in.</strong></p>
       </div>
     </div>
 
-  </section>
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span>Do I have to do all the tools every single day?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>No. It's not about doing everything every day — <strong>it's about showing up consistently in whatever way you need.</strong> Some days a 10-minute meditation is exactly right. Some days you need a full breathwork session. Some days it's a quick EFT round before you sleep. The key is consistency, not intensity. Keep going to your energetic gym — even when it's small.</p>
+        <a href="#money-multiverse" class="nudge">See the audio programs below ↓</a>
+      </div>
+    </div>
 
-  <!-- TRUTH -->
-  <section class="truth fade">
-    <span class="section-label">The only thing left to say</span>
-    <h2 class="truth-title">Your only job is to<br><em>live as if it's already yours.</em></h2>
-    <p class="truth-body">Not just through your actions — through your identity. Through who you're being every single day. When you actually rewire what your subconscious believes is true and what your nervous system feels safe receiving, your reality has no choice but to catch up.</p>
-    <p class="truth-body">The outside always follows the inside. You've just been conditioned over years to believe certain things about the world, about yourself, about what's possible for someone like you. All we're doing is rewriting the code. And the only truth that matters is the truth you decide.</p>
-    <div class="pull"><p>What your life looks like is always going to be your choice.</p></div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section fade">
-    <h2 class="cta-title">Ready to go<br><em>deeper?</em></h2>
-    <p class="cta-body">House of Her™ is your energetic gym. Live breathwork, EFT tapping, subconscious recoding, a growing subliminal vault, and a community of women who are done overcomplicating it and ready to actually receive.</p>
-    <p class="cta-body" style="font-size:0.8rem; margin-top:-20px; color:var(--rose); font-style:italic;">All included inside House of Her™.</p>
-    <a href="https://manifestwithjac.com" class="cta-btn">Join House of Her™</a>
-    <p class="cta-sub">Monthly membership · Cancel anytime · manifestwithjac.com</p>
-    <p class="cta-or">Or start with a product</p>
-    <div class="cta-products">
-      <a href="https://manifestwithjac.com" class="cta-product">Money Multiverse™ — $97</a>
-      <a href="https://manifestwithjac.com" class="cta-product">Timeline Jump Sleep Portal™ — $7</a>
-      <a href="https://manifestwithjac.com" class="cta-product">La La Land™ — $47</a>
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span>What if I can't feel it yet — what if it just feels fake?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>It WILL feel fake at first. That's not a problem — <strong>that's just the gap between your current identity and the one you're stepping into.</strong> The fake feeling is unfamiliarity, not impossibility. The more your nervous system gets used to the frequency of already having it, the more your body recognizes her as you. That's exactly what the audio programs below are built to do — get your body there faster than willpower ever could.</p>
+        <a href="#money-multiverse" class="nudge">See the audio programs below ↓</a>
+      </div>
     </div>
   </section>
 
-  <p class="footer-mark">© Celestara Collective Inc. ✦ Manifest With Jac™ ✦ manifestwithjac.com</p>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <span class="eyebrow">★ Real Women, Real Proof ★</span>
+      <h2 class="testimonials-title" style="margin-top:24px;">What happens when<br><em>you actually do this.</em></h2>
+      <p class="testimonials-sub"><strong>Money to the dollar. Their person. The body. The life.</strong> This is what happens when you stop overcomplicating it and become her.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <img src="win-1.jpeg" alt="Client win — 5 sales today">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-10.jpeg" alt="Client win — won $500 from $20 in slot machine, abundance is everywhere">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-3.jpeg" alt="Client win — $2000 client signed after EFT session">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-7.jpeg" alt="Client win — $3000 MRR">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-4.jpeg" alt="Client win — raised rates without overthinking">
+      </div>
+      <div class="testimonial-card">
+        <img src="win-5.jpeg" alt="Client win — best investment in business">
+      </div>
+    </div>
+
+    <p class="testimonials-caption">She became her. Reality caught up.</p>
+  </section>
+
+  <!-- MINI STORE -->
+  <section class="store-section" id="products">
+    <div class="store-header">
+      <span class="eyebrow">★ Choose Your Entry Point ★</span>
+      <h2 class="store-title" style="margin-top:24px;">Ready to <em>actually become</em><br>her?</h2>
+      <p class="store-sub">The blueprint shows you what. These audio programs are how — they do the daily nervous system work for you so the rewire actually holds. Start with Money Multiverse: it's the deepest subconscious rewire I've built, and money is simply the desire most women bring to it first.</p>
+    </div>
+
+    <!-- FEATURED — MONEY MULTIVERSE -->
+    <div class="featured-card" id="money-multiverse">
+      <span class="featured-tag">★ Start Here ★</span>
+      <span class="featured-tagline">★ The Deepest Subconscious Rewire</span>
+      <h3 class="featured-name">Money <em>Multiverse</em>™</h3>
+      <img src="money-multiverse-mockup.png" alt="Money Multiverse — luxury digital program mockup with audio library, journal prompts, and crystals" class="featured-mockup">
+
+      <div class="urgency-banner">
+        <span class="urgency-banner-label">⚡ Huge Update Coming Soon</span>
+        <p class="urgency-banner-text">Last chance to lock in <strong>$197</strong> before the full overhaul drops and the price jumps to <strong>$497</strong>. Buy now and get every new asset added — <strong>free, forever.</strong></p>
+      </div>
+
+      <p class="featured-desc">A 4-portal audio rewire for the woman who's done budgeting the life she actually wants. <strong>Money Multiverse gets you to the woman who books the trip, pays the bill, raises her standards, and lets money expand her life — instead of the one who calculates, second-guesses, and watches everyone else live it.</strong></p>
+      <ul class="featured-includes">
+        <li><strong>Four portals</strong> — audio teachings, EFT tapping scripts, and journal prompts that clear ancestral money fear, the prover-identity pattern, hidden self-worth blocks, and the income ceiling — so you stop running the same financial story your mom and grandma ran</li>
+        <li><strong>A chakra-clearing breathwork ceremony</strong> that moves the released energy through your body before it can re-lodge somewhere else — so wealth feels safe instead of stressful in your nervous system</li>
+        <li><strong>A quantum subconscious recoding session using sacred geometry</strong> that imprints the receiving identity directly into your subconscious, bypassing the part of your mind that wants to argue with it — so you can hold surplus without wondering where it has to go</li>
+        <li><strong>The Wealthy Woman Install™</strong> — an overnight subliminal that runs while you sleep, reinforcing the rewire every night so the new identity becomes your default, not a daily decision — so you wake up as the woman whose life money expands, not contracts</li>
+        <li><strong>Bonus · Thank You, Debt™</strong> — a 3-phase audio that releases the shame, dread, and avoidance your body holds around debt — so you can pay for the bougie gym, the kids' college, and the things that make your life feel like yours, without the math in your head</li>
+      </ul>
+      <div class="featured-price-row">
+        <span class="featured-price-was">$797</span>
+        <span class="featured-price">$197</span>
+        <span class="featured-price-suffix">Lifetime Access</span>
+      </div>
+      <a href="https://manifestwithjac.netlify.app/money-multiverse" class="featured-btn">Start The Rewire →</a>
+    </div>
+
+    <!-- SUPPORTING PRODUCTS -->
+    <span class="supporting-label">★ Or explore the other audio programs ★</span>
+
+    <div class="product-grid">
+
+      <!-- WEALTHY AS FUCK STACK -->
+      <div class="product-card" id="wealthy-as-fuck">
+        <div class="product-info">
+          <p class="product-tagline">★ For Staying in the Frequency</p>
+          <h3 class="product-name">Wealthy As <em>Fuck</em>™ Audio Stack</h3>
+          <p class="product-desc">For the woman who wants to walk through her day knowing money is on its way. <strong>10 audios — 5 subliminals for overnight reprogramming + 5 rampage affirmations to drill the frequency in while you drive, walk, get ready, or do anything else.</strong> Press play and become the woman money is obsessed with.</p>
+        </div>
+        <div class="product-action">
+          <div class="product-price-row">
+            <p class="product-price">$47</p>
+            <span class="product-price-suffix">Lifetime Access</span>
+          </div>
+          <a href="https://manifestwithjac.netlify.app/wealthy-as-fuck" class="product-btn">Get It →</a>
+        </div>
+      </div>
+
+      <!-- THANK YOU DEBT -->
+      <div class="product-card" id="thank-you-debt">
+        <div class="product-info">
+          <p class="product-tagline">★ For Releasing Debt Shame</p>
+          <h3 class="product-name">Thank You, <em>Debt</em>™</h3>
+          <p class="product-desc">A 3-phase nervous system recalibration that <strong>releases the shame your body has been carrying around debt</strong> — so your wealth channel can finally open. Phase 1 reframes. Phase 2 rewires with EFT and theta visualization. Phase 3 reclaims your identity.</p>
+        </div>
+        <div class="product-action">
+          <div class="product-price-row">
+            <p class="product-price">$27</p>
+            <span class="product-price-suffix">Lifetime Access</span>
+          </div>
+          <a href="https://manifestwithjac.com" class="product-btn">Get It →</a>
+        </div>
+      </div>
+
+      <!-- LA LA LAND -->
+      <div class="product-card">
+        <div class="product-info">
+          <p class="product-tagline">★ For Productive Delusion + Self Concept</p>
+          <h3 class="product-name">La La <em>Land</em>™</h3>
+          <p class="product-desc">The audio program for the woman ready to commit to the version of herself she can already see. <strong>Self-concept work, EFT tapping, and a daily anchor practice</strong> that gets your body into the frequency of already having it — including the money.</p>
+        </div>
+        <div class="product-action">
+          <div class="product-price-row">
+            <p class="product-price">$47</p>
+            <span class="product-price-suffix">Lifetime Access</span>
+          </div>
+          <a href="https://manifestwithjac.netlify.app/lalaland.html" class="product-btn">Get It →</a>
+        </div>
+      </div>
+
+      <!-- TIMELINE JUMP -->
+      <div class="product-card">
+        <div class="product-info">
+          <p class="product-tagline">★ For Overnight Wealth Identity Rewire</p>
+          <h3 class="product-name">Timeline Jump <em>Sleep Portal</em>™</h3>
+          <p class="product-desc">An 8-hour subliminal sleep track designed to <strong>rewire your wealth subconscious while you sleep.</strong> Theta-optimized. Identity-coded. The rewire keeps running through the night so you wake up a closer match to the woman the money moves toward.</p>
+        </div>
+        <div class="product-action">
+          <div class="product-price-row">
+            <p class="product-price">$7</p>
+            <span class="product-price-suffix">Lifetime Access</span>
+          </div>
+          <a href="https://manifestwithjac.netlify.app/timeline-jump" class="product-btn">Get It →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <p class="footer-mark">© Celestara Collective Inc. ★ Manifest With Jac™ ★ manifestwithjac.com</p>
 
 </div>
 
-<script>
-  const all = document.querySelectorAll('[data-step], .fade');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  all.forEach(el => observer.observe(el));
-
-  function toggleFaq(el) {
-    const answer = el.nextElementSibling;
-    const toggle = el.querySelector('.faq-toggle');
-    const isOpen = answer.classList.contains('open');
-    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-    document.querySelectorAll('.faq-toggle').forEach(t => t.classList.remove('open'));
-    if (!isOpen) { answer.classList.add('open'); toggle.classList.add('open'); }
-  }
-</script>
 </body>
 </html>
