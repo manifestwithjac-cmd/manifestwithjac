@@ -4,309 +4,512 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Claiming Portal — Manifest With Jac</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<meta name="description" content="You claimed it. Now here's the exact 5-step formula to actually manifest it, plus a free guided breathwork and EFT activation. Drop your name + email and I'll send you inside.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --periwinkle: #CED9ED;
-    --lavender: #CFC5E1;
-    --rose: #DEC5DF;
-    --blush: #EEC7DD;
-    --sage: #D6E8DA;
-    --deep: #0a0812;
-  }
+:root {
+  --ink: #0A0A14;
+  --ink-soft: #3A3A45;
+  --ink-muted: #6B6B7A;
+  --cream: #FDFAF5;
+  --cream-deep: #F8F1E8;
+  --pink-warm: #F4A5B8;
+  --pink-coral: #F08AA0;
+  --pink-blush: #FCEBEF;
+  --pink-whisper: #FDF5F7;
+  --gold: #D4A537;
+  --gold-deep: #B0871E;
+  --gold-soft: #E8D28A;
+  --line: rgba(10, 10, 20, 0.12);
+  --white: #FFFFFF;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--deep);
-    color: #f0eaf8;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: none;
-    min-height: 100vh;
-  }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(180deg, var(--pink-blush) 0%, var(--cream) 35%, var(--cream) 65%, var(--pink-blush) 100%);
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
-  .cursor {
-    width: 8px; height: 8px;
-    background: var(--blush);
-    border-radius: 50%;
-    position: fixed; pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: screen;
-  }
-  .cursor-ring {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(238,199,221,0.4);
-    border-radius: 50%;
-    position: fixed; pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease-out;
-  }
+/* Animated energy blobs */
+body::before {
+  content: '';
+  position: fixed;
+  top: -15%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, var(--pink-warm) 0%, transparent 65%);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(70px);
+  animation: float1 14s ease-in-out infinite;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -15%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--gold-soft) 0%, transparent 65%);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(70px);
+  animation: float2 18s ease-in-out infinite;
+}
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 30px) scale(1.1); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.15); }
+}
 
-  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-  .star {
-    position: absolute; border-radius: 50%;
-    animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
-    animation-delay: var(--delay, 0s);
-  }
-  @keyframes twinkle {
-    from { opacity: 0.1; transform: scale(0.8); }
-    to { opacity: 0.9; transform: scale(1.2); }
-  }
+.container { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
 
-  .nebula {
-    position: fixed; border-radius: 50%; filter: blur(80px);
-    pointer-events: none; z-index: 0;
-    animation: nebula-drift 12s ease-in-out infinite alternate;
-  }
-  @keyframes nebula-drift {
-    from { transform: translate(0,0) scale(1); }
-    to { transform: translate(20px,-20px) scale(1.05); }
-  }
+/* HERO */
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+@media (min-width: 768px) { .hero { padding: 4rem 0 2.5rem; } }
 
-  .page {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 60px 24px;
-  }
+.claim-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ink);
+  color: var(--gold-soft);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.6rem 1.25rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  animation: pulse-badge 2.5s ease-in-out infinite;
+}
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 165, 184, 0.4); }
+  50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(244, 165, 184, 0); }
+}
 
-  /* Portal rings */
-  .portal-ring-wrap {
-    position: relative; width: 160px; height: 160px;
-    margin: 0 auto 40px; flex-shrink: 0;
-  }
-  .portal-ring {
-    width: 160px; height: 160px; border-radius: 50%;
-    position: absolute; inset: 0;
-    animation: spin var(--spd, 8s) linear infinite;
-  }
-  .ring-1 { border: 1px solid rgba(206,217,237,0.3); --spd: 12s; }
-  .ring-2 { inset: 12px; border: 1px solid rgba(207,197,225,0.25); --spd: 8s; animation-direction: reverse; }
-  .ring-3 { inset: 24px; border: 1px solid rgba(222,197,223,0.3); --spd: 15s; }
-  .portal-core {
-    position: absolute; inset: 36px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(238,199,221,0.15), rgba(207,197,225,0.1), transparent);
-    animation: pulse-core 4s ease-in-out infinite;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; color: var(--blush);
-  }
-  @keyframes pulse-core {
-    0%,100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.1); opacity: 1; }
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+.hero-photo {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 2rem;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -20px rgba(240, 138, 160, 0.55), 0 0 0 1px rgba(244, 165, 184, 0.2);
+}
 
-  .eyebrow {
-    font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--lavender); margin-bottom: 16px; text-align: center;
-    opacity: 0; animation: fade-up 1s ease forwards 0.3s;
-  }
-  h1 {
-    font-family: 'Cormorant Garamond', serif; font-weight: 300;
-    font-size: clamp(48px, 10vw, 88px); line-height: 1; text-align: center;
-    margin-bottom: 8px;
-    opacity: 0; animation: fade-up 1s ease forwards 0.5s;
-  }
-  h1 em {
-    font-style: italic;
-    background: linear-gradient(135deg, var(--blush), var(--lavender), var(--periwinkle));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(18px, 3vw, 24px); color: rgba(240,234,248,0.6);
-    text-align: center; margin-bottom: 16px;
-    opacity: 0; animation: fade-up 1s ease forwards 0.7s;
-  }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  line-height: 1.0;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+h1 em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--pink-coral), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .divider {
-    width: 40px; height: 1px;
-    background: linear-gradient(to right, transparent, rgba(207,197,225,0.4), transparent);
-    margin: 0 auto 40px;
-    opacity: 0; animation: fade-up 1s ease forwards 0.85s;
-  }
+.hero-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-style: italic;
+  max-width: 540px;
+  margin: 0 auto 0.5rem;
+}
+.hero-sub strong {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 700;
+}
 
-  .intro {
-    max-width: 540px; margin: 0 auto 48px;
-    opacity: 0; animation: fade-up 1s ease forwards 0.9s;
-  }
-  .intro p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(17px, 2.8vw, 21px); line-height: 1.8;
-    text-align: center; color: rgba(240,234,248,0.65);
-  }
-  .intro p + p { margin-top: 14px; }
-  .intro strong { font-weight: 400; color: var(--blush); }
-  .intro em { font-style: italic; color: var(--lavender); }
+/* CLAIM STORY BLOCK */
+.claim-story {
+  padding: 1rem 0 2.5rem;
+}
+.claim-story-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(244, 165, 184, 0.4);
+  border-radius: 18px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+}
+@media (min-width: 768px) { .claim-story-card { padding: 2.5rem; } }
+.claim-story-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.claim-story-card p:last-child { margin-bottom: 0; }
+.claim-story-card strong { color: var(--ink); font-weight: 700; }
+.claim-story-card .big-line {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.35;
+  margin: 1.5rem 0;
+}
+.claim-story-card .big-line span {
+  background: linear-gradient(120deg, var(--pink-coral), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .optin-wrap {
-    width: 100%; max-width: 420px; margin: 0 auto;
-    opacity: 0; animation: fade-up 1s ease forwards 1.1s;
-  }
-  .step-label {
-    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--sage); text-align: center; margin-bottom: 20px; opacity: 0.7;
-  }
-  .form-wrap { display: flex; flex-direction: column; gap: 14px; }
-  .form-wrap input {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(207,197,225,0.2);
-    color: #f0eaf8; font-family: 'Outfit', sans-serif; font-weight: 300;
-    font-size: 15px; padding: 16px 20px; outline: none;
-    transition: border-color 0.3s; -webkit-appearance: none; border-radius: 0;
-  }
-  .form-wrap input::placeholder { color: rgba(240,234,248,0.25); }
-  .form-wrap input:focus { border-color: rgba(238,199,221,0.5); }
-  .form-wrap button {
-    padding: 18px;
-    background: linear-gradient(135deg, rgba(238,199,221,0.12), rgba(207,197,225,0.1));
-    border: 1px solid rgba(238,199,221,0.3);
-    color: var(--blush); font-family: 'Outfit', sans-serif; font-weight: 300;
-    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.3s; width: 100%;
-  }
-  .form-wrap button:hover {
-    background: linear-gradient(135deg, rgba(238,199,221,0.22), rgba(207,197,225,0.18));
-    border-color: var(--blush); color: #fff;
-  }
-  .form-wrap button:disabled { opacity: 0.6; cursor: default; }
-  .privacy-note {
-    font-size: 11px; text-align: center;
-    color: rgba(240,234,248,0.2); letter-spacing: 0.05em;
-  }
-  .error-msg {
-    font-size: 12px; text-align: center;
-    color: rgba(238,199,221,0.7); letter-spacing: 0.05em;
-    display: none;
-  }
+/* WHAT YOU GET */
+.payoff {
+  padding: 1rem 0 2rem;
+  text-align: center;
+}
+.payoff-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold-deep);
+  margin-bottom: 1rem;
+}
+.payoff h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.payoff h2 em {
+  font-style: italic;
+  color: var(--gold-deep);
+}
+.payoff-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  font-weight: 500;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.payoff-desc strong { color: var(--ink); font-weight: 700; }
 
-  .brand-sig {
-    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(240,234,248,0.15); text-align: center; margin-top: 60px;
-    opacity: 0; animation: fade-up 1s ease forwards 1.3s;
-  }
+/* FORM */
+.optin {
+  padding: 1.5rem 0 4rem;
+}
+.optin-form {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 2.25rem 1.75rem;
+  box-shadow: 10px 10px 0 var(--pink-warm);
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 768px) { .optin-form { padding: 2.75rem 2.5rem; } }
 
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+.optin-form::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 70%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(244, 165, 184, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.optin-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  position: relative;
+}
+.optin-form-title span {
+  background: linear-gradient(120deg, var(--pink-warm), var(--gold-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+.optin-form-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin-bottom: 1.75rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--pink-warm);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(244, 165, 184, 0.2);
+}
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+
+.form-submit {
+  width: 100%;
+  background: linear-gradient(120deg, var(--pink-coral), var(--gold));
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(244, 165, 184, 0.6);
+}
+.form-submit:active { transform: translateY(0); }
+.form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.form-disclaimer {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin-top: 1.25rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  position: relative;
+}
+
+footer {
+  padding: 2rem 0 3rem;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
+<div class="container">
 
-<div class="nebula" style="width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(207,197,225,0.07),transparent 70%);"></div>
-<div class="nebula" style="width:500px;height:500px;bottom:-100px;right:-100px;background:radial-gradient(circle,rgba(238,199,221,0.06),transparent 70%);animation-delay:-6s;animation-direction:reverse;"></div>
-<div class="nebula" style="width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(206,217,237,0.04),transparent 70%);animation-delay:-3s;"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="claim-badge">✦ You Claimed It ✦</div>
 
-<div class="page">
+    <img src="jac-laughing-chin.webp" alt="Jac laughing joyfully in an elegant black off-shoulder top with gold jewelry" class="hero-photo">
 
-  <div class="portal-ring-wrap">
-    <div class="portal-ring ring-1"></div>
-    <div class="portal-ring ring-2"></div>
-    <div class="portal-ring ring-3"></div>
-    <div class="portal-core">✦</div>
-  </div>
+    <h1>You claimed it.<br><em>Now take it.</em></h1>
 
-  <p class="eyebrow">Manifest With Jac — A Free Activation</p>
-  <h1>The <em>Claiming</em><br>Portal</h1>
-  <p class="hero-sub">You didn't stumble here. You were called.</p>
+    <p class="hero-sub">
+      When you typed <strong>"claim"</strong> — something already moved. That wasn't a comment. That was your subconscious saying <strong>yes</strong> before your mind could talk you out of it.
+    </p>
+  </section>
 
-  <div class="divider"></div>
-
-  <div class="intro">
-    <p>When you typed <strong>"claim"</strong> — something already shifted.</p>
-    <p>That wasn't just a comment. That was your subconscious saying <em>yes</em> before your conscious mind could talk you out of it.</p>
-    <p>Whatever you're claiming — <strong>money, love, your person, your life</strong> — it already exists. Leave your name and I'll send you inside.</p>
-  </div>
-
-  <div class="optin-wrap">
-    <p class="step-label">Step one</p>
-    <div class="form-wrap">
-      <input type="text" id="firstName" placeholder="First Name" />
-      <input type="email" id="email" placeholder="Email Address" />
-      <button type="button" id="submitBtn" onclick="handleSubmit()">
-        <span id="btnText">Activate My Portal ✦</span>
-        <span id="btnLoading" style="display:none">Opening your portal...</span>
-      </button>
-      <p class="privacy-note">No spam. Ever. Just frequency.</p>
+  <!-- CLAIM STORY -->
+  <section class="claim-story">
+    <div class="claim-story-card">
+      <p>
+        Whatever you're claiming — <strong>money, love, your person, the whole fuck-yes life</strong> — it already exists. It's already yours on a timeline that's one frequency away.
+      </p>
+      <div class="big-line">
+        But claiming it isn't enough. <span>You have to become the woman it belongs to.</span>
+      </div>
+      <p>
+        That's not a vision board. That's not saying an affirmation once and waiting. <strong>It's a formula.</strong> The same one I used to manifest half a million in sales after every method I tried left me broke.
+      </p>
     </div>
-  </div>
+  </section>
 
-  <p class="brand-sig">Manifest With Jac · manifestwithjac.com</p>
+  <!-- PAYOFF -->
+  <section class="payoff">
+    <div class="payoff-eyebrow">★ What you're getting ★</div>
+    <h2>The 5-step formula <em>plus a free activation</em></h2>
+    <p class="payoff-desc">
+      Drop your name and email below and I'll send you straight inside the Blueprint — <strong>the step-by-step formula to actually manifest the thing you just claimed,</strong> plus a free guided breathwork and EFT activation to anchor it in your body. Not theory. The exact process, and a moment to feel it.
+    </p>
+  </section>
+
+  <!-- OPT-IN FORM -->
+  <section class="optin">
+    <form
+      class="optin-form"
+      id="claim-form"
+      action="https://app.kit.com/forms/9429582/subscriptions"
+      method="post"
+      data-uid="f75878598a"
+    >
+      <div class="optin-form-title">Send me <span>inside the portal</span></div>
+      <div class="optin-form-sub">★ Free · Instant · Yours ★</div>
+
+      <div class="form-fields">
+        <input
+          type="text"
+          id="firstName"
+          name="fields[first_name]"
+          placeholder="Your first name"
+          class="form-input"
+          required
+          autocomplete="given-name"
+        >
+        <input
+          type="email"
+          id="email"
+          name="email_address"
+          placeholder="Your email address"
+          class="form-input"
+          required
+          autocomplete="email"
+        >
+        <button type="submit" class="form-submit" id="submit-btn">
+          ACTIVATE MY PORTAL ✦
+        </button>
+      </div>
+
+      <div class="form-disclaimer">
+        No spam. Ever. Just frequency. ✦
+      </div>
+    </form>
+  </section>
 
 </div>
 
+
+<footer>
+  Manifest With Jac · manifestwithjac.com
+</footer>
+
 <script>
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-function animateCursor() {
-  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
-  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
+(function() {
+  const form = document.getElementById('claim-form');
+  const submitBtn = document.getElementById('submit-btn');
 
-const starsEl = document.getElementById('stars');
-for (let i = 0; i < 150; i++) {
-  const s = document.createElement('div');
-  s.className = 'star';
-  const size = Math.random() * 2.5 + 0.5;
-  const colors = ['#CED9ED','#CFC5E1','#DEC5DF','#EEC7DD','#D6E8DA','#ffffff'];
-  s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};--dur:${2+Math.random()*4}s;--delay:${Math.random()*4}s;`;
-  starsEl.appendChild(s);
-}
+  const REDIRECT_URL = '/quantum-manifestation-blueprint.html';
+  const KIT_ENDPOINT = 'https://app.kit.com/forms/9429582/subscriptions';
 
-document.querySelectorAll('button, input').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='48px'; ring.style.height='48px'; });
-  el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; });
-});
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-async function handleSubmit() {
-  const name = document.getElementById('firstName').value.trim();
-  const email = document.getElementById('email').value.trim();
+    const name = document.getElementById('firstName').value.trim();
+    const email = document.getElementById('email').value.trim();
 
-  if (!email) {
-    document.getElementById('email').focus();
-    return;
-  }
+    if (!email) {
+      document.getElementById('email').focus();
+      return;
+    }
+    if (!name) {
+      document.getElementById('firstName').focus();
+      return;
+    }
 
-  const btn = document.getElementById('submitBtn');
-  document.getElementById('btnText').style.display = 'none';
-  document.getElementById('btnLoading').style.display = 'inline';
-  btn.disabled = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'OPENING YOUR PORTAL...';
 
-  try {
-    // Post to ConvertKit form API
+    // Build FormData MANUALLY with only the exact fields Kit expects
+    // (proven pattern from Claiming Portal - do NOT use new FormData(form))
     const formData = new FormData();
     formData.append('email_address', email);
     formData.append('fields[first_name]', name);
 
-    await fetch('https://app.kit.com/forms/9344728/subscriptions', {
+    fetch(KIT_ENDPOINT, {
       method: 'POST',
       body: formData,
-      mode: 'no-cors' // ConvertKit doesn't need CORS for form submissions
+      mode: 'no-cors'
+    })
+    .then(function() {
+      try {
+        localStorage.setItem('blueprint_subscriber', 'true');
+        localStorage.setItem('blueprint_first_name', name);
+      } catch (e) { /* localStorage might be blocked */ }
+      window.location.href = REDIRECT_URL;
+    })
+    .catch(function(err) {
+      // Even if fetch errors, Kit may still have captured via no-cors.
+      // Redirect anyway so the user isn't stuck.
+      console.error('Form submission note:', err);
+      window.location.href = REDIRECT_URL;
     });
-  } catch(e) {
-    // Even if fetch errors, redirect — Kit may still capture via no-cors
-  }
+  });
+})();
 
-  // Always redirect to activation page
-  window.location.href = 'https://manifestwithjac.netlify.app/claiming-portal-activation.html';
-}
 </script>
+
 </body>
 </html>
