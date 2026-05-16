@@ -442,46 +442,21 @@ strong { font-weight: 700; color: var(--ink); }
 }
 
 /* WINS / TESTIMONIALS */
-.wins {
-  padding: 4rem 0 5rem;
-  text-align: center;
+.wins-block {
+  padding: 2rem 0 3rem;
 }
-.wins-header {
-  margin-bottom: 3rem;
-}
-.wins-header h2 {
-  margin-bottom: 1rem;
-}
-.wins-sub {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--ink-soft);
-  max-width: 580px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-.wins-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  max-width: 720px;
+.wins-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 600px;
   margin: 0 auto;
 }
-@media (min-width: 600px) {
-  .wins-grid { gap: 1.25rem; }
-}
-.win-img {
+.win-img-full {
   width: 100%;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px -8px rgba(212, 165, 55, 0.25), 0 0 0 1px rgba(232, 168, 199, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -8px rgba(212, 165, 55, 0.2), 0 0 0 1px rgba(232, 168, 199, 0.2);
   display: block;
-  object-fit: contain;
-}
-.win-img--wide {
-  grid-column: 1 / -1;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
 /* WHY DIFFERENT */
@@ -761,7 +736,7 @@ footer p {
       Subliminals that install the wealthy identity into your subconscious <em>while you sleep.</em> Rampages that drill the frequency into your body <em>while you live your day.</em> <strong>You don't have to do anything. You just press play and let her show up.</strong>
     </p>
 
-    <a href="#join" class="cta-loud">I WANT TO FEEL HER 💸</a>
+    <a href="#join" class="cta-loud">PRESS PLAY ON MY NEW LIFE 💸</a>
 
     <div class="hero-meta">
       <span>10 Audios</span>
@@ -897,25 +872,15 @@ footer p {
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="wins">
+<!-- WINS BLOCK 1 -->
+<section class="wins-block">
   <div class="container-narrow">
-    <div class="wins-header">
-      <div class="eyebrow">★ Real women. Real results. ★</div>
-      <h2 class="display-l">The money is <em style="font-style:italic;color:var(--gold-deep);">already moving.</em></h2>
-      <p class="wins-sub">These are the DMs. The voice notes. The "I can't explain it but—" messages. This is what happens when you flood your nervous system with the right frequency.</p>
-    </div>
-    <div class="wins-grid">
-      <img src="win-1.jpeg" alt="Client win" class="win-img">
-      <img src="win-2.jpeg" alt="Client win" class="win-img">
-      <img src="win-3.jpeg" alt="Client win" class="win-img">
-      <img src="win-6.jpeg" alt="Client win" class="win-img">
-      <img src="win-7.jpeg" alt="Client win" class="win-img">
-      <img src="win-8.jpeg" alt="Client win" class="win-img">
-      <img src="win-9.jpeg" alt="Client win" class="win-img">
-      <img src="win-10.jpeg" alt="Client win" class="win-img">
-      <img src="win-4.jpeg" alt="Client win" class="win-img win-img--wide">
-      <img src="win-5.jpeg" alt="Client win" class="win-img">
+    <div class="eyebrow" style="text-align:center; margin-bottom:2rem;">★ Real women. Real results. ★</div>
+    <div class="wins-stack">
+      <img src="win-1.jpeg" alt="Client win" class="win-img-full">
+      <img src="win-2.jpeg" alt="Client win" class="win-img-full">
+      <img src="win-6.jpeg" alt="Client win" class="win-img-full">
+      <img src="win-8.jpeg" alt="Client win" class="win-img-full">
     </div>
   </div>
 </section>
@@ -982,6 +947,21 @@ footer p {
         <div><strong>$500K+</strong><span>in sales</span></div>
         <div><strong>50 lbs</strong><span>lost in 6 months</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div style="text-align:center; padding: 1rem 0 3rem;">
+  <a href="#join" class="cta-loud">I ALWAYS GET PAID 💸</a>
+</div>
+
+<!-- WINS BLOCK 2 -->
+<section class="wins-block">
+  <div class="container-narrow">
+    <div class="wins-stack">
+      <img src="win-7.jpeg" alt="Client win" class="win-img-full">
+      <img src="win-9.jpeg" alt="Client win" class="win-img-full">
+      <img src="win-10.jpeg" alt="Client win" class="win-img-full">
     </div>
   </div>
 </section>
@@ -1061,7 +1041,7 @@ footer p {
     <p class="final-sub">
       10 audios. One frequency. Lifetime access for $47. <strong style="color: var(--ink);">Press play and become her.</strong>
     </p>
-    <a href="#join" class="cta-loud">I WANT TO FEEL HER 💸</a>
+    <a href="#join" class="cta-loud">GIVE ME THE STACK 💸</a>
     <div class="hero-meta" style="margin-top: 2rem;">
       <span>10 audios</span>
       <span>Instant delivery</span>
