@@ -336,15 +336,16 @@ footer {
         <form
           class="optin-form"
           id="blueprint-form"
-          action="https://app.kit.com/forms/REPLACE_FORM_ID/subscriptions"
+          action="https://app.kit.com/forms/9429582/subscriptions"
           method="post"
-          data-uid="REPLACE_FORM_UID"
+          data-uid="f75878598a"
         >
           <div class="form-title">★ Activate the Blueprint ★</div>
 
           <div class="form-fields">
             <input
               type="text"
+              id="firstName"
               name="fields[first_name]"
               placeholder="Your first name"
               class="form-input"
@@ -353,6 +354,7 @@ footer {
             >
             <input
               type="email"
+              id="email"
               name="email_address"
               placeholder="Your email address"
               class="form-input"
@@ -395,37 +397,51 @@ footer {
 
   // Where to send her after she submits — Blueprint content lives at /wealth-frequency-blueprint
   const REDIRECT_URL = '/wealth-frequency-blueprint';
+  const KIT_ENDPOINT = 'https://app.kit.com/forms/9429582/subscriptions';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     errorBox.classList.remove('is-visible');
+
+    const name = document.getElementById('firstName').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // Basic validation - don't submit empty
+    if (!email) {
+      document.getElementById('email').focus();
+      return;
+    }
+    if (!name) {
+      document.getElementById('firstName').focus();
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'ACTIVATING...';
 
-    const formData = new FormData(form);
+    // Build FormData MANUALLY with only the exact fields Kit expects
+    // (proven pattern from Claiming Portal - do NOT use new FormData(form))
+    const formData = new FormData();
+    formData.append('email_address', email);
+    formData.append('fields[first_name]', name);
 
-    // Submit to Kit via fetch (no-cors so it doesn't get blocked)
-    fetch(form.action, {
+    fetch(KIT_ENDPOINT, {
       method: 'POST',
-      mode: 'no-cors',
-      body: formData
+      body: formData,
+      mode: 'no-cors'
     })
     .then(function() {
-      // no-cors means we can't read the response, but we assume success
-      // Store on localStorage so we know she opted in (for content gating later)
       try {
         localStorage.setItem('blueprint_subscriber', 'true');
-        localStorage.setItem('blueprint_first_name', formData.get('fields[first_name]') || '');
+        localStorage.setItem('blueprint_first_name', name);
       } catch (e) { /* localStorage might be blocked */ }
-
-      // Redirect to the actual Blueprint page
       window.location.href = REDIRECT_URL;
     })
     .catch(function(err) {
-      console.error('Form submission error:', err);
-      errorBox.classList.add('is-visible');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'ACTIVATE MY BLUEPRINT 💸';
+      // Even if fetch errors, Kit may still have captured via no-cors.
+      // Redirect anyway so the user isn't stuck.
+      console.error('Form submission note:', err);
+      window.location.href = REDIRECT_URL;
     });
   });
 })();
