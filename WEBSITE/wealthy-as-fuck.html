@@ -441,6 +441,49 @@ strong { font-weight: 700; color: var(--ink); }
   border-radius: 1px;
 }
 
+/* WINS / TESTIMONIALS */
+.wins {
+  padding: 4rem 0 5rem;
+  text-align: center;
+}
+.wins-header {
+  margin-bottom: 3rem;
+}
+.wins-header h2 {
+  margin-bottom: 1rem;
+}
+.wins-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.wins-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (min-width: 600px) {
+  .wins-grid { gap: 1.25rem; }
+}
+.win-img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -8px rgba(212, 165, 55, 0.25), 0 0 0 1px rgba(232, 168, 199, 0.25);
+  display: block;
+  object-fit: contain;
+}
+.win-img--wide {
+  grid-column: 1 / -1;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
 /* WHY DIFFERENT */
 .different {
   padding: 4rem 0;
@@ -843,13 +886,36 @@ footer p {
 
       <div class="track-card is-rampage">
         <div class="track-num">Rampage 05</div>
-        <h3 class="track-title">I Am the Version of Me <em>That Has It All</em></h3>
-        <p class="track-desc">The untouchable everything-rampage. The version of you who already has it. Already won. Already iconic. The woman nobody fucks with because she's already her.</p>
+        <h3 class="track-title">I <em>Always</em> Get Paid</h3>
+        <p class="track-desc">The universe's favorite rampage. You always win. You always get the money. You always get what you want. The woman the universe is obsessed with blessing — and she knows it.</p>
         <button class="track-preview-btn" data-audio="preview-rampage-05.mp3">
           <span class="play-icon"></span> 5-Sec Preview
         </button>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="wins">
+  <div class="container-narrow">
+    <div class="wins-header">
+      <div class="eyebrow">★ Real women. Real results. ★</div>
+      <h2 class="display-l">The money is <em style="font-style:italic;color:var(--gold-deep);">already moving.</em></h2>
+      <p class="wins-sub">These are the DMs. The voice notes. The "I can't explain it but—" messages. This is what happens when you flood your nervous system with the right frequency.</p>
+    </div>
+    <div class="wins-grid">
+      <img src="win-1.jpeg" alt="Client win" class="win-img">
+      <img src="win-2.jpeg" alt="Client win" class="win-img">
+      <img src="win-3.jpeg" alt="Client win" class="win-img">
+      <img src="win-6.jpeg" alt="Client win" class="win-img">
+      <img src="win-7.jpeg" alt="Client win" class="win-img">
+      <img src="win-8.jpeg" alt="Client win" class="win-img">
+      <img src="win-9.jpeg" alt="Client win" class="win-img">
+      <img src="win-10.jpeg" alt="Client win" class="win-img">
+      <img src="win-4.jpeg" alt="Client win" class="win-img win-img--wide">
+      <img src="win-5.jpeg" alt="Client win" class="win-img">
     </div>
   </div>
 </section>
