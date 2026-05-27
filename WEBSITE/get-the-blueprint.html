@@ -6,6 +6,31 @@
 <title>The Wealth Frequency Blueprint — Manifest With Jac</title>
 <meta name="description" content="The free blueprint that walks you through the exact frequency you need to drill into your subconscious to become the woman money is obsessed with.">
 
+<!-- UTM CAPTURE — must run before form submits -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var stored = {};
+  try {
+    stored = JSON.parse(localStorage.getItem('mwj_utms') || '{}');
+  } catch (e) { /* localStorage blocked */ }
+
+  utmKeys.forEach(function(key) {
+    var val = params.get(key);
+    if (val) stored[key] = val;
+  });
+
+  if (Object.keys(stored).length > 0) {
+    try {
+      localStorage.setItem('mwj_utms', JSON.stringify(stored));
+    } catch (e) { /* localStorage blocked */ }
+  }
+
+  window.mwjUtms = stored;
+})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -424,6 +449,14 @@ footer {
     const formData = new FormData();
     formData.append('email_address', email);
     formData.append('fields[first_name]', name);
+
+    // Attach captured UTMs (set by capture script in <head>)
+    const utms = window.mwjUtms || {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {
+      if (utms[key]) {
+        formData.append('fields[' + key + ']', utms[key]);
+      }
+    });
 
     fetch(KIT_ENDPOINT, {
       method: 'POST',
