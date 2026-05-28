@@ -559,6 +559,31 @@
     <p class="checkout-sub">Enter your details below. You'll have access within minutes.</p>
     <div class="thrivecart-wrap">
       <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="15" data-thrivecart-embeddable="tc-jacnicole-15-D7DWSL"></div>
+      <!-- Inject UTMs onto the embed BEFORE thrivecart.js runs (avoids race condition) -->
+      <script>
+      (function() {
+        var utms = {};
+        try { utms = JSON.parse(localStorage.getItem('mwj_utms') || '{}'); } catch (e) {}
+        var params = new URLSearchParams(window.location.search);
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(key){
+          var v = params.get(key);
+          if (v) utms[key] = v;
+        });
+        if (Object.keys(utms).length === 0) return;
+
+        // PLAIN utm params -> powers ThriveCart's native Source/UTM report
+        // passthrough[] copy -> also saves the values onto the order record
+        var parts = [];
+        Object.keys(utms).forEach(function(key){
+          parts.push(key + '=' + encodeURIComponent(utms[key]));
+          parts.push('passthrough[' + key + ']=' + encodeURIComponent(utms[key]));
+        });
+        var qs = parts.join('&');
+
+        var el = document.querySelector('[data-thrivecart-embeddable="tc-jacnicole-15-D7DWSL"]');
+        if (el) el.setAttribute('data-thrivecart-querystring', qs);
+      })();
+      </script>
       <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-15-D7DWSL"></script>
     </div>
   </div>
@@ -586,34 +611,6 @@
 <footer>
   <p>© Celestara Collective Inc. · Manifest With Jac · All rights reserved.</p>
 </footer>
-
-<!-- THRIVECART UTM PASSTHROUGH — forwards captured UTMs into the embedded checkout -->
-<script>
-(function() {
-  var utms = {};
-  try { utms = JSON.parse(localStorage.getItem('mwj_utms') || '{}'); } catch (e) {}
-  var params = new URLSearchParams(window.location.search);
-  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(key){
-    var v = params.get(key);
-    if (v) utms[key] = v;
-  });
-  if (Object.keys(utms).length === 0) return;
-
-  var qs = Object.keys(utms).map(function(key){
-    return 'passthrough[' + key + ']=' + encodeURIComponent(utms[key]);
-  }).join('&');
-
-  function applyToEmbeds() {
-    document.querySelectorAll('[data-thrivecart-embeddable]').forEach(function(el){
-      var existing = el.getAttribute('data-thrivecart-querystring');
-      el.setAttribute('data-thrivecart-querystring', existing ? existing + '&' + qs : qs);
-    });
-  }
-  applyToEmbeds();
-  setTimeout(applyToEmbeds, 400);
-  setTimeout(applyToEmbeds, 1200);
-})();
-</script>
 
 </body>
 </html>
