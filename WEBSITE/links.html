@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest With Jac</title>
+<meta name="description" content="Free Wealth Frequency Blueprint, Timeline Jump Sleep Portal, Manifest Your SP, Wealthy As F*ck audio bundle, and Money Multiverse.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#fefcf7;
+    --black:#0a0a0a;
+    --gold:#c9a449;
+    --gold-light:#e8d28a;
+    --gold-dark:#a07f30;
+    --red:#d63838;
+    --ink-soft:#3a3530;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--black);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    background-image:
+      radial-gradient(120% 70% at 50% -10%, rgba(201,164,73,0.14), rgba(254,252,247,0) 60%),
+      radial-gradient(100% 60% at 50% 110%, rgba(201,164,73,0.10), rgba(254,252,247,0) 55%);
+    min-height:100vh;
+  }
+
+  .wrap{max-width:480px;margin:0 auto;padding:44px 22px 56px;}
+
+  /* ---------- HERO ---------- */
+  .hero{text-align:center;margin-bottom:30px;}
+
+  .avatar{
+    width:104px;height:104px;margin:0 auto 18px;border-radius:50%;
+    background:linear-gradient(145deg,#1a1a1a,#000);
+    border:2px solid var(--gold);
+    box-shadow:0 6px 0 var(--gold-dark), 0 0 0 6px rgba(201,164,73,0.12);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .avatar span{font-family:'Playfair Display',serif;font-size:46px;font-weight:600;font-style:italic;color:var(--gold-light);line-height:1;}
+  /* Real photo: replace <span>J</span> with
+     <img src="jac.jpg" alt="Jac" style="width:100%;height:100%;object-fit:cover;"> */
+
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+
+  .brand{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;letter-spacing:-.01em;line-height:1.05;}
+  .brand em{font-style:italic;color:var(--gold-dark);}
+
+  .tagline-wrap{position:relative;display:inline-block;margin-top:14px;}
+  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:18px;color:var(--ink-soft);}
+  .underline-svg{position:absolute;left:-4px;right:-4px;bottom:-10px;width:calc(100% + 8px);height:12px;}
+
+  .cred{margin-top:24px;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--gold-dark);text-transform:uppercase;line-height:1.4;}
+
+  /* ---------- SECTION HEAD ---------- */
+  .section-head{display:flex;align-items:center;justify-content:center;gap:14px;margin:2px 0 22px;}
+  .section-head::before,.section-head::after{content:"";height:1px;width:34px;background:var(--gold);flex:0 0 auto;}
+  .section-head span{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:20px;color:var(--black);white-space:nowrap;}
+
+  /* ---------- PILLS ---------- */
+  .stack{display:flex;flex-direction:column;gap:14px;}
+
+  .pill{
+    display:block;text-decoration:none;text-align:center;
+    background:var(--cream);
+    border:1.5px solid var(--gold);
+    border-radius:14px;
+    padding:22px 26px;
+    box-shadow:0 2px 10px rgba(160,127,48,0.10);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .pill:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(160,127,48,0.20);}
+  .pill:active{transform:translateY(0);}
+
+  .pill-label{
+    display:block;font-family:'Playfair Display',serif;font-weight:600;
+    font-size:18px;line-height:1.2;color:var(--black);margin-bottom:5px;
+  }
+  .pill-label sup{font-size:9px;top:-.7em;}
+  .pill-name{
+    font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;line-height:1.35;color:var(--ink-soft);
+  }
+  .pill-name .price{font-weight:700;color:var(--gold-dark);}
+
+  /* FREE pill — soft gold wash */
+  .pill-free{background:linear-gradient(160deg,#fdf6e3,#fbf0d2);border-color:var(--gold-dark);}
+
+  /* BEST SELLER pill — solid black, the standout */
+  .pill-best{
+    background:var(--black);border-color:var(--black);
+    box-shadow:0 4px 16px rgba(0,0,0,0.22);position:relative;
+  }
+  .pill-best .pill-label{color:#fff;}
+  .pill-best .pill-name{color:#cfc6b4;}
+  .pill-best .pill-name .price{color:var(--gold-light);}
+  .pill-best:hover{box-shadow:0 8px 22px rgba(0,0,0,0.30);}
+  .badge-best{
+    position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--black);
+    font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:4px 12px;border-radius:100px;white-space:nowrap;
+  }
+
+  /* FOOTER */
+  .footer{text-align:center;margin-top:30px;}
+  .socials{display:flex;gap:14px;justify-content:center;margin-bottom:16px;}
+  .socials a{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none;border-bottom:1.5px solid var(--gold);padding-bottom:2px;transition:color .15s ease;}
+  .socials a:hover{color:var(--gold-dark);}
+  .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--gold-dark);}
+  .fineprint{font-size:10px;color:#9b9488;margin-top:18px;letter-spacing:.03em;}
+
+  /* LOAD ANIMATION */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .d1{animation-delay:.05s;} .d2{animation-delay:.12s;} .d3{animation-delay:.20s;}
+  .d4{animation-delay:.28s;} .d5{animation-delay:.36s;} .d6{animation-delay:.44s;}
+  .d7{animation-delay:.52s;} .d8{animation-delay:.60s;}
+  @media (prefers-reduced-motion: reduce){.reveal{animation:none;opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="avatar reveal d1"><img src="jac.webp" alt="Jac" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
+    <div class="eyebrow reveal d1">Manifest With Jac</div>
+    <h1 class="brand reveal d2">Jac<em>.</em></h1>
+    <div class="tagline-wrap reveal d2">
+      <span class="tagline">From six figures in debt to never doing grocery-store math again.</span>
+      <svg class="underline-svg" viewBox="0 0 240 12" fill="none" preserveAspectRatio="none">
+        <path d="M3 8C40 4 80 3 120 5C160 7 200 9 237 4" stroke="#c9a449" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="cred reveal d2">100's of women helped · 5x entrepreneur · 4x certified</p>
+  </header>
+
+  <div class="section-head reveal d2"><span>Choose your portal</span></div>
+
+  <!-- ===== PILLS ===== -->
+  <main class="stack">
+
+    <!-- FREE BLUEPRINT -->
+    <a class="pill pill-free reveal d3" href="https://manifestwithjac.netlify.app/get-the-blueprint">
+      <span class="pill-label">The Wealth Frequency Blueprint</span>
+      <span class="pill-name">FREE: manifest more money in 7 days — the formula that made me half a million in sales</span>
+    </a>
+
+    <!-- TIMELINE JUMP — BEST SELLER -->
+    <a class="pill pill-best reveal d4" href="https://manifestwithjac.netlify.app/timeline-jump">
+      <span class="badge-best">★ Best Seller</span>
+      <span class="pill-label">Timeline Jump Sleep Portal<sup>™</sup></span>
+      <span class="pill-name">Fall asleep and wake up in a brand new reality</span>
+    </a>
+
+    <!-- MANIFEST YOUR SP -->
+    <a class="pill reveal d5" href="https://manifestwithjac.netlify.app/manifest-your-sp-sales">
+      <span class="pill-label">Manifest Your SP<sup>™</sup></span>
+      <span class="pill-name">Make your specific person obsessed with you</span>
+    </a>
+
+    <!-- WEALTHY AS F*CK -->
+    <a class="pill reveal d6" href="https://manifestwithjac.netlify.app/wealthy-as-fuck">
+      <span class="pill-label">Wealthy As F*ck Audio Stack</span>
+      <span class="pill-name">Subliminals that install the wealthy identity into your subconscious while you sleep. Rampages that drill the frequency into your body while you live your day.</span>
+    </a>
+
+    <!-- MONEY MULTIVERSE -->
+    <a class="pill reveal d7" href="https://manifestwithjac.netlify.app/money-multiverse">
+      <span class="pill-label">Money Multiverse<sup>™</sup></span>
+      <span class="pill-name">Release every money block in 4 portals</span>
+    </a>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer reveal d8">
+    <div class="socials">
+      <a href="https://www.tiktok.com/@manifestwithjac" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.instagram.com/manifestwithjac" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="sig">You didn't land here by accident.</p>
+    <p class="fineprint">© Celestara Collective Inc. · Manifest With Jac</p>
+  </footer>
+
+</div>
+
+<!-- ============================================================
+     TRUSTPULSE: paste your exact TrustPulse install snippet here.
+============================================================ -->
+
+</body>
+</html>
