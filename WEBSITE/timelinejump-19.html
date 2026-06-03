@@ -434,17 +434,6 @@ fbq('track','PageView');
 </head>
 <body>
 
-<!-- STICKY COUNTDOWN BAR -->
-<div class="countdown-bar" id="cdBar">
-  <div class="cd-inner">
-    <div class="cd-deal">$7 today <span>· 63% off</span></div>
-    <div class="cd-right">
-      <span class="cd-msg" id="cdMsg">price goes to $19 in</span>
-      <span class="cd-timer" id="cdTimer">15:00</span>
-    </div>
-  </div>
-</div>
-
 <div class="page-bg"></div>
 <div class="sparkles">
   <div class="sp" style="width:2px;height:2px;top:5%;left:12%;--d:2.8s;--dl:0s;--op:.5;"></div>
@@ -473,7 +462,7 @@ fbq('track','PageView');
     <h1>You're doing all the right things <span class="grad-text">and still waking up in the same timeline.</span></h1>
     <p class="hero-body">You've done the visualizations and the scripting and the affirmations, you've read the books, watched the videos, tried every method. And some of it works, enough to keep you believing. But you keep waking up in the same reality, same bank account, same quiet hum of "why is this still so hard." I was her. Then I figured out why nothing was sticking: I was building it all day and my subconscious was tearing it back down every night while I slept. So I built the exact tool I wish I'd had.</p>
     <div class="whatis">It's an <strong>8-hour audio</strong> you press play on before bed. It opens as a <strong>guided sleep meditation</strong> that walks you down into SATS, then it shifts into an <strong>all-night subliminal</strong> that runs the full 8 hours while you sleep. You press play and drift off. The audio does the rest.</div>
-    <a href="#checkout" class="btn-primary">Wake Up Different — $7</a>
+    <a href="#checkout" class="btn-primary">Wake Up Different — $19</a>
     <span class="btn-sub">Instant access · Listen tonight · Yours forever</span>
   </div>
 </section>
@@ -502,7 +491,7 @@ fbq('track','PageView');
   </ul>
 
   <div class="cta-block" style="margin-bottom:56px;">
-    <a href="#checkout" class="btn-primary">I'm Ready — $7</a>
+    <a href="#checkout" class="btn-primary">I'm Ready — $19</a>
     <span class="btn-sub">Instant access · Lifetime access</span>
   </div>
 
@@ -557,7 +546,7 @@ fbq('track','PageView');
   <div style="margin-bottom:56px;">
     <div class="guarantee-box">
       <h3 class="guarantee-headline">The 7-Night Promise</h3>
-      <p class="guarantee-body">Use it for 7 nights. If you feel nothing, no shift in how you wake up, no change in your baseline, email me and I'll refund every cent. No hoops, no convincing me. At $7, I'm not worried about refund requests. I'm worried about you staying stuck in a timeline that was never yours.</p>
+      <p class="guarantee-body">Use it for 7 nights. If you feel nothing, no shift in how you wake up, no change in your baseline, email me and I'll refund every cent. No hoops, no convincing me. At $19, I'm not worried about refund requests. I'm worried about you staying stuck in a timeline that was never yours.</p>
     </div>
   </div>
 
@@ -572,10 +561,10 @@ fbq('track','PageView');
   <div class="container">
     <h2 class="checkout-headline">If you're ready to press play tonight,<br><em>your timeline is waiting.</em> 🌙</h2>
     <p class="checkout-sub" style="margin-bottom:18px;">Inside: the full Sleep Portal Track, the 123456 Subliminal Stack, and the Quantum Glow-Up™ Method woven through, all working while you sleep.</p>
-    <div style="text-align:center;margin:0 0 30px;"><span class="total-price">$7. Once. Forever. 🥂</span></div>
+    <div style="text-align:center;margin:0 0 30px;"><span class="total-price">$19. Once. Forever. 🥂</span></div>
     <p class="checkout-sub">Enter your details below. You'll have access within minutes.</p>
     <div class="thrivecart-wrap">
-      <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="19" data-thrivecart-embeddable="tc-jacnicole-19-8H61M4"></div>
+      <div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="33" data-thrivecart-embeddable="tc-jacnicole-33-OPH8M0"></div>
       <!-- Inject UTMs onto the embed BEFORE thrivecart.js runs (avoids race condition) -->
       <script>
       (function() {
@@ -597,11 +586,11 @@ fbq('track','PageView');
         });
         var qs = parts.join('&');
 
-        var el = document.querySelector('[data-thrivecart-embeddable="tc-jacnicole-19-8H61M4"]');
+        var el = document.querySelector('[data-thrivecart-embeddable="tc-jacnicole-33-OPH8M0"]');
         if (el) el.setAttribute('data-thrivecart-querystring', qs);
       })();
       </script>
-      <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-19-8H61M4"></script>
+      <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-33-OPH8M0"></script>
     </div>
   </div>
 </section>
@@ -627,48 +616,8 @@ fbq('track','PageView');
 </footer>
 
 
-<!-- ── EVERGREEN COUNTDOWN ENGINE (15-min $7 window → $19) ── -->
-<script>
-(function(){
-  var MINUTES = 15;
-  var KEY = 'tj_offer_start';
-  var barEl   = document.getElementById('cdBar');
-  var msgEl   = document.getElementById('cdMsg');
-  var timerEl = document.getElementById('cdTimer');
-  var dealEl  = document.querySelector('.cd-deal');
-
-  var start;
-  try {
-    start = parseInt(localStorage.getItem(KEY), 10);
-    if (!start) { start = Date.now(); localStorage.setItem(KEY, start); }
-  } catch (e) { start = Date.now(); }
-
-  var endTime = start + MINUTES * 60 * 1000;
-  var expired = false;
-
-  function swapToFullPrice(){
-    document.querySelectorAll('.btn-primary, .total-price').forEach(function(el){
-      el.innerHTML = el.innerHTML.replace(/\$7\b/g, '$19');
-    });
-  }
-  function expire(){
-    expired = true;
-    barEl.classList.add('expired');
-    if (dealEl) dealEl.innerHTML = 'The $7 window has closed \u00b7 now $19';
-    swapToFullPrice();
-  }
-  function tick(){
-    var remaining = endTime - Date.now();
-    if (remaining <= 0){ timerEl.textContent = '0:00'; if(!expired) expire(); return; }
-    var total = Math.floor(remaining/1000), m = Math.floor(total/60), s = total%60;
-    timerEl.textContent = m + ':' + (s < 10 ? '0'+s : s);
-  }
-  tick();
-  if (!expired) setInterval(tick, 250);
-})();
-</script>
 
 <!-- Meta Pixel: ViewContent -->
-<script>fbq('track','ViewContent',{content_name:'Timeline Jump Sleep Portal',content_category:'offer',value:7.00,currency:'USD'});</script>
+<script>fbq('track','ViewContent',{content_name:'Timeline Jump Sleep Portal',content_category:'offer',value:19.00,currency:'USD'});</script>
 </body>
 </html>
