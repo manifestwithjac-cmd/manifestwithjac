@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The 9 EFT Tapping Points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Seriously Nostalgic';
+    src:url('SeriouslyNostalgic-Fine.otf') format('opentype');
+    font-weight:normal;font-style:normal;font-display:swap;
+  }
+  :root{
+    --cream:#fdfbf2;--ink:#3b2d49;--plum:#4a3560;--plum-deep:#2f2240;
+    --lav:#b9a3d6;--lav-soft:#efe6f5;--lav-border:#6b4e86;
+    --gold:#b8943f;--gold-soft:#d8be7e;--line:#ece4d6;--card:#faf6ec;--muted:#8a8195;
+    --display:'Seriously Nostalgic','Cormorant Garamond',serif;
+    --serif:'Cormorant Garamond',serif;
+    --ui:'Outfit',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6;padding:30px 16px 70px;}
+  .wrap{max-width:920px;margin:0 auto;}
+  header{text-align:center;margin-bottom:30px;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+  .eyebrow .star{opacity:.7;}
+  h1{font-family:var(--display);font-weight:normal;font-size:clamp(40px,9vw,60px);line-height:1.02;color:var(--plum-deep);letter-spacing:.5px;}
+  h1 em{font-family:var(--serif);font-style:italic;font-weight:600;}
+  .sub{font-size:15px;color:var(--muted);max-width:540px;margin:14px auto 0;}
+  .layout{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start;}
+  @media(max-width:680px){.layout{grid-template-columns:1fr;}}
+  .map-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;position:sticky;top:18px;}
+  @media(max-width:680px){.map-card{position:static;max-width:300px;margin:0 auto;}}
+  svg .figure{fill:none;stroke:#e0d6c5;stroke-width:1.6;}
+  svg .dot{fill:var(--lav);transition:all .3s ease;cursor:pointer;}
+  svg .dot.active{fill:var(--gold);r:11;filter:drop-shadow(0 0 6px rgba(184,148,63,.55));}
+  .list{display:flex;flex-direction:column;gap:11px;}
+  .point{background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .25s,background .25s;}
+  .point.active{background:var(--lav-soft);border-color:var(--lav-border);border-width:2px;}
+  .p-head{display:flex;align-items:center;gap:14px;padding:18px 20px;}
+  .p-name{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--plum-deep);flex:1;line-height:1;}
+  .p-badge{flex-shrink:0;width:38px;height:38px;border-radius:9px;background:var(--lav-soft);color:var(--lav-border);font-family:var(--ui);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;letter-spacing:.5px;transition:all .25s;}
+  .point.active .p-badge{background:var(--plum-deep);color:#fff;}
+  .p-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .point.active .p-body{max-height:400px;}
+  .p-inner{padding:0 20px 20px;font-size:14.5px;color:var(--plum);}
+  .p-inner .row{margin-bottom:8px;}
+  .p-inner .label{font-weight:700;color:var(--plum-deep);}
+  .p-inner .desc{margin-top:10px;line-height:1.55;}
+  .footnote{text-align:center;font-size:12px;color:var(--muted);margin-top:30px;font-style:italic;font-family:var(--serif);}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="star">&#10022;</span>&nbsp; THE 9 EFT TAPPING POINTS &nbsp;<span class="star">&#10022;</span></div>
+    <h1>Each point is a <em>doorway</em></h1>
+    <p class="sub">Every tapping point sits on an energy pathway linked to a specific feeling. Tap a card to see where it is and what it helps with. The body map highlights as you go.</p>
+  </header>
+
+  <div class="layout">
+    <div class="map-card">
+      <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" aria-label="Body map of tapping points">
+        <circle class="figure" cx="150" cy="92" r="60"/>
+        <path class="figure" d="M100,172 Q150,158 200,172 L211,330 Q211,346 195,346 L105,346 Q89,346 89,330 Z"/>
+        <circle class="dot" id="d-th" cx="150" cy="34" r="8"/>
+        <circle class="dot" id="d-eb" cx="129" cy="76" r="8"/>
+        <circle class="dot" id="d-se" cx="113" cy="90" r="8"/>
+        <circle class="dot" id="d-ue" cx="135" cy="100" r="8"/>
+        <circle class="dot" id="d-un" cx="150" cy="118" r="8"/>
+        <circle class="dot" id="d-ch" cx="150" cy="140" r="8"/>
+        <circle class="dot" id="d-cb" cx="131" cy="188" r="8"/>
+        <circle class="dot" id="d-ua" cx="106" cy="216" r="8"/>
+        <circle class="dot" id="d-kc" cx="206" cy="300" r="8"/>
+      </svg>
+    </div>
+
+    <div class="list" id="list"></div>
+  </div>
+
+  <p class="footnote">Tap gently, about 5 to 7 times on each point, as you say your phrase out loud.</p>
+</div>
+
+<script>
+const POINTS=[
+ {id:"kc",abbr:"KC",name:"Karate Chop",where:"The soft outer edge of your hand, below the pinky.",path:"Small Intestine Meridian",
+  desc:"The starting point. This is where you name the block honestly and accept yourself anyway, before any of the work begins."},
+ {id:"eb",abbr:"EB",name:"Eyebrow",where:"The inner edge of your eyebrow, right where it begins above your nose.",path:"Bladder Meridian",
+  desc:"Where you release frustration and that restless, can't-settle feeling that keeps you stuck."},
+ {id:"se",abbr:"SE",name:"Side of Eye",where:"On the bone at the outer corner of your eye, near your temple.",path:"Gallbladder Meridian",
+  desc:"Where you let go of anger, resentment, and the pressure you've been quietly holding."},
+ {id:"ue",abbr:"UE",name:"Under Eye",where:"On the bone right below your eye, in line with the pupil.",path:"Stomach Meridian",
+  desc:"Where you soften worry, anxiety, and that pit-in-your-stomach dread around money or whatever's heavy."},
+ {id:"un",abbr:"UN",name:"Under Nose",where:"In the little dip between your nose and your upper lip.",path:"Governing Vessel",
+  desc:"Where you release shame and the fear of being seen, so you can take up space and want more out loud."},
+ {id:"ch",abbr:"CH",name:"Chin",where:"In the crease between your bottom lip and your chin.",path:"Central Vessel",
+  desc:"Where you move out of confusion and second-guessing and into clarity about what you actually want."},
+ {id:"cb",abbr:"CB",name:"Collarbone",where:"Just below the hard ridge of your collarbone, a couple inches from the center.",path:"Kidney Meridian",
+  desc:"The big one for calming fear and bringing your whole nervous system back to safe."},
+ {id:"ua",abbr:"UA",name:"Under Arm",where:"About a hand's width below your armpit, along the side of your body.",path:"Spleen Meridian",
+  desc:"Where you release guilt and the not-enough feeling, and steady your sense of self-worth."},
+ {id:"th",abbr:"TH",name:"Top of Head",where:"The crown, right at the top center of your head.",path:"Governing Vessel",
+  desc:"The closing point. This is where it all connects and the new belief locks in."},
+];
+let activeIndex=0;
+const listEl=document.getElementById('list');
+function render(){
+  listEl.innerHTML='';
+  POINTS.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='point'+(i===activeIndex?' active':'');
+    card.innerHTML=
+      '<div class="p-head"><div class="p-name">'+p.name+'</div><div class="p-badge">'+p.abbr+'</div></div>'+
+      '<div class="p-body"><div class="p-inner">'+
+      '<div class="row"><span class="label">Where:</span> '+p.where+'</div>'+
+      '<div class="row"><span class="label">Pathway:</span> '+p.path+'</div>'+
+      '<div class="desc">'+p.desc+'</div>'+
+      '</div></div>';
+    card.addEventListener('click',()=>{activeIndex=i;render();highlight();});
+    listEl.appendChild(card);
+  });
+}
+function highlight(){
+  POINTS.forEach(p=>{const d=document.getElementById('d-'+p.id);if(d)d.classList.remove('active');});
+  const a=document.getElementById('d-'+POINTS[activeIndex].id);if(a)a.classList.add('active');
+}
+// let map dots be tappable too
+document.querySelectorAll('.dot').forEach(d=>{
+  d.addEventListener('click',()=>{
+    const id=d.id.replace('d-','');
+    const idx=POINTS.findIndex(p=>p.id===id);
+    if(idx>-1){activeIndex=idx;render();highlight();
+      listEl.children[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+  });
+});
+render();highlight();
+</script>
+</body>
+</html>
