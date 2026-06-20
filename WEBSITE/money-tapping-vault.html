@@ -18,6 +18,8 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html{-webkit-text-size-adjust:100%;}
   body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6;}
+  .hrhbar{background:var(--ink);color:#fff;text-align:center;padding:11px 16px;font-family:var(--ui);font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;position:sticky;top:0;z-index:50;}
+  .hrhbar b{color:var(--gold-soft);font-weight:700;}
   .wrap{max-width:1000px;margin:0 auto;padding:30px 16px 80px;}
   .hide{display:none!important;}
   .hero{text-align:center;margin-bottom:26px;}
@@ -63,7 +65,7 @@
   input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--green-deep);cursor:pointer;}
   .script-area{display:grid;grid-template-columns:280px 1fr;gap:22px;margin-top:18px;align-items:start;}
   @media(max-width:680px){.script-area{grid-template-columns:1fr;}}
-  .map-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;text-align:center;position:sticky;top:14px;}
+  .map-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;text-align:center;position:sticky;top:60px;}
   @media(max-width:680px){.map-card{position:static;max-width:260px;margin:0 auto;}}
   svg .figure{fill:none;stroke:#ddd2b8;stroke-width:1.6;}
   svg .dot{fill:#c8d8cb;transition:all .3s ease;}
@@ -94,6 +96,8 @@
 </style>
 </head>
 <body>
+
+<div class="hrhbar">&#9733;&nbsp; The <b>HRH</b> Vault &nbsp;&middot;&nbsp; Hotter Richer Happier &nbsp;&#9733;</div>
 
 <div class="wrap" id="vault">
   <div class="hero">
@@ -170,13 +174,11 @@
     <div class="lab">One honest line about what feels different (optional)</div>
     <textarea id="afterNote" placeholder="What feels different now?"></textarea>
     <div class="after-btns">
-      <button class="save-btn" id="saveReset">Save this round &#10022;</button>
-      <button class="ghost-btn" id="closeNoSave">Close without saving</button>
+      <button class="save-btn" id="doneBtn">Done &#10022;</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast">Saved to your log &#10003;</div>
 
 <script>
 const PT={th:["Top of Head","Governing Vessel"],eb:["Eyebrow","Bladder Meridian"],se:["Side of Eye","Gallbladder Meridian"],ue:["Under Eye","Stomach Meridian"],un:["Under Nose","Governing Vessel"],ch:["Chin","Central Vessel"],cb:["Collarbone","Kidney Meridian"],ua:["Under Arm","Spleen Meridian"]};
@@ -215,7 +217,6 @@ const ROUNDS=[
   lines:{eb:"This belief that money has to be hard",se:"Not trusting money that comes easy",ue:"The habit of getting in my own way",un:"But money is allowed to come easily to me",ch:"I don't have to struggle for it",cb:"It's safe to receive money the easy way",ua:"I let good things come without a catch",th:"Money comes to me easily now"}},
 ];
 
-const KEY='jac_money_vault_v2';
 let current=null,lineIdx=0,guideTimer=null,suggestedIdx=null;
 
 // PICKER
@@ -291,13 +292,7 @@ document.getElementById('beforeSlider').addEventListener('input',e=>document.get
 document.getElementById('afterSlider').addEventListener('input',e=>document.getElementById('afterVal').textContent=e.target.value);
 function closeRound(){stopGuide();document.getElementById('round').classList.add('hide');document.getElementById('vault').classList.remove('hide');window.scrollTo(0,0);}
 document.getElementById('closeRound').addEventListener('click',closeRound);
-document.getElementById('closeNoSave').addEventListener('click',closeRound);
-document.getElementById('saveReset').addEventListener('click',()=>{
-  const entry={title:current.title,before:+document.getElementById('beforeSlider').value,after:+document.getElementById('afterSlider').value,note:document.getElementById('afterNote').value,date:new Date().toISOString()};
-  try{const log=JSON.parse(localStorage.getItem(KEY)||'[]');log.push(entry);localStorage.setItem(KEY,JSON.stringify(log));}catch(e){}
-  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600);
-  setTimeout(closeRound,700);
-});
+document.getElementById('doneBtn').addEventListener('click',closeRound);
 
 buildChips();renderGrid();
 </script>
