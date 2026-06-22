@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Quantum Jump</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Seriously Nostalgic';src:url('SeriouslyNostalgic-Fine.otf') format('opentype');font-weight:normal;font-style:normal;font-display:swap;}
+  :root{
+    --cream:#f6f1f7;--ink:#13101a;--muted:#7c7188;--line:#e4dbed;--card:#fdfbff;
+    --violet:#7a4fb0;--violet-deep:#54328a;--violet-soft:#d9c8ee;--violet-tint:#efe6f9;
+    --gold:#c9a449;--gold-deep:#9c7c2f;--gold-soft:#e8d28a;
+    --display:'Seriously Nostalgic','Cormorant Garamond',serif;--serif:'Cormorant Garamond',serif;--ui:'Outfit',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6;}
+  .hrhbar{background:var(--ink);color:#fff;text-align:center;padding:11px 16px;font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;position:sticky;top:0;z-index:50;}
+  .hrhbar b{color:var(--gold-soft);font-weight:700;}
+  .wrap{max-width:720px;margin:0 auto;padding:30px 16px 90px;}
+  .hero{text-align:center;margin-bottom:22px;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:12px;}
+  h1{font-family:var(--display);font-weight:normal;font-size:clamp(48px,13vw,82px);line-height:.94;color:var(--ink);}
+  h1 em{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--violet-deep);}
+  .hero .sub{font-size:15.5px;color:var(--muted);max-width:520px;margin:16px auto 0;}
+  .mirror{background:var(--ink);color:#fff;border-radius:16px;padding:20px;margin-bottom:20px;text-align:center;}
+  .mirror .ml{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:8px;}
+  .mirror p{font-family:var(--serif);font-style:italic;font-weight:600;font-size:19px;line-height:1.3;color:#fff;}
+  .cal{background:linear-gradient(135deg,var(--violet-deep),var(--violet));border-radius:16px;padding:22px 20px;text-align:center;margin-bottom:22px;color:#fff;}
+  .cal h2{font-family:var(--display);font-weight:normal;font-size:28px;line-height:1.05;}
+  .cal p{font-size:14px;color:#ecdcff;margin:7px auto 16px;max-width:420px;}
+  .calbtn{background:#fff;color:var(--violet-deep);border:none;border-radius:999px;padding:14px 28px;font-family:var(--ui);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;display:inline-block;}
+  .calhint{font-size:11.5px;color:#d9c2f3;margin-top:11px;}
+  .tabs-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-deep);text-align:center;margin-bottom:12px;}
+  .tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:22px;}
+  .tab{aspect-ratio:1;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-family:var(--serif);font-weight:700;font-size:19px;color:var(--violet-deep);cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:all .18s;}
+  .tab:hover{border-color:var(--violet-soft);}
+  .tab.active{background:var(--violet);color:#fff;border-color:var(--violet);transform:translateY(-2px);}
+  .tab.done::after{content:"";position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:var(--gold);}
+  .tab.active.done::after{background:#fff;}
+  .progress-line{text-align:center;font-size:13px;color:var(--muted);margin:-10px 0 22px;}
+  .night{display:none;}
+  .night.show{display:block;animation:fade .3s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .ncard{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:26px 22px;}
+  .ncard.done{border-color:var(--violet);background:linear-gradient(180deg,#fff,var(--violet-tint));}
+  .step{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-deep);}
+  .ncard h3{font-family:var(--display);font-weight:normal;font-size:clamp(32px,8vw,46px);line-height:1.0;color:var(--ink);margin:6px 0 4px;}
+  .tease{font-size:13.5px;color:var(--muted);margin-bottom:18px;}
+  .prompt{font-size:15.5px;color:#473d54;}
+  .prompt b{color:var(--ink);}
+  .prompt+.prompt{margin-top:11px;}
+  .embody{background:var(--violet-tint);border-radius:12px;padding:15px 16px;margin-top:16px;}
+  .embody .el{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--violet-deep);margin-bottom:6px;}
+  .embody p{font-size:15px;color:var(--ink);font-style:italic;font-family:var(--serif);font-weight:600;}
+  .check-row{display:flex;align-items:center;gap:11px;margin-top:18px;cursor:pointer;user-select:none;}
+  .box{width:30px;height:30px;border-radius:8px;border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+  .box.on{background:var(--violet);}
+  .box svg{opacity:0;transition:opacity .2s;}
+  .box.on svg{opacity:1;}
+  .check-row .ctext{font-size:14.5px;font-weight:600;color:var(--ink);}
+  textarea{width:100%;font-family:var(--ui);font-size:15px;padding:12px;border:1.5px solid var(--line);border-radius:10px;min-height:62px;background:#fff;margin-top:14px;resize:vertical;}
+  textarea:focus{outline:none;border-color:var(--violet);}
+  .checkin{margin-top:18px;background:linear-gradient(135deg,var(--violet-deep),var(--violet));border-radius:14px;padding:20px;text-align:center;color:#fff;}
+  .checkin p{font-size:14.5px;color:#f3e9ff;margin-bottom:14px;}
+  .checkin p b{color:#fff;}
+  .cibtn{background:#fff;color:var(--violet-deep);border:none;border-radius:999px;padding:13px 26px;font-family:var(--ui);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;display:inline-block;}
+  .nav-btns{display:flex;justify-content:space-between;gap:10px;margin-top:18px;}
+  .nav-btns button{flex:1;font-family:var(--ui);font-weight:600;font-size:14px;padding:13px;border-radius:999px;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);}
+  .nav-btns button:disabled{opacity:.35;cursor:default;}
+  .nav-btns .next{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .finale{display:none;text-align:center;padding:10px 4px;}
+  .finale.show{display:block;animation:fade .3s ease;}
+  .finale h3{font-family:var(--display);font-weight:normal;font-size:46px;color:var(--violet-deep);line-height:1.0;}
+  .finale p{font-size:15px;color:#473d54;margin-top:12px;}
+  .signs{background:var(--violet-tint);border-radius:12px;padding:15px 16px;margin-top:16px;}
+  .signs .sl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--violet-deep);margin-bottom:6px;}
+  .signs .signsub{font-size:13.5px;color:#473d54;margin-bottom:4px;}
+  .signs textarea{margin-top:8px;}
+  .proofstack{background:linear-gradient(180deg,#fff,var(--violet-tint));border:1.5px solid var(--violet-soft);border-radius:14px;padding:18px;margin-top:16px;}
+  .proofstack .psl{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+  .proofstack .psitem{font-size:14.5px;color:var(--ink);padding:9px 0;border-bottom:1px solid var(--line);}
+  .proofstack .psitem:last-child{border-bottom:none;}
+  .proofstack .pslabel{display:block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--violet-deep);margin-bottom:3px;}
+  .proofstack .empty{font-size:13.5px;color:var(--muted);font-style:italic;}
+  .ritual{background:var(--card);border:1.5px solid var(--violet-soft);border-radius:16px;padding:22px 20px;margin-bottom:20px;text-align:center;}
+  .ritual .rl{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+  .ritual p{font-size:14.5px;color:#473d54;max-width:520px;margin:0 auto 16px;}
+  .ritual p b{color:var(--ink);}
+  .ritualbtn{background:var(--violet-deep);color:#fff;border:none;border-radius:999px;padding:13px 26px;font-family:var(--ui);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;display:inline-block;}
+  .commit-row{display:inline-flex;align-items:center;gap:10px;margin-top:16px;cursor:pointer;user-select:none;}
+  .commit-row .ctext{font-size:14px;font-weight:600;color:var(--ink);}
+  .anchor{display:flex;gap:9px;align-items:flex-start;background:var(--violet-tint);border-radius:10px;padding:11px 14px;margin-top:14px;font-size:13px;line-height:1.45;color:var(--violet-deep);font-weight:600;}
+  .anchor span.ai{flex-shrink:0;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="hrhbar">&#9733;&nbsp; The <b>HRH</b> Vault &nbsp;&middot;&nbsp; Hotter Richer Happier &nbsp;&#9733;</div>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">&#10022;&nbsp; 7 DAYS INTO YOUR NEW REALITY &nbsp;&#10022;</div>
+    <h1>The Quantum <em>Jump</em></h1>
+    <p class="sub">Seven nights to jump into the reality where it's already yours. One step a night, walking the exact formula I use to manifest anything. Take it one night at a time.</p>
+  </div>
+
+  <div class="mirror">
+    <div class="ml">The Mirror Principle</div>
+    <p>Reality matches who you are being, not what you keep asking for. So we're going to change who you're being.</p>
+  </div>
+
+  <div class="ritual">
+    <div class="rl">&#10022; Your one nightly ritual</div>
+    <p>Every night for the next 7 nights, as you fall asleep, you press play on the <b>Quantum Jump activation portal</b>. Eight minutes, eyes closed, drifting off while it installs her underneath the thinking mind. The steps below are how you spend each day. The portal is how you reprogram each night. This is the non-negotiable. Start tonight.</p>
+    <a class="ritualbtn" id="portalbtn" href="#" target="_blank" rel="noopener">Open the Quantum Jump portal &#10022;</a>
+    <div class="commit-row" id="commitRow"><div class="box" id="commitBox"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="ctext">I commit to all 7 nights</span></div>
+  </div>
+
+  <div class="cal">
+    <h2>First, lock in your 7 nights</h2>
+    <p>Tap below and your phone drops in a nightly check-in for the next 7 days. Your nudge to come back and jump. Do this before you start so future you actually shows up.</p>
+    <a class="calbtn" id="calbtn" href="#">Add my 7 nightly reminders 🔔</a>
+    <div class="calhint">Works on iPhone and Android. Your phone will ask before adding.</div>
+  </div>
+
+  <div class="tabs-label">Tap tonight's number</div>
+  <div class="tabs" id="tabs"></div>
+  <div class="progress-line" id="progressLine">0 of 7 nights complete</div>
+
+  <div id="nights"></div>
+
+  <div class="finale" id="finale">
+    <h3>Look at her.</h3>
+    <p>Seven nights, the whole formula, and you jumped. You got clear, you met the block, you assumed it, you did the work, you took aligned action, and you let go. Scroll back through your proof on Night 7. Your reality already started bending and you have the receipts. This isn't a someday reality anymore, it's the one you're standing in. Keep being her, stay detached and certain, and watch the rest catch all the way up. 🤍👑</p>
+    <button class="ritualbtn" id="celebrateBtn" style="margin-top:14px;cursor:pointer;">Set it off again &#10022;</button>
+  </div>
+</div>
+
+<script>
+const COMMUNITY_URL="https://www.skool.com/hotter-richer-happier";
+// Swap PORTAL_URL to the direct Quantum Jump audio link once it's in the vault
+const PORTAL_URL="https://www.skool.com/hotter-richer-happier";
+const DAYS=[
+ {step:"Step 1 · The Clarity",t:"Get clear on what you desire",tease:"Night 1 · the felt target",
+  signs:true,
+  prompt:["Tonight, no more vague wishing. You get specific about what <b>you</b> actually want. Not what looks good on someone else's life. Not what you think you're supposed to want. And dream as big as you want here. The version of you with the income, the house, the life. She's real and you're walking to her this week. Do not shrink her down to feel realistic, realistic is the cage.",
+  "Then you practice <b>feeling</b> it, not just naming it. Your subconscious needs a clear, felt target. Vague desires get vague results.",
+  "Last thing, and it matters. The whole desire is not landing in seven days, and that's not the point. What you're watching for this week is <b>proof you're shifting</b>. You move different. A download or an idea drops in out of nowhere. You feel lighter. Someone reaches out. You catch yourself calm where you used to spiral. So name 2 or 3 small signs like that you'd love to notice, then forget about them. You're not hunting, you're just open."],
+  embody:"Picture one desire in full detail. What does your everyday life look like when it's already yours? Sit in that feeling for two minutes before bed.",
+  check:"Tonight I got clear and felt it as already mine"},
+ {step:"Step 2 · The Awareness",t:"Notice what comes up",tease:"Night 2 · meet the block",
+  prompt:["When you really feel into having it, what happens in your body? A full <b>hell yes, this is mine</b>? Or something tighter, like <b>yeah right, not for me</b>?",
+  "That reaction is your self-concept showing you exactly what it believes you're available for. That's the block. And now that you see it, you can clear it. You can never outmanifest your self-concept.",
+  "And here's what matters. That block is not yours and it's not the truth. It got installed. Every time you heard be grateful for what you have, every time you watched someone you love stress at the kitchen table, every time wanting more got called greedy, your self-concept took notes. You didn't choose it. But tonight you saw it, and the thing you can see is the thing you get to change. Seeing it is the whole win tonight."],
+  embody:"Feel into your desire and just notice the reaction, no fixing. Name what came up in one honest sentence below.",
+  check:"Tonight I noticed what my self-concept believes"},
+ {step:"Step 3 · The Identity",t:"Assume it's already yours",tease:"Night 3 · live from the end",
+  prompt:["This is the law of assumption. You stop chasing and assume it's already done. <b>I want this so bad</b> becomes <b>I'm so grateful this is already mine</b>.",
+  "The universe doesn't respond to what you say. It responds to what you actually believe is true. So tonight you live from the end.",
+  "This is not about pretending. It's about deciding it's done and then moving like it is. How does she talk to herself when a bill shows up? What does she say yes to without flinching? How does she carry herself walking into a room? You don't wait for reality to prove it to you first. Reality rearranges after you embody her, not before. So tonight you go first."],
+  embody:"Take one desire and speak it as already done, out loud. Then move through the rest of your night like a woman it already happened for.",
+  check:"Tonight I assumed it was already mine"},
+ {step:"Step 4 · The Work",t:"Why the portal is doing the heavy lifting",tease:"Night 4 · the most missed piece",
+  prompt:["You've pressed play on the Quantum Jump portal a few nights running now. Here's why that's the most important thing you're doing all week. Even when you say <b>this is mine</b> out loud, your body can be running a different story underneath, because your brain clings to what's familiar even when familiar means stuck.",
+  "The portal goes underneath the thinking mind. Right as you drift off, your subconscious is wide open, and that's when the new identity installs the deepest. This is your energetic gym, and you're training your body to feel safe holding what you're calling in. What you normalize while you sleep is what materializes when you wake. So tonight, same as every night, you let it run.",
+  "And this is exactly why you do it all seven nights and not just once. One night is a nice idea. Seven nights in a row is a new baseline. Repetition is how your body stops treating her like a fantasy and starts treating her like home. You're not forcing anything, you're just showing up to the same eight minutes until being her is the most normal thing in the world."],
+  embody:"Press play on the Quantum Jump portal again tonight and really let go into it. Notice if it's starting to feel more normal to be her.",
+  check:"Tonight I let the Quantum Jump portal do the deep work"},
+ {step:"Step 5 · The Proof",t:"Take action from her, not toward her",tease:"Night 5 · aligned action only",
+  prompt:["No obsessing, no forcing, no moving from panic. You act when something feels exciting, happy, like a genuine yes in your body. And you skip anything that feels like forcing or proving.",
+  "Your state of being is what calls it in, not the action itself. Every move comes from the woman it already happened for, and reality rearranges to match who you're being."],
+  embody:"Notice one action that feels like an exciting yes today, and take it. One. Then let your night be easy.",
+  check:"Tonight I took one aligned action as her"},
+ {step:"Step 6 · The Letting Go",t:"Detach and let it come",tease:"Night 6 · the part nobody explains",
+  prompt:["Here's the piece almost nobody explains, and it's the whole key. <b>Detachment.</b> Two layers. You detach from your current 3D reality, the bank balance, the circumstances, the way it all looks right now, because that's just old data, a snapshot of who you used to be. And you detach from <b>how</b> it comes. You don't get to script the route. Your only job is to be her and let it find its own way to you.",
+  "When you grip, when you're refreshing your account in dread or scanning for the sign asking where is it, you're telling your body you don't have it. That signal is lack, and lack is the frequency that keeps it away. The woman it already happened for is not anxiously watching the door. She's living. She knows it's handled, the same way you knew someone would come when you cried as a baby.",
+  "So you're not hunting for the desire to land. You're just noticing the proof you're already shifting. You moved different. A download came in out of nowhere. You feel lighter. Someone reached out. You caught yourself calm where you used to spiral. You notice it, you smile, you let it go. Noticing is not obsessing. Letting go is the mechanism, not a personality trait."],
+  embody:"Hand it over tonight. Say it out loud: it's done, it's on its way, and I don't have to know how. Then name one way you've already shifted this week without grabbing for more.",
+  check:"Tonight I let go and trusted it's already mine"},
+ {step:"Become Her",t:"She's just you now",tease:"Night 7 · look at your proof",
+  proof:true,
+  prompt:["Seven nights in, you walked the whole formula. The clarity, the block, the assumption, the work, the aligned action, and the letting go.",
+  "Now look at what you collected. The signs you named on Night 1 and every piece of proof you logged this week, below. That's not a coincidence pile. That's evidence your reality already started bending toward her. You didn't have to wait for the whole thing to land. It already started moving.",
+  "The woman looking in the mirror changed. So reality gets to match her now. Tonight you claim her for good and you keep being her, detached and certain, because the rest is already on its way."],
+  embody:"Read back through your proof above. Then name the one shift you're keeping forever and say it out loud. This is just who I am now.",
+  check:"Tonight I claimed her as me"},
+];
+
+const KEY='hrh_quantum_jump_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'{}');
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+let activeNight=0;
+
+const tabsBox=document.getElementById('tabs');
+const nightsBox=document.getElementById('nights');
+
+DAYS.forEach((d,i)=>{
+  const n=i+1;
+  const tab=document.createElement('button');tab.className='tab';tab.id='tab'+n;tab.textContent=n;
+  tab.addEventListener('click',()=>showNight(i));
+  tabsBox.appendChild(tab);
+
+  const sec=document.createElement('div');sec.className='night';sec.id='night'+n;
+  let prompts=d.prompt.map(p=>'<p class="prompt">'+p+'</p>').join('');
+  let signsBlock=d.signs?('<div class="signs"><div class="sl">&#10022; Name your signs</div>'+
+    '<p class="signsub">Pick 2 or 3 small signs that would tell you you\'re shifting. Then let them go and let them find you.</p>'+
+    '<textarea id="signs" placeholder="The signs I\'m watching for..."></textarea></div>'):'';
+  let proofBlock=d.proof?'<div class="proofstack" id="proofstack"></div>':'';
+  let anchorBlock=(i===0)?'<div class="anchor"><span class="ai">&#10022;</span><span>Your nightly ritual starts tonight: press play on the Quantum Jump portal and drift off to it. Same thing every night, all 7 nights.</span></div>':'';
+  sec.innerHTML=
+    '<div class="ncard" id="ncard'+n+'">'+
+    '<div class="step">'+d.step+'</div><h3>'+d.t+'</h3><div class="tease">'+d.tease+'</div>'+
+    prompts+
+    signsBlock+
+    proofBlock+
+    '<div class="embody"><div class="el">&#10022; Be her tonight</div><p>'+d.embody+'</p></div>'+
+    anchorBlock+
+    '<div class="check-row" data-n="'+n+'"><div class="box" id="box'+n+'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+    '<span class="ctext">'+d.check+'</span></div>'+
+    '<textarea id="note'+n+'" placeholder="Proof you\'re shifting: what did you notice today? You moved different, felt lighter, a download came in, someone reached out. Big or tiny."></textarea>'+
+    '<div class="checkin"><p>Now go <b>check in inside the community</b> and tell us you did Night '+n+'. Posting your win locks it in and the energy compounds. 👑</p>'+
+    '<a class="cibtn" href="'+COMMUNITY_URL+'" target="_blank" rel="noopener">Check in with the community &#10022;</a></div>'+
+    '<div class="nav-btns"><button class="prev" '+(i===0?'disabled':'')+' data-go="'+(i-1)+'">&larr; Night '+(n-1>0?n-1:1)+'</button>'+
+    '<button class="next" '+(i===6?'disabled':'')+' data-go="'+(i+1)+'">Night '+(n+1<=7?n+1:7)+' &rarr;</button></div>'+
+    '</div>';
+  nightsBox.appendChild(sec);
+
+  const note=sec.querySelector('#note'+n);
+  if(state['note'+n])note.value=state['note'+n];
+  note.addEventListener('input',()=>{state['note'+n]=note.value;save();fillProof();});
+
+  if(d.signs){const sg=sec.querySelector('#signs');
+    if(sg){if(state.signs)sg.value=state.signs;
+    sg.addEventListener('input',()=>{state.signs=sg.value;save();fillProof();});}}
+
+  sec.querySelector('.check-row').addEventListener('click',()=>{
+    state['day'+n]=!state['day'+n];save();render();
+    if(countDone()===7)celebrate();});
+  sec.querySelectorAll('.nav-btns button').forEach(b=>{
+    b.addEventListener('click',()=>{const g=parseInt(b.dataset.go);if(g>=0&&g<=6)showNight(g);});
+  });
+});
+
+function showNight(i){
+  activeNight=i;
+  document.querySelectorAll('.night').forEach((s,idx)=>s.classList.toggle('show',idx===i));
+  document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+  document.getElementById('finale').classList.remove('show');
+  const card=document.querySelector('.night.show .ncard');
+  if(card){card.scrollIntoView({behavior:'smooth',block:'start'});}
+  fillProof();
+}
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fillProof(){
+  const box=document.getElementById('proofstack');if(!box)return;
+  let html='<div class="psl">&#10022; Your proof, collected</div>';
+  let any=false;
+  if(state.signs&&state.signs.trim()){any=true;
+    html+='<div class="psitem"><span class="pslabel">The signs you named</span>'+escapeHtml(state.signs.trim())+'</div>';}
+  for(let i=1;i<=7;i++){const v=state['note'+i];if(v&&v.trim()){any=true;
+    html+='<div class="psitem"><span class="pslabel">Night '+i+'</span>'+escapeHtml(v.trim())+'</div>';}}
+  if(!any){html+='<div class="psitem empty">As you log your proof each night, it stacks up here, so on Night 7 you can see exactly how far your reality moved in one week.</div>';}
+  box.innerHTML=html;
+}
+function render(){
+  let done=0;
+  DAYS.forEach((d,i)=>{
+    const n=i+1;const on=!!state['day'+n];
+    if(on)done++;
+    document.getElementById('box'+n).classList.toggle('on',on);
+    document.getElementById('ncard'+n).classList.toggle('done',on);
+    document.getElementById('tab'+n).classList.toggle('done',on);
+  });
+  document.getElementById('progressLine').textContent=done+' of 7 nights complete';
+  document.getElementById('finale').classList.toggle('show',done===7);
+  fillProof();
+}
+
+function countDone(){let d=0;for(let i=1;i<=7;i++)if(state['day'+i])d++;return d;}
+function celebrate(){
+  const cv=document.createElement('canvas');
+  cv.style.cssText='position:fixed;inset:0;z-index:999;pointer-events:none;';
+  document.body.appendChild(cv);
+  const cx=cv.getContext('2d');
+  const dpr=Math.min(devicePixelRatio||1,2);
+  cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+  const cols=['#7a4fb0','#c9a449','#e8d28a','#54328a','#fdfbff','#d9c8ee'];
+  let parts=[];
+  for(let i=0;i<150;i++){parts.push({
+    x:innerWidth/2+(Math.random()-.5)*160, y:innerHeight*0.34+(Math.random()-.5)*70,
+    vx:(Math.random()-.5)*10, vy:Math.random()*-12-4, g:0.27+Math.random()*0.16,
+    w:Math.random()*7+4, rot:Math.random()*6.28, vr:(Math.random()-.5)*.34,
+    c:cols[Math.floor(Math.random()*cols.length)]});}
+  let f=0;
+  (function run(){f++;cx.clearRect(0,0,innerWidth,innerHeight);
+    parts.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=Math.max(0,1-f/160);
+      cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/2,p.w,p.w*0.6);cx.restore();});
+    if(f<160)requestAnimationFrame(run);else cv.remove();})();
+}
+
+// resume: open the first unfinished night, or night 1
+let firstUnfinished=DAYS.findIndex((d,i)=>!state['day'+(i+1)]);
+if(firstUnfinished<0)firstUnfinished=0;
+showNight(firstUnfinished);
+render();
+
+// portal link + 7-night commitment
+document.getElementById('portalbtn').href=PORTAL_URL;
+const commitBox=document.getElementById('commitBox');
+function renderCommit(){commitBox.classList.toggle('on',!!state.committed);}
+document.getElementById('commitRow').addEventListener('click',()=>{state.committed=!state.committed;save();renderCommit();});
+renderCommit();
+document.getElementById('celebrateBtn').addEventListener('click',celebrate);
+
+function pad(x){return String(x).padStart(2,'0');}
+function buildICS(){
+  const now=new Date();
+  let start=new Date(now.getFullYear(),now.getMonth(),now.getDate(),20,0,0);
+  if(now.getHours()>=20){start.setDate(start.getDate()+1);}
+  let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Manifest With Jac//Quantum Jump//EN','CALSCALE:GREGORIAN'];
+  const titles=DAYS.map((d,i)=>'Night '+(i+1)+': '+d.t);
+  for(let i=0;i<7;i++){
+    const s=new Date(start);s.setDate(start.getDate()+i);
+    const e=new Date(s);e.setMinutes(e.getMinutes()+15);
+    const fmt=dt=>dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';
+    lines.push('BEGIN:VEVENT');
+    lines.push('UID:hrh-quantumjump-'+i+'-'+Date.now()+'@manifestwithjac');
+    lines.push('DTSTAMP:'+fmt(now));
+    lines.push('DTSTART:'+fmt(s));
+    lines.push('DTEND:'+fmt(e));
+    lines.push('SUMMARY:Quantum Jump check-in '+String.fromCodePoint(0x1F451));
+    lines.push('DESCRIPTION:'+titles[i].replace(/,/g,'\\,')+'. Open the challenge and be her tonight.');
+    lines.push('BEGIN:VALARM');lines.push('TRIGGER:-PT0M');lines.push('ACTION:DISPLAY');lines.push('DESCRIPTION:Time to be her');lines.push('END:VALARM');
+    lines.push('END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n');
+}
+document.getElementById('calbtn').addEventListener('click',function(e){
+  e.preventDefault();
+  const blob=new Blob([buildICS()],{type:'text/calendar;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='quantum-jump-7-nights.ics';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+});
+</script>
+</body>
+</html>
