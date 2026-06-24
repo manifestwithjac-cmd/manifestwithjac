@@ -10,16 +10,17 @@
   #boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
         font-family:Georgia,'Times New Roman',serif;color:#0a0a0a;background:#fbf2f1;font-size:18px;letter-spacing:0.3px;}
 </style>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 </head>
 <body>
 <div id="boot">Loading your space&hellip;</div>
 <div id="root"></div>
-<script type="text/babel" data-presets="react">
-const { useState, useEffect } = React;
-
+<script>
+const {
+  useState,
+  useEffect
+} = React;
 
 // ======================================================================
 // ✦ HOTTER RICHER HAPPIER , START HERE ✦
@@ -36,360 +37,381 @@ const CONFIG = {
   FOUNDER_INITIALS: "J",
   SKOOL_HANDLE: "hotter-richer-happier",
   FOUNDER_LOCATION: "Florida",
-
   IG_HANDLE: "manifestwithjac",
   TIKTOK_HANDLE: "manifestwithjac",
   YOUTUBE_HANDLE: "manifestwithjac",
-
   TIER_1_NAME: "Free",
   TIER_2_NAME: "Premium",
   TIER_3_NAME: "VIP",
-
   CLASSROOM_FLAGSHIP: "Manifesting Money",
   CLASSROOM_SETUP: "Foundations",
   CLASSROOM_TREASURE: "The Vaults",
   CLASSROOM_MODALITY: "Foundations",
   CLASSROOM_HIGHTICKET: "Money Multiverse",
-
   CATEGORY_1_EMOJI: "✨",
   CATEGORY_1_NAME: "Announcements",
   CATEGORY_1_DESC: "Updates from Jac and what is new this week",
-
   CATEGORY_2_EMOJI: "💰",
   CATEGORY_2_NAME: "Fast Cash Challenge",
   CATEGORY_2_DESC: "The free 7-day money challenge, your quick win",
-
   CATEGORY_3_EMOJI: "⚡",
   CATEGORY_3_NAME: "Quantum Jump Challenge",
   CATEGORY_3_DESC: "The 28-night identity jump",
-
   CATEGORY_4_EMOJI: "🙏",
   CATEGORY_4_NAME: "Claim It",
   CATEGORY_4_DESC: "Introduce yourself, post your claims and wins, comment 444",
-
   CATEGORY_5_EMOJI: "❓",
   CATEGORY_5_NAME: "Ask Questions",
   CATEGORY_5_DESC: "Stuck on anything? Ask here, you are never alone",
-
   VALUE_1_ICON: "🌙",
   VALUE_1_OVER: "Identity",
   VALUE_1_UNDER: "tactics",
   VALUE_1_BODY: "We change who you are, not just what you think. The money, the love, the body all follow the identity, never the other way around. What you normalize will materialize.",
-
   VALUE_2_ICON: "💸",
   VALUE_2_OVER: "Simplicity",
   VALUE_2_UNDER: "complexity",
   VALUE_2_BODY: "No schmorgasbord of 47 methods. You do not need a million rituals or three hours a day. You need a body that treats your dream life as normal. We keep it simple so you actually do it.",
-
   VALUE_3_ICON: "👑",
   VALUE_3_OVER: "Delusional",
   VALUE_3_UNDER: "realistic",
-  VALUE_3_BODY: "Delusional is a compliment in here. The women who decide it is already done, before they can see one shred of proof, are the exact ones it happens for. You get to be one of them.",
+  VALUE_3_BODY: "Delusional is a compliment in here. The women who decide it is already done, before they can see one shred of proof, are the exact ones it happens for. You get to be one of them."
 };
 // ======================================================================
 // LESSON DATA
 // ======================================================================
 
 const lessons = [
-
-  // ============== DAY 1 ==============
-  {
-    id: 0, title: "Welcome In", accent: "In", dur: "6 min", emoji: "🤍",
-    overview: {
-      desc: "I built Hotter Richer Happier because I was so tired of manifestation feeling complicated. Affirmations that fizzled, vision boards collecting dust, a little hit of hope and then the doubt creeping right back in. This first week is how you skip all of that. By the end of it you will know exactly where to start, which room to open first, and how to make your dream life feel so normal your body stops fighting it. Press play and go.",
-      hero: "You are not a bystander in your life. You are the one creating it. We are just going to make the having feel normal.",
-      showCategoryMap: true,
-    },
-    concepts: [
-      { type: "pullquote",
-        text: "What you normalize will materialize. The faster your dream life feels like an of-course, the faster it shows up in the 3D." },
-    ],
-    actions: [
-      "Before you do a single other thing, open the Classroom and press play on Day 1 of the Fast Cash Challenge, or your first activation in Foundations. Even three minutes. You start by feeling it, not by reading about it. This is the whole method in motion.",
-      "Download the Skool app on your phone (iOS or Android) so the rituals, drops, and wins land right in your pocket.",
-      "Take a quick tour of the top nav: Community (the feed), Classroom (everything you press play on), Calendar, Members, Leaderboards.",
-      "Post your intro in Claim It 🙏 and comment 444 to lock in what you are calling in. Start earning your 🔥 streak by commenting on 2 or 3 other posts right now.",
-    ],
-    promptHeader: "Your intro post",
-    promptIntro: "Copy this and paste it as your first post in Claim It 🙏. Fill in the arrows, that is it.",
-    promptBadge: "Copy-paste into Skool →",
-    prompt: "Drop a hello in the community\nKeep it simple:\n→ Your name and where you are from\n→ What you are here to call in first (money, love, your glow-up)\n→ The one number, person, or feeling you want most right now\n→ One thing you are ready to stop believing about yourself\n\nThen drop 444 in the comments to lock it in. 🤍",
+// ============== DAY 1 ==============
+{
+  id: 0,
+  title: "Welcome In",
+  accent: "In",
+  dur: "6 min",
+  emoji: "🤍",
+  overview: {
+    desc: "I built Hotter Richer Happier because I was so tired of manifestation feeling complicated. Affirmations that fizzled, vision boards collecting dust, a little hit of hope and then the doubt creeping right back in. This first week is how you skip all of that. By the end of it you will know exactly where to start, which room to open first, and how to make your dream life feel so normal your body stops fighting it. Press play and go.",
+    hero: "You are not a bystander in your life. You are the one creating it. We are just going to make the having feel normal.",
+    showCategoryMap: true
   },
-
-  // ============== DAY 2 ==============
-  {
-    id: 1, title: "The Foundation", accent: "Foundation", dur: "8 min", emoji: "🌙",
-    overview: {
-      desc: "Here is the whole philosophy in one screen, and that is all Start Here gives you. The deep version, the full EFT walkthroughs and the nervous system work, lives in the Foundations classroom. That is your next stop after this welcome week.",
-      hero: "Your body is not the obstacle to your manifestation. Your body is the entire mechanism. Everything happens through it.",
-    },
-    concepts: [
-      { type: "accordion", headline: "Manifestation is only three things", icon: "🌙",
-        list: [
-          "Awareness that you are actively creating your reality, not waiting for it.",
-          "Clarity on what you actually desire, specific enough that the universe is not guessing.",
-          "Living as if it is already yours, until your body believes it.",
-        ],
-        body: "That is the whole engine. Everyone overcomplicates it. We do not." },
-      { type: "callout", style: "white", headline: "The deep work lives in Foundations",
-        body: "This is the short version on purpose. The full teaching, the EFT walkthroughs, the nervous system work, and the why behind all of it, lives in the Foundations classroom. That is where you go after this week to actually do the clearing. Start Here just walks you to the door." },
-    ],
-    actions: [
-      "Open the Foundations classroom next and watch the Intro to EFT Tapping lesson.",
-      "New to tapping? The 2-minute points guide is at manifestwithjac.netlify.app/eft-tapping-points-guide",
-      "When doubt or money panic shows up this week, come back to one line: everything is always working out for me.",
-    ],
+  concepts: [{
+    type: "pullquote",
+    text: "What you normalize will materialize. The faster your dream life feels like an of-course, the faster it shows up in the 3D."
+  }],
+  actions: ["Before you do a single other thing, open the Classroom and press play on Day 1 of the Fast Cash Challenge, or your first activation in Foundations. Even three minutes. You start by feeling it, not by reading about it. This is the whole method in motion.", "Download the Skool app on your phone (iOS or Android) so the rituals, drops, and wins land right in your pocket.", "Take a quick tour of the top nav: Community (the feed), Classroom (everything you press play on), Calendar, Members, Leaderboards.", "Post your intro in Claim It 🙏 and comment 444 to lock in what you are calling in. Start earning your 🔥 streak by commenting on 2 or 3 other posts right now."],
+  promptHeader: "Your intro post",
+  promptIntro: "Copy this and paste it as your first post in Claim It 🙏. Fill in the arrows, that is it.",
+  promptBadge: "Copy-paste into Skool →",
+  prompt: "Drop a hello in the community\nKeep it simple:\n→ Your name and where you are from\n→ What you are here to call in first (money, love, your glow-up)\n→ The one number, person, or feeling you want most right now\n→ One thing you are ready to stop believing about yourself\n\nThen drop 444 in the comments to lock it in. 🤍"
+},
+// ============== DAY 2 ==============
+{
+  id: 1,
+  title: "The Foundation",
+  accent: "Foundation",
+  dur: "8 min",
+  emoji: "🌙",
+  overview: {
+    desc: "Here is the whole philosophy in one screen, and that is all Start Here gives you. The deep version, the full EFT walkthroughs and the nervous system work, lives in the Foundations classroom. That is your next stop after this welcome week.",
+    hero: "Your body is not the obstacle to your manifestation. Your body is the entire mechanism. Everything happens through it."
   },
-
-  // ============== DAY 3 ==============
-  {
-    id: 2, title: "What Are You Actually Calling In?", accent: "Actually Calling In", dur: "5 min", emoji: "🔮",
-    overview: {
-      desc: "Now that you know how this works, the next move is getting honest about what you actually want, then picking the one room you walk into first. Most women stall right here, not because manifestation fails, but because everything looks equally important and they try to do all of it at once. Today you name the specific desire and you commit to one lane. Desire, then door.",
-      hero: "One clear desire beats seventeen vague ones. Your body already knows the answer. We are just naming it out loud and choosing where you start.",
-    },
-    concepts: [
-      { type: "path-picker" },
-      { type: "callout", style: "gradient", headline: "Commit to one lane for 28 days",
-        body: "This is the part most people skip, and it is the part that actually works. Twenty-eight days, four full weeks, is the runway your subconscious needs to accept a new normal and let it hold. Bouncing between all five lanes is exactly how women quit before anything lands. Stay in one room for 28 days, then your body will tell you when it is time to move to the next one." },
-      { type: "pullquote",
-        text: "You do not need a new method. You need to finish the one in front of you while your nervous system catches up to the woman you already are." },
-    ],
-    actions: [
-      "Sit for two minutes and feel into the five lanes. Which one makes your stomach flip? That is your lane.",
-      "Get specific on the desire inside it. Not more money, the actual number. Not a relationship, the actual feeling.",
-      "Commit to that one lane for the next 28 days. Write it where your body sees it daily, your lock screen or a sticky on your mirror.",
-      "Open that classroom and do the first thing fully before you open anything else.",
-      "Post your lane and your specific claim in the community, and drop 444 to anchor it. Let the room witness it with you.",
-    ],
-    prompt: "I am calling in [YOUR LANE: money / love / confidence / body / business] and the specific thing I want most is [GET SPECIFIC: the number, the person, the feeling, the milestone].\n\nHelp me sharpen this into one clear, present-tense claim I can say out loud every day like it is already mine. Keep it specific, keep it in my own voice, no fluff, no toxic positivity. Make it feel like something I would actually say.",
+  concepts: [{
+    type: "accordion",
+    headline: "Manifestation is only three things",
+    icon: "🌙",
+    list: ["Awareness that you are actively creating your reality, not waiting for it.", "Clarity on what you actually desire, specific enough that the universe is not guessing.", "Living as if it is already yours, until your body believes it."],
+    body: "That is the whole engine. Everyone overcomplicates it. We do not."
+  }, {
+    type: "callout",
+    style: "white",
+    headline: "The deep work lives in Foundations",
+    body: "This is the short version on purpose. The full teaching, the EFT walkthroughs, the nervous system work, and the why behind all of it, lives in the Foundations classroom. That is where you go after this week to actually do the clearing. Start Here just walks you to the door."
+  }],
+  actions: ["Open the Foundations classroom next and watch the Intro to EFT Tapping lesson.", "New to tapping? The 2-minute points guide is at manifestwithjac.netlify.app/eft-tapping-points-guide", "When doubt or money panic shows up this week, come back to one line: everything is always working out for me."]
+},
+// ============== DAY 3 ==============
+{
+  id: 2,
+  title: "What Are You Actually Calling In?",
+  accent: "Actually Calling In",
+  dur: "5 min",
+  emoji: "🔮",
+  overview: {
+    desc: "Now that you know how this works, the next move is getting honest about what you actually want, then picking the one room you walk into first. Most women stall right here, not because manifestation fails, but because everything looks equally important and they try to do all of it at once. Today you name the specific desire and you commit to one lane. Desire, then door.",
+    hero: "One clear desire beats seventeen vague ones. Your body already knows the answer. We are just naming it out loud and choosing where you start."
   },
-
-  // ============== DAY 4 ==============
-  {
-    id: 3, title: "Your Vault Tour", accent: "Vault Tour", dur: "7 min", emoji: "🎧",
-    overview: {
-      desc: "Now I show you what you actually have access to in here, because these are the tools that do the rewiring while you barely lift a finger. Press-play audios, interactive tapping vaults, rituals, the deep containers. You are not building anything from scratch. You press play, you let it work on you, you live your life. That is the press-play factory.",
-      hero: "You are using one of these right now. This welcome, the Fast Cash dashboard, that is the method already working on you.",
-    },
-    concepts: [
-      { type: "accordion", headline: "The tapping vaults", icon: "💧",
-        body: "Interactive EFT vaults, one for every lane. You open it, it asks how you are feeling right now, you tap the answer, and it walks you straight into the round for exactly that. There is a before-and-after slider so you literally watch the charge drop. That little drop is your proof it is working." },
-      { type: "accordion", headline: "Subliminals and rampages", icon: "🎧",
-        body: "Subliminals run the new beliefs underneath the music so your subconscious soaks them in, day or while you sleep. Rampages are the high-frequency hype audios you blast in the car when you need an instant state shift. Money is obsessed with me. I always get paid. You play them on repeat until they feel boring, and boring is the goal." },
-      { type: "accordion", headline: "Rituals and activations", icon: "🌙",
-        body: "A ritual is a guided experience you press play and follow, usually a visualization or meditation around 20 to 30 minutes, themed to that month energy. You do not have to know anything or prepare anything, you sit back, follow my voice, and let it move you. Every month I drop a fresh one to set the tone, plus activations for the in-between moments when you need to drop into the receiving state fast. One ritual a month is plenty. We are not here to do a thousand things, we are here to do the few that actually move you." },
-      { type: "accordion", headline: "The deep containers", icon: "💎",
-        body: "When you want to go all the way in on a desire, the deep containers are waiting. Money Multiverse lives right inside the Manifesting Money classroom and walks you through clearing the money story across every version of you, Past, Present, Shadow, and Multiverse Self. These are the full immersive journeys, not quick fixes, and they unlock with the full vault." },
-      { type: "pullquote",
-        text: "One person loves the subliminals, another lives for the rampages, another only taps. You do not need all of it. You need the few that work on your body." },
-    ],
-    actions: [
-      "Open one audio or one tapping vault in your lane right now. Do not open all of them, pick one.",
-      "Use it today. Tap one round, or play one subliminal as you fall asleep tonight.",
-      "Post in Claim It 🙏 with how your body felt after. Naming the shift out loud makes it land deeper.",
-    ],
+  concepts: [{
+    type: "path-picker"
+  }, {
+    type: "callout",
+    style: "gradient",
+    headline: "Commit to one lane for 28 days",
+    body: "This is the part most people skip, and it is the part that actually works. Twenty-eight days, four full weeks, is the runway your subconscious needs to accept a new normal and let it hold. Bouncing between all five lanes is exactly how women quit before anything lands. Stay in one room for 28 days, then your body will tell you when it is time to move to the next one."
+  }, {
+    type: "pullquote",
+    text: "You do not need a new method. You need to finish the one in front of you while your nervous system catches up to the woman you already are."
+  }],
+  actions: ["Sit for two minutes and feel into the five lanes. Which one makes your stomach flip? That is your lane.", "Get specific on the desire inside it. Not more money, the actual number. Not a relationship, the actual feeling.", "Commit to that one lane for the next 28 days. Write it where your body sees it daily, your lock screen or a sticky on your mirror.", "Open that classroom and do the first thing fully before you open anything else.", "Post your lane and your specific claim in the community, and drop 444 to anchor it. Let the room witness it with you."],
+  prompt: "I am calling in [YOUR LANE: money / love / confidence / body / business] and the specific thing I want most is [GET SPECIFIC: the number, the person, the feeling, the milestone].\n\nHelp me sharpen this into one clear, present-tense claim I can say out loud every day like it is already mine. Keep it specific, keep it in my own voice, no fluff, no toxic positivity. Make it feel like something I would actually say."
+},
+// ============== DAY 4 ==============
+{
+  id: 3,
+  title: "Your Vault Tour",
+  accent: "Vault Tour",
+  dur: "7 min",
+  emoji: "🎧",
+  overview: {
+    desc: "Now I show you what you actually have access to in here, because these are the tools that do the rewiring while you barely lift a finger. Press-play audios, interactive tapping vaults, rituals, the deep containers. You are not building anything from scratch. You press play, you let it work on you, you live your life. That is the press-play factory.",
+    hero: "You are using one of these right now. This welcome, the Fast Cash dashboard, that is the method already working on you."
   },
-
-  // ============== DAY 5 ==============
-  {
-    id: 4, title: "Your First Win", accent: "First Win", dur: "6 min", emoji: "🏆",
-    overview: {
-      desc: "Days 1 through 5 were orientation and clearing. Today is the doing. You do not need to open ten things. You need ONE press-play this week that gives your body a real shift, and you let the room witness it. That first felt win is what makes you believe, and belief is the whole game.",
-      hero: "You do not manifest from the couch waiting to feel ready. You move as her now, in the smallest real way, and your body catches up.",
-      showTierComparison: true,
-    },
-    concepts: [
-      { type: "pullquote",
-        text: "It does not count as a shift until your body feels it. Reading about receiving is not receiving. Press play and let it land." },
-      { type: "accordion", headline: "Your first week, one real thing", icon: "🚀",
-        body: "Pick one. Do Day 1 of the free Fast Cash Challenge. Or one full tapping round in your lane. Or one activation tonight before bed. Not all of it, not perfectly, just one thing actually done. The women who get results are not the ones who consumed the most, they are the ones who pressed play and let it work." },
-      { type: "accordion", headline: "Claiming it out loud is part of the work", icon: "🙏",
-        body: "Posting your win in the feed is not just social. Saying it out loud, having the audacity to claim it where people can see, that is how you normalize it in your body. Drop your win and your 444 in Claim It. The more you treat your desire like it is already real, the faster it arrives." },
-      { type: "accordion", headline: "Receiving is a two-way street", icon: "💜",
-        body: "The fastest way to get the most out of this room is to show up for the other women in it. Leave a real comment on a few posts today. Cheer on someone calling in the same thing as you. The energy you put into witnessing other women receiving comes right back to you." },
-      { type: "callout", style: "gradient", headline: "When you want the whole vault",
-        body: "Free gets you the full community, the 7-Day Fast Cash Challenge, and your first wins, no card needed. Premium is $7 a month with a 7-day free trial and adds a brand new ritual every month plus every past ritual, the 28-Day Quantum Jump, and the rotating challenges. VIP is $47 and unlocks the entire vault, every tapping vault, subliminal, and rampage across all 5 lanes, Money Multiverse inside Manifesting Money, Venus my manifestation story generator you can actually use, and the monthly Q&A where I record feedback on your work. No calls, ever. Just press play." },
-    ],
-    actions: [
-      "Pick your ONE press-play for this week and actually do it today.",
-      "Post your first win or first shift in Claim It 🙏 and drop 444 to lock it in.",
-      "Comment on at least 3 other women posts today. Real comments, not just love this. Witnessing compounds.",
-      "Come back tomorrow and do the next one. One a day. Let it work on you.",
-    ],
+  concepts: [{
+    type: "accordion",
+    headline: "The tapping vaults",
+    icon: "💧",
+    body: "Interactive EFT vaults, one for every lane. You open it, it asks how you are feeling right now, you tap the answer, and it walks you straight into the round for exactly that. There is a before-and-after slider so you literally watch the charge drop. That little drop is your proof it is working."
+  }, {
+    type: "accordion",
+    headline: "Subliminals and rampages",
+    icon: "🎧",
+    body: "Subliminals run the new beliefs underneath the music so your subconscious soaks them in, day or while you sleep. Rampages are the high-frequency hype audios you blast in the car when you need an instant state shift. Money is obsessed with me. I always get paid. You play them on repeat until they feel boring, and boring is the goal."
+  }, {
+    type: "accordion",
+    headline: "Rituals and activations",
+    icon: "🌙",
+    body: "A ritual is a guided experience you press play and follow, usually a visualization or meditation around 20 to 30 minutes, themed to that month energy. You do not have to know anything or prepare anything, you sit back, follow my voice, and let it move you. Every month I drop a fresh one to set the tone, plus activations for the in-between moments when you need to drop into the receiving state fast. One ritual a month is plenty. We are not here to do a thousand things, we are here to do the few that actually move you."
+  }, {
+    type: "accordion",
+    headline: "The deep containers",
+    icon: "💎",
+    body: "When you want to go all the way in on a desire, the deep containers are waiting. Money Multiverse lives right inside the Manifesting Money classroom and walks you through clearing the money story across every version of you, Past, Present, Shadow, and Multiverse Self. These are the full immersive journeys, not quick fixes, and they unlock with the full vault."
+  }, {
+    type: "pullquote",
+    text: "One person loves the subliminals, another lives for the rampages, another only taps. You do not need all of it. You need the few that work on your body."
+  }],
+  actions: ["Open one audio or one tapping vault in your lane right now. Do not open all of them, pick one.", "Use it today. Tap one round, or play one subliminal as you fall asleep tonight.", "Post in Claim It 🙏 with how your body felt after. Naming the shift out loud makes it land deeper."]
+},
+// ============== DAY 5 ==============
+{
+  id: 4,
+  title: "Your First Win",
+  accent: "First Win",
+  dur: "6 min",
+  emoji: "🏆",
+  overview: {
+    desc: "Days 1 through 5 were orientation and clearing. Today is the doing. You do not need to open ten things. You need ONE press-play this week that gives your body a real shift, and you let the room witness it. That first felt win is what makes you believe, and belief is the whole game.",
+    hero: "You do not manifest from the couch waiting to feel ready. You move as her now, in the smallest real way, and your body catches up.",
+    showTierComparison: true
   },
-
-  // ============== DAY 6 ==============
-  {
-    id: 5, title: "Make It Free For Life", accent: "Free For Life", dur: "3 min", emoji: "💚",
-    overview: {
-      desc: "Fun one to close on. You can make your whole membership free for life, and actually make money on top of it, just by sharing this room with women who would already love it. Every member earns 40% commission for life on everyone they bring in, at whatever tier they join. Skool handles all of it. You copy, you paste, you share. That is the whole job.",
-      hero: "Invite a few women who are ready for this and your membership pays for itself. Everything after that is overflow landing in your account.",
-      showReferralMath: true,
-    },
-    concepts: [
-      { type: "invite-walkthrough" },
-      { type: "accordion", headline: "How the 40% actually works", icon: "💰",
-        body: "You get 40% of whatever tier someone joins at, Member, Premium, or VIP, for the entire lifetime of their membership. It pays out automatically through Skool, usually within 14 days of their payment. Nothing to track, no links to build, no follow up. Skool runs the whole thing. You just share your link and let it work." },
-      { type: "pullquote",
-        text: "This is not a side hustle. This is you getting paid to send your friends the room that is already changing your life." },
-      { type: "accordion", headline: "Who to send it to", icon: "💜",
-        body: "Think of the friend always in your DMs about manifestation, the one who is so over surface level, the one calling in the exact thing you are. The women who would be gloriously delusional right next to you. You are not selling anything, you are telling the truth about what is working for you. Manifesting next to other believers makes the whole thing move faster anyway." },
-      { type: "accordion", headline: "Do not overthink it, use the template", icon: "📝",
-        body: "There are two copy-paste templates in the Prompt tab, one social post and one story. Both written in real voice, no cheesy bro-marketing. Swap in your own win and your link, and post it. That is the entire task." },
-    ],
-    actions: [
-      "Grab your affiliate link: Community tab, right sidebar, the button that says Invite People. Copy the link that pops up.",
-      "Save it somewhere you will actually find it again, phone notes or a pinned message to yourself.",
-      "Pick the one platform where your people actually hang out.",
-      "Open the Prompt tab, fill in the two brackets, and post it. Even a small audience works. Every member who has earned from this started with one post.",
-      "Come post in Claim It when someone joins through your link so we can celebrate you.",
-    ],
-    promptHeader: "Your share templates",
-    prompt: "Two copy-paste templates. Pick one, fill in the 2 brackets with your real experience and your link, post it.\n\n--------------------\nTEMPLATE 1: SOCIAL POST\n--------------------\n\nokay I have to talk about something. I have been inside a manifestation community called Hotter Richer Happier and it is nothing like the surface level stuff.\n\nIt is press-play. Tapping vaults for money, love, the body. Subliminals you run while you sleep. A fresh ritual every month. Run by Jac, who actually lived this, six figures of debt to a completely different life.\n\n[ONE SENTENCE ABOUT THE SPECIFIC SHIFT YOU FELT IN HERE]\n\nif you have been waiting for a sign to go all in on your fuck yes life, this is it. 444\n\ncome in here with me [YOUR LINK]\n\n--------------------\nTEMPLATE 2: STORY / CLOSE FRIENDS\n--------------------\n\nnot me being fully delusional in the best way lately. I joined this manifestation room called Hotter Richer Happier and [ONE SENTENCE ABOUT WHAT SHIFTED].\n\nif you want to be delulu with me, come manifest right next to me. link is here [YOUR LINK] 444\n\n--------------------\nHow to use: pick one, fill the 2 brackets, post. That is it.",
+  concepts: [{
+    type: "pullquote",
+    text: "It does not count as a shift until your body feels it. Reading about receiving is not receiving. Press play and let it land."
+  }, {
+    type: "accordion",
+    headline: "Your first week, one real thing",
+    icon: "🚀",
+    body: "Pick one. Do Day 1 of the free Fast Cash Challenge. Or one full tapping round in your lane. Or one activation tonight before bed. Not all of it, not perfectly, just one thing actually done. The women who get results are not the ones who consumed the most, they are the ones who pressed play and let it work."
+  }, {
+    type: "accordion",
+    headline: "Claiming it out loud is part of the work",
+    icon: "🙏",
+    body: "Posting your win in the feed is not just social. Saying it out loud, having the audacity to claim it where people can see, that is how you normalize it in your body. Drop your win and your 444 in Claim It. The more you treat your desire like it is already real, the faster it arrives."
+  }, {
+    type: "accordion",
+    headline: "Receiving is a two-way street",
+    icon: "💜",
+    body: "The fastest way to get the most out of this room is to show up for the other women in it. Leave a real comment on a few posts today. Cheer on someone calling in the same thing as you. The energy you put into witnessing other women receiving comes right back to you."
+  }, {
+    type: "callout",
+    style: "gradient",
+    headline: "When you want the whole vault",
+    body: "Free gets you the full community, the 7-Day Fast Cash Challenge, and your first wins, no card needed. Premium is $7 a month with a 7-day free trial and adds a brand new ritual every month plus every past ritual, the 28-Day Quantum Jump, and the rotating challenges. VIP is $47 and unlocks the entire vault, every tapping vault, subliminal, and rampage across all 5 lanes, Money Multiverse inside Manifesting Money, Venus my manifestation story generator you can actually use, and the monthly Q&A where I record feedback on your work. No calls, ever. Just press play."
+  }],
+  actions: ["Pick your ONE press-play for this week and actually do it today.", "Post your first win or first shift in Claim It 🙏 and drop 444 to lock it in.", "Comment on at least 3 other women posts today. Real comments, not just love this. Witnessing compounds.", "Come back tomorrow and do the next one. One a day. Let it work on you."]
+},
+// ============== DAY 6 ==============
+{
+  id: 5,
+  title: "Make It Free For Life",
+  accent: "Free For Life",
+  dur: "3 min",
+  emoji: "💚",
+  overview: {
+    desc: "Fun one to close on. You can make your whole membership free for life, and actually make money on top of it, just by sharing this room with women who would already love it. Every member earns 40% commission for life on everyone they bring in, at whatever tier they join. Skool handles all of it. You copy, you paste, you share. That is the whole job.",
+    hero: "Invite a few women who are ready for this and your membership pays for itself. Everything after that is overflow landing in your account.",
+    showReferralMath: true
   },
-];
+  concepts: [{
+    type: "invite-walkthrough"
+  }, {
+    type: "accordion",
+    headline: "How the 40% actually works",
+    icon: "💰",
+    body: "You get 40% of whatever tier someone joins at, Member, Premium, or VIP, for the entire lifetime of their membership. It pays out automatically through Skool, usually within 14 days of their payment. Nothing to track, no links to build, no follow up. Skool runs the whole thing. You just share your link and let it work."
+  }, {
+    type: "pullquote",
+    text: "This is not a side hustle. This is you getting paid to send your friends the room that is already changing your life."
+  }, {
+    type: "accordion",
+    headline: "Who to send it to",
+    icon: "💜",
+    body: "Think of the friend always in your DMs about manifestation, the one who is so over surface level, the one calling in the exact thing you are. The women who would be gloriously delusional right next to you. You are not selling anything, you are telling the truth about what is working for you. Manifesting next to other believers makes the whole thing move faster anyway."
+  }, {
+    type: "accordion",
+    headline: "Do not overthink it, use the template",
+    icon: "📝",
+    body: "There are two copy-paste templates in the Prompt tab, one social post and one story. Both written in real voice, no cheesy bro-marketing. Swap in your own win and your link, and post it. That is the entire task."
+  }],
+  actions: ["Grab your affiliate link: Community tab, right sidebar, the button that says Invite People. Copy the link that pops up.", "Save it somewhere you will actually find it again, phone notes or a pinned message to yourself.", "Pick the one platform where your people actually hang out.", "Open the Prompt tab, fill in the two brackets, and post it. Even a small audience works. Every member who has earned from this started with one post.", "Come post in Claim It when someone joins through your link so we can celebrate you."],
+  promptHeader: "Your share templates",
+  prompt: "Two copy-paste templates. Pick one, fill in the 2 brackets with your real experience and your link, post it.\n\n--------------------\nTEMPLATE 1: SOCIAL POST\n--------------------\n\nokay I have to talk about something. I have been inside a manifestation community called Hotter Richer Happier and it is nothing like the surface level stuff.\n\nIt is press-play. Tapping vaults for money, love, the body. Subliminals you run while you sleep. A fresh ritual every month. Run by Jac, who actually lived this, six figures of debt to a completely different life.\n\n[ONE SENTENCE ABOUT THE SPECIFIC SHIFT YOU FELT IN HERE]\n\nif you have been waiting for a sign to go all in on your fuck yes life, this is it. 444\n\ncome in here with me [YOUR LINK]\n\n--------------------\nTEMPLATE 2: STORY / CLOSE FRIENDS\n--------------------\n\nnot me being fully delusional in the best way lately. I joined this manifestation room called Hotter Richer Happier and [ONE SENTENCE ABOUT WHAT SHIFTED].\n\nif you want to be delulu with me, come manifest right next to me. link is here [YOUR LINK] 444\n\n--------------------\nHow to use: pick one, fill the 2 brackets, post. That is it."
+}];
 
 // ====================== TIER COMPARISON DATA ======================
-const tiers = [
-  {
-    name: CONFIG.TIER_1_NAME,
-    style: "light",
-    tagline: "Free forever. Your way in.",
-    desc: "The room, the challenge, and your first wins. No card needed.",
-    items: [
-      { icon: "💸", text: "The 7-Day Fast Cash Challenge, free for life" },
-      { icon: "💜", text: "The full community feed, wins, and claim threads" },
-      { icon: "✨", text: "The Quantum Manifestation Blueprint to start" },
-      { icon: "🌙", text: "Every monthly theme announced so you never miss" },
-    ],
-    cta: "Free ✦",
-  },
-  {
-    name: CONFIG.TIER_2_NAME,
-    style: "dark",
-    tagline: "$7 a month, 7-day free trial.",
-    desc: "Everything free, plus the monthly ritual and the deeper challenges.",
-    items: [
-      { icon: "🌙", text: "A brand new ritual every single month, plus every past ritual" },
-      { icon: "🚀", text: "The 28-Day Quantum Jump and rotating challenges" },
-      { icon: "♾️", text: "Everything in Free, always" },
-    ],
-    cta: "$7 / month ✦",
-  },
-  {
-    name: CONFIG.TIER_3_NAME,
-    style: "holo",
-    tagline: "$47 a month. The crown. You plus the tool.",
-    desc: "The entire vault, my AI app, and my eyes on your work.",
-    items: [
-      { icon: "🎧", text: "Every tapping vault, subliminal, and rampage across all 5 lanes" },
-      { icon: "💎", text: "Money Multiverse inside Manifesting Money, fully unlocked" },
-      { icon: "✨", text: "Venus, my manifestation story generator, to use on demand" },
-      { icon: "🎙️", text: "Submit to the monthly Q&A and I record real feedback" },
-      { icon: "👑", text: "Everything in Free and Premium, always" },
-    ],
-    cta: "$47 / month ✦",
-  },
-];
+const tiers = [{
+  name: CONFIG.TIER_1_NAME,
+  style: "light",
+  tagline: "Free forever. Your way in.",
+  desc: "The room, the challenge, and your first wins. No card needed.",
+  items: [{
+    icon: "💸",
+    text: "The 7-Day Fast Cash Challenge, free for life"
+  }, {
+    icon: "💜",
+    text: "The full community feed, wins, and claim threads"
+  }, {
+    icon: "✨",
+    text: "The Quantum Manifestation Blueprint to start"
+  }, {
+    icon: "🌙",
+    text: "Every monthly theme announced so you never miss"
+  }],
+  cta: "Free ✦"
+}, {
+  name: CONFIG.TIER_2_NAME,
+  style: "dark",
+  tagline: "$7 a month, 7-day free trial.",
+  desc: "Everything free, plus the monthly ritual and the deeper challenges.",
+  items: [{
+    icon: "🌙",
+    text: "A brand new ritual every single month, plus every past ritual"
+  }, {
+    icon: "🚀",
+    text: "The 28-Day Quantum Jump and rotating challenges"
+  }, {
+    icon: "♾️",
+    text: "Everything in Free, always"
+  }],
+  cta: "$7 / month ✦"
+}, {
+  name: CONFIG.TIER_3_NAME,
+  style: "holo",
+  tagline: "$47 a month. The crown. You plus the tool.",
+  desc: "The entire vault, my AI app, and my eyes on your work.",
+  items: [{
+    icon: "🎧",
+    text: "Every tapping vault, subliminal, and rampage across all 5 lanes"
+  }, {
+    icon: "💎",
+    text: "Money Multiverse inside Manifesting Money, fully unlocked"
+  }, {
+    icon: "✨",
+    text: "Venus, my manifestation story generator, to use on demand"
+  }, {
+    icon: "🎙️",
+    text: "Submit to the monthly Q&A and I record real feedback"
+  }, {
+    icon: "👑",
+    text: "Everything in Free and Premium, always"
+  }],
+  cta: "$47 / month ✦"
+}];
 
 // ====================== PATH PICKER DATA ======================
-const pathOptions = [
-  {
-    id: "path_money",
-    question: "Money, receiving, and overflow",
-    path: "Fast Cash, then Manifesting Money",
-    tier: CONFIG.TIER_1_NAME,
-    whyPoints: [
-      "Start with the free 7-Day Fast Cash Challenge for a quick, real win",
-      "Then the Manifesting Money vault clears the money story for good",
-      "Money is the lane most women feel the fastest shift in",
-    ],
-    cta: "Fast Cash, then Manifesting Money",
-  },
-  {
-    id: "path_love",
-    question: "Love, your person, and being chosen",
-    path: "Manifesting Love",
-    tier: CONFIG.TIER_3_NAME,
-    whyPoints: [
-      "Self-concept first, because you attract from who you believe you are",
-      "The Love vault and the SP work all live here",
-      "You stop chasing it and become the one it moves toward",
-    ],
-    cta: "Manifesting Love",
-  },
-  {
-    id: "path_confidence",
-    question: "Confidence and your self-concept",
-    path: "Foundations, then Confidence",
-    tier: CONFIG.TIER_3_NAME,
-    whyPoints: [
-      "Foundations locks in the identity everything else stands on",
-      "The Confidence vault clears the old story about who you are",
-      "This is the woman who already knows it is all hers",
-    ],
-    cta: "Foundations, then Confidence",
-  },
-  {
-    id: "path_body",
-    question: "Your body and your vitality",
-    path: "Body & Vitality",
-    tier: CONFIG.TIER_3_NAME,
-    whyPoints: [
-      "You stop fighting your body and start living in it like home",
-      "The Body vault rewires the way you talk to and about yourself",
-      "Vitality becomes an identity, not a punishment",
-    ],
-    cta: "Body & Vitality",
-  },
-  {
-    id: "path_business",
-    question: "Business and being seen",
-    path: "Business & Being Seen",
-    tier: CONFIG.TIER_3_NAME,
-    whyPoints: [
-      "You become the woman who is meant to be seen and paid for it",
-      "The Business vault clears the fear of visibility and of charging",
-      "Aligned action lands different when the identity is already there",
-    ],
-    cta: "Business & Being Seen",
-  },
-];
+const pathOptions = [{
+  id: "path_money",
+  question: "Money, receiving, and overflow",
+  path: "Fast Cash, then Manifesting Money",
+  tier: CONFIG.TIER_1_NAME,
+  whyPoints: ["Start with the free 7-Day Fast Cash Challenge for a quick, real win", "Then the Manifesting Money vault clears the money story for good", "Money is the lane most women feel the fastest shift in"],
+  cta: "Fast Cash, then Manifesting Money"
+}, {
+  id: "path_love",
+  question: "Love, your person, and being chosen",
+  path: "Manifesting Love",
+  tier: CONFIG.TIER_3_NAME,
+  whyPoints: ["Self-concept first, because you attract from who you believe you are", "The Love vault and the SP work all live here", "You stop chasing it and become the one it moves toward"],
+  cta: "Manifesting Love"
+}, {
+  id: "path_confidence",
+  question: "Confidence and your self-concept",
+  path: "Foundations, then Confidence",
+  tier: CONFIG.TIER_3_NAME,
+  whyPoints: ["Foundations locks in the identity everything else stands on", "The Confidence vault clears the old story about who you are", "This is the woman who already knows it is all hers"],
+  cta: "Foundations, then Confidence"
+}, {
+  id: "path_body",
+  question: "Your body and your vitality",
+  path: "Body & Vitality",
+  tier: CONFIG.TIER_3_NAME,
+  whyPoints: ["You stop fighting your body and start living in it like home", "The Body vault rewires the way you talk to and about yourself", "Vitality becomes an identity, not a punishment"],
+  cta: "Body & Vitality"
+}, {
+  id: "path_business",
+  question: "Business and being seen",
+  path: "Business & Being Seen",
+  tier: CONFIG.TIER_3_NAME,
+  whyPoints: ["You become the woman who is meant to be seen and paid for it", "The Business vault clears the fear of visibility and of charging", "Aligned action lands different when the identity is already there"],
+  cta: "Business & Being Seen"
+}];
 
 // ====================== VALUES TRIAD ======================
-const values = [
-  {
-    icon: CONFIG.VALUE_1_ICON,
-    over: CONFIG.VALUE_1_OVER,
-    under: CONFIG.VALUE_1_UNDER,
-    body: CONFIG.VALUE_1_BODY,
-    accent: "pink",
-  },
-  {
-    icon: CONFIG.VALUE_2_ICON,
-    over: CONFIG.VALUE_2_OVER,
-    under: CONFIG.VALUE_2_UNDER,
-    body: CONFIG.VALUE_2_BODY,
-    accent: "mint",
-  },
-  {
-    icon: CONFIG.VALUE_3_ICON,
-    over: CONFIG.VALUE_3_OVER,
-    under: CONFIG.VALUE_3_UNDER,
-    body: CONFIG.VALUE_3_BODY,
-    accent: "cyan",
-  },
-];
+const values = [{
+  icon: CONFIG.VALUE_1_ICON,
+  over: CONFIG.VALUE_1_OVER,
+  under: CONFIG.VALUE_1_UNDER,
+  body: CONFIG.VALUE_1_BODY,
+  accent: "pink"
+}, {
+  icon: CONFIG.VALUE_2_ICON,
+  over: CONFIG.VALUE_2_OVER,
+  under: CONFIG.VALUE_2_UNDER,
+  body: CONFIG.VALUE_2_BODY,
+  accent: "mint"
+}, {
+  icon: CONFIG.VALUE_3_ICON,
+  over: CONFIG.VALUE_3_OVER,
+  under: CONFIG.VALUE_3_UNDER,
+  body: CONFIG.VALUE_3_BODY,
+  accent: "cyan"
+}];
 
 // ====================== COMMUNITY CATEGORY MAP ======================
-const categories = [
-  { emoji: CONFIG.CATEGORY_4_EMOJI, name: CONFIG.CATEGORY_4_NAME, desc: CONFIG.CATEGORY_4_DESC, color: "purple" },
-  { emoji: CONFIG.CATEGORY_1_EMOJI, name: CONFIG.CATEGORY_1_NAME, desc: CONFIG.CATEGORY_1_DESC, color: "pink" },
-  { emoji: CONFIG.CATEGORY_2_EMOJI, name: CONFIG.CATEGORY_2_NAME, desc: CONFIG.CATEGORY_2_DESC, color: "lime" },
-  { emoji: CONFIG.CATEGORY_3_EMOJI, name: CONFIG.CATEGORY_3_NAME, desc: CONFIG.CATEGORY_3_DESC, color: "cyan" },
-  { emoji: CONFIG.CATEGORY_5_EMOJI, name: CONFIG.CATEGORY_5_NAME, desc: CONFIG.CATEGORY_5_DESC, color: "mint" },
-];
+const categories = [{
+  emoji: CONFIG.CATEGORY_4_EMOJI,
+  name: CONFIG.CATEGORY_4_NAME,
+  desc: CONFIG.CATEGORY_4_DESC,
+  color: "purple"
+}, {
+  emoji: CONFIG.CATEGORY_1_EMOJI,
+  name: CONFIG.CATEGORY_1_NAME,
+  desc: CONFIG.CATEGORY_1_DESC,
+  color: "pink"
+}, {
+  emoji: CONFIG.CATEGORY_2_EMOJI,
+  name: CONFIG.CATEGORY_2_NAME,
+  desc: CONFIG.CATEGORY_2_DESC,
+  color: "lime"
+}, {
+  emoji: CONFIG.CATEGORY_3_EMOJI,
+  name: CONFIG.CATEGORY_3_NAME,
+  desc: CONFIG.CATEGORY_3_DESC,
+  color: "cyan"
+}, {
+  emoji: CONFIG.CATEGORY_5_EMOJI,
+  name: CONFIG.CATEGORY_5_NAME,
+  desc: CONFIG.CATEGORY_5_DESC,
+  color: "mint"
+}];
 
 // ======================================================================
 // MAIN COMPONENT
@@ -405,36 +427,36 @@ function StartHereCourse() {
   const [mobileNav, setMobileNav] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const [reveal, setReveal] = useState(0);
-
   useEffect(() => {
     setActiveTab("overview");
     setExpanded({});
     setPickedPath(null);
-    setReveal((n) => n + 1);
+    setReveal(n => n + 1);
   }, [active]);
-
   useEffect(() => {
-    setReveal((n) => n + 1);
+    setReveal(n => n + 1);
   }, [activeTab]);
-
   const lesson = lessons[active];
   const doneCount = Object.values(done).filter(Boolean).length;
-  const progress = Math.round((doneCount / lessons.length) * 100);
-
-  const toggleDone = (i) => {
+  const progress = Math.round(doneCount / lessons.length * 100);
+  const toggleDone = i => {
     const wasDone = done[i];
-    setDone((p) => ({ ...p, [i]: !p[i] }));
+    setDone(p => ({
+      ...p,
+      [i]: !p[i]
+    }));
     if (!wasDone) {
       setCelebrating(true);
       setTimeout(() => setCelebrating(false), 1800);
     }
   };
-
-  const toggleAccordion = (key) => {
-    setExpanded((p) => ({ ...p, [key]: !p[key] }));
+  const toggleAccordion = key => {
+    setExpanded(p => ({
+      ...p,
+      [key]: !p[key]
+    }));
   };
-
-  const copyText = (text) => {
+  const copyText = text => {
     try {
       const ta = document.createElement("textarea");
       ta.value = text;
@@ -448,334 +470,346 @@ function StartHereCourse() {
       setTimeout(() => setCopied(false), 2000);
     } catch (e) {}
   };
-
-  const tabs = [
-    { id: "overview", label: "Overview", icon: "✦" },
-    { id: "concepts", label: "Key Concepts", icon: "💎" },
-    { id: "actions", label: "Do This", icon: "🌟" },
-    ...(lesson.prompt ? [{ id: "prompt", label: "Prompt", icon: "✨" }] : []),
-  ];
-
-  return (
-    <div className="app">
-      <style>{styles}</style>
-
-      {/* Glitter starfield */}
-      <div className="stars-bg">
-        {[...Array(16)].map((_, i) => {
-          const variants = ["", "lg", "pink", "cyan", "mint"];
-          const v = variants[i % variants.length];
-          return (
-            <div
-              key={i}
-              className={`s-star ${v}`}
-              style={{
-                left: `${(i * 37) % 100}%`,
-                top: `${(i * 53) % 100}%`,
-                animationDelay: `${(i * 0.17) % 4}s`,
-                animationDuration: `${3 + (i % 4)}s`,
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {celebrating && (
-        <div className="celebration">
-          {[...Array(24)].map((_, i) => (
-            <div
-              key={i}
-              className="celeb-spark"
-              style={{
-                left: `${45 + Math.random() * 10}%`,
-                top: `${40 + Math.random() * 10}%`,
-                animationDelay: `${i * 30}ms`,
-                transform: `rotate(${i * 15}deg) translateY(-${80 + Math.random() * 80}px)`,
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Top Bar */}
-      <div className="topbar">
-        <div className="topbar-left">
-          <button className="mobile-toggle" onClick={() => setMobileNav(!mobileNav)}>☰</button>
-          <div className="topbar-icon">✦</div>
-          <div className="topbar-title">{CONFIG.COMMUNITY_NAME} · <em>Start Here</em></div>
-        </div>
-        <div className="topbar-nav">
-          <span className="topbar-link active">Classroom</span>
-        </div>
-      </div>
-
-      <div className="layout">
-        <div className={`sidebar-overlay ${mobileNav ? "show" : ""}`} onClick={() => setMobileNav(false)} />
-
-        {/* Sidebar */}
-        <div className={`sidebar ${mobileNav ? "open" : ""}`}>
-          <div className="side-header">
-            <div className="side-eyebrow">✦ Start Here</div>
-            <div className="side-title">{CONFIG.COMMUNITY_NAME} · Start Here</div>
-            <div className="side-prog-row">
-              <div className="side-prog-bg">
-                <div className={`side-prog-fill ${celebrating ? "shimmer" : ""}`} style={{ width: `${progress}%` }} />
-              </div>
-              <div className="side-prog-pct">{progress}%</div>
-            </div>
-          </div>
-          <div className="side-list">
-            {lessons.map((l, i) => (
-              <div
-                key={i}
-                className={`side-item ${active === i ? "active" : ""}`}
-                onClick={() => { setActive(i); setMobileNav(false); }}
-              >
-                <div className={`side-check ${done[i] ? "done" : "pending"}`}>
-                  {done[i] && (
-                    <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-                      <path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </div>
-                <div className="side-item-emoji">{l.emoji}</div>
-                <div className="side-item-title">{l.title}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Main */}
-        <div className="main" key={`${active}-${reveal}`}>
-          <div className="main-inner">
-            <div className="day-nav reveal" style={{ animationDelay: "20ms" }}>
-              {lessons.map((l, i) => (
-                <button
-                  key={l.id}
-                  className={`day-pill ${i === active ? "active" : ""} ${done[i] ? "done" : ""}`}
-                  onClick={() => setActive(i)}
-                >
-                  {done[i] ? "✦ " : ""}Day {i + 1}
-                </button>
-              ))}
-            </div>
-            <div className="lesson-meta-row reveal" style={{ animationDelay: "40ms" }}>
-              <div className="lesson-num-badge">
-                Day {lesson.id + 1} of {lessons.length} · {lesson.dur}
-              </div>
-              <div className={`lesson-mode-chip ${lesson.hasVideo ? "has-video" : "quick-day"}`}>
-                {lesson.hasVideo ? "🎬 Video lesson" : "⚡ Quick day · take action"}
-              </div>
-            </div>
-            <div className="lesson-top reveal" style={{ animationDelay: "120ms" }}>
-              <div className="lesson-title">
-                <span className="lesson-emoji">{lesson.emoji}</span>{" "}
-                {lesson.accent && lesson.title.includes(lesson.accent) ? (
-                  <>
-                    {lesson.title.split(lesson.accent)[0]}
-                    <span className="accent-gradient">{lesson.accent}</span>
-                    {lesson.title.split(lesson.accent)[1]}
-                  </>
-                ) : (
-                  lesson.title
-                )}
-              </div>
-              <div className="lesson-top-actions">
-                <button
-                  className={`lesson-done-top ${done[active] ? "complete" : "pending"}`}
-                  onClick={() => toggleDone(active)}
-                >
-                  {done[active] ? "✦ Completed" : "○ Mark Complete"}
-                </button>
-              </div>
-            </div>
-
-            <div className="tab-content" key={active}>
-              {(
-                <div className="pane">
-                  <div className="lesson-desc reveal" style={{ animationDelay: "80ms" }}>
-                    {lesson.overview.desc}
-                  </div>
-                  {lesson.overview.hero && (
-                    <div className="hero-callout reveal" style={{ animationDelay: "200ms" }}>
-                      <div className="hero-mark">"</div>
-                      <div className="hero-text">{lesson.overview.hero}</div>
-                    </div>
-                  )}
-                  {lesson.overview.showAboutFounder && <AboutFounder />}
-                  {lesson.overview.showMissionCard && <MissionCard />}
-                  {lesson.overview.showCommonEnemy && <CommonEnemyCard />}
-                  {lesson.overview.showValuesTriad && <ValuesTriad />}
-                  {lesson.overview.showCategoryMap && <CategoryMap />}
-                  {lesson.overview.showFireStreak && <FireStreakCard />}
-                  {lesson.overview.showPathConvergence && <PathConvergence />}
-                  {lesson.overview.showPrimarySupporting && <PrimarySupporting />}
-                  {lesson.overview.showInfiniteVsFinite && <InfiniteVsFinite />}
-                  {lesson.overview.showSameToolTwoPositions && <SameToolTwoPositions />}
-                  {lesson.overview.showResourceGrid && <ResourceGrid />}
-                  {lesson.overview.showFocusPoints && <FocusPoints />}
-                  {lesson.overview.showGrowthTrajectory && <GrowthTrajectory />}
-                  {lesson.overview.showHalfStartedVsShipped && <HalfStartedVsShipped />}
-                  {lesson.overview.showReferralMath && <ReferralMathHero />}
-                  {lesson.overview.showTierComparison && <TierComparison />}
-                  {lesson.overview.showVipReadiness && <VipReadiness />}
-                </div>
-              )}
-
-              {lesson.concepts && lesson.concepts.length > 0 && (
-                <div className="pane">
-                  <div className="page-label">The idea</div>
-                  {lesson.concepts.map((c, i) => (
-                    <div
-                      key={i}
-                      className="concept-wrap reveal"
-                      style={{ animationDelay: `${80 + i * 70}ms` }}
-                    >
-                      {c.type === "accordion" && (
-                        <Accordion
-                          item={c}
-                          isOpen={!!expanded[`${active}-${i}`]}
-                          onToggle={() => toggleAccordion(`${active}-${i}`)}
-                        />
-                      )}
-                      {c.type === "pullquote" && <PullQuote text={c.text} />}
-                      {c.type === "callout" && <Callout item={c} />}
-                      {c.type === "path-picker" && (
-                        <PathPicker picked={pickedPath} setPicked={setPickedPath} />
-                      )}
-                      {c.type === "invite-walkthrough" && <InviteWalkthrough />}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {lesson.actions && lesson.actions.length > 0 && (
-                <div className="pane actions-pane">
-                  <div className="actions-lead reveal" style={{ animationDelay: "60ms" }}>
-                    <div className="actions-lead-badge">Do this today</div>
-                    <div className="actions-lead-text">
-                      These are the small moves that compound. Don't skip. This is where momentum starts.
-                    </div>
-                  </div>
-                  {lesson.actions.map((a, i) => (
-                    <div
-                      key={i}
-                      className="action-card reveal"
-                      style={{ animationDelay: `${120 + i * 90}ms` }}
-                    >
-                      <div className="action-num">{String(i + 1).padStart(2, "0")}</div>
-                      <div className="action-text">{a}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {lesson.prompt && (
-                <div className="pane">
-                  <div className="page-label">{lesson.promptHeader || "Your Claude prompt"}</div>
-                  <div className="prompt-intro reveal" style={{ animationDelay: "60ms" }}>
-                    {lesson.promptIntro || "Paste this into Claude and fill in the brackets. You'll get your custom output in under a minute."}
-                  </div>
-                  <div className="prompt-box reveal" style={{ animationDelay: "160ms" }}>
-                    <div className="prompt-hdr">
-                      <span className="prompt-badge">{lesson.promptBadge || "Copy-paste into Claude →"}</span>
-                      <button className="prompt-copy-btn" onClick={() => copyText(lesson.prompt)}>
-                        {copied ? "✦ Copied!" : "📋 Copy Prompt"}
-                      </button>
-                    </div>
-                    <div className="prompt-text">{lesson.prompt}</div>
-                    <a
-                      className="prompt-paste-link"
-                      href={`https://www.skool.com/${CONFIG.SKOOL_HANDLE}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "14px", fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 700, letterSpacing: "0.3px", color: "#a07f30", textDecoration: "none", position: "relative", zIndex: 1 }}
-                    >
-                      Paste it straight into the community →
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="lesson-bottom reveal" style={{ animationDelay: "600ms" }}>
-              <button
-                className={`bottom-done-btn ${done[active] ? "complete" : "pending"}`}
-                onClick={() => toggleDone(active)}
-              >
-                {done[active] ? "✦ Lesson Complete" : "✎ Mark Lesson Complete"}
-              </button>
-              {active < lessons.length - 1 && (
-                <button className="bottom-next" onClick={() => setActive(active + 1)}>
-                  Next: {lessons[active + 1].title} →
-                </button>
-              )}
-            </div>
-
-            <div className="lesson-footer">
-              <div className="lf-brand">✦ {CONFIG.COMMUNITY_NAME} ✦</div>
-              <div className="lf-links">
-                <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Disclaimer</a> · <a href="#">Contact</a>
-              </div>
-              <div className="lf-credit">{CONFIG.COMMUNITY_NAME} · Start Here · {CONFIG.COMMUNITY_TAGLINE}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const tabs = [{
+    id: "overview",
+    label: "Overview",
+    icon: "✦"
+  }, {
+    id: "concepts",
+    label: "Key Concepts",
+    icon: "💎"
+  }, {
+    id: "actions",
+    label: "Do This",
+    icon: "🌟"
+  }, ...(lesson.prompt ? [{
+    id: "prompt",
+    label: "Prompt",
+    icon: "✨"
+  }] : [])];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "app"
+  }, /*#__PURE__*/React.createElement("style", null, styles), /*#__PURE__*/React.createElement("div", {
+    className: "stars-bg"
+  }, [...Array(16)].map((_, i) => {
+    const variants = ["", "lg", "pink", "cyan", "mint"];
+    const v = variants[i % variants.length];
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      className: `s-star ${v}`,
+      style: {
+        left: `${i * 37 % 100}%`,
+        top: `${i * 53 % 100}%`,
+        animationDelay: `${i * 0.17 % 4}s`,
+        animationDuration: `${3 + i % 4}s`
+      }
+    });
+  })), celebrating && /*#__PURE__*/React.createElement("div", {
+    className: "celebration"
+  }, [...Array(24)].map((_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "celeb-spark",
+    style: {
+      left: `${45 + Math.random() * 10}%`,
+      top: `${40 + Math.random() * 10}%`,
+      animationDelay: `${i * 30}ms`,
+      transform: `rotate(${i * 15}deg) translateY(-${80 + Math.random() * 80}px)`
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "topbar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topbar-left"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "mobile-toggle",
+    onClick: () => setMobileNav(!mobileNav)
+  }, "☰"), /*#__PURE__*/React.createElement("div", {
+    className: "topbar-icon"
+  }, "✦"), /*#__PURE__*/React.createElement("div", {
+    className: "topbar-title"
+  }, CONFIG.COMMUNITY_NAME, " · ", /*#__PURE__*/React.createElement("em", null, "Start Here"))), /*#__PURE__*/React.createElement("div", {
+    className: "topbar-nav"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "topbar-link active"
+  }, "Classroom"))), /*#__PURE__*/React.createElement("div", {
+    className: "layout"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `sidebar-overlay ${mobileNav ? "show" : ""}`,
+    onClick: () => setMobileNav(false)
+  }), /*#__PURE__*/React.createElement("div", {
+    className: `sidebar ${mobileNav ? "open" : ""}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "side-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "side-eyebrow"
+  }, "✦ Start Here"), /*#__PURE__*/React.createElement("div", {
+    className: "side-title"
+  }, CONFIG.COMMUNITY_NAME, " · Start Here"), /*#__PURE__*/React.createElement("div", {
+    className: "side-prog-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "side-prog-bg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `side-prog-fill ${celebrating ? "shimmer" : ""}`,
+    style: {
+      width: `${progress}%`
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "side-prog-pct"
+  }, progress, "%"))), /*#__PURE__*/React.createElement("div", {
+    className: "side-list"
+  }, lessons.map((l, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `side-item ${active === i ? "active" : ""}`,
+    onClick: () => {
+      setActive(i);
+      setMobileNav(false);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `side-check ${done[i] ? "done" : "pending"}`
+  }, done[i] && /*#__PURE__*/React.createElement("svg", {
+    width: "11",
+    height: "11",
+    viewBox: "0 0 14 14",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2.5 7.5L5.5 10.5L11.5 3.5",
+    stroke: "white",
+    strokeWidth: "2.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "side-item-emoji"
+  }, l.emoji), /*#__PURE__*/React.createElement("div", {
+    className: "side-item-title"
+  }, l.title))))), /*#__PURE__*/React.createElement("div", {
+    className: "main",
+    key: `${active}-${reveal}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "main-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "day-nav reveal",
+    style: {
+      animationDelay: "20ms"
+    }
+  }, lessons.map((l, i) => /*#__PURE__*/React.createElement("button", {
+    key: l.id,
+    className: `day-pill ${i === active ? "active" : ""} ${done[i] ? "done" : ""}`,
+    onClick: () => setActive(i)
+  }, done[i] ? "✦ " : "", "Day ", i + 1))), /*#__PURE__*/React.createElement("div", {
+    className: "lesson-meta-row reveal",
+    style: {
+      animationDelay: "40ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lesson-num-badge"
+  }, "Day ", lesson.id + 1, " of ", lessons.length, " · ", lesson.dur), /*#__PURE__*/React.createElement("div", {
+    className: `lesson-mode-chip ${lesson.hasVideo ? "has-video" : "quick-day"}`
+  }, lesson.hasVideo ? "🎬 Video lesson" : "⚡ Quick day · take action")), /*#__PURE__*/React.createElement("div", {
+    className: "lesson-top reveal",
+    style: {
+      animationDelay: "120ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lesson-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "lesson-emoji"
+  }, lesson.emoji), " ", lesson.accent && lesson.title.includes(lesson.accent) ? /*#__PURE__*/React.createElement(React.Fragment, null, lesson.title.split(lesson.accent)[0], /*#__PURE__*/React.createElement("span", {
+    className: "accent-gradient"
+  }, lesson.accent), lesson.title.split(lesson.accent)[1]) : lesson.title), /*#__PURE__*/React.createElement("div", {
+    className: "lesson-top-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `lesson-done-top ${done[active] ? "complete" : "pending"}`,
+    onClick: () => toggleDone(active)
+  }, done[active] ? "✦ Completed" : "○ Mark Complete"))), /*#__PURE__*/React.createElement("div", {
+    className: "tab-content",
+    key: active
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pane"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lesson-desc reveal",
+    style: {
+      animationDelay: "80ms"
+    }
+  }, lesson.overview.desc), lesson.overview.hero && /*#__PURE__*/React.createElement("div", {
+    className: "hero-callout reveal",
+    style: {
+      animationDelay: "200ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-mark"
+  }, "\""), /*#__PURE__*/React.createElement("div", {
+    className: "hero-text"
+  }, lesson.overview.hero)), lesson.overview.showAboutFounder && /*#__PURE__*/React.createElement(AboutFounder, null), lesson.overview.showMissionCard && /*#__PURE__*/React.createElement(MissionCard, null), lesson.overview.showCommonEnemy && /*#__PURE__*/React.createElement(CommonEnemyCard, null), lesson.overview.showValuesTriad && /*#__PURE__*/React.createElement(ValuesTriad, null), lesson.overview.showCategoryMap && /*#__PURE__*/React.createElement(CategoryMap, null), lesson.overview.showFireStreak && /*#__PURE__*/React.createElement(FireStreakCard, null), lesson.overview.showPathConvergence && /*#__PURE__*/React.createElement(PathConvergence, null), lesson.overview.showPrimarySupporting && /*#__PURE__*/React.createElement(PrimarySupporting, null), lesson.overview.showInfiniteVsFinite && /*#__PURE__*/React.createElement(InfiniteVsFinite, null), lesson.overview.showSameToolTwoPositions && /*#__PURE__*/React.createElement(SameToolTwoPositions, null), lesson.overview.showResourceGrid && /*#__PURE__*/React.createElement(ResourceGrid, null), lesson.overview.showFocusPoints && /*#__PURE__*/React.createElement(FocusPoints, null), lesson.overview.showGrowthTrajectory && /*#__PURE__*/React.createElement(GrowthTrajectory, null), lesson.overview.showHalfStartedVsShipped && /*#__PURE__*/React.createElement(HalfStartedVsShipped, null), lesson.overview.showReferralMath && /*#__PURE__*/React.createElement(ReferralMathHero, null), lesson.overview.showTierComparison && /*#__PURE__*/React.createElement(TierComparison, null), lesson.overview.showVipReadiness && /*#__PURE__*/React.createElement(VipReadiness, null)), lesson.concepts && lesson.concepts.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "pane"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "page-label"
+  }, "The idea"), lesson.concepts.map((c, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "concept-wrap reveal",
+    style: {
+      animationDelay: `${80 + i * 70}ms`
+    }
+  }, c.type === "accordion" && /*#__PURE__*/React.createElement(Accordion, {
+    item: c,
+    isOpen: !!expanded[`${active}-${i}`],
+    onToggle: () => toggleAccordion(`${active}-${i}`)
+  }), c.type === "pullquote" && /*#__PURE__*/React.createElement(PullQuote, {
+    text: c.text
+  }), c.type === "callout" && /*#__PURE__*/React.createElement(Callout, {
+    item: c
+  }), c.type === "path-picker" && /*#__PURE__*/React.createElement(PathPicker, {
+    picked: pickedPath,
+    setPicked: setPickedPath
+  }), c.type === "invite-walkthrough" && /*#__PURE__*/React.createElement(InviteWalkthrough, null)))), lesson.actions && lesson.actions.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "pane actions-pane"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "actions-lead reveal",
+    style: {
+      animationDelay: "60ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "actions-lead-badge"
+  }, "Do this today"), /*#__PURE__*/React.createElement("div", {
+    className: "actions-lead-text"
+  }, "These are the small moves that compound. Don't skip. This is where momentum starts.")), lesson.actions.map((a, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "action-card reveal",
+    style: {
+      animationDelay: `${120 + i * 90}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-num"
+  }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", {
+    className: "action-text"
+  }, a)))), lesson.prompt && /*#__PURE__*/React.createElement("div", {
+    className: "pane"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "page-label"
+  }, lesson.promptHeader || "Your Claude prompt"), /*#__PURE__*/React.createElement("div", {
+    className: "prompt-intro reveal",
+    style: {
+      animationDelay: "60ms"
+    }
+  }, lesson.promptIntro || "Paste this into Claude and fill in the brackets. You'll get your custom output in under a minute."), /*#__PURE__*/React.createElement("div", {
+    className: "prompt-box reveal",
+    style: {
+      animationDelay: "160ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "prompt-hdr"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "prompt-badge"
+  }, lesson.promptBadge || "Copy-paste into Claude →"), /*#__PURE__*/React.createElement("button", {
+    className: "prompt-copy-btn",
+    onClick: () => copyText(lesson.prompt)
+  }, copied ? "✦ Copied!" : "📋 Copy Prompt")), /*#__PURE__*/React.createElement("div", {
+    className: "prompt-text"
+  }, lesson.prompt), /*#__PURE__*/React.createElement("a", {
+    className: "prompt-paste-link",
+    href: `https://www.skool.com/${CONFIG.SKOOL_HANDLE}`,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "6px",
+      marginTop: "14px",
+      fontFamily: "Inter, sans-serif",
+      fontSize: "12px",
+      fontWeight: 700,
+      letterSpacing: "0.3px",
+      color: "#a07f30",
+      textDecoration: "none",
+      position: "relative",
+      zIndex: 1
+    }
+  }, "Paste it straight into the community →")))), /*#__PURE__*/React.createElement("div", {
+    className: "lesson-bottom reveal",
+    style: {
+      animationDelay: "600ms"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `bottom-done-btn ${done[active] ? "complete" : "pending"}`,
+    onClick: () => toggleDone(active)
+  }, done[active] ? "✦ Lesson Complete" : "✎ Mark Lesson Complete"), active < lessons.length - 1 && /*#__PURE__*/React.createElement("button", {
+    className: "bottom-next",
+    onClick: () => setActive(active + 1)
+  }, "Next: ", lessons[active + 1].title, " →")), /*#__PURE__*/React.createElement("div", {
+    className: "lesson-footer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lf-brand"
+  }, "✦ ", CONFIG.COMMUNITY_NAME, " ✦"), /*#__PURE__*/React.createElement("div", {
+    className: "lf-links"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Privacy"), " · ", /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Terms"), " · ", /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Disclaimer"), " · ", /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Contact")), /*#__PURE__*/React.createElement("div", {
+    className: "lf-credit"
+  }, CONFIG.COMMUNITY_NAME, " · Start Here · ", CONFIG.COMMUNITY_TAGLINE))))));
 }
 
 // ======================================================================
 // SHARED TEXT-BASED COMPONENTS (unchanged from v8)
 // ======================================================================
 
-function Accordion({ item, isOpen, onToggle }) {
-  return (
-    <div className={`accordion ${isOpen ? "open" : ""}`}>
-      <button className="accordion-btn" onClick={onToggle}>
-        <div className="accordion-left">
-          {item.icon && <span className="accordion-icon">{item.icon}</span>}
-          <span className="accordion-headline">{item.headline}</span>
-        </div>
-        <div className="accordion-chev">{isOpen ? "−" : "+"}</div>
-      </button>
-      <div className="accordion-panel" style={{ maxHeight: isOpen ? "620px" : "0" }}>
-        <div className="accordion-body">
-          {item.list ? (
-            <>
-              <ol className="accordion-list">
-                {item.list.map((li, i) => (
-                  <li key={i}>{li}</li>
-                ))}
-              </ol>
-              {item.body && <p className="accordion-after">{item.body}</p>}
-            </>
-          ) : (
-            item.body
-          )}
-        </div>
-      </div>
-    </div>
-  );
+function Accordion({
+  item,
+  isOpen,
+  onToggle
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: `accordion ${isOpen ? "open" : ""}`
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "accordion-btn",
+    onClick: onToggle
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "accordion-left"
+  }, item.icon && /*#__PURE__*/React.createElement("span", {
+    className: "accordion-icon"
+  }, item.icon), /*#__PURE__*/React.createElement("span", {
+    className: "accordion-headline"
+  }, item.headline)), /*#__PURE__*/React.createElement("div", {
+    className: "accordion-chev"
+  }, isOpen ? "−" : "+")), /*#__PURE__*/React.createElement("div", {
+    className: "accordion-panel",
+    style: {
+      maxHeight: isOpen ? "620px" : "0"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "accordion-body"
+  }, item.list ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("ol", {
+    className: "accordion-list"
+  }, item.list.map((li, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, li))), item.body && /*#__PURE__*/React.createElement("p", {
+    className: "accordion-after"
+  }, item.body)) : item.body)));
 }
-
-function PullQuote({ text }) {
-  return (
-    <div className="pullquote">
-      <div className="pullquote-mark">❝</div>
-      <div className="pullquote-text">{text}</div>
-    </div>
-  );
+function PullQuote({
+  text
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pullquote"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pullquote-mark"
+  }, "❝"), /*#__PURE__*/React.createElement("div", {
+    className: "pullquote-text"
+  }, text));
 }
-
-function Callout({ item }) {
-  return (
-    <div className={`callout callout-${item.style}`}>
-      <div className="callout-headline">{item.headline}</div>
-      <div className="callout-body">{item.body}</div>
-    </div>
-  );
+function Callout({
+  item
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: `callout callout-${item.style}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "callout-headline"
+  }, item.headline), /*#__PURE__*/React.createElement("div", {
+    className: "callout-body"
+  }, item.body));
 }
 
 // ======================================================================
@@ -783,25 +817,31 @@ function Callout({ item }) {
 // ======================================================================
 
 function AboutFounder() {
-  return (
-    <div className="aa-wrap reveal" style={{ animationDelay: "280ms" }}>
-      <div className="aa-card">
-        <div className="aa-avatar">
-          <div className="aa-avatar-inner">
-            <div className="aa-initials">{CONFIG.FOUNDER_INITIALS}</div>
-          </div>
-          <div className="aa-sparkle" aria-hidden="true">✦</div>
-        </div>
-        <div className="aa-body">
-          <div className="aa-eyebrow">✦ Who I am</div>
-          <div className="aa-bio">
-            Hey, I'm <strong>Jac</strong>. I built Hotter Richer Happier from Florida, and I built it because I lived the surface level version first. I was an entrepreneur since 16 doing manifestation the shallow way, affirmations on my phone, vision boards, staying positive, while I quietly went six figures into debt with no real connection to my highest self. Nothing was landing. So I stopped doing the surface level stuff and rebuilt everything from my body, my nervous system, my identity. I came from nothing, no trust fund, no safety net, and I multiplied my income, lost the weight, and stopped chasing money. This is the room I wish I'd had back then. I am certified in EFT and breathwork, and I have lived every bit of this. Not your guru. Just the woman who found the simple version and is handing it to you.
-          </div>
-          <div className="aa-sig">{CONFIG.FOUNDER_NAME} · Founder</div>
-        </div>
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "aa-wrap reveal",
+    style: {
+      animationDelay: "280ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "aa-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "aa-avatar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "aa-avatar-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "aa-initials"
+  }, CONFIG.FOUNDER_INITIALS)), /*#__PURE__*/React.createElement("div", {
+    className: "aa-sparkle",
+    "aria-hidden": "true"
+  }, "✦")), /*#__PURE__*/React.createElement("div", {
+    className: "aa-body"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "aa-eyebrow"
+  }, "✦ Who I am"), /*#__PURE__*/React.createElement("div", {
+    className: "aa-bio"
+  }, "Hey, I'm ", /*#__PURE__*/React.createElement("strong", null, "Jac"), ". I built Hotter Richer Happier from Florida, and I built it because I lived the surface level version first. I was an entrepreneur since 16 doing manifestation the shallow way, affirmations on my phone, vision boards, staying positive, while I quietly went six figures into debt with no real connection to my highest self. Nothing was landing. So I stopped doing the surface level stuff and rebuilt everything from my body, my nervous system, my identity. I came from nothing, no trust fund, no safety net, and I multiplied my income, lost the weight, and stopped chasing money. This is the room I wish I'd had back then. I am certified in EFT and breathwork, and I have lived every bit of this. Not your guru. Just the woman who found the simple version and is handing it to you."), /*#__PURE__*/React.createElement("div", {
+    className: "aa-sig"
+  }, CONFIG.FOUNDER_NAME, " · Founder"))));
 }
 
 // ======================================================================
@@ -811,73 +851,112 @@ function AboutFounder() {
 // ======================================================================
 
 function MissionCard() {
-  return (
-    <div className="mission-wrap reveal" style={{ animationDelay: "340ms" }}>
-      <div className="mission-badge">✦ Our Shared Mission</div>
-      <div className="mission-card">
-        <div className="mission-flame-bg" aria-hidden="true">
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="missionFlame" cx="50%" cy="75%" r="65%">
-                <stop offset="0%" stopColor="#ff8ad1" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#b26bff" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#6bd5ff" stopOpacity="0" />
-              </radialGradient>
-              <linearGradient id="crownGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#c78fff" />
-                <stop offset="50%" stopColor="#ff8ad1" />
-                <stop offset="100%" stopColor="#8effd5" />
-              </linearGradient>
-            </defs>
-            {/* flame shape (bottom) */}
-            <path
-              d="M 100 220 Q 60 180 70 130 Q 78 95 100 80 Q 122 95 130 130 Q 140 180 100 220 Z"
-              fill="url(#missionFlame)"
-              opacity="0.7"
-            />
-            {/* inner flame */}
-            <path
-              d="M 100 200 Q 80 175 85 145 Q 92 120 100 110 Q 108 120 115 145 Q 120 175 100 200 Z"
-              fill="#ff8ad1"
-              opacity="0.4"
-            />
-            {/* crown (top, becoming) */}
-            <g transform="translate(100 45)" opacity="0.95">
-              <path
-                d="M -28 8 L -22 -12 L -14 4 L -8 -18 L 0 0 L 8 -18 L 14 4 L 22 -12 L 28 8 Z"
-                fill="url(#crownGrad)"
-              />
-              <circle cx="-22" cy="-12" r="2" fill="#8effd5" />
-              <circle cx="0" cy="-22" r="2.5" fill="#fff" />
-              <circle cx="22" cy="-12" r="2" fill="#8effd5" />
-              <rect x="-28" y="8" width="56" height="3" rx="1" fill="url(#crownGrad)" />
-            </g>
-            {/* arrow/spark between flame and crown */}
-            <path
-              d="M 100 90 L 100 65"
-              stroke="#f5f0ff"
-              strokeWidth="1.5"
-              strokeDasharray="2 3"
-              opacity="0.6"
-            />
-          </svg>
-        </div>
-        <div className="mission-body">
-          <div className="mission-line-1">
-            We're here to turn <span className="mission-hl">the woman who has tried every surface level manifestation trick</span> into the woman money, love, and her fuck yes life all move toward.
-          </div>
-          <div className="mission-line-2">
-            Because the more women who know they are the ones creating their reality, the more of them stop waiting for permission to want what they want.
-          </div>
-          <div className="mission-divider" />
-          <div className="mission-line-3">
-            We're in the era where 'maybe this is just my life' finally dies. <span className="mission-hl-alt">Good. Let it.</span>
-          </div>
-          <div className="mission-punch">You are the one creating your reality.</div>
-        </div>
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "mission-wrap reveal",
+    style: {
+      animationDelay: "340ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mission-badge"
+  }, "✦ Our Shared Mission"), /*#__PURE__*/React.createElement("div", {
+    className: "mission-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mission-flame-bg",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 200 240",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("radialGradient", {
+    id: "missionFlame",
+    cx: "50%",
+    cy: "75%",
+    r: "65%"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#ff8ad1",
+    stopOpacity: "0.9"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "50%",
+    stopColor: "#b26bff",
+    stopOpacity: "0.6"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#6bd5ff",
+    stopOpacity: "0"
+  })), /*#__PURE__*/React.createElement("linearGradient", {
+    id: "crownGrad",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#c78fff"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "50%",
+    stopColor: "#ff8ad1"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#8effd5"
+  }))), /*#__PURE__*/React.createElement("path", {
+    d: "M 100 220 Q 60 180 70 130 Q 78 95 100 80 Q 122 95 130 130 Q 140 180 100 220 Z",
+    fill: "url(#missionFlame)",
+    opacity: "0.7"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 100 200 Q 80 175 85 145 Q 92 120 100 110 Q 108 120 115 145 Q 120 175 100 200 Z",
+    fill: "#ff8ad1",
+    opacity: "0.4"
+  }), /*#__PURE__*/React.createElement("g", {
+    transform: "translate(100 45)",
+    opacity: "0.95"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M -28 8 L -22 -12 L -14 4 L -8 -18 L 0 0 L 8 -18 L 14 4 L 22 -12 L 28 8 Z",
+    fill: "url(#crownGrad)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "-22",
+    cy: "-12",
+    r: "2",
+    fill: "#8effd5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "0",
+    cy: "-22",
+    r: "2.5",
+    fill: "#fff"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "22",
+    cy: "-12",
+    r: "2",
+    fill: "#8effd5"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "-28",
+    y: "8",
+    width: "56",
+    height: "3",
+    rx: "1",
+    fill: "url(#crownGrad)"
+  })), /*#__PURE__*/React.createElement("path", {
+    d: "M 100 90 L 100 65",
+    stroke: "#f5f0ff",
+    strokeWidth: "1.5",
+    strokeDasharray: "2 3",
+    opacity: "0.6"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "mission-body"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mission-line-1"
+  }, "We're here to turn ", /*#__PURE__*/React.createElement("span", {
+    className: "mission-hl"
+  }, "the woman who has tried every surface level manifestation trick"), " into the woman money, love, and her fuck yes life all move toward."), /*#__PURE__*/React.createElement("div", {
+    className: "mission-line-2"
+  }, "Because the more women who know they are the ones creating their reality, the more of them stop waiting for permission to want what they want."), /*#__PURE__*/React.createElement("div", {
+    className: "mission-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mission-line-3"
+  }, "We're in the era where 'maybe this is just my life' finally dies. ", /*#__PURE__*/React.createElement("span", {
+    className: "mission-hl-alt"
+  }, "Good. Let it.")), /*#__PURE__*/React.createElement("div", {
+    className: "mission-punch"
+  }, "You are the one creating your reality."))));
 }
 
 // ======================================================================
@@ -887,39 +966,38 @@ function MissionCard() {
 // ======================================================================
 
 function CommonEnemyCard() {
-  const enemyForms = [
-    "whisper this 5 times",
-    "vision boards collecting dust",
-    "just stay positive",
-    "affirmations with zero feeling",
-    "manifesting from the conscious mind",
-    "waiting for the 3D to change first",
-  ];
-  return (
-    <div className="bargain-wrap reveal" style={{ animationDelay: "420ms" }}>
-      <div className="bargain-badge">⚔️ Our Common Enemy</div>
-      <div className="bargain-card">
-        <div className="bargain-header">
-          <div className="bargain-stamp">VOID</div>
-          <div className="bargain-title">Surface-Level Manifestation</div>
-        </div>
-        <div className="bargain-body">
-          Surface level manifestation is the lie that you can whisper an affirmation five times, make a vision board, stay positive, and that is enough. It only ever touches your conscious mind. Meanwhile 95% of you, your body, your subconscious, the money and love programming you absorbed before you had words for it, still treats what you want as unfamiliar. So you keep recreating the same ceiling and blaming yourself for it. It was never you. It was the layer no one ever taught you to work.
-        </div>
-        <div className="bargain-forms">
-          <div className="bargain-form-label">It shows up as:</div>
-          <div className="bargain-form-tags">
-            {enemyForms.map((form, i) => (
-              <span key={i} className="b-tag">{form}</span>
-            ))}
-          </div>
-        </div>
-        <div className="bargain-break">
-          <span className="bargain-break-line">We do not manifest from the surface.</span>
-        </div>
-      </div>
-    </div>
-  );
+  const enemyForms = ["whisper this 5 times", "vision boards collecting dust", "just stay positive", "affirmations with zero feeling", "manifesting from the conscious mind", "waiting for the 3D to change first"];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bargain-wrap reveal",
+    style: {
+      animationDelay: "420ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bargain-badge"
+  }, "⚔️ Our Common Enemy"), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bargain-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bargain-stamp"
+  }, "VOID"), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-title"
+  }, "Surface-Level Manifestation")), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-body"
+  }, "Surface level manifestation is the lie that you can whisper an affirmation five times, make a vision board, stay positive, and that is enough. It only ever touches your conscious mind. Meanwhile 95% of you, your body, your subconscious, the money and love programming you absorbed before you had words for it, still treats what you want as unfamiliar. So you keep recreating the same ceiling and blaming yourself for it. It was never you. It was the layer no one ever taught you to work."), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-forms"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bargain-form-label"
+  }, "It shows up as:"), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-form-tags"
+  }, enemyForms.map((form, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    className: "b-tag"
+  }, form)))), /*#__PURE__*/React.createElement("div", {
+    className: "bargain-break"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bargain-break-line"
+  }, "We do not manifest from the surface."))));
 }
 
 // ======================================================================
@@ -927,29 +1005,36 @@ function CommonEnemyCard() {
 // ======================================================================
 
 function ValuesTriad() {
-  return (
-    <div className="values-wrap reveal" style={{ animationDelay: "500ms" }}>
-      <div className="values-badge">✦ How we win the fight</div>
-      <div className="values-title">Our three values</div>
-      <div className="values-grid">
-        {values.map((v, i) => (
-          <div
-            key={v.over}
-            className={`value-card value-${v.accent} reveal`}
-            style={{ animationDelay: `${580 + i * 120}ms` }}
-          >
-            <div className="value-icon">{v.icon}</div>
-            <div className="value-headline">
-              <span className="value-over">{v.over}</span>
-              <span className="value-over-sep">over</span>
-              <span className="value-under">{v.under}</span>
-            </div>
-            <div className="value-body">{v.body}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "values-wrap reveal",
+    style: {
+      animationDelay: "500ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "values-badge"
+  }, "✦ How we win the fight"), /*#__PURE__*/React.createElement("div", {
+    className: "values-title"
+  }, "Our three values"), /*#__PURE__*/React.createElement("div", {
+    className: "values-grid"
+  }, values.map((v, i) => /*#__PURE__*/React.createElement("div", {
+    key: v.over,
+    className: `value-card value-${v.accent} reveal`,
+    style: {
+      animationDelay: `${580 + i * 120}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "value-icon"
+  }, v.icon), /*#__PURE__*/React.createElement("div", {
+    className: "value-headline"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "value-over"
+  }, v.over), /*#__PURE__*/React.createElement("span", {
+    className: "value-over-sep"
+  }, "over"), /*#__PURE__*/React.createElement("span", {
+    className: "value-under"
+  }, v.under)), /*#__PURE__*/React.createElement("div", {
+    className: "value-body"
+  }, v.body)))));
 }
 
 // ======================================================================
@@ -957,25 +1042,30 @@ function ValuesTriad() {
 // ======================================================================
 
 function CategoryMap() {
-  return (
-    <div className="catmap-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="catmap-badge">✦ Where to post what</div>
-      <div className="catmap-title">The 5 community categories</div>
-      <div className="catmap-grid">
-        {categories.map((c, i) => (
-          <div
-            key={c.name}
-            className={`catmap-card catmap-${c.color} reveal`}
-            style={{ animationDelay: `${380 + i * 90}ms` }}
-          >
-            <div className="catmap-emoji">{c.emoji}</div>
-            <div className="catmap-name">{c.name}</div>
-            <div className="catmap-desc">{c.desc}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "catmap-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "catmap-badge"
+  }, "✦ Where to post what"), /*#__PURE__*/React.createElement("div", {
+    className: "catmap-title"
+  }, "The 5 community categories"), /*#__PURE__*/React.createElement("div", {
+    className: "catmap-grid"
+  }, categories.map((c, i) => /*#__PURE__*/React.createElement("div", {
+    key: c.name,
+    className: `catmap-card catmap-${c.color} reveal`,
+    style: {
+      animationDelay: `${380 + i * 90}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "catmap-emoji"
+  }, c.emoji), /*#__PURE__*/React.createElement("div", {
+    className: "catmap-name"
+  }, c.name), /*#__PURE__*/React.createElement("div", {
+    className: "catmap-desc"
+  }, c.desc)))));
 }
 
 // ======================================================================
@@ -983,35 +1073,37 @@ function CategoryMap() {
 // ======================================================================
 
 function FireStreakCard() {
-  return (
-    <div className="fire-wrap reveal" style={{ animationDelay: "340ms" }}>
-      <div className="fire-card">
-        <div className="fire-left">
-          <div className="fire-badge">🔥 The Fire Streak</div>
-          <div className="fire-title">10 actions a day · 30 days · you get the 🔥</div>
-          <div className="fire-body">
-            Skool gives you a fire emoji next to your name when you take 10 community actions per day for 30 days straight. Every post, comment, and like you receive counts. If you're a Skool owner yourself, it's instant social proof that you're active on the platform. Easiest trust-builder out there.
-          </div>
-        </div>
-        <div className="fire-visual">
-          <div className="fire-bars">
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={i}
-                className="fire-bar"
-                style={{
-                  animationDelay: `${i * 40}ms`,
-                  height: `${30 + (i % 5) * 10}%`,
-                }}
-              />
-            ))}
-          </div>
-          <div className="fire-streak-label">30-day streak</div>
-          <div className="fire-emoji-float">🔥</div>
-        </div>
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "fire-wrap reveal",
+    style: {
+      animationDelay: "340ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fire-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fire-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fire-badge"
+  }, "🔥 The Fire Streak"), /*#__PURE__*/React.createElement("div", {
+    className: "fire-title"
+  }, "10 actions a day · 30 days · you get the 🔥"), /*#__PURE__*/React.createElement("div", {
+    className: "fire-body"
+  }, "Skool gives you a fire emoji next to your name when you take 10 community actions per day for 30 days straight. Every post, comment, and like you receive counts. If you're a Skool owner yourself, it's instant social proof that you're active on the platform. Easiest trust-builder out there.")), /*#__PURE__*/React.createElement("div", {
+    className: "fire-visual"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fire-bars"
+  }, [...Array(30)].map((_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "fire-bar",
+    style: {
+      animationDelay: `${i * 40}ms`,
+      height: `${30 + i % 5 * 10}%`
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fire-streak-label"
+  }, "30-day streak"), /*#__PURE__*/React.createElement("div", {
+    className: "fire-emoji-float"
+  }, "🔥"))));
 }
 
 // ======================================================================
@@ -1019,55 +1111,112 @@ function FireStreakCard() {
 // ======================================================================
 
 function PathConvergence() {
-  return (
-    <div className="pc-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="pc-badge">✦ Too many ideas, not enough follow-through</div>
-      <div className="pc-visual">
-        <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="pcBright" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#ff6bc1" />
-              <stop offset="50%" stopColor="#b26bff" />
-              <stop offset="100%" stopColor="#8effd5" />
-            </linearGradient>
-            <filter id="pcGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          {/* faded tangled paths */}
-          <path d="M 30 40 Q 200 80 380 90 T 770 110" stroke="rgba(10,10,10,0.14)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 70 Q 220 30 400 120 T 770 130" stroke="rgba(10,10,10,0.12)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 100 Q 180 160 380 100 T 770 120" stroke="rgba(10,10,10,0.14)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 130 Q 240 90 410 140 T 770 125" stroke="rgba(10,10,10,0.1)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 160 Q 200 200 380 130 T 770 125" stroke="rgba(10,10,10,0.12)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 190 Q 220 140 400 150 T 770 130" stroke="rgba(10,10,10,0.1)" strokeWidth="1.5" fill="none" />
-          <path d="M 30 220 Q 180 180 390 140 T 770 130" stroke="rgba(10,10,10,0.12)" strokeWidth="1.5" fill="none" />
-          {/* bright convergence line */}
-          <path
-            d="M 30 130 Q 250 130 430 128 T 770 125"
-            stroke="url(#pcBright)"
-            strokeWidth="4"
-            fill="none"
-            filter="url(#pcGlow)"
-            strokeLinecap="round"
-          />
-          {/* end dot */}
-          <circle cx="770" cy="125" r="10" fill="#ff8ad1" filter="url(#pcGlow)" />
-          <circle cx="770" cy="125" r="4" fill="#fff" />
-          {/* labels */}
-          <text x="30" y="22" fill="rgba(10,10,10,0.55)" fontSize="11" fontFamily="Inter, sans-serif" letterSpacing="1.5">ALL THE IDEAS</text>
-          <text x="670" y="22" fill="#ff8ad1" fontSize="11" fontFamily="Inter, sans-serif" letterSpacing="1.5">YOUR PATH →</text>
-        </svg>
-      </div>
-      <div className="pc-caption">
-        The quiz doesn't give you a new idea. It picks the right one from the ones you already have, so you stop opening tabs and start finishing things.
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pc-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pc-badge"
+  }, "✦ Too many ideas, not enough follow-through"), /*#__PURE__*/React.createElement("div", {
+    className: "pc-visual"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 800 260",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "pcBright",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#ff6bc1"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "50%",
+    stopColor: "#b26bff"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#8effd5"
+  })), /*#__PURE__*/React.createElement("filter", {
+    id: "pcGlow"
+  }, /*#__PURE__*/React.createElement("feGaussianBlur", {
+    stdDeviation: "3",
+    result: "coloredBlur"
+  }), /*#__PURE__*/React.createElement("feMerge", null, /*#__PURE__*/React.createElement("feMergeNode", {
+    in: "coloredBlur"
+  }), /*#__PURE__*/React.createElement("feMergeNode", {
+    in: "SourceGraphic"
+  })))), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 40 Q 200 80 380 90 T 770 110",
+    stroke: "rgba(10,10,10,0.14)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 70 Q 220 30 400 120 T 770 130",
+    stroke: "rgba(10,10,10,0.12)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 100 Q 180 160 380 100 T 770 120",
+    stroke: "rgba(10,10,10,0.14)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 130 Q 240 90 410 140 T 770 125",
+    stroke: "rgba(10,10,10,0.1)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 160 Q 200 200 380 130 T 770 125",
+    stroke: "rgba(10,10,10,0.12)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 190 Q 220 140 400 150 T 770 130",
+    stroke: "rgba(10,10,10,0.1)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 220 Q 180 180 390 140 T 770 130",
+    stroke: "rgba(10,10,10,0.12)",
+    strokeWidth: "1.5",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 130 Q 250 130 430 128 T 770 125",
+    stroke: "url(#pcBright)",
+    strokeWidth: "4",
+    fill: "none",
+    filter: "url(#pcGlow)",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "770",
+    cy: "125",
+    r: "10",
+    fill: "#ff8ad1",
+    filter: "url(#pcGlow)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "770",
+    cy: "125",
+    r: "4",
+    fill: "#fff"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "30",
+    y: "22",
+    fill: "rgba(10,10,10,0.55)",
+    fontSize: "11",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1.5"
+  }, "ALL THE IDEAS"), /*#__PURE__*/React.createElement("text", {
+    x: "670",
+    y: "22",
+    fill: "#ff8ad1",
+    fontSize: "11",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1.5"
+  }, "YOUR PATH →"))), /*#__PURE__*/React.createElement("div", {
+    className: "pc-caption"
+  }, "The quiz doesn't give you a new idea. It picks the right one from the ones you already have, so you stop opening tabs and start finishing things."));
 }
 
 // ======================================================================
@@ -1075,27 +1224,38 @@ function PathConvergence() {
 // ======================================================================
 
 function PrimarySupporting() {
-  return (
-    <div className="ps-wrap reveal" style={{ animationDelay: "420ms" }}>
-      <div className="ps-badge">✦ What you get from the quiz</div>
-      <div className="ps-cards">
-        <div className="ps-card ps-primary">
-          <div className="ps-card-label">01 · PRIMARY PATH</div>
-          <div className="ps-card-title">The ONE thing</div>
-          <div className="ps-card-body">A challenge, course, or system to focus on first. Most live in Standard. A few live in Premium.</div>
-        </div>
-        <div className="ps-connector">
-          <div className="ps-plus">+</div>
-        </div>
-        <div className="ps-card ps-support">
-          <div className="ps-card-label">02 · SUPPORTING RESOURCE</div>
-          <div className="ps-card-title">The complement</div>
-          <div className="ps-card-body">A tool or course that reinforces the primary. It's the layer that makes the first one stick.</div>
-        </div>
-      </div>
-      <div className="ps-footer">That's it. Two things. Not seventeen.</div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "ps-wrap reveal",
+    style: {
+      animationDelay: "420ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ps-badge"
+  }, "✦ What you get from the quiz"), /*#__PURE__*/React.createElement("div", {
+    className: "ps-cards"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ps-card ps-primary"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-label"
+  }, "01 · PRIMARY PATH"), /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-title"
+  }, "The ONE thing"), /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-body"
+  }, "A challenge, course, or system to focus on first. Most live in Standard. A few live in Premium.")), /*#__PURE__*/React.createElement("div", {
+    className: "ps-connector"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ps-plus"
+  }, "+")), /*#__PURE__*/React.createElement("div", {
+    className: "ps-card ps-support"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-label"
+  }, "02 · SUPPORTING RESOURCE"), /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-title"
+  }, "The complement"), /*#__PURE__*/React.createElement("div", {
+    className: "ps-card-body"
+  }, "A tool or course that reinforces the primary. It's the layer that makes the first one stick."))), /*#__PURE__*/React.createElement("div", {
+    className: "ps-footer"
+  }, "That's it. Two things. Not seventeen."));
 }
 
 // ======================================================================
@@ -1103,56 +1263,90 @@ function PrimarySupporting() {
 // ======================================================================
 
 function InfiniteVsFinite() {
-  return (
-    <div className="ivf-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="ivf-badge">✦ The game you're inviting people into</div>
-      <div className="ivf-grid">
-        {/* Infinite side */}
-        <div className="ivf-card ivf-infinite">
-          <div className="ivf-svg">
-            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="ivfInf" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#b26bff" />
-                  <stop offset="100%" stopColor="#8effd5" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M 30 40 C 30 20 50 20 60 40 C 70 60 90 60 90 40 C 90 20 70 20 60 40 C 50 60 30 60 30 40 Z"
-                stroke="url(#ivfInf)"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
-          <div className="ivf-label">Infinite game</div>
-          <div className="ivf-offer">Recurring practice</div>
-          <div className="ivf-body">Ongoing client relationships. No end date. Entry point = an ongoing visibility system (The Regulated Visibility Method) because that's the work you'd already be doing to find resonant clients on repeat.</div>
-        </div>
-        {/* Finite side */}
-        <div className="ivf-card ivf-finite">
-          <div className="ivf-svg">
-            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="ivfFin" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#ff6bc1" />
-                  <stop offset="100%" stopColor="#6bd5ff" />
-                </linearGradient>
-              </defs>
-              <circle cx="22" cy="40" r="5" fill="#ff6bc1" />
-              <line x1="22" y1="40" x2="95" y2="40" stroke="url(#ivfFin)" strokeWidth="3" strokeLinecap="round" />
-              <polygon points="95,33 107,40 95,47" fill="#6bd5ff" />
-            </svg>
-          </div>
-          <div className="ivf-label">Finite game</div>
-          <div className="ivf-offer">High-touch container</div>
-          <div className="ivf-body">Clear start, clear end, deep transformation. The Aligned Client Method is built for this. 5 days of depth, 30-90 min/day, one client at a time, a transformation that pre-qualifies your high-touch offer.</div>
-        </div>
-      </div>
-      <div className="ivf-footer">Match the entry point to the game.</div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "ivf-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ivf-badge"
+  }, "✦ The game you're inviting people into"), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ivf-card ivf-infinite"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ivf-svg"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 120 80",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "ivfInf",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "1"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#b26bff"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#8effd5"
+  }))), /*#__PURE__*/React.createElement("path", {
+    d: "M 30 40 C 30 20 50 20 60 40 C 70 60 90 60 90 40 C 90 20 70 20 60 40 C 50 60 30 60 30 40 Z",
+    stroke: "url(#ivfInf)",
+    strokeWidth: "3",
+    fill: "none",
+    strokeLinecap: "round"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-label"
+  }, "Infinite game"), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-offer"
+  }, "Recurring practice"), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-body"
+  }, "Ongoing client relationships. No end date. Entry point = an ongoing visibility system (The Regulated Visibility Method) because that's the work you'd already be doing to find resonant clients on repeat.")), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-card ivf-finite"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ivf-svg"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 120 80",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "ivfFin",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#ff6bc1"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#6bd5ff"
+  }))), /*#__PURE__*/React.createElement("circle", {
+    cx: "22",
+    cy: "40",
+    r: "5",
+    fill: "#ff6bc1"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "22",
+    y1: "40",
+    x2: "95",
+    y2: "40",
+    stroke: "url(#ivfFin)",
+    strokeWidth: "3",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("polygon", {
+    points: "95,33 107,40 95,47",
+    fill: "#6bd5ff"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-label"
+  }, "Finite game"), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-offer"
+  }, "High-touch container"), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-body"
+  }, "Clear start, clear end, deep transformation. The Aligned Client Method is built for this. 5 days of depth, 30-90 min/day, one client at a time, a transformation that pre-qualifies your high-touch offer."))), /*#__PURE__*/React.createElement("div", {
+    className: "ivf-footer"
+  }, "Match the entry point to the game."));
 }
 
 // ======================================================================
@@ -1161,41 +1355,130 @@ function InfiniteVsFinite() {
 // ======================================================================
 
 function SameToolTwoPositions() {
-  return (
-    <div className="sttp-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="sttp-badge">✦ The positioning changes. The resource doesn't.</div>
-      <div className="sttp-diagram">
-        <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="sttpLine" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#b26bff" />
-              <stop offset="100%" stopColor="#ff8ad1" />
-            </linearGradient>
-          </defs>
-          {/* center tool */}
-          <rect x="200" y="70" width="100" height="40" rx="10" fill="#f7edeb" stroke="url(#sttpLine)" strokeWidth="2" />
-          <text x="250" y="95" textAnchor="middle" fill="#0a0a0a" fontSize="12" fontFamily="Inter, sans-serif" letterSpacing="1">1 RESOURCE</text>
-          {/* left branch to FREE */}
-          <path d="M 200 90 Q 130 90 60 50" stroke="url(#sttpLine)" strokeWidth="2" fill="none" strokeLinecap="round" />
-          <circle cx="60" cy="50" r="6" fill="#8effd5" />
-          {/* right branch to PAID */}
-          <path d="M 300 90 Q 370 90 440 50" stroke="url(#sttpLine)" strokeWidth="2" fill="none" strokeLinecap="round" />
-          <circle cx="440" cy="50" r="6" fill="#ff8ad1" />
-          {/* labels */}
-          <text x="60" y="35" textAnchor="middle" fill="#8effd5" fontSize="11" fontFamily="Inter, sans-serif" letterSpacing="1.5">🎁 FREE</text>
-          <text x="60" y="20" textAnchor="middle" fill="rgba(10,10,10,0.6)" fontSize="9" fontFamily="Inter, sans-serif">LEAD MAGNET</text>
-          <text x="440" y="35" textAnchor="middle" fill="#ff8ad1" fontSize="11" fontFamily="Inter, sans-serif" letterSpacing="1.5">💎 PAID</text>
-          <text x="440" y="20" textAnchor="middle" fill="rgba(10,10,10,0.6)" fontSize="9" fontFamily="Inter, sans-serif">MINI OFFER</text>
-          {/* bottom labels */}
-          <text x="60" y="80" textAnchor="middle" fill="rgba(10,10,10,0.5)" fontSize="10" fontFamily="Inter, sans-serif">grow audience</text>
-          <text x="60" y="95" textAnchor="middle" fill="rgba(10,10,10,0.5)" fontSize="10" fontFamily="Inter, sans-serif">fill community</text>
-          <text x="440" y="80" textAnchor="middle" fill="rgba(10,10,10,0.5)" fontSize="10" fontFamily="Inter, sans-serif">monetize</text>
-          <text x="440" y="95" textAnchor="middle" fill="rgba(10,10,10,0.5)" fontSize="10" fontFamily="Inter, sans-serif">qualify leads</text>
-        </svg>
-      </div>
-      <div className="sttp-caption">Every asset in The Practice Library can go either direction. You pick based on what your practice needs this month.</div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "sttp-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sttp-badge"
+  }, "✦ The positioning changes. The resource doesn't."), /*#__PURE__*/React.createElement("div", {
+    className: "sttp-diagram"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 500 180",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "sttpLine",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#b26bff"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#ff8ad1"
+  }))), /*#__PURE__*/React.createElement("rect", {
+    x: "200",
+    y: "70",
+    width: "100",
+    height: "40",
+    rx: "10",
+    fill: "#f7edeb",
+    stroke: "url(#sttpLine)",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "250",
+    y: "95",
+    textAnchor: "middle",
+    fill: "#0a0a0a",
+    fontSize: "12",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1"
+  }, "1 RESOURCE"), /*#__PURE__*/React.createElement("path", {
+    d: "M 200 90 Q 130 90 60 50",
+    stroke: "url(#sttpLine)",
+    strokeWidth: "2",
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "60",
+    cy: "50",
+    r: "6",
+    fill: "#8effd5"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 300 90 Q 370 90 440 50",
+    stroke: "url(#sttpLine)",
+    strokeWidth: "2",
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "440",
+    cy: "50",
+    r: "6",
+    fill: "#ff8ad1"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "35",
+    textAnchor: "middle",
+    fill: "#8effd5",
+    fontSize: "11",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1.5"
+  }, "🎁 FREE"), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "20",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.6)",
+    fontSize: "9",
+    fontFamily: "Inter, sans-serif"
+  }, "LEAD MAGNET"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "35",
+    textAnchor: "middle",
+    fill: "#ff8ad1",
+    fontSize: "11",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1.5"
+  }, "💎 PAID"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "20",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.6)",
+    fontSize: "9",
+    fontFamily: "Inter, sans-serif"
+  }, "MINI OFFER"), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "80",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.5)",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif"
+  }, "grow audience"), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "95",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.5)",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif"
+  }, "fill community"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "80",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.5)",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif"
+  }, "monetize"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "95",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.5)",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif"
+  }, "qualify leads"))), /*#__PURE__*/React.createElement("div", {
+    className: "sttp-caption"
+  }, "Every asset in The Practice Library can go either direction. You pick based on what your practice needs this month."));
 }
 
 // ======================================================================
@@ -1205,41 +1488,74 @@ function SameToolTwoPositions() {
 // ======================================================================
 
 function ResourceGrid() {
-  const tiles = [
-    { e: "🌊", n: "Window Map" },
-    { e: "📋", n: "Intake Forms" },
-    { e: "🤝", n: "Scope Scripts" },
-    { e: "💰", n: "Pricing Kit" },
-    { e: "🪞", n: "Session Templates" },
-    { e: "📞", n: "Inquiry Replies" },
-    { e: "🌿", n: "Welcome Sequence" },
-    { e: "⚖️", n: "Contracts Pack" },
-    { e: "🎁", n: "Lead Magnet Builder" },
-    { e: "🌬️", n: "Breath Practice Lib" },
-    { e: "📊", n: "Capacity Tracker" },
-    { e: "✉️", n: "Termination Templates" },
-    { e: "🔔", n: "Boundary Scripts" },
-    { e: "🌱", n: "Onboarding Flow" },
-    { e: "➕", n: "8+ more" },
-  ];
-  return (
-    <div className="tg-wrap reveal" style={{ animationDelay: "420ms" }}>
-      <div className="tg-badge">✦ Inside The Practice Library (a sample)</div>
-      <div className="tg-grid">
-        {tiles.map((t, i) => (
-          <div
-            key={i}
-            className={`tg-tile ${i === tiles.length - 1 ? "tg-more" : ""}`}
-            style={{ animationDelay: `${500 + i * 40}ms` }}
-          >
-            <div className="tg-e">{t.e}</div>
-            <div className="tg-n">{t.n}</div>
-          </div>
-        ))}
-      </div>
-      <div className="tg-caption">22+ Practice Library assets and growing. You're not building from scratch. You're customizing tools written by a practitioner, for practitioners.</div>
-    </div>
-  );
+  const tiles = [{
+    e: "🌊",
+    n: "Window Map"
+  }, {
+    e: "📋",
+    n: "Intake Forms"
+  }, {
+    e: "🤝",
+    n: "Scope Scripts"
+  }, {
+    e: "💰",
+    n: "Pricing Kit"
+  }, {
+    e: "🪞",
+    n: "Session Templates"
+  }, {
+    e: "📞",
+    n: "Inquiry Replies"
+  }, {
+    e: "🌿",
+    n: "Welcome Sequence"
+  }, {
+    e: "⚖️",
+    n: "Contracts Pack"
+  }, {
+    e: "🎁",
+    n: "Lead Magnet Builder"
+  }, {
+    e: "🌬️",
+    n: "Breath Practice Lib"
+  }, {
+    e: "📊",
+    n: "Capacity Tracker"
+  }, {
+    e: "✉️",
+    n: "Termination Templates"
+  }, {
+    e: "🔔",
+    n: "Boundary Scripts"
+  }, {
+    e: "🌱",
+    n: "Onboarding Flow"
+  }, {
+    e: "➕",
+    n: "8+ more"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "tg-wrap reveal",
+    style: {
+      animationDelay: "420ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tg-badge"
+  }, "✦ Inside The Practice Library (a sample)"), /*#__PURE__*/React.createElement("div", {
+    className: "tg-grid"
+  }, tiles.map((t, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `tg-tile ${i === tiles.length - 1 ? "tg-more" : ""}`,
+    style: {
+      animationDelay: `${500 + i * 40}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tg-e"
+  }, t.e), /*#__PURE__*/React.createElement("div", {
+    className: "tg-n"
+  }, t.n)))), /*#__PURE__*/React.createElement("div", {
+    className: "tg-caption"
+  }, "22+ Practice Library assets and growing. You're not building from scratch. You're customizing tools written by a practitioner, for practitioners."));
 }
 
 // ======================================================================
@@ -1249,54 +1565,127 @@ function ResourceGrid() {
 // ======================================================================
 
 function GrowthTrajectory() {
-  return (
-    <div className="na-wrap reveal" style={{ animationDelay: "420ms" }}>
-      
-      <div className="na-badge">✦ Your growth trajectory</div>
-      <div className="na-diagram">
-        <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="naLine" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="rgba(10,10,10,0.35)" />
-              <stop offset="70%" stopColor="#b26bff" />
-              <stop offset="100%" stopColor="#8effd5" />
-            </linearGradient>
-            <filter id="naGlow">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          {/* starting point (faded) */}
-          <circle cx="60" cy="70" r="24" fill="none" stroke="rgba(10,10,10,0.3)" strokeWidth="1.5" strokeDasharray="3 3" />
-          <text x="60" y="76" textAnchor="middle" fill="rgba(10,10,10,0.6)" fontSize="16">◦</text>
-          <text x="60" y="115" textAnchor="middle" fill="rgba(10,10,10,0.55)" fontSize="10" fontFamily="Inter, sans-serif" letterSpacing="1">CURRENT WINDOW</text>
-          <text x="60" y="130" textAnchor="middle" fill="rgba(10,10,10,0.4)" fontSize="9" fontFamily="Inter">where you can hold today</text>
-          {/* arrow */}
-          <path
-            d="M 90 70 L 400 70"
-            stroke="url(#naLine)"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-            filter="url(#naGlow)"
-          />
-          <polygon points="400,63 415,70 400,77" fill="#8effd5" filter="url(#naGlow)" />
-          {/* growth label on arrow */}
-          <text x="245" y="58" textAnchor="middle" fill="#c78fff" fontSize="10" fontFamily="Inter, sans-serif" letterSpacing="2">EXPANDING CAPACITY →</text>
-          {/* destination (bright) */}
-          <circle cx="440" cy="70" r="28" fill="none" stroke="#8effd5" strokeWidth="2" filter="url(#naGlow)" />
-          <circle cx="440" cy="70" r="4" fill="#8effd5" />
-          <text x="440" y="76" textAnchor="middle" fill="#0a0a0a" fontSize="18">✦</text>
-          <text x="440" y="115" textAnchor="middle" fill="#8effd5" fontSize="10" fontFamily="Inter, sans-serif" letterSpacing="1">EXPANDED WINDOW</text>
-          <text x="440" y="130" textAnchor="middle" fill="rgba(10,10,10,0.6)" fontSize="9" fontFamily="Inter">what you'll regulate inside next</text>
-        </svg>
-      </div>
-      <div className="na-caption">The first time I doubled my rates, my body could not hold it. Six months of capacity work later, the same number didn't even register. Same number, different nervous system.</div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "na-wrap reveal",
+    style: {
+      animationDelay: "420ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "na-badge"
+  }, "✦ Your growth trajectory"), /*#__PURE__*/React.createElement("div", {
+    className: "na-diagram"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 500 140",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "naLine",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "rgba(10,10,10,0.35)"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "70%",
+    stopColor: "#b26bff"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#8effd5"
+  })), /*#__PURE__*/React.createElement("filter", {
+    id: "naGlow"
+  }, /*#__PURE__*/React.createElement("feGaussianBlur", {
+    stdDeviation: "2.5",
+    result: "blur"
+  }), /*#__PURE__*/React.createElement("feMerge", null, /*#__PURE__*/React.createElement("feMergeNode", {
+    in: "blur"
+  }), /*#__PURE__*/React.createElement("feMergeNode", {
+    in: "SourceGraphic"
+  })))), /*#__PURE__*/React.createElement("circle", {
+    cx: "60",
+    cy: "70",
+    r: "24",
+    fill: "none",
+    stroke: "rgba(10,10,10,0.3)",
+    strokeWidth: "1.5",
+    strokeDasharray: "3 3"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "76",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.6)",
+    fontSize: "16"
+  }, "◦"), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "115",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.55)",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1"
+  }, "CURRENT WINDOW"), /*#__PURE__*/React.createElement("text", {
+    x: "60",
+    y: "130",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.4)",
+    fontSize: "9",
+    fontFamily: "Inter"
+  }, "where you can hold today"), /*#__PURE__*/React.createElement("path", {
+    d: "M 90 70 L 400 70",
+    stroke: "url(#naLine)",
+    strokeWidth: "3",
+    fill: "none",
+    strokeLinecap: "round",
+    filter: "url(#naGlow)"
+  }), /*#__PURE__*/React.createElement("polygon", {
+    points: "400,63 415,70 400,77",
+    fill: "#8effd5",
+    filter: "url(#naGlow)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "245",
+    y: "58",
+    textAnchor: "middle",
+    fill: "#c78fff",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "2"
+  }, "EXPANDING CAPACITY →"), /*#__PURE__*/React.createElement("circle", {
+    cx: "440",
+    cy: "70",
+    r: "28",
+    fill: "none",
+    stroke: "#8effd5",
+    strokeWidth: "2",
+    filter: "url(#naGlow)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "440",
+    cy: "70",
+    r: "4",
+    fill: "#8effd5"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "76",
+    textAnchor: "middle",
+    fill: "#0a0a0a",
+    fontSize: "18"
+  }, "✦"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "115",
+    textAnchor: "middle",
+    fill: "#8effd5",
+    fontSize: "10",
+    fontFamily: "Inter, sans-serif",
+    letterSpacing: "1"
+  }, "EXPANDED WINDOW"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "130",
+    textAnchor: "middle",
+    fill: "rgba(10,10,10,0.6)",
+    fontSize: "9",
+    fontFamily: "Inter"
+  }, "what you'll regulate inside next"))), /*#__PURE__*/React.createElement("div", {
+    className: "na-caption"
+  }, "The first time I doubled my rates, my body could not hold it. Six months of capacity work later, the same number didn't even register. Same number, different nervous system."));
 }
 
 // ======================================================================
@@ -1304,53 +1693,78 @@ function GrowthTrajectory() {
 // ======================================================================
 
 function HalfStartedVsShipped() {
-  return (
-    <div className="hss-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="hss-badge">✦ Pick one. Ship one.</div>
-      <div className="hss-grid">
-        <div className="hss-side hss-half">
-          <div className="hss-side-label">10 half-started things</div>
-          <div className="hss-tiles">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="hss-tile-half"
-                style={{
-                  opacity: 0.25 + (i % 3) * 0.1,
-                  transform: `rotate(${(i % 5) * 2 - 4}deg)`,
-                }}
-              >
-                <div className="hss-tile-bar" style={{ width: `${20 + (i * 13) % 60}%` }} />
-              </div>
-            ))}
-          </div>
-          <div className="hss-side-caption">Still in drafts. Still "almost ready". Still invisible.</div>
-        </div>
-        <div className="hss-arrow">
-          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="hssArrow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#ff6bc1" />
-                <stop offset="100%" stopColor="#8effd5" />
-              </linearGradient>
-            </defs>
-            <path d="M 5 20 L 30 20" stroke="url(#hssArrow)" strokeWidth="3" strokeLinecap="round" fill="none" />
-            <polygon points="28,14 38,20 28,26" fill="#8effd5" />
-          </svg>
-        </div>
-        <div className="hss-side hss-ship">
-          <div className="hss-side-label">1 shipped thing</div>
-          <div className="hss-shipped">
-            <div className="hss-shipped-check">✓</div>
-            <div className="hss-shipped-bar" />
-            <div className="hss-shipped-bar full" />
-            <div className="hss-shipped-bar" />
-          </div>
-          <div className="hss-side-caption">Live. Public. Gaining momentum. Already building the next one on top of it.</div>
-        </div>
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "hss-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-badge"
+  }, "✦ Pick one. Ship one."), /*#__PURE__*/React.createElement("div", {
+    className: "hss-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-side hss-half"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-side-label"
+  }, "10 half-started things"), /*#__PURE__*/React.createElement("div", {
+    className: "hss-tiles"
+  }, [...Array(10)].map((_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "hss-tile-half",
+    style: {
+      opacity: 0.25 + i % 3 * 0.1,
+      transform: `rotate(${i % 5 * 2 - 4}deg)`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-tile-bar",
+    style: {
+      width: `${20 + i * 13 % 60}%`
+    }
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "hss-side-caption"
+  }, "Still in drafts. Still \"almost ready\". Still invisible.")), /*#__PURE__*/React.createElement("div", {
+    className: "hss-arrow"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 40 40",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "hssArrow",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "0"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#ff6bc1"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#8effd5"
+  }))), /*#__PURE__*/React.createElement("path", {
+    d: "M 5 20 L 30 20",
+    stroke: "url(#hssArrow)",
+    strokeWidth: "3",
+    strokeLinecap: "round",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("polygon", {
+    points: "28,14 38,20 28,26",
+    fill: "#8effd5"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "hss-side hss-ship"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-side-label"
+  }, "1 shipped thing"), /*#__PURE__*/React.createElement("div", {
+    className: "hss-shipped"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hss-shipped-check"
+  }, "✓"), /*#__PURE__*/React.createElement("div", {
+    className: "hss-shipped-bar"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "hss-shipped-bar full"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "hss-shipped-bar"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "hss-side-caption"
+  }, "Live. Public. Gaining momentum. Already building the next one on top of it."))));
 }
 
 // ======================================================================
@@ -1358,31 +1772,48 @@ function HalfStartedVsShipped() {
 // ======================================================================
 
 function ReferralMathHero() {
-  const rows = [
-    { n: "3", tier: "Premium", result: "your $7 is fully covered", color: "mint" },
-    { n: "3", tier: "VIP", result: "about $56 a month coming back", color: "pink" },
-    { n: "10", tier: "any tier", result: "real monthly income", color: "purple" },
-  ];
-  return (
-    <div className="rm-wrap reveal" style={{ animationDelay: "300ms" }}>
-      <div className="rm-badge">✦ The math (kind of wild)</div>
-      <div className="rm-rows">
-        {rows.map((r, i) => (
-          <div
-            key={i}
-            className={`rm-row rm-${r.color} reveal`}
-            style={{ animationDelay: `${400 + i * 140}ms` }}
-          >
-            <div className="rm-num">{r.n}</div>
-            <div className="rm-label">referrals to <strong>{r.tier}</strong></div>
-            <div className="rm-equal">=</div>
-            <div className="rm-result">{r.result}</div>
-          </div>
-        ))}
-      </div>
-      <div className="rm-footer">Your audience doesn't have to be huge. It just has to be the right people.</div>
-    </div>
-  );
+  const rows = [{
+    n: "3",
+    tier: "Premium",
+    result: "your $7 is fully covered",
+    color: "mint"
+  }, {
+    n: "3",
+    tier: "VIP",
+    result: "about $56 a month coming back",
+    color: "pink"
+  }, {
+    n: "10",
+    tier: "any tier",
+    result: "real monthly income",
+    color: "purple"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rm-wrap reveal",
+    style: {
+      animationDelay: "300ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "rm-badge"
+  }, "✦ The math (kind of wild)"), /*#__PURE__*/React.createElement("div", {
+    className: "rm-rows"
+  }, rows.map((r, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `rm-row rm-${r.color} reveal`,
+    style: {
+      animationDelay: `${400 + i * 140}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "rm-num"
+  }, r.n), /*#__PURE__*/React.createElement("div", {
+    className: "rm-label"
+  }, "referrals to ", /*#__PURE__*/React.createElement("strong", null, r.tier)), /*#__PURE__*/React.createElement("div", {
+    className: "rm-equal"
+  }, "="), /*#__PURE__*/React.createElement("div", {
+    className: "rm-result"
+  }, r.result)))), /*#__PURE__*/React.createElement("div", {
+    className: "rm-footer"
+  }, "Your audience doesn't have to be huge. It just has to be the right people."));
 }
 
 // ======================================================================
@@ -1390,249 +1821,345 @@ function ReferralMathHero() {
 // ======================================================================
 
 function TierComparison() {
-  return (
-    <div className="tier-wrap">
-      <div className="tier-intro">
-        <div className="tier-intro-badge">✦ What's inside</div>
-        <div className="tier-intro-title">Three levels, one community</div>
-        <div className="tier-intro-sub">
-          <a href={`https://skool.com/${CONFIG.SKOOL_HANDLE}/plans`} target="_blank" rel="noopener noreferrer" className="tier-link">Click here to see current availability ✦</a>
-        </div>
-      </div>
-      <div className="tier-cards">
-        {tiers.map((t, i) => (
-          <div
-            key={t.name}
-            className={`tier-card tier-${t.style} reveal`}
-            style={{ animationDelay: `${250 + i * 150}ms` }}
-          >
-            <div className="tier-name">{t.name}</div>
-            <div className="tier-tagline">{t.tagline}</div>
-            <div className="tier-desc">{t.desc}</div>
-            <div className="tier-divider" />
-            <div className="tier-items">
-              {t.items.map((it, j) => (
-                <div key={j} className="tier-item">
-                  <span className="tier-item-icon">{it.icon}</span>
-                  <span className="tier-item-text">{it.text}</span>
-                </div>
-              ))}
-            </div>
-            <div className="tier-cta">{t.cta}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "tier-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tier-intro"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tier-intro-badge"
+  }, "✦ What's inside"), /*#__PURE__*/React.createElement("div", {
+    className: "tier-intro-title"
+  }, "Three levels, one community"), /*#__PURE__*/React.createElement("div", {
+    className: "tier-intro-sub"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: `https://skool.com/${CONFIG.SKOOL_HANDLE}/plans`,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "tier-link"
+  }, "Click here to see current availability ✦"))), /*#__PURE__*/React.createElement("div", {
+    className: "tier-cards"
+  }, tiers.map((t, i) => /*#__PURE__*/React.createElement("div", {
+    key: t.name,
+    className: `tier-card tier-${t.style} reveal`,
+    style: {
+      animationDelay: `${250 + i * 150}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tier-name"
+  }, t.name), /*#__PURE__*/React.createElement("div", {
+    className: "tier-tagline"
+  }, t.tagline), /*#__PURE__*/React.createElement("div", {
+    className: "tier-desc"
+  }, t.desc), /*#__PURE__*/React.createElement("div", {
+    className: "tier-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "tier-items"
+  }, t.items.map((it, j) => /*#__PURE__*/React.createElement("div", {
+    key: j,
+    className: "tier-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tier-item-icon"
+  }, it.icon), /*#__PURE__*/React.createElement("span", {
+    className: "tier-item-text"
+  }, it.text)))), /*#__PURE__*/React.createElement("div", {
+    className: "tier-cta"
+  }, t.cta)))));
 }
-
 function VipReadiness() {
-  const signals = [
-    { icon: "🌊", text: "Your practice is full or close to it, and you're hitting the ceiling of what your current capacity can hold" },
-    { icon: "💎", text: "You're ready to raise your rates significantly and need someone in the room as your nervous system adjusts" },
-    { icon: "🎯", text: "You're building (or rebuilding) a high-touch container, intensive, or retreat and want it dialed in 1:1" },
-    { icon: "🤝", text: "You're done DIY-ing every business decision and want a regulated practitioner-mentor in the foxhole with you" },
-  ];
-  return (
-    <div className="vip-ready-wrap">
-      <div className="vip-ready-intro">
-        <div className="vip-ready-badge">💎 Curious about {CONFIG.TIER_3_NAME}?</div>
-        <div className="vip-ready-title">How to know you're ready</div>
-        <div className="vip-ready-sub">
-          {CONFIG.TIER_3_NAME} is bi-weekly 1:1 with {CONFIG.FOUNDER_FIRST_NAME}, designed to meet you where you're at. Most practitioners are good with {CONFIG.TIER_2_NAME} until one (or more) of these starts feeling true:
-        </div>
-      </div>
-      <div className="vip-ready-grid">
-        {signals.map((s, i) => (
-          <div
-            key={i}
-            className="vip-ready-card reveal"
-            style={{ animationDelay: `${220 + i * 110}ms` }}
-          >
-            <div className="vip-ready-icon">{s.icon}</div>
-            <div className="vip-ready-text">{s.text}</div>
-          </div>
-        ))}
-      </div>
-      <div className="vip-ready-footer reveal" style={{ animationDelay: "700ms" }}>
-        <span className="vip-ready-dot">✦</span>
-        If that's you, <a href={`https://skool.com/${CONFIG.SKOOL_HANDLE}/plans`} target="_blank" rel="noopener noreferrer" className="vip-ready-link">click here to see current {CONFIG.TIER_3_NAME} availability</a>. If the tier is off and you're feeling the pull, feel free to DM me to see if I have space.
-      </div>
-    </div>
-  );
+  const signals = [{
+    icon: "🌊",
+    text: "Your practice is full or close to it, and you're hitting the ceiling of what your current capacity can hold"
+  }, {
+    icon: "💎",
+    text: "You're ready to raise your rates significantly and need someone in the room as your nervous system adjusts"
+  }, {
+    icon: "🎯",
+    text: "You're building (or rebuilding) a high-touch container, intensive, or retreat and want it dialed in 1:1"
+  }, {
+    icon: "🤝",
+    text: "You're done DIY-ing every business decision and want a regulated practitioner-mentor in the foxhole with you"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-intro"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-badge"
+  }, "💎 Curious about ", CONFIG.TIER_3_NAME, "?"), /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-title"
+  }, "How to know you're ready"), /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-sub"
+  }, CONFIG.TIER_3_NAME, " is bi-weekly 1:1 with ", CONFIG.FOUNDER_FIRST_NAME, ", designed to meet you where you're at. Most practitioners are good with ", CONFIG.TIER_2_NAME, " until one (or more) of these starts feeling true:")), /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-grid"
+  }, signals.map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "vip-ready-card reveal",
+    style: {
+      animationDelay: `${220 + i * 110}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-icon"
+  }, s.icon), /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-text"
+  }, s.text)))), /*#__PURE__*/React.createElement("div", {
+    className: "vip-ready-footer reveal",
+    style: {
+      animationDelay: "700ms"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "vip-ready-dot"
+  }, "✦"), "If that's you, ", /*#__PURE__*/React.createElement("a", {
+    href: `https://skool.com/${CONFIG.SKOOL_HANDLE}/plans`,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "vip-ready-link"
+  }, "click here to see current ", CONFIG.TIER_3_NAME, " availability"), ". If the tier is off and you're feeling the pull, feel free to DM me to see if I have space."));
 }
-
-function PathPicker({ picked, setPicked }) {
-  const chosen = pathOptions.find((p) => p.id === picked);
-  return (
-    <div className="pathpicker">
-      <div className="pp-question">
-        <div className="pp-q-badge">✦ One question</div>
-        <div className="pp-q-text">What do you actually want to call in?</div>
-      </div>
-      <div className="pp-options">
-        {pathOptions.map((opt, i) => (
-          <button
-            key={opt.id}
-            className={`pp-option reveal ${picked === opt.id ? "picked" : ""} ${picked && picked !== opt.id ? "dim" : ""}`}
-            style={{ animationDelay: `${150 + i * 120}ms` }}
-            onClick={() => setPicked(picked === opt.id ? null : opt.id)}
-          >
-            <div className="pp-option-text">{opt.question}</div>
-            <div className="pp-option-arrow">→</div>
-          </button>
-        ))}
-      </div>
-      {chosen && (
-        <div className="pp-result">
-          <div className="pp-result-eyebrow">Your path →</div>
-          <div className="pp-result-name">{chosen.path}</div>
-          <div className="pp-result-tier">Lives in <strong>{chosen.tier}</strong></div>
-          <div className="pp-result-points">
-            {chosen.whyPoints.map((pt, i) => (
-              <div key={i} className="pp-result-point">
-                <span className="pp-point-dot">✦</span>
-                <span>{pt}</span>
-              </div>
-            ))}
-          </div>
-          <div className="pp-result-cta">{chosen.cta}</div>
-        </div>
-      )}
-    </div>
-  );
+function PathPicker({
+  picked,
+  setPicked
+}) {
+  const chosen = pathOptions.find(p => p.id === picked);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pathpicker"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pp-question"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pp-q-badge"
+  }, "✦ One question"), /*#__PURE__*/React.createElement("div", {
+    className: "pp-q-text"
+  }, "What do you actually want to call in?")), /*#__PURE__*/React.createElement("div", {
+    className: "pp-options"
+  }, pathOptions.map((opt, i) => /*#__PURE__*/React.createElement("button", {
+    key: opt.id,
+    className: `pp-option reveal ${picked === opt.id ? "picked" : ""} ${picked && picked !== opt.id ? "dim" : ""}`,
+    style: {
+      animationDelay: `${150 + i * 120}ms`
+    },
+    onClick: () => setPicked(picked === opt.id ? null : opt.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pp-option-text"
+  }, opt.question), /*#__PURE__*/React.createElement("div", {
+    className: "pp-option-arrow"
+  }, "→")))), chosen && /*#__PURE__*/React.createElement("div", {
+    className: "pp-result"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pp-result-eyebrow"
+  }, "Your path →"), /*#__PURE__*/React.createElement("div", {
+    className: "pp-result-name"
+  }, chosen.path), /*#__PURE__*/React.createElement("div", {
+    className: "pp-result-tier"
+  }, "Lives in ", /*#__PURE__*/React.createElement("strong", null, chosen.tier)), /*#__PURE__*/React.createElement("div", {
+    className: "pp-result-points"
+  }, chosen.whyPoints.map((pt, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "pp-result-point"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "pp-point-dot"
+  }, "✦"), /*#__PURE__*/React.createElement("span", null, pt)))), /*#__PURE__*/React.createElement("div", {
+    className: "pp-result-cta"
+  }, chosen.cta)));
 }
-
-function ChartFocus_Legacy_Deleted() { return null; } // PhilosophyTriad removed , was dead code, replaced with no-op to keep file stable
+function ChartFocus_Legacy_Deleted() {
+  return null;
+} // PhilosophyTriad removed , was dead code, replaced with no-op to keep file stable
 
 function FocusPoints() {
-  const focus = [
-    { label: "Window", desc: "Where regulation lives for you" },
-    { label: "Activation", desc: "Which way you go when you leave it" },
-    { label: "Return", desc: "Your 60-second move back" },
-  ];
+  const focus = [{
+    label: "Window",
+    desc: "Where regulation lives for you"
+  }, {
+    label: "Activation",
+    desc: "Which way you go when you leave it"
+  }, {
+    label: "Return",
+    desc: "Your 60-second move back"
+  }];
   const skip = ["Polyvagal Ladder", "Dorsal/Ventral Mapping", "Neuroception Drills", "Co-regulation Theory"];
-  return (
-    <div className="cf-wrap">
-      <div className="cf-intro">
-        <div className="cf-badge">✦ Polyvagal, simplified</div>
-        <div className="cf-title">Focus here. Skip the rest for now.</div>
-      </div>
-      <div className="cf-grid">
-        {focus.map((f, i) => (
-          <div
-            key={f.label}
-            className="cf-focus-card reveal"
-            style={{ animationDelay: `${260 + i * 130}ms` }}
-          >
-            <div className="cf-focus-num">{String(i + 1).padStart(2, "0")}</div>
-            <div className="cf-focus-label">{f.label}</div>
-            <div className="cf-focus-desc">{f.desc}</div>
-          </div>
-        ))}
-      </div>
-      <div className="cf-skip-row reveal" style={{ animationDelay: "700ms" }}>
-        <span className="cf-skip-label">Skip for now:</span>
-        {skip.map((s) => (
-          <span key={s} className="cf-skip-chip">{s}</span>
-        ))}
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "cf-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cf-intro"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cf-badge"
+  }, "✦ Polyvagal, simplified"), /*#__PURE__*/React.createElement("div", {
+    className: "cf-title"
+  }, "Focus here. Skip the rest for now.")), /*#__PURE__*/React.createElement("div", {
+    className: "cf-grid"
+  }, focus.map((f, i) => /*#__PURE__*/React.createElement("div", {
+    key: f.label,
+    className: "cf-focus-card reveal",
+    style: {
+      animationDelay: `${260 + i * 130}ms`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cf-focus-num"
+  }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", {
+    className: "cf-focus-label"
+  }, f.label), /*#__PURE__*/React.createElement("div", {
+    className: "cf-focus-desc"
+  }, f.desc)))), /*#__PURE__*/React.createElement("div", {
+    className: "cf-skip-row reveal",
+    style: {
+      animationDelay: "700ms"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "cf-skip-label"
+  }, "Skip for now:"), skip.map(s => /*#__PURE__*/React.createElement("span", {
+    key: s,
+    className: "cf-skip-chip"
+  }, s))));
 }
-
 function InviteWalkthrough() {
-  return (
-    <div className="iw-wrap">
-      <div className="iw-intro">
-        <div className="iw-badge">✦ How to grab your affiliate link</div>
-        <div className="iw-title">3 clicks. That's the whole thing.</div>
-      </div>
-      <div className="iw-steps">
-        <div className="iw-step reveal" style={{ animationDelay: "200ms" }}>
-          <div className="iw-step-left">
-            <div className="iw-step-num">01</div>
-            <div className="iw-step-title">Find the sidebar</div>
-            <div className="iw-step-desc">
-              On the {CONFIG.COMMUNITY_NAME} community page, look to the right side, just below the group description and member count.
-            </div>
-          </div>
-          <div className="iw-step-visual">
-            <div className="mock-sidebar">
-              <div className="mock-sb-banner">
-                <div className="mock-sb-banner-title">✨ {CONFIG.COMMUNITY_NAME} ✨</div>
-              </div>
-              <div className="mock-sb-url">skool.com/{CONFIG.SKOOL_HANDLE}</div>
-              <div className="mock-sb-desc">
-                <div className="mock-sb-line" style={{ width: "85%" }} />
-                <div className="mock-sb-line" style={{ width: "95%" }} />
-                <div className="mock-sb-line" style={{ width: "60%" }} />
-              </div>
-              <div className="mock-sb-stats">
-                {/* Fake-realistic member counts for the visual , these don't have to match your real numbers. */}
-                <div className="mock-sb-stat"><div className="mock-sb-stat-num">281</div><div className="mock-sb-stat-lbl">Members</div></div>
-                <div className="mock-sb-stat"><div className="mock-sb-stat-num">9</div><div className="mock-sb-stat-lbl">Online</div></div>
-                <div className="mock-sb-stat"><div className="mock-sb-stat-num">2</div><div className="mock-sb-stat-lbl">Admins</div></div>
-              </div>
-              <div className="mock-sb-avatars">
-                {[...Array(6)].map((_, i) => <div key={i} className="mock-sb-avatar" style={{ background: ["#ffb3d9","#b3d9ff","#d9b3ff","#b3ffd9","#ffd9b3","#d9ffb3"][i] }} />)}
-              </div>
-              <div className="mock-sb-btn-wrap">
-                <div className="mock-sb-btn">INVITE PEOPLE</div>
-                <div className="mock-sb-arrow">👈 click here</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="iw-step reveal" style={{ animationDelay: "380ms" }}>
-          <div className="iw-step-left">
-            <div className="iw-step-num">02</div>
-            <div className="iw-step-title">Hit the INVITE PEOPLE button</div>
-            <div className="iw-step-desc">
-              A popup opens showing your personal affiliate link. (It's unique to you. Skool generates it automatically.)
-            </div>
-          </div>
-          <div className="iw-step-visual">
-            <div className="mock-popup">
-              <div className="mock-pop-title">Invite people</div>
-              <div className="mock-pop-body">
-                Earn <span className="mock-pop-pct">40% commission for life</span> when you invite a friend to ✨ {CONFIG.COMMUNITY_NAME} ✨.
-              </div>
-              <div className="mock-pop-link-row">
-                <div className="mock-pop-link">https://www.skool.com/{CONFIG.SKOOL_HANDLE}/about?ref=YOU</div>
-                <div className="mock-pop-copy">COPY</div>
-                <div className="mock-pop-arrow">👈 tap this</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="iw-step reveal" style={{ animationDelay: "560ms" }}>
-          <div className="iw-step-left">
-            <div className="iw-step-num">03</div>
-            <div className="iw-step-title">Click COPY, and you're done 💚</div>
-            <div className="iw-step-desc">
-              That link is yours for life. Every person who joins any tier through it earns you 40% automatically. No tracking, no setup, no follow-up. Skool handles the whole thing on their end.
-            </div>
-          </div>
-          <div className="iw-step-visual">
-            <div className="mock-saved">
-              <div className="mock-saved-check">✓</div>
-              <div className="mock-saved-text">
-                <div className="mock-saved-title">Link copied</div>
-                <div className="mock-saved-sub">Paste it into a post, a DM, an email, wherever your people are.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="iw-outro reveal" style={{ animationDelay: "760ms" }}>
-        <span className="iw-outro-dot">✦</span>
-        Pro tip: save your link somewhere you'll actually find it again (phone notes, a pinned message to yourself, Notion). You'll use it more than you think. 💚
-      </div>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: "iw-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-intro"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-badge"
+  }, "✦ How to grab your affiliate link"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-title"
+  }, "3 clicks. That's the whole thing.")), /*#__PURE__*/React.createElement("div", {
+    className: "iw-steps"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step reveal",
+    style: {
+      animationDelay: "200ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-num"
+  }, "01"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-title"
+  }, "Find the sidebar"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-desc"
+  }, "On the ", CONFIG.COMMUNITY_NAME, " community page, look to the right side, just below the group description and member count.")), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-visual"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sidebar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-banner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-banner-title"
+  }, "✨ ", CONFIG.COMMUNITY_NAME, " ✨")), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-url"
+  }, "skool.com/", CONFIG.SKOOL_HANDLE), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-desc"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-line",
+    style: {
+      width: "85%"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-line",
+    style: {
+      width: "95%"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-line",
+    style: {
+      width: "60%"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stats"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-num"
+  }, "281"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-lbl"
+  }, "Members")), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-num"
+  }, "9"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-lbl"
+  }, "Online")), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-num"
+  }, "2"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-stat-lbl"
+  }, "Admins"))), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-avatars"
+  }, [...Array(6)].map((_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "mock-sb-avatar",
+    style: {
+      background: ["#ffb3d9", "#b3d9ff", "#d9b3ff", "#b3ffd9", "#ffd9b3", "#d9ffb3"][i]
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-btn-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-btn"
+  }, "INVITE PEOPLE"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-sb-arrow"
+  }, "👈 click here"))))), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step reveal",
+    style: {
+      animationDelay: "380ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-num"
+  }, "02"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-title"
+  }, "Hit the INVITE PEOPLE button"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-desc"
+  }, "A popup opens showing your personal affiliate link. (It's unique to you. Skool generates it automatically.)")), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-visual"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-popup"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-title"
+  }, "Invite people"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-body"
+  }, "Earn ", /*#__PURE__*/React.createElement("span", {
+    className: "mock-pop-pct"
+  }, "40% commission for life"), " when you invite a friend to ✨ ", CONFIG.COMMUNITY_NAME, " ✨."), /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-link-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-link"
+  }, "https://www.skool.com/", CONFIG.SKOOL_HANDLE, "/about?ref=YOU"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-copy"
+  }, "COPY"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-pop-arrow"
+  }, "👈 tap this"))))), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step reveal",
+    style: {
+      animationDelay: "560ms"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-num"
+  }, "03"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-title"
+  }, "Click COPY, and you're done 💚"), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-desc"
+  }, "That link is yours for life. Every person who joins any tier through it earns you 40% automatically. No tracking, no setup, no follow-up. Skool handles the whole thing on their end.")), /*#__PURE__*/React.createElement("div", {
+    className: "iw-step-visual"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-saved"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-saved-check"
+  }, "✓"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-saved-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mock-saved-title"
+  }, "Link copied"), /*#__PURE__*/React.createElement("div", {
+    className: "mock-saved-sub"
+  }, "Paste it into a post, a DM, an email, wherever your people are.")))))), /*#__PURE__*/React.createElement("div", {
+    className: "iw-outro reveal",
+    style: {
+      animationDelay: "760ms"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "iw-outro-dot"
+  }, "✦"), "Pro tip: save your link somewhere you'll actually find it again (phone notes, a pinned message to yourself, Notion). You'll use it more than you think. 💚"));
 }
-
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -3599,11 +4126,9 @@ a.vip-ready-link:hover{color:var(--cyan);border-bottom-color:var(--cyan)}
 }
 
 `;
-
-
-const _boot = document.getElementById("boot");
+const _boot = document.getElementById('boot');
 if (_boot) _boot.remove();
-ReactDOM.createRoot(document.getElementById("root")).render(<StartHereCourse />);
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(StartHereCourse));
 </script>
 </body>
 </html>
