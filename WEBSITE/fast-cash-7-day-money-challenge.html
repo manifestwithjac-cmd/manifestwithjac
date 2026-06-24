@@ -2,358 +2,639 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fast Cash: 7-Day Money Manifestation Challenge</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* Drop SeriouslyNostalgic.woff2 (and .ttf) next to this file on Netlify and it loads automatically.
-     Until then it falls back to Cormorant Garamond so it still looks beautiful. */
-  @font-face{
-    font-family:'Seriously Nostalgic';
-    src:url('SeriouslyNostalgic-Fine.otf') format('opentype');
-    font-weight:normal;font-style:normal;font-display:swap;
-  }
-  :root{
-    --cream:#eef3e7;--ink:#10130d;--gold:#c9a449;--gold-soft:#e4cf94;--gold-deep:#9c7c2f;
-    --green:#2f7d4f;--green-deep:#235e3b;--green-soft:#bcd9c4;
-    --line:#d7e0cc;--card:#fbfdf7;--muted:#6f7563;
-    --display:'Seriously Nostalgic','Cormorant Garamond',serif;
-    --serif:'Cormorant Garamond',serif;
-    --ui:'Outfit',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-text-size-adjust:100%;}
-  body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6;padding-bottom:60px;}
-  .wrap{max-width:680px;margin:0 auto;padding:0 18px;}
-  .topbar{position:sticky;top:0;z-index:20;background:rgba(252,248,240,0.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:11px 0;}
-  .topbar .wrap{display:flex;align-items:center;gap:12px;}
-  .mark{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:.5px;white-space:nowrap;}
-  .mark span{color:var(--gold-deep);}
-  .track{display:flex;gap:5px;flex:1;align-items:center;}
-  .node{flex:1;height:6px;border-radius:3px;background:var(--line);transition:background .4s ease;}
-  .node.done{background:linear-gradient(90deg,var(--green),#5fa877);}
-  .count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
-  header.hero{padding:46px 0 6px;}
-  .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:14px;font-family:var(--ui);}
-  h1{font-family:var(--display);font-weight:normal;font-size:clamp(54px,16vw,92px);line-height:.92;letter-spacing:.5px;}
-  .tagline{font-family:var(--serif);font-style:italic;font-weight:600;font-size:24px;color:var(--green-deep);margin-top:10px;}
-  .divider{height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-soft) 55%,transparent 100%);margin:24px 0;border:none;}
-  .lede{font-size:15px;color:#423d33;margin-bottom:10px;}
-  .panel{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:24px;margin:16px 0;}
-  .panel h2{font-family:var(--display);font-weight:normal;font-size:32px;line-height:1.05;margin-bottom:4px;}
-  .panel .sub{font-size:13px;color:var(--muted);margin-bottom:14px;}
-  label.f{display:block;font-weight:600;font-size:13.5px;margin:14px 0 6px;}
-  input[type=text],textarea{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:11px 12px;resize:vertical;line-height:1.5;}
-  input[type=text]:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,164,73,.16);}
-  textarea{min-height:72px;}
-  .numwrap{position:relative;}
-  .numwrap .dollar{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-weight:700;font-size:21px;color:var(--gold);}
-  .numwrap input{padding-left:32px;font-family:var(--serif);font-size:21px;font-weight:600;}
-  .day{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden;transition:border-color .25s;}
-  .day.complete{border-color:var(--green);}
-  .day-head{display:flex;align-items:center;gap:13px;padding:18px;cursor:pointer;user-select:none;}
-  .day-num{font-family:var(--ui);font-weight:600;font-size:11px;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase;flex-shrink:0;width:46px;}
-  .day-theme{font-family:var(--display);font-weight:normal;font-size:25px;line-height:1.05;flex:1;}
-  .day-status{flex-shrink:0;width:25px;height:25px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:all .3s;}
-  .day.complete .day-status{background:var(--green);border-color:var(--green);}
-  .chev{flex-shrink:0;color:var(--muted);transition:transform .3s;font-size:12px;}
-  .day.open .chev{transform:rotate(180deg);}
-  .day-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
-  .day.open .day-body{max-height:5000px;}
-  .day-inner{padding:2px 18px 22px;}
-  .shift{font-family:var(--ui);font-style:italic;font-weight:500;font-size:16px;line-height:1.5;color:#2c2c22;margin-bottom:16px;}
-  .blocklbl{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);margin:18px 0 8px;}
-  .pract{font-size:14.5px;color:#33302a;}
-  .taprow{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f2ead6;}
-  .taprow:last-child{border-bottom:none;}
-  .tag{flex-shrink:0;width:36px;text-align:center;background:var(--gold-deep);color:#fff;font-size:10px;font-weight:700;border-radius:5px;padding:5px 0;font-family:var(--ui);}
-  .taprow p{font-size:14px;line-height:1.45;}
-  .action{display:flex;gap:12px;align-items:flex-start;background:#e6f1e8;border:1px solid var(--green-soft);border-radius:9px;padding:14px;margin-top:4px;cursor:pointer;}
-  .action .box{flex-shrink:0;width:22px;height:22px;border:2px solid var(--green-deep);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;margin-top:1px;transition:background .2s;}
-  .action.done .box{background:var(--green-deep);}
-  .action p{font-size:14px;line-height:1.45;}
-  .action .examples{font-size:12.5px;color:var(--muted);margin-top:5px;}
-  .winrow{display:flex;gap:9px;margin-bottom:9px;}
-  .winrow .wlabel{flex:1;}
-  .winrow .wamtwrap{position:relative;width:118px;flex-shrink:0;}
-  .winrow .wamtwrap .dollar{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-weight:700;font-size:18px;color:var(--green);}
-  .winrow .wamtwrap input{padding-left:27px;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--green);border-color:#c4dccb;}
-  .winrow .del{flex-shrink:0;width:34px;border:1.5px solid var(--line);background:#fff;border-radius:8px;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;}
-  .addwin{margin-top:2px;background:none;border:1.5px dashed var(--gold-soft);color:var(--gold-deep);font-family:var(--ui);font-weight:600;font-size:13px;border-radius:8px;padding:9px 14px;cursor:pointer;width:100%;}
-  .aff{margin-top:18px;text-align:center;background:#fff;border:1.5px solid var(--gold);border-radius:10px;padding:20px;cursor:pointer;transition:background .3s,box-shadow .3s;}
-  .aff.claimed{background:linear-gradient(180deg,#fff,#faf2dd);box-shadow:0 4px 0 var(--gold-soft);}
-  .aff .q{font-family:var(--serif);font-style:italic;font-weight:600;font-size:20px;line-height:1.35;}
-  .aff .hint{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-deep);margin-top:10px;font-weight:600;font-family:var(--ui);}
-  .aff.claimed .hint::before{content:"\2713  ";}
-  .complete-btn{width:100%;margin-top:20px;padding:15px;border:none;border-radius:9px;background:var(--green);color:#fff;font-family:var(--ui);font-weight:600;font-size:15px;letter-spacing:.4px;cursor:pointer;transition:transform .12s,background .25s;}
-  .complete-btn:active{transform:scale(.985);}
-  .day.complete .complete-btn{background:var(--green-deep);}
-  .total-card{background:linear-gradient(180deg,#fff,#eef6f0);border:2px solid var(--green-soft);text-align:center;}
-  .total-card .eyebrow{color:var(--green);}
-  .total-amt{font-family:var(--display);font-weight:normal;font-size:62px;color:var(--green);line-height:1;margin:8px 0 4px;}
-  .total-card .sub2{font-size:13px;color:var(--muted);}
-  .final{background:linear-gradient(180deg,#fff,#faf2dd);border:2px solid var(--gold);}
-  .celebrate{font-family:var(--serif);font-style:italic;font-weight:600;font-size:19px;text-align:center;line-height:1.45;margin-top:12px;}
-  .reset{display:block;margin:30px auto 0;background:none;border:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer;}
-  .footer{text-align:center;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);margin-top:32px;}
-  .saved-flag{font-size:11px;color:var(--gold-deep);font-weight:600;opacity:0;transition:opacity .3s;}
-  .saved-flag.show{opacity:1;}
-  /* celebration popup */
-  .pop-overlay{position:fixed;inset:0;background:rgba(26,22,17,.55);backdrop-filter:blur(3px);z-index:50;display:none;align-items:center;justify-content:center;padding:24px;}
-  .pop-overlay.show{display:flex;}
-  .pop{background:var(--card);border:2px solid var(--green);border-radius:16px;max-width:380px;width:100%;padding:38px 28px 30px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.25);}
-  .pop .eyebrow{color:var(--green-deep);}
-  .pop h3{font-family:var(--display);font-weight:normal;font-size:34px;line-height:1.05;margin:6px 0 14px;}
-  .pop .bigmoney{font-family:var(--display);font-weight:normal;font-size:64px;color:var(--green);line-height:1;margin:6px 0;}
-  .pop p{font-family:var(--serif);font-style:italic;font-weight:600;font-size:18px;line-height:1.4;color:#2c2920;margin-top:10px;}
-  .pop button{margin-top:22px;background:var(--green);color:#fff;border:none;border-radius:9px;padding:14px 28px;font-family:var(--ui);font-weight:600;font-size:15px;cursor:pointer;}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+@font-face{
+  font-family:'Seriously Nostalgic';
+  src:url('SeriouslyNostalgic-Fine.otf') format('opentype');
+  font-weight:normal;font-style:normal;font-display:swap;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#fefcf7;
+  --ink:#0a0a0a;
+  --gold:#c9a449;
+  --gold-soft:#e8d28a;
+  --gold-deep:#a07f30;
+  --green:#2f7d4f;
+  --green-soft:#eaf4ee;
+  --line:rgba(10,10,10,.12);
+  --shadow:0 6px 0 rgba(201,164,73,.35);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding:0 18px 80px;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* HERO */
+.hero{text-align:center;padding:40px 8px 26px;}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;}
+.title{
+  font-family:'Seriously Nostalgic','Playfair Display',serif;
+  font-size:clamp(46px,13vw,82px);
+  line-height:.9;
+  margin:10px 0 4px;
+  font-weight:400;
+}
+.title em{font-style:italic;color:var(--gold-deep);}
+.sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,4.4vw,22px);color:var(--ink);opacity:.8;}
+.intro{font-size:15px;max-width:540px;margin:18px auto 0;opacity:.9;}
+
+/* GOAL + TOTAL CARD */
+.topcard{
+  background:#fff;border:2px solid var(--ink);border-radius:6px;
+  box-shadow:var(--shadow);padding:22px 20px;margin:26px 0 6px;
+}
+.goal-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center;text-align:center;}
+.goal-row label{font-size:13px;font-weight:600;letter-spacing:.02em;}
+.goal-input{
+  font-family:'Playfair Display',serif;font-size:24px;font-weight:600;
+  border:none;border-bottom:2px solid var(--gold);background:transparent;
+  width:160px;text-align:center;color:var(--ink);padding:2px 4px;
+}
+.goal-input:focus{outline:none;border-bottom-color:var(--gold-deep);}
+.total-block{text-align:center;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);}
+.total-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;}
+.total-num{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(40px,12vw,64px);color:var(--green);line-height:1;margin-top:4px;
+  transition:transform .25s ease;
+}
+.total-num.pop{transform:scale(1.08);}
+.total-meta{font-size:12px;opacity:.7;margin-top:6px;}
+.progress-pill{
+  display:inline-block;margin-top:12px;background:var(--ink);color:var(--cream);
+  font-size:12px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:30px;
+}
+
+/* CALENDAR CARD */
+.calcard{
+  background:var(--gold-soft);border:2px solid var(--gold-deep);border-radius:6px;
+  padding:20px;margin:14px 0 6px;text-align:center;
+}
+.cal-copy{font-size:14.5px;max-width:520px;margin:0 auto 14px;}
+.cal-btn{
+  background:var(--ink);color:var(--cream);border:none;border-radius:6px;
+  padding:13px 24px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.03em;cursor:pointer;transition:all .15s ease;
+}
+.cal-btn:hover{background:var(--gold-deep);}
+.cal-note{font-size:12.5px;margin-top:10px;opacity:0;transition:opacity .25s ease;color:var(--gold-deep);font-weight:600;}
+.cal-note.show{opacity:1;}
+
+/* TABS */
+.tabs{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:6px;
+  margin:24px 0 18px;position:sticky;top:0;z-index:20;
+  background:var(--cream);padding:10px 0;
+}
+.tab{
+  border:2px solid var(--ink);background:#fff;border-radius:6px;
+  padding:10px 0;font-family:'Playfair Display',serif;font-weight:700;font-size:18px;
+  cursor:pointer;transition:all .15s ease;position:relative;color:var(--ink);
+}
+.tab:hover{background:var(--gold-soft);}
+.tab.active{background:var(--ink);color:var(--cream);}
+.tab.complete::after{
+  content:'';position:absolute;top:4px;right:4px;width:7px;height:7px;
+  border-radius:50%;background:var(--green);
+}
+.tab.active.complete::after{background:var(--gold-soft);}
+
+/* DAY PANELS */
+.day{display:none;animation:fade .35s ease;}
+.day.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.daycard{
+  background:#fff;border:2px solid var(--ink);border-radius:6px;
+  box-shadow:var(--shadow);padding:28px 22px;
+}
+.day-eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;}
+.day-title{font-family:'Playfair Display',serif;font-size:clamp(28px,7vw,38px);line-height:1.05;margin:6px 0 16px;font-weight:700;}
+.teach{font-size:15.5px;margin-bottom:8px;}
+.teach + .teach{margin-top:14px;}
+
+.section-label{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  color:var(--gold-deep);margin:26px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line);}
+
+/* affirmations */
+.aff{
+  display:block;width:100%;text-align:left;border:1.5px solid var(--line);
+  background:var(--cream);border-radius:6px;padding:12px 14px;margin-bottom:8px;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:16px;cursor:pointer;
+  transition:all .15s ease;color:var(--ink);
+}
+.aff:hover{border-color:var(--gold);}
+.aff.on{background:var(--gold-soft);border-color:var(--gold-deep);}
+.aff.on::before{content:'✓ ';font-style:normal;color:var(--gold-deep);font-weight:700;}
+
+/* tapping */
+.tap-intro{font-size:14px;opacity:.85;margin-bottom:14px;}
+.tap-points{list-style:none;}
+.tap-points li{
+  display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);
+}
+.tap-pt{
+  flex:0 0 116px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold-deep);padding-top:2px;
+}
+.tap-say{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;}
+.hug{margin-top:14px;font-size:14px;background:var(--green-soft);border-radius:6px;padding:12px 14px;}
+
+/* money move */
+.move{background:var(--green-soft);border:1.5px solid var(--green);border-radius:6px;padding:16px 16px;margin-top:6px;}
+.move h4{font-family:'Playfair Display',serif;font-size:19px;margin-bottom:6px;}
+.move p{font-size:14.5px;}
+.examples{margin-top:10px;font-size:13.5px;}
+.examples li{margin-left:18px;margin-bottom:3px;}
+
+/* fields */
+.field-label{font-size:13px;font-weight:600;margin-bottom:6px;display:block;}
+textarea{
+  width:100%;border:1.5px solid var(--line);border-radius:6px;padding:12px;
+  font-family:'Inter',sans-serif;font-size:15px;resize:vertical;min-height:90px;
+  background:var(--cream);color:var(--ink);
+}
+textarea:focus{outline:none;border-color:var(--gold);}
+.cash-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.cash-row .dollar{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green);}
+.cash-in{
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:600;width:160px;
+  border:none;border-bottom:2px solid var(--green);background:transparent;color:var(--green);padding:2px 4px;
+}
+.cash-in:focus{outline:none;}
+
+/* complete + nudge */
+.complete-btn{
+  width:100%;margin-top:24px;background:var(--ink);color:var(--cream);border:none;
+  border-radius:6px;padding:16px;font-family:'Inter',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.04em;cursor:pointer;transition:all .15s ease;
+}
+.complete-btn:hover{background:var(--gold-deep);}
+.complete-btn.done{background:var(--green);}
+.nudge{
+  margin-top:18px;text-align:center;background:var(--cream);border:1.5px dashed var(--gold);
+  border-radius:6px;padding:18px 16px;
+}
+.nudge p{font-size:14px;margin-bottom:12px;}
+.nudge a{
+  display:inline-block;background:var(--ink);color:var(--cream);text-decoration:none;
+  font-weight:700;font-size:13px;letter-spacing:.04em;padding:11px 22px;border-radius:6px;
+}
+.nudge a:hover{background:var(--gold-deep);}
+
+/* per-day wins logger */
+.winhint{font-size:13px;opacity:.75;margin-bottom:12px;}
+.daywins{margin-bottom:8px;}
+.win-row{display:flex;gap:7px;align-items:center;margin-bottom:8px;}
+.win-row .lab{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:6px;padding:10px;font-family:'Inter',sans-serif;font-size:14px;background:var(--cream);color:var(--ink);}
+.win-row .wd{font-family:'Playfair Display',serif;font-weight:700;font-size:17px;color:var(--green);}
+.win-row .amt{width:78px;border:1.5px solid var(--green);border-radius:6px;padding:10px 8px;font-family:'Playfair Display',serif;font-weight:600;font-size:15px;color:var(--green);background:var(--cream);}
+.win-row input:focus{outline:none;border-color:var(--gold);}
+.win-row .del{flex:0 0 auto;width:30px;height:30px;border:none;background:none;color:var(--gold-deep);font-size:20px;line-height:1;cursor:pointer;opacity:.5;border-radius:6px;}
+.win-row .del:hover{opacity:1;background:var(--gold-soft);}
+.add-win{background:none;border:1.5px solid var(--ink);border-radius:6px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink);}
+.add-win:hover{background:var(--gold-soft);}
+.daytotal{
+  margin-top:14px;text-align:right;font-family:'Playfair Display',serif;font-weight:600;
+  font-size:18px;color:var(--ink);
+}
+.daytotal span{color:var(--green);font-weight:700;font-size:24px;}
+
+/* next goal (day 7) */
+.nextgoal{margin-top:22px;background:var(--gold-soft);border:2px solid var(--gold-deep);border-radius:6px;padding:20px;text-align:center;}
+.nextgoal label{font-size:13px;font-weight:700;letter-spacing:.02em;display:block;margin-bottom:10px;}
+
+/* footer */
+.foot{text-align:center;margin-top:36px;}
+.reset{background:none;border:none;color:var(--gold-deep);font-size:12px;text-decoration:underline;cursor:pointer;opacity:.7;}
+.brand-banner{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;}
+
+/* confetti */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:999;}
+@media(max-width:520px){
+  .tabs{gap:4px;}
+  .tab{font-size:15px;padding:9px 0;}
+  .tap-pt{flex:0 0 92px;font-size:10px;}
+  .daycard{padding:24px 16px;}
+}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap">
-  <div class="mark">Fast Cash<span>&middot;</span></div>
-  <div class="track" id="track"></div>
-  <div class="count" id="count">0 / 7</div>
-</div></div>
-
 <div class="wrap">
+
   <header class="hero">
-    <div class="eyebrow">7-Day Money Manifestation Challenge</div>
-    <h1>Fast Cash</h1>
-    <div class="tagline">seven days to call money in fast</div>
+    <div class="eyebrow">7 days · press play · become her</div>
+    <h1 class="title">Fast <em>Cash</em></h1>
+    <p class="sub">the 7-day money manifestation challenge</p>
+    <p class="intro">Seven days. One short money ritual a day. Inner work to clear the old story, and one real money move every single day so the cash actually moves. Do it in your kitchen at 11pm in your robe. Watch what a week does.</p>
   </header>
-  <hr class="divider">
-  <p class="lede">This is your week to call money in fast. Each day you'll clear a little of what's been blocking it, and you'll take one real move to actually bring cash through the door. The clearing plus the doing is what makes money move quickly, and you're about to feel it.</p>
-  <p class="lede">Log every win the second it lands, big or small, and watch your total climb all week. Everything you write saves right here, so come back anytime. Let's go get your money.</p>
 
-  <div class="panel">
-    <div class="eyebrow">Start here</div>
-    <h2>Set your money goal</h2>
-    <div class="sub">Pick a real number for these seven days. Make it exciting, but believable enough that part of you says "yeah, I could."</div>
-    <label class="f" for="goal">My money goal for this week</label>
-    <div class="numwrap"><span class="dollar">$</span><input type="text" id="goal" data-key="goal" placeholder="how much I'm calling in"></div>
-    <label class="f" for="why">Why I want it right now</label>
-    <textarea id="why" data-key="why" placeholder="Because..."></textarea>
-  </div>
+  <section class="topcard">
+    <div class="goal-row">
+      <label for="goal">my number for this week:</label>
+      <span class="dollar" style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold-deep);">$</span>
+      <input class="goal-input" id="goal" data-key="goal" inputmode="numeric" placeholder="2,000">
+    </div>
+    <div class="total-block">
+      <div class="total-label">money that came in this week</div>
+      <div class="total-num" id="total">$0</div>
+      <div class="total-meta" id="totalmeta">log it as it lands. small counts.</div>
+      <div class="progress-pill" id="pill">0 / 7 days done</div>
+    </div>
+  </section>
 
-  <div class="panel total-card">
-    <div class="eyebrow">Money called in so far</div>
-    <div class="total-amt" id="totalAmt">$0</div>
-    <div class="sub2">Every win you log on every day adds up right here. Real proof, in real time.</div>
-  </div>
+  <section class="calcard">
+    <p class="cal-copy">First, lock in your 7 days. Set the reminders now so future you actually shows up and does the work. One ping a day to do your ritual and check in.</p>
+    <button class="cal-btn" id="calbtn">add my 7 daily reminders →</button>
+    <p class="cal-note" id="calnote"></p>
+  </section>
 
-  <div id="days"></div>
+  <nav class="tabs" id="tabs"></nav>
 
-  <div class="panel final">
-    <div class="eyebrow">You did it</div>
-    <h2>Look what you called in</h2>
-    <div class="sub">When you've moved through the week, finish strong here.</div>
-    <label class="f">What surprised me most this week?</label>
-    <textarea data-key="r1"></textarea>
-    <label class="f">Which day brought the most money, or the biggest shift?</label>
-    <textarea data-key="r2"></textarea>
-    <label class="f">My next money goal, because you don't stop here</label>
-    <div class="numwrap"><span class="dollar">$</span><input type="text" data-key="nextgoal" placeholder="the next number I'm calling in"></div>
-    <p class="celebrate">You didn't just hope for money this week. You cleared what was blocking it and you went and got it. That's who you are now. Keep going. Keep receiving.</p>
-  </div>
+  <main id="days"></main>
 
-  <button class="reset" id="reset">Start over (clears everything)</button>
-  <div class="footer">Fast Cash &middot; 7-Day Money Manifestation Challenge</div>
-  <div style="text-align:center;margin-top:8px;"><span class="saved-flag" id="savedflag">saved &#10003;</span></div>
+  <div class="brand-banner">Hotter · Richer · Happier</div>
+  <div class="foot"><button class="reset" id="reset">start the challenge over</button></div>
+
 </div>
-
-<div class="pop-overlay" id="popOverlay"><div class="pop">
-  <div class="eyebrow">Seven days done</div>
-  <h3>You called in</h3>
-  <div class="bigmoney" id="popMoney">$0</div>
-  <p>and this is only the beginning. Keep going, keep receiving.</p>
-  <button id="popClose">Keep it coming &#10003;</button>
-</div></div>
+<canvas id="confetti"></canvas>
 
 <script>
+const COMMUNITY_URL='https://www.skool.com/hotter-richer-happier';
+const KEY='fastcash_v2';
+
 const DAYS=[
- {n:"Day 1",theme:"Get Clear on the Money",
-  shift:"You can't call money in fast when you're foggy about what you actually want. So today you get clear, and you let yourself want the real number, not the safe one.",
-  practiceLabel:"Picture it",
-  practice:"Sit somewhere quiet for five minutes. Close your eyes and picture your life right after this money arrives. What do you do with it? What gets easier? How does your body feel now that it's handled? Stay in that feeling for a few slow breaths before you open your eyes.",
-  journal:"What would change for me if this money showed up this week?",
-  action:"Set your money goal at the top if you haven't yet, then say it out loud like it already happened.",examples:"",
-  aff:"I know exactly what I'm calling in, and I'm allowed to have it."},
- {n:"Day 2",theme:"Clear the Old Money Story",
-  shift:"Money hasn't felt hard because of you. It's felt hard because of everything you picked up about it growing up. Today we tap that loose so money can actually move.",
-  practiceLabel:"Tapping",
-  tapping:[["KC","Even though money has felt hard for me, I'm okay, and I'm ready to let that go."],
-    ["EB","I picked up a lot of worry about money when I was little."],
-    ["SE","I learned that money was hard to get, and that there was never quite enough."],
-    ["UE","A part of me believes that people like me don't get to have a lot."],
-    ["UN","But those ideas were handed to me. They were never really mine."],
-    ["CH","It's safe to let go of money fears I never chose."],
-    ["CB","I'm allowed to believe money can come easily now."],
-    ["UA","Money can be easy for me, even if it wasn't easy for them."],
-    ["TH","I'm letting the old money story go, starting today."]],
-  journal:"What did I hear about money growing up that I'm ready to stop believing?",
-  action:"Pick one thing today and choose the more abundant option on purpose. The nicer coffee, the thing you'd usually put back. Show your body that spending is safe.",examples:"",
-  aff:"I let go of the old money story, and I choose ease."},
- {n:"Day 3",theme:"Open Up to Receiving",
-  shift:"You can want money all day, but if your body braces every time something good shows up, it slips right back out. Today we make receiving feel safe.",
-  practiceLabel:"Tapping",
-  tapping:[["KC","Even though getting more than I'm used to feels a little scary, I'm okay, and I'm open to it."],
-    ["EB","I'm so good at giving, and not so good at receiving."],
-    ["SE","Sometimes good things show up and I wait for them to be taken away."],
-    ["UE","A part of me feels safer with less, because at least I know what to expect."],
-    ["UN","But I'm allowed to feel safe with more."],
-    ["CH","It's safe to receive money, help, and good things."],
-    ["CB","I can hold more than I used to, and stay calm."],
-    ["UA","Receiving is safe for me now."],
-    ["TH","I let money come in, and I let it stay."]],
-  journal:"When money, help, or a compliment comes my way, do I let it in, or brush it off?",
-  action:"Receive one thing today without shrinking it or saying no. A compliment, an offer, some help. Just say thank you and let it land.",examples:"",
-  aff:"It's safe for me to receive more, and I let it stay."},
- {n:"Day 4",theme:"Make One Money Move",
-  shift:"Money loves a woman who moves. Today you take one real step that can bring cash in. It doesn't have to be big, it just has to be done.",
-  practiceLabel:"Do the thing",
-  practice:"Ask yourself one question: what's one move I could make today that might bring money in or open a door? Then go do it. Done beats perfect every single time.",
-  journal:"What's one move I can make today that could bring money in?",
-  action:"Take that one money move today.",
-  examples:"Like: post your offer, send the invoice, ask for the sale, list something to sell, follow up with someone, apply for the thing, raise your price.",
-  aff:"When I move, money moves to meet me."},
- {n:"Day 5",theme:"See How Rich You Already Are",
-  shift:"What you focus on grows. So today you start noticing all the money and good already around you, and your brain starts hunting for more of it on its own.",
-  practiceLabel:"Count it up",
-  practice:"Write down ten things that already make your life rich. Money you have, the people around you, your skills, your health, your time, your ideas. Then look back over the last month and notice every time money showed up, even a little.",
-  journal:"What am I already rich in, even before the new money comes?",
-  action:"Say a real thank you today for one way money already takes care of you. Out loud or in your head. Gratitude tells your body that more is safe to come.",examples:"",
-  aff:"I already have so much, and more money is on its way to me."},
- {n:"Day 6",theme:"Let Yourself Be Seen",
-  shift:"Money can't find you while you're hiding. Part of you stays small so nobody feels weird about you doing well. Today we drop that, because your hiding has never paid you a cent.",
-  practiceLabel:"Tapping",
-  tapping:[["KC","Even though being seen feels scary, I'm okay, and I'm ready to take up space."],
-    ["EB","I learned to stay quiet about what I do and what I want."],
-    ["SE","I was scared that doing well would make other people feel bad."],
-    ["UE","So I made myself smaller to stay liked."],
-    ["UN","But hiding has never brought me any money."],
-    ["CH","It's safe to be seen, and to be paid well."],
-    ["CB","The right people are happy when I win."],
-    ["UA","I'm allowed to show my work and ask to be paid for it."],
-    ["TH","I let myself be seen, and I let the money come."]],
-  journal:"Where have I been hiding my work, my voice, or my offer?",
-  action:"Do one thing today that puts you out there.",
-  examples:"Like: share your offer, post online, tell someone what you do, ask for a referral, show your work, send the message you've been sitting on.",
-  aff:"I let myself be seen, and I'm paid well for what I do."},
- {n:"Day 7",theme:"Celebrate and Keep Going",
-  shift:"You spent a whole week clearing blocks and bringing money in. Today you celebrate every bit of it, and you decide this is just how it works for you now.",
-  practiceLabel:"Look back",
-  practice:"Scroll up through your wins and look at your total. Take in every dollar and every shift, even the small ones. Then read your goal again and say it like it already happened, because you're her now.",
-  journal:"What changed in me this week, and how do I want to keep going?",
-  action:"Write your next money goal in the section below. You don't stop here. You just keep calling in the next level.",examples:"",
-  aff:"Money comes to me easily now, and I'm only getting started."},
+{
+  n:1,theme:'Get Clear',type:'visualize',
+  teach:[
+    "You can't call in money you never named. So today you pick your number. Not your dream number, not the one that scares you. The number that would feel like a deep breath this week.",
+    "Write it up top. Say it out loud. Then close your eyes for two minutes and see it already sitting in your account. See the screen. See the number. Feel how normal it is to have it. That feeling is the whole point. What you make normal is what shows up."
+  ],
+  affs:["I know exactly what I am calling in.","My number is already on its way to me.","I am safe to want more than I have right now."],
+  move:{title:"Open the door",p:"Money needs a way in. Today you open one door so it has somewhere to land.",ex:["post what you sell, even one story","DM one person who asked about it before","text a past client: I have one spot open this week","tell one human, out loud, what you do"]},
+  journal:"The number I'm calling in this week is ___ and here's what it's for:"
+},
+{
+  n:2,theme:'Clear The Old Story',type:'tap',
+  teach:[
+    "The reason money has felt hard is not you. It's old wiring. Stuff you heard before you could even talk. Money is hard. Money doesn't grow on trees. We can't afford that.",
+    "That story got installed. It was never yours to keep. Today we tap it out. Tapping tells your body it's safe to put the old story down."
+  ],
+  tap:[
+    {pt:"Karate chop",say:"I want more money, and part of me still feels scared, and that's okay."},
+    {pt:"Eyebrow",say:"What if it isn't safe to have more than I need?"},
+    {pt:"Side of eye",say:"What if I lose the money I make?"},
+    {pt:"Under eye",say:"I was taught to survive, not to overflow."},
+    {pt:"Under nose",say:"But maybe that was never even my story."},
+    {pt:"Chin",say:"What if my body could learn a brand new truth?"},
+    {pt:"Collarbone",say:"I'm allowed to let the old money fear go."},
+    {pt:"Underarm",say:"I'm safe holding more money than I'm used to."},
+    {pt:"Top of head",say:"I'm open to a whole new story about money."}
+  ],
+  affs:["The old money story is not mine to carry.","It is safe for me to have more.","My body is learning a new normal."],
+  move:{title:"Collect what you're owed",p:"Money is sitting out there with your name on it. Go get it today.",ex:["send the invoice you've been sitting on","follow up on the one that never paid","ask for the money a friend owes you","check for a refund, a credit, a payout you forgot"]},
+  journal:"The money story I'm done carrying is ___."
+},
+{
+  n:3,theme:'Open To Receiving',type:'tap',
+  teach:[
+    "Most women are amazing at giving and terrible at receiving. You wave off the compliment. You insist on paying. You feel weird when someone hands you something. That same block is what waves money away.",
+    "Today we open the door to receiving. Tapping until your body feels safe holding more, not just earning it, holding it."
+  ],
+  tap:[
+    {pt:"Karate chop",say:"I trust myself with more money, fully and completely."},
+    {pt:"Eyebrow",say:"My body is learning that receiving is safe."},
+    {pt:"Side of eye",say:"It is safe to hold more money than I need."},
+    {pt:"Under eye",say:"It is safe to let money come to me."},
+    {pt:"Under nose",say:"Receiving is becoming my new normal."},
+    {pt:"Chin",say:"I'm becoming the woman who receives with ease."},
+    {pt:"Collarbone",say:"I let money in without any guilt."},
+    {pt:"Underarm",say:"I trust that money knows exactly where to find me."},
+    {pt:"Top of head",say:"Money is always flowing in my direction."}
+  ],
+  affs:["I receive with ease and zero guilt.","It is safe to hold more.","I let myself be taken care of."],
+  move:{title:"Let it in",p:"Today you practice receiving on purpose. Say yes to money instead of waving it off.",ex:["say your full price out loud without flinching","raise a rate that's been too low","let someone treat you and just say thank you","accept the gift, the tip, the comp, all of it"]},
+  journal:"Where do I say no to money without even realizing it?"
+},
+{
+  n:4,theme:'Move Like Her',type:'visualize',
+  teach:[
+    "The version of you with the money already does not wait to feel ready. She moves. She makes the offer before the fear is gone. She sends the thing.",
+    "Money loves a woman who moves. Today you do one bold thing the woman with the money would do today. Not someday. Today."
+  ],
+  affs:["I move before I feel ready.","I am the woman who makes the offer.","Bold action is normal for me now."],
+  move:{title:"The bold move",p:"This is the big one. The thing you've been circling. You do it today.",ex:["make the actual offer, out loud, to a real person","pitch yourself for the thing","list the product, open the cart, hit publish","ask for the sale and let them answer"]},
+  journal:"What would she do about money today that I've been putting off?"
+},
+{
+  n:5,theme:'Already Rich',type:'visualize',
+  teach:[
+    "You don't get grateful after the money shows up. You get grateful first. Gratitude is proof to your body that good things already come to you, so it relaxes and lets more in.",
+    "Today you count what's already here. The coffee you bought without thinking. The roof. The phone in your hand. Then you spend a little on purpose, with zero spiral, because a woman who feels rich spends like there's always more. Because there is."
+  ],
+  affs:["Money already shows up for me every day.","I feel rich before the proof arrives.","There is always more where that came from."],
+  move:{title:"Spend like there's more",p:"Receiving and spending are the same muscle. Today you flex it on purpose, small and calm.",ex:["buy the coffee without checking the balance first","pay a bill and say thank you, there's more coming","tip a little extra on purpose","buy the small thing you keep talking yourself out of"]},
+  journal:"10 ways money already shows up for me:"
+},
+{
+  n:6,theme:'Be Seen',type:'tap',
+  teach:[
+    "Money can't find you if you're hiding. And being seen feels scary because somewhere along the way being seen felt unsafe. Too much. Too loud. Who does she think she is.",
+    "Today we tap that out and you let yourself be seen. The right people, the paying people, they're looking for you. Make it easy for them."
+  ],
+  tap:[
+    {pt:"Karate chop",say:"I want to be seen, and part of me feels safer hidden, and that's okay."},
+    {pt:"Eyebrow",say:"It used to feel risky to be seen."},
+    {pt:"Side of eye",say:"People might look. People might judge."},
+    {pt:"Under eye",say:"But hiding kept money far away from me."},
+    {pt:"Under nose",say:"I'm allowed to take up space."},
+    {pt:"Chin",say:"It is safe for me to be seen now."},
+    {pt:"Collarbone",say:"The right people are already looking for me."},
+    {pt:"Underarm",say:"I let myself be seen and money finds me easily."},
+    {pt:"Top of head",say:"I am safe being fully seen."}
+  ],
+  affs:["It is safe to be seen.","The right people are looking for me.","I take up space and money finds me."],
+  move:{title:"Show up loud",p:"Be findable today. Put yourself where money can see you.",ex:["post your face, not just a quote","go live, even for two minutes","tell more people what you actually do","reply to the comments, slide into the DMs, be a person"]},
+  journal:"Where have I been hiding from money, and what does being seen look like for me?"
+},
+{
+  n:7,theme:'Celebrate Her',type:'celebrate',
+  teach:[
+    "Look up at your total. Add it all up. That came in because you moved, you cleared, you let it in. That's proof. Not luck. You.",
+    "You're the woman money moves toward now. So celebrate loud, mark it, then pick your next number. Because this week was not the ceiling. This is the floor now."
+  ],
+  affs:["I called this in and I can do it again.","I am the woman money moves toward.","This is my floor, not my ceiling."],
+  move:{title:"Mark it and raise it",p:"Celebrate what landed, then set the next number so the momentum doesn't stop.",ex:["buy yourself one small thing to mark the week","share a win in the community, say it out loud","screenshot your total and keep it","set your next number below and keep going"]},
+  journal:"My biggest shift this week was ___ and I'm proud of myself because:"
+}
 ];
 
-const KEY='fast_cash_7day_v2';
-let state={fields:{},days:{}};
-function load(){try{const r=localStorage.getItem(KEY);if(r)state=JSON.parse(r);}catch(e){}
-  if(!state.fields)state.fields={};if(!state.days)state.days={};}
-let st;
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
-  const f=document.getElementById('savedflag');f.classList.add('show');clearTimeout(st);st=setTimeout(()=>f.classList.remove('show'),1200);}
-function parseMoney(v){if(!v)return 0;const n=parseFloat((''+v).replace(/[^0-9.]/g,''));return isNaN(n)?0:n;}
-function fmt(n){return '$'+n.toLocaleString(undefined,{maximumFractionDigits:0});}
-function totalMoney(){let t=0;for(let i=0;i<7;i++){const d=state.days[i];if(d&&d.wins)d.wins.forEach(w=>t+=parseMoney(w.amt));}return t;}
-function updateTotal(){document.getElementById('totalAmt').textContent=fmt(totalMoney());}
+let state={goal:'',fields:{},dayWins:{},done:{}};
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s)state=Object.assign(state,s);}catch(e){}
+  if(!state.dayWins||typeof state.dayWins!=='object')state.dayWins={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
 
-function renderWins(container,ds){
-  container.innerHTML='';
-  ds.wins.forEach((w,idx)=>{
-    const row=document.createElement('div');row.className='winrow';
-    const lab=document.createElement('input');lab.type='text';lab.className='wlabel';lab.placeholder='What came in...';lab.value=w.label||'';
-    const aw=document.createElement('div');aw.className='wamtwrap';
-    const dollar=document.createElement('span');dollar.className='dollar';dollar.textContent='$';
-    const amt=document.createElement('input');amt.type='text';amt.placeholder='0';amt.value=w.amt||'';
-    aw.appendChild(dollar);aw.appendChild(amt);
-    const del=document.createElement('button');del.className='del';del.innerHTML='&times;';del.title='remove';
-    row.appendChild(lab);row.appendChild(aw);row.appendChild(del);
-    container.appendChild(row);
-    lab.addEventListener('input',()=>{w.label=lab.value;save();});
-    amt.addEventListener('input',()=>{w.amt=amt.value;save();updateTotal();});
-    del.addEventListener('click',()=>{ds.wins.splice(idx,1);renderWins(container,ds);save();updateTotal();});
+function money(n){const v=Math.round(n||0);return '$'+v.toLocaleString('en-US');}
+function num(v){const n=parseFloat(String(v).replace(/[^0-9.\-]/g,''));return isNaN(n)?0:n;}
+
+function buildTabs(){
+  const t=document.getElementById('tabs');t.innerHTML='';
+  DAYS.forEach(d=>{
+    const b=document.createElement('button');
+    b.className='tab'+(state.done['d'+d.n]?' complete':'');
+    b.textContent=d.n;b.dataset.n=d.n;
+    b.addEventListener('click',()=>showDay(d.n));
+    t.appendChild(b);
   });
 }
 
 function buildDays(){
-  const root=document.getElementById('days');
-  DAYS.forEach((d,i)=>{
-    const ds=state.days[i]||(state.days[i]={journal:'',action:false,aff:false,wins:[],complete:false});
-    if(!ds.wins)ds.wins=[];
-    const card=document.createElement('div');card.className='day'+(ds.complete?' complete':'');
-    let pr='';
-    if(d.tapping){
-      pr='<div class="blocklbl">'+d.practiceLabel+'</div><div class="pract" style="margin-bottom:6px;">Tap each spot once while you say the line out loud.</div>';
-      d.tapping.forEach(t=>pr+='<div class="taprow"><span class="tag">'+t[0]+'</span><p>'+t[1]+'</p></div>');
-    }else{pr='<div class="blocklbl">'+d.practiceLabel+'</div><div class="pract">'+d.practice+'</div>';}
-    const ex=d.examples?'<div class="examples">'+d.examples+'</div>':'';
-    card.innerHTML='<div class="day-head"><div class="day-num">'+d.n+'</div>'+
-      '<div class="day-theme">'+d.theme+'</div>'+
-      '<div class="day-status">&#10003;</div><div class="chev">&#9660;</div></div>'+
-      '<div class="day-body"><div class="day-inner">'+
-      '<div class="shift">'+d.shift+'</div>'+pr+
-      '<div class="blocklbl">Write it down</div>'+
-      '<div class="pract" style="font-weight:600;color:#1a1611;margin-bottom:8px;">'+d.journal+'</div>'+
-      '<textarea class="jr" placeholder="Write the first true thing that comes up...">'+(ds.journal||'')+'</textarea>'+
-      '<div class="blocklbl">Today\u2019s money move</div>'+
-      '<div class="action'+(ds.action?' done':'')+'"><div class="box">&#10003;</div><div><p>'+d.action+'</p>'+ex+'</div></div>'+
-      '<div class="blocklbl">Wins today (log every dollar, big or small)</div>'+
-      '<div class="winsday"></div>'+
-      '<button class="addwin">+ Add a win</button>'+
-      '<div class="aff'+(ds.aff?' claimed':'')+'"><div class="q">\u201c'+d.aff+'\u201d</div><div class="hint">tap to claim it</div></div>'+
-      '<button class="complete-btn">'+(ds.complete?'Day done &#10003;':'Mark this day done')+'</button>'+
-      '</div></div>';
-    root.appendChild(card);
-    card.querySelector('.day-head').addEventListener('click',()=>card.classList.toggle('open'));
-    const jr=card.querySelector('.jr');jr.addEventListener('input',()=>{ds.journal=jr.value;save();});
-    const ac=card.querySelector('.action');ac.addEventListener('click',()=>{ds.action=!ds.action;ac.classList.toggle('done',ds.action);save();});
-    const af=card.querySelector('.aff');af.addEventListener('click',()=>{ds.aff=!ds.aff;af.classList.toggle('claimed',ds.aff);save();});
-    const winsBox=card.querySelector('.winsday');renderWins(winsBox,ds);
-    card.querySelector('.addwin').addEventListener('click',()=>{ds.wins.push({label:'',amt:''});renderWins(winsBox,ds);save();});
-    const bt=card.querySelector('.complete-btn');
-    bt.addEventListener('click',()=>{
-      ds.complete=!ds.complete;card.classList.toggle('complete',ds.complete);
-      bt.innerHTML=ds.complete?'Day done &#10003;':'Mark this day done';
-      if(ds.complete)card.classList.remove('open');
-      save();updateProgress();
-      if(ds.complete&&i===6)celebrate();
+  const root=document.getElementById('days');root.innerHTML='';
+  DAYS.forEach(d=>{
+    const sec=document.createElement('section');
+    sec.className='day';sec.id='day'+d.n;
+    let html='<div class="daycard">';
+    html+='<div class="day-eyebrow">Day '+d.n+'</div>';
+    html+='<h2 class="day-title">'+d.theme+'</h2>';
+    d.teach.forEach(p=>html+='<p class="teach">'+p+'</p>');
+
+    // tapping
+    if(d.tap){
+      html+='<div class="section-label">Tap it out</div>';
+      html+='<p class="tap-intro">Tap each point a few times while you say the line. Two slow rounds. Breathe.</p>';
+      html+='<ul class="tap-points">';
+      d.tap.forEach(t=>html+='<li><span class="tap-pt">'+t.pt+'</span><span class="tap-say">'+t.say+'</span></li>');
+      html+='</ul>';
+      html+='<div class="hug">Now wrap your arms around yourself, squeeze, big breath in, let it all out. That\u2019s the old story leaving.</div>';
+    }
+
+    // affirmations
+    if(d.affs){
+      html+='<div class="section-label">Say it like you mean it</div>';
+      d.affs.forEach((a,i)=>{
+        const on=state.fields['aff-'+d.n+'-'+i]?' on':'';
+        html+='<button class="aff'+on+'" data-aff="'+d.n+'-'+i+'">'+a+'</button>';
+      });
+    }
+
+    // money move
+    html+='<div class="section-label">Today\u2019s money move</div>';
+    html+='<div class="move"><h4>'+d.move.title+'</h4><p>'+d.move.p+'</p>';
+    html+='<ul class="examples">';
+    d.move.ex.forEach(e=>html+='<li>'+e+'</li>');
+    html+='</ul></div>';
+
+    // journal
+    html+='<div class="section-label">Write it down</div>';
+    html+='<label class="field-label">'+d.journal+'</label>';
+    html+='<textarea data-key="j-'+d.n+'" placeholder="let it pour out..."></textarea>';
+
+    // money that came in today (per-day wins logger, auto-tallies)
+    html+='<div class="section-label">Money that came in today</div>';
+    html+='<p class="winhint">Log every win, big or tiny. Cash, a refund, a tip, a sale. Got a free coffee? Log it, put what it\u2019s worth. It all counts and it all adds up.</p>';
+    html+='<div class="daywins" id="dw'+d.n+'"></div>';
+    html+='<button class="add-win" data-addwin="'+d.n+'">+ add a win</button>';
+    html+='<div class="daytotal">today: <span id="dt'+d.n+'">$0</span></div>';
+
+    // next goal on day 7
+    if(d.type==='celebrate'){
+      html+='<div class="nextgoal"><label>my next number, because this is just the floor now:</label><div class="cash-row" style="justify-content:center;"><span class="dollar">$</span><input class="cash-in" data-key="nextgoal" inputmode="numeric" placeholder="5,000" style="border-bottom-color:var(--gold-deep);color:var(--gold-deep);"></div></div>';
+    }
+
+    // complete
+    const dn=state.done['d'+d.n];
+    html+='<button class="complete-btn'+(dn?' done':'')+'" data-complete="'+d.n+'">'+(dn?'\u2713 Day '+d.n+' done':'mark Day '+d.n+' complete')+'</button>';
+
+    // community nudge
+    html+='<div class="nudge"><p>Go tell the room you did Day '+d.n+'. Drop your win, your cash, your shift. Saying it out loud makes it real.</p><a href="'+COMMUNITY_URL+'" target="_blank" rel="noopener">check in with the community →</a></div>';
+
+    html+='</div>';
+    sec.innerHTML=html;
+    root.appendChild(sec);
+  });
+  bindDayEvents();
+}
+
+function bindDayEvents(){
+  // journals + nextgoal
+  document.querySelectorAll('textarea[data-key]').forEach(el=>{
+    const k=el.dataset.key;if(state.fields[k]!=null)el.value=state.fields[k];
+    el.addEventListener('input',()=>{state.fields[k]=el.value;save();});
+  });
+  document.querySelectorAll('input[data-key]').forEach(el=>{
+    const k=el.dataset.key;if(state.fields[k]!=null)el.value=state.fields[k];
+    el.addEventListener('input',()=>{state.fields[k]=el.value;save();});
+  });
+  // affirmations
+  document.querySelectorAll('.aff').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const k='aff-'+el.dataset.aff;state.fields[k]=!state.fields[k];
+      el.classList.toggle('on',state.fields[k]);save();
+    });
+  });
+  // per-day wins loggers
+  DAYS.forEach(d=>buildDayWins(d.n));
+  document.querySelectorAll('.add-win[data-addwin]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const n=el.dataset.addwin;
+      if(!state.dayWins[n])state.dayWins[n]=[];
+      state.dayWins[n].push({label:'',amt:''});
+      save();buildDayWins(n);updateTotal();
+    });
+  });
+  // complete buttons
+  document.querySelectorAll('.complete-btn').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const n=el.dataset.complete;const key='d'+n;
+      state.done[key]=!state.done[key];save();
+      el.classList.toggle('done',state.done[key]);
+      el.textContent=state.done[key]?('\u2713 Day '+n+' done'):('mark Day '+n+' complete');
+      buildTabs();updateProgress();
+      if(state.done[key]&&n==='7')fireConfetti();
     });
   });
 }
-function buildTrack(){const t=document.getElementById('track');for(let i=0;i<7;i++){const n=document.createElement('div');n.className='node';n.id='node'+i;t.appendChild(n);}}
-function updateProgress(){let done=0;for(let i=0;i<7;i++){const c=state.days[i]&&state.days[i].complete;if(c)done++;const n=document.getElementById('node'+i);if(n)n.classList.toggle('done',!!c);}document.getElementById('count').textContent=done+' / 7';}
-function bindFields(){document.querySelectorAll('[data-key]').forEach(el=>{const k=el.dataset.key;if(state.fields[k]!=null)el.value=state.fields[k];el.addEventListener('input',()=>{state.fields[k]=el.value;save();});});}
 
+function buildDayWins(n){
+  const root=document.getElementById('dw'+n);if(!root)return;
+  root.innerHTML='';
+  const list=state.dayWins[n]||[];
+  if(!list.length){state.dayWins[n]=[{label:'',amt:''}];}
+  state.dayWins[n].forEach((w,i)=>{
+    const row=document.createElement('div');row.className='win-row';
+    row.innerHTML='<input class="lab" placeholder="what came in (free coffee, a sale, a tip...)" value="'+(w.label||'').replace(/"/g,'&quot;')+'"><span class="wd">$</span><input class="amt" inputmode="decimal" placeholder="0" value="'+(w.amt||'').toString().replace(/"/g,'&quot;')+'"><button class="del" title="remove">×</button>';
+    const lab=row.querySelector('.lab'),amt=row.querySelector('.amt'),del=row.querySelector('.del');
+    lab.addEventListener('input',()=>{state.dayWins[n][i].label=lab.value;save();});
+    amt.addEventListener('input',()=>{state.dayWins[n][i].amt=amt.value;save();updateDayTotal(n);updateTotal();});
+    del.addEventListener('click',()=>{
+      state.dayWins[n].splice(i,1);
+      if(!state.dayWins[n].length)state.dayWins[n]=[{label:'',amt:''}];
+      save();buildDayWins(n);updateDayTotal(n);updateTotal();
+    });
+    root.appendChild(row);
+  });
+  updateDayTotal(n);
+}
+
+function dayTotal(n){let s=0;(state.dayWins[n]||[]).forEach(w=>s+=num(w.amt));return s;}
+
+function updateDayTotal(n){
+  const el=document.getElementById('dt'+n);
+  if(el)el.textContent=money(dayTotal(n));
+}
+
+function updateTotal(){
+  let sum=0;
+  for(let i=1;i<=7;i++)sum+=dayTotal(i);
+  const el=document.getElementById('total');
+  el.textContent=money(sum);
+  el.classList.add('pop');setTimeout(()=>el.classList.remove('pop'),250);
+  const goal=num(state.fields.goal);
+  const meta=document.getElementById('totalmeta');
+  if(goal>0){
+    if(sum>=goal)meta.textContent='you hit your number. raise it.';
+    else meta.textContent=money(goal-sum)+' to go. log it as it lands.';
+  }else meta.textContent='log it as it lands. small counts.';
+}
+
+function updateProgress(){
+  let c=0;for(let i=1;i<=7;i++)if(state.done['d'+i])c++;
+  document.getElementById('pill').textContent=c+' / 7 days done';
+}
+
+function showDay(n){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('day'+n).classList.add('active');
+  document.querySelector('.tab[data-n="'+n+'"]').classList.add('active');
+  window.scrollTo({top:document.querySelector('.tabs').offsetTop-4,behavior:'smooth'});
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('This clears everything you\u2019ve written and your money total. Start the challenge over?')){
+    try{localStorage.removeItem(KEY);}catch(e){}location.reload();
+  }
+});
+
+// confetti
 function fireConfetti(){
-  if(typeof confetti!=='function')return;
-  const end=Date.now()+1400;
-  const colors=['#c9a449','#e4cf94','#3f7d54','#fffdf8'];
-  (function frame(){
-    confetti({particleCount:5,angle:60,spread:60,origin:{x:0},colors:colors});
-    confetti({particleCount:5,angle:120,spread:60,origin:{x:1},colors:colors});
-    if(Date.now()<end)requestAnimationFrame(frame);
+  const c=document.getElementById('confetti'),ctx=c.getContext('2d');
+  c.width=innerWidth;c.height=innerHeight;
+  const cols=['#c9a449','#e8d28a','#2f7d4f','#0a0a0a','#a07f30'];
+  let p=[];for(let i=0;i<140;i++)p.push({x:Math.random()*c.width,y:-20-Math.random()*c.height,r:4+Math.random()*6,d:2+Math.random()*4,col:cols[i%cols.length],a:Math.random()*Math.PI});
+  let t=0;
+  (function run(){
+    ctx.clearRect(0,0,c.width,c.height);
+    p.forEach(o=>{o.y+=o.d;o.x+=Math.sin(o.a+o.y/40);o.a+=0.02;
+      ctx.fillStyle=o.col;ctx.fillRect(o.x,o.y,o.r,o.r*1.6);});
+    t++;if(t<160)requestAnimationFrame(run);else ctx.clearRect(0,0,c.width,c.height);
   })();
-  confetti({particleCount:120,spread:90,origin:{y:.6},colors:colors});
 }
-function celebrate(){
-  document.getElementById('popMoney').textContent=fmt(totalMoney());
-  document.getElementById('popOverlay').classList.add('show');
-  fireConfetti();
+
+// calendar reminders (.ics download, 7 daily pings)
+function pad(n){return String(n).padStart(2,'0');}
+function fmtLocal(d){return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';}
+function fmtUTC(d){return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';}
+function buildICS(){
+  const lines=[];
+  lines.push('BEGIN:VCALENDAR');
+  lines.push('VERSION:2.0');
+  lines.push('PRODID:-//Manifest With Jac//Fast Cash//EN');
+  lines.push('CALSCALE:GREGORIAN');
+  const stamp=fmtUTC(new Date());
+  const start=new Date();start.setDate(start.getDate()+1);start.setHours(9,0,0,0);
+  for(let i=0;i<7;i++){
+    const day=i+1;
+    const s=new Date(start);s.setDate(start.getDate()+i);
+    const e=new Date(s);e.setMinutes(e.getMinutes()+30);
+    lines.push('BEGIN:VEVENT');
+    lines.push('UID:fastcash-day'+day+'-'+stamp+'@manifestwithjac');
+    lines.push('DTSTAMP:'+stamp);
+    lines.push('DTSTART:'+fmtLocal(s));
+    lines.push('DTEND:'+fmtLocal(e));
+    lines.push('SUMMARY:Fast Cash, Day '+day+' money ritual');
+    lines.push('DESCRIPTION:Do today\\u2019s money ritual, log what came in, and check in with the community. Small counts. Just do one.');
+    lines.push('BEGIN:VALARM');
+    lines.push('TRIGGER:-PT0M');
+    lines.push('ACTION:DISPLAY');
+    lines.push('DESCRIPTION:Fast Cash Day '+day);
+    lines.push('END:VALARM');
+    lines.push('END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n');
 }
-document.getElementById('popClose').addEventListener('click',()=>document.getElementById('popOverlay').classList.remove('show'));
-document.getElementById('popOverlay').addEventListener('click',e=>{if(e.target.id==='popOverlay')e.currentTarget.classList.remove('show');});
+document.getElementById('calbtn').addEventListener('click',function(e){
+  e.preventDefault();
+  const blob=new Blob([buildICS()],{type:'text/calendar;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='fast-cash-7-days.ics';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  const note=document.getElementById('calnote');
+  note.textContent='downloaded. open it to add all 7 to your calendar.';
+  note.classList.add('show');
+});
 
-document.getElementById('reset').addEventListener('click',()=>{if(confirm('This clears everything you\u2019ve written and your money total. Start over?')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}});
-
-load();buildTrack();bindFields();buildDays();updateProgress();updateTotal();
+// init
+load();
+buildTabs();buildDays();
+document.getElementById('goal').addEventListener('input',()=>{state.fields.goal=document.getElementById('goal').value;save();updateTotal();});
+if(state.fields.goal)document.getElementById('goal').value=state.fields.goal;
+updateTotal();updateProgress();
+showDay(1);
 </script>
 </body>
 </html>
