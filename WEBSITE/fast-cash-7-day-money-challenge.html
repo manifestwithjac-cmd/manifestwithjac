@@ -17,6 +17,7 @@
   --iri-b:#8a4fc9;
   --iri-c:#2f9baa;
   --iri:linear-gradient(115deg,#2e3a7a 0%,#6339a8 22%,#1f8f96 42%,#3f6fae 60%,#8a3fc0 78%,#1f6f8f 100%);
+  --iri-green:linear-gradient(115deg,#0f4d33 0%,#1f8f5f 20%,#6fe6a8 40%,#2fae7a 58%,#a8f5c8 76%,#146b46 100%);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--bg);}
 body{
@@ -41,12 +42,12 @@ input,textarea,select,button{font-family:Arial,Helvetica,sans-serif;font-weight:
   font-size:clamp(46px,14vw,86px);
   line-height:.86;letter-spacing:-.045em;text-transform:uppercase;
   margin:14px 0 10px;
-  background:var(--iri);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  background:var(--iri-green);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shimmer 7s ease-in-out infinite alternate;
 }
 .title em{
   font-style:normal;
-  background:var(--iri);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  background:var(--iri-green);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
 }
 @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
 .sub{
@@ -141,7 +142,7 @@ input,textarea,select,button{font-family:Arial,Helvetica,sans-serif;font-weight:
 .day-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:var(--grey);}
 .day-title{
   font-size:clamp(28px,7vw,40px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:8px 0 18px;
-  background:var(--iri);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  background:var(--iri-green);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .teach{font-size:14px;color:var(--grey);line-height:1.5;font-weight:400;}
 .teach + .teach{margin-top:12px;}
@@ -177,7 +178,7 @@ input,textarea,select,button{font-family:Arial,Helvetica,sans-serif;font-weight:
 .move::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--iri);background-size:220% 100%;}
 .move h4{
   font-size:18px;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:8px;font-weight:400;
-  background:var(--iri);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  background:var(--iri-green);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .move p{font-size:14px;color:var(--grey);line-height:1.45;font-weight:400;}
 .examples{margin-top:10px;font-size:13px;color:var(--grey);font-weight:400;}
