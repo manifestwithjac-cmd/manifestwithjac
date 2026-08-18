@@ -98,7 +98,16 @@ input,textarea,select,button{font-family:Arial,Helvetica,sans-serif;font-weight:
 /* RAMPAGE RESOURCE CARD */
 .rampage-card{position:relative;background:var(--panel);border:3px solid var(--ink);padding:20px;margin:14px 0;text-align:center;overflow:hidden;}
 .rampage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--iri);background-size:220% 100%;}
-.rampage-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:400;margin-bottom:8px;}
+.rampage-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:400;margin-bottom:14px;}
+.rampage-thumb{position:relative;display:block;max-width:400px;margin:0 auto 16px;border:2px solid var(--ink);overflow:hidden;}
+.rampage-thumb img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--panel2,#eee);}
+.rampage-thumb .play-badge{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:54px;height:54px;border-radius:50%;background:var(--iri);background-size:220% auto;
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;padding-left:3px;
+  box-shadow:0 2px 10px rgba(0,0,0,.35);transition:transform .15s ease;
+}
+.rampage-thumb:hover .play-badge{transform:translate(-50%,-50%) scale(1.08);}
 .rampage-copy{font-size:13px;max-width:460px;margin:0 auto 16px;line-height:1.45;color:var(--grey);}
 .rampage-link{
   display:inline-block;background:var(--iri);background-size:220% auto;color:#fff;text-decoration:none;
@@ -282,7 +291,11 @@ textarea:focus{outline:none;border-color:var(--iri-b);}
   </section>
 
   <section class="rampage-card">
-    <p class="rampage-label">optional boost</p>
+    <p class="rampage-label">listen to this for 7 days</p>
+    <a class="rampage-thumb" href="https://youtu.be/q1OoLy_SBDA" target="_blank" rel="noopener" aria-label="Watch: 30 minutes of audible rampage for instant money, on YouTube">
+      <img src="https://img.youtube.com/vi/q1OoLy_SBDA/hqdefault.jpg" alt="" loading="lazy">
+      <span class="play-badge" aria-hidden="true">&#9654;</span>
+    </a>
     <p class="rampage-copy">30 minutes of audible rampage for instant money. Press play on repeat while you move through the week.</p>
     <a class="rampage-link" href="https://youtu.be/q1OoLy_SBDA" target="_blank" rel="noopener">press play →</a>
   </section>
