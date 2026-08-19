@@ -232,6 +232,7 @@ const CONFIG = {
 
   /* cover colors: white | grey | gold | red | black */
   shelf: [
+    { name:"Fast Cash Challenge",        note:"Free 7-day money challenge.",     price:"Free", tone:"red",   url:"https://manifest-with-jac.kit.com/c1d775c0a4", external:true },
     { name:"Wealth Frequency Blueprint", note:"Start here.",                     price:"Free", tone:"white", url:"#" },
     { name:"Quantum Wealth Activation",  note:"Five guided activations.",        price:"$17",  tone:"gold",  url:"#" },
     { name:"Already Chosen",             note:"For the one already yours.",      price:"$17",  tone:"white", url:"#" },
@@ -277,7 +278,7 @@ function paint(){
   $('buy').href=D.checkout;
   $('aligned').innerHTML=D.aligned.map(a=>`<p><b>${a.lead}</b>${a.text}</p>`).join('');
   $('grid').innerHTML=CONFIG.shelf.map((p,i)=>`
-    <a class="card" href="${p.url}">
+    <a class="card" href="${p.url}"${p.external?' target="_blank" rel="noopener"':''}>
       ${cover(p.tone,i)}
       <span class="meta">
         <h3 class="blk">${p.name}</h3>
