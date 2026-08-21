@@ -104,6 +104,7 @@ h1 .out{
 }
 .buy:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--red)}
 .buy:active{transform:none;box-shadow:none}
+.buy-wrap{max-width:400px;margin:24px auto 0;text-align:center}
 .buy.red{background:var(--red)}
 
 /* aligned */
@@ -206,7 +207,10 @@ footer a{border-bottom:2px solid var(--ink);color:var(--ink)}
     <div class="closes" id="closes"></div>
 
     <div class="ladder blk" id="ladder"></div>
-    <a class="buy blk" id="buy" href="#">Claim it now</a>
+    <div class="buy-wrap" id="buyLive">
+<div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger" data-widget-layout="embeddable_button" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="35" data-thrivecart-modal="on" data-thrivecart-modal-opts="{&quot;style_modal_width&quot;:&quot;40&quot;,&quot;style_content_border_radius&quot;:&quot;0.5&quot;,&quot;attr_modal_background&quot;:&quot;on&quot;,&quot;style_modal_background_color&quot;:&quot;#000000&quot;,&quot;style_modal_background_opacity&quot;:&quot;40&quot;,&quot;attr_modal_blur&quot;:&quot;off&quot;,&quot;attr_content_shadow&quot;:&quot;off&quot;}" ><div data-size="auto" data-style="rounded" data-align="center" data-text_padding="10" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button"><button class="tc-v2-embeddable-trigger-el button" style="background-color: #2ED5A0; border-radius: 0.25em; background-color: #000000"><span class="builder-v2-block builder-v2-block-plaintext tc-font-archivo_black" data-block="plaintext" style="color: #ffffff; font-size: 19px; color: #FFF" data-block-opts="{&quot;text_editor_toolbar&quot;:&quot;plain&quot;}">CLAIM IT NOW</span></button></div></div><script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id=""></script>
+    </div>
+    <a class="buy blk" id="buyClosed" href="#shelf" style="display:none">Shop what is still open</a>
     <div class="aligned" id="aligned"></div>
   </section>
 
@@ -251,7 +255,6 @@ const CONFIG = {
     closesISO: "2026-08-28T23:59:00-04:00",
     closesLabel: "Closes midnight ET, Aug 28",
     gone: "Gone until 2034",
-    checkout: "https://buy.stripe.com/REPLACE",
 
     ladder: [
       { price:"$9",  fromISO:"2026-08-17T00:00:00-04:00", label:"Floor" },
@@ -309,7 +312,6 @@ function paint(){
   $('title').innerHTML=D.title;
   $('sub').textContent=D.sub;
   $('closes').textContent=D.closesLabel;
-  $('buy').href=D.checkout;
   $('aligned').innerHTML=D.aligned.map(a=>`<p><b>${a.lead}</b>${a.text}</p>`).join('');
   $('grid').innerHTML=CONFIG.shelf.map((p,i)=>`
     <a class="card" href="${p.url}"${p.external?' target="_blank" rel="noopener"':''}>
@@ -336,7 +338,8 @@ function tick(){
     ['cd','ch','cm','cs'].forEach(k=>$(k).textContent='00');
     $('closes').textContent=D.gone;
     $('ladder').innerHTML='';$('aligned').innerHTML='';
-    const b=$('buy');b.textContent='Shop what is still open';b.className='buy blk red';b.href='#shelf';
+    $('buyLive').style.display='none';
+    const b=$('buyClosed');b.style.display='block';b.classList.add('red');
     $('shadow').setAttribute('cx','50');$('shadow').setAttribute('cy','50');
     return;
   }
