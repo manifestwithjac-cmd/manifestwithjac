@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light" />
+<title>Goddess Frequency — Manifest With Jac</title>
+<style>
+:root{
+  color-scheme:light only;
+  --ink:#000;
+  --paper:#fff;
+  --gold:#c9a449;
+  --red:#e11d1d;
+  --grey:#767676;
+  --line:#000;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#fff}
+body{
+  background:#fff;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+.blk{font-family:"Arial Black","Arial Bold",Arial,Helvetica,sans-serif;font-weight:900}
+.wrap{max-width:680px;margin:0 auto;padding:0 18px 90px}
+
+/* ---------- bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  border-bottom:3px solid var(--ink);
+}
+.bar-in{
+  max-width:680px;margin:0 auto;padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.mark{font-size:13px;letter-spacing:-.02em;text-transform:uppercase}
+.jump{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:32px 0 6px;text-align:center}
+.hero-cover{width:100%;max-width:360px;aspect-ratio:1;object-fit:cover;display:block;margin:0 auto 24px;border:3px solid var(--ink)}
+
+.kicker{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--red);text-align:center;margin-bottom:14px;
+}
+h1{
+  font-size:clamp(46px,15vw,80px);line-height:.86;
+  letter-spacing:-.045em;text-transform:uppercase;text-align:center;
+}
+.sub{
+  margin:20px auto 0;max-width:420px;text-align:center;
+  font-size:15px;color:var(--grey);line-height:1.5;
+}
+
+/* buy */
+.buy{
+  display:block;max-width:400px;margin:26px auto 0;text-align:center;
+  background:var(--ink);color:var(--paper);
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:21px 14px;
+  transition:transform .1s ease;
+}
+.buy:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--red)}
+.buy:active{transform:none;box-shadow:none}
+
+.closes{
+  max-width:400px;margin:12px auto 0;text-align:center;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--grey);
+}
+
+/* rule */
+.rule{
+  margin:64px 0 20px;padding-bottom:8px;
+  border-bottom:6px solid var(--ink);
+  font-size:clamp(22px,7vw,32px);letter-spacing:-.04em;text-transform:uppercase;
+}
+
+/* copy */
+.copy{max-width:480px;margin:0 auto}
+.copy p{font-size:14.5px;color:var(--grey);line-height:1.6;margin-bottom:16px}
+.copy p:last-child{margin-bottom:0}
+.copy p.hit{color:var(--ink);font-weight:700;font-size:17px;line-height:1.4}
+
+/* tracks */
+.tracks{display:flex;flex-direction:column;gap:12px}
+.track{
+  border:3px solid var(--ink);padding:16px;display:flex;gap:14px;align-items:flex-start;
+  background:var(--paper);transition:transform .12s ease,box-shadow .12s ease;
+}
+.track:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.tnum{
+  flex:0 0 auto;width:32px;height:32px;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:-.02em;
+}
+.tmeta{flex:1;min-width:0}
+.tmeta h3{font-size:15px;letter-spacing:-.02em;text-transform:uppercase;line-height:1.25}
+.ttag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-top:6px}
+.tmeta p{font-size:12.5px;color:var(--grey);margin-top:8px;line-height:1.45}
+
+/* closer */
+.closer{max-width:400px;margin:56px auto 0;text-align:center}
+.closeline{font-size:clamp(20px,6vw,26px);text-transform:uppercase;letter-spacing:-.03em;margin-bottom:20px}
+
+/* footer */
+footer{
+  margin-top:70px;padding-top:22px;border-top:3px solid var(--ink);
+  text-align:center;font-size:11px;color:var(--grey);line-height:2;
+  text-transform:uppercase;letter-spacing:.08em;font-weight:700;
+}
+footer a{border-bottom:2px solid var(--ink);color:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="mark blk">Manifest With Jac</div>
+    <a class="jump" href="shop.html">← Shop all</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <img class="hero-cover" src="goddess-frequency-cover.jpg" alt="Goddess Frequency">
+    <div class="kicker">Ultimate creation audio bundle</div>
+    <h1 class="blk">Goddess<br>Frequency</h1>
+    <p class="sub">And some part of you has always known that. This puts it back in your body.</p>
+    <a class="buy blk" href="https://buy.stripe.com/REPLACE">Get instant access — $67 →</a>
+    <div class="closes">Instant download · lifetime access</div>
+  </section>
+
+  <div class="rule blk">Why these hit different</div>
+  <div class="copy">
+    <p>Every other subliminal on the internet is a pile of sentences in random order, looped until you fall asleep. Nothing moves. Nothing lands anywhere.</p>
+    <p class="hit">These run The Seven Gates&trade;.</p>
+    <p>Your body holds seven power centers. You know them as chakras. Every track is built to move energy up through all seven of them in a specific order, so this isn't affirmation work at all. It's energy work, disguised as audio, running while you drive and while you sleep.</p>
+    <p>Most manifestation audio talks at your mind. This moves through your body.</p>
+    <p class="hit">That's the difference, and you'll feel it somewhere around night three.</p>
+  </div>
+
+  <div class="rule blk">Six tracks. One identity, dosed six ways.</div>
+  <div class="tracks">
+    <div class="track">
+      <span class="tnum blk">01</span>
+      <div class="tmeta">
+        <h3 class="blk">Everything You Decide Is Just Fact</h3>
+        <div class="ttag">15 min · Rampage</div>
+        <p>The full script, audible, delivered fast. Play it before you speak to a single human.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">02</span>
+      <div class="tmeta">
+        <h3 class="blk">Goddess Frequency</h3>
+        <div class="ttag">1 hr · Subliminal, 528Hz</div>
+        <p>Below conscious hearing. Runs while you work, drive, live.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">03</span>
+      <div class="tmeta">
+        <h3 class="blk">There Is No Negotiation</h3>
+        <div class="ttag">30 min · Dual activation, 963Hz</div>
+        <p>Two sentences drilled audible for 15 minutes, then the same audio buried for 15 more.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">04</span>
+      <div class="tmeta">
+        <h3 class="blk">Manifest While You Sleep</h3>
+        <div class="ttag">8 hr · Sleep subliminal, 528Hz</div>
+        <p>Runs all night. You do nothing.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">05</span>
+      <div class="tmeta">
+        <h3 class="blk">Receptivity Booster</h3>
+        <div class="ttag">15 min · 963Hz</div>
+        <p>Makes everything else land faster and deeper.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">06</span>
+      <div class="tmeta">
+        <h3 class="blk">Sleep Recoding</h3>
+        <div class="ttag">8 hr · 396Hz</div>
+        <p>Builds the body that doesn't flinch when it all shows up.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="closer">
+    <p class="closeline blk">Instant download. Yours forever.</p>
+    <a class="buy blk" href="https://buy.stripe.com/REPLACE">Get instant access — $67 →</a>
+    <div class="closes">Instant download · lifetime access</div>
+  </div>
+
+  <footer>
+    <p>Digital. Instant. All sales final.</p>
+    <p><a href="mailto:hello@manifestwithjac.com">hello@manifestwithjac.com</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
