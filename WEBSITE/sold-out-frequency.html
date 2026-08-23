@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light" />
+<title>Sold Out Frequency — Manifest With Jac</title>
+<style>
+:root{
+  color-scheme:light only;
+  --ink:#000;
+  --paper:#fff;
+  --gold:#c9a449;
+  --red:#e11d1d;
+  --grey:#767676;
+  --line:#000;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#fff}
+body{
+  background:#fff;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+.blk{font-family:"Arial Black","Arial Bold",Arial,Helvetica,sans-serif;font-weight:900}
+.wrap{max-width:680px;margin:0 auto;padding:0 18px 90px}
+
+/* ---------- bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  border-bottom:3px solid var(--ink);
+}
+.bar-in{
+  max-width:680px;margin:0 auto;padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.mark{font-size:13px;letter-spacing:-.02em;text-transform:uppercase}
+.jump{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:32px 0 6px;text-align:center}
+.hero-cover{width:100%;max-width:360px;aspect-ratio:1;object-fit:cover;display:block;margin:0 auto 24px;border:3px solid var(--ink)}
+
+.kicker{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--red);text-align:center;margin-bottom:14px;
+}
+h1{
+  font-size:clamp(46px,15vw,80px);line-height:.86;
+  letter-spacing:-.045em;text-transform:uppercase;text-align:center;
+}
+.sub{
+  margin:20px auto 0;max-width:420px;text-align:center;
+  font-size:15px;color:var(--grey);line-height:1.5;
+}
+
+/* buy */
+.buy{
+  display:block;max-width:400px;margin:26px auto 0;text-align:center;
+  background:var(--ink);color:var(--paper);
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:21px 14px;
+  transition:transform .1s ease;
+}
+.buy:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--red)}
+.buy:active{transform:none;box-shadow:none}
+
+.closes{
+  max-width:400px;margin:12px auto 0;text-align:center;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--grey);
+}
+
+/* rule */
+.rule{
+  margin:64px 0 20px;padding-bottom:8px;
+  border-bottom:6px solid var(--ink);
+  font-size:clamp(22px,7vw,32px);letter-spacing:-.04em;text-transform:uppercase;
+}
+
+/* copy */
+.copy{max-width:480px;margin:0 auto}
+.copy p{font-size:14.5px;color:var(--grey);line-height:1.6;margin-bottom:16px}
+.copy p:last-child{margin-bottom:0}
+p.hit{color:var(--ink);font-weight:700;font-size:17px;line-height:1.4;margin-bottom:16px}
+p.hit:last-child{margin-bottom:0}
+
+/* hero copy */
+.hero-copy{max-width:420px;margin:26px auto 0;text-align:center}
+
+/* tracks */
+.tracks{display:flex;flex-direction:column;gap:12px}
+.track{
+  border:3px solid var(--ink);padding:16px;display:flex;gap:14px;align-items:flex-start;
+  background:var(--paper);transition:transform .12s ease,box-shadow .12s ease;
+}
+.track:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.tnum{
+  flex:0 0 auto;width:32px;height:32px;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:-.02em;
+}
+.tmeta{flex:1;min-width:0}
+.tmeta h3{font-size:15px;letter-spacing:-.02em;text-transform:uppercase;line-height:1.25}
+.ttag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-top:6px}
+.tmeta p{font-size:12.5px;color:var(--grey);margin-top:8px;line-height:1.45}
+
+/* closer */
+.closer{max-width:400px;margin:56px auto 0;text-align:center}
+.closeline{font-size:clamp(20px,6vw,26px);text-transform:uppercase;letter-spacing:-.03em;margin-bottom:20px}
+
+/* thrivecart embed */
+.tc-embed{max-width:400px;margin:22px auto 0;text-align:center;scroll-margin-top:80px}
+
+/* footer */
+footer{
+  margin-top:70px;padding-top:22px;border-top:3px solid var(--ink);
+  text-align:center;font-size:11px;color:var(--grey);line-height:2;
+  text-transform:uppercase;letter-spacing:.08em;font-weight:700;
+}
+footer a{border-bottom:2px solid var(--ink);color:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="mark blk">Manifest With Jac</div>
+    <a class="jump" href="shop.html">← Shop all</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <img class="hero-cover" src="sold-out-frequency-cover.jpg" alt="Sold Out Frequency">
+    <div class="kicker">Business rampage + subliminal bundle</div>
+    <h1 class="blk">Sold Out<br>Frequency</h1>
+    <div class="hero-copy">
+      <p class="hit">Your phone is about to become the loudest thing in your house.</p>
+      <p class="hit">People find you and buy before you finish the sentence.</p>
+      <p class="hit">The waitlist fills before you announce anything.</p>
+      <p class="hit">You didn't convince a single one of them. They were already sold.</p>
+    </div>
+    <p class="sub">Seven tracks that install one identity: a business that sells out on its own, whether you're watching it or not.</p>
+    <a class="buy blk" href="#buy-embed">Get instant access →</a>
+    <div class="closes">Instant download</div>
+  </section>
+
+  <div class="rule blk">How to listen</div>
+  <div class="copy">
+    <p>Play it as often as you want. Headphones recommended. You don't need to concentrate or repeat anything.</p>
+    <p class="hit">It works while you work, rest, or sleep.</p>
+    <p>Repetition is what makes it stick.</p>
+  </div>
+
+  <div class="rule blk">Seven tracks. One identity, dosed seven ways.</div>
+  <div class="tracks">
+    <div class="track">
+      <span class="tnum blk">01</span>
+      <div class="tmeta">
+        <h3 class="blk">My Phone Won't Stop Making Me Money</h3>
+        <div class="ttag">30 min · Rampage, 528Hz</div>
+        <p>Installs a business that pays you around the clock, from a device in your hand.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">02</span>
+      <div class="tmeta">
+        <h3 class="blk">People Are Obsessed With Buying From Me</h3>
+        <div class="ttag">30 min · Rampage, 528Hz</div>
+        <p>For the buyers who arrive already sold — no convincing, ever.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">03</span>
+      <div class="tmeta">
+        <h3 class="blk">I Have A Waitlist Of People Ready To Pay Me</h3>
+        <div class="ttag">60 min · Dual activation, 528Hz</div>
+        <p>Thirty minutes audible, thirty minutes buried. Installs more demand than availability.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">04</span>
+      <div class="tmeta">
+        <h3 class="blk">Customers Find Me Everywhere</h3>
+        <div class="ttag">60 min · Subliminal, 528Hz</div>
+        <p>Below conscious hearing. Installs a business the right people can't miss.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">05</span>
+      <div class="tmeta">
+        <h3 class="blk">My Business Is Blowing Up</h3>
+        <div class="ttag">15 min · Rapid fire, 528Hz</div>
+        <p>Two lines, fifty reps each. Installs fast, at full density.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">06</span>
+      <div class="tmeta">
+        <h3 class="blk">I Make Sales While I Sleep</h3>
+        <div class="ttag">8 hr · Sleep portal, 528Hz</div>
+        <p>Runs all night under soft rain. Sales that don't clock out when you do.</p>
+      </div>
+    </div>
+    <div class="track">
+      <span class="tnum blk">07</span>
+      <div class="tmeta">
+        <h3 class="blk">Sold Out Frequency Booster</h3>
+        <div class="ttag">60 min · Receptivity, 528Hz</div>
+        <p>Play this first. Opens you so every other track lands deeper.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="closer">
+    <p class="closeline blk">Instant download.</p>
+    <a class="buy blk" href="#buy-embed">Get instant access →</a>
+    <div class="closes">Instant download</div>
+  </div>
+
+  <div class="tc-embed" id="buy-embed">
+<div class="tc-v2-embeddable-target" data-thrivecart-account="jacnicole" data-thrivecart-tpl="v2" data-thrivecart-product="41" data-thrivecart-embeddable="tc-jacnicole-41-IE8X9J"></div><script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js" id="tc-jacnicole-41-IE8X9J"></script>
+  </div>
+
+  <footer>
+    <p>Digital. Instant. All sales final.</p>
+    <p><a href="mailto:hello@manifestwithjac.com">hello@manifestwithjac.com</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
