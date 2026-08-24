@@ -251,7 +251,7 @@ const CONFIG = {
     live: true,
     kicker: "Partial Lunar Eclipse in Pisces",
     title: "The<br>Severing",          // <br> for a line break
-    sub: "A release ritual for the identity that expired. Tapping sequence plus rampage audio, open for this eclipse only.",
+    sub: "A cord-cutting ritual to leave inherited scarcity behind and step into your wealthiest timeline.<br><br>For the woman ready for more money, bigger opportunities, and a life that no longer looks like the one she came from.<br><br>Created for the Pisces eclipse. Available only through August 28.",
     closesISO: "2026-08-28T23:59:00-04:00",
     closesLabel: "Closes midnight ET, Aug 28",
     gone: "Gone until 2034",
@@ -311,7 +311,7 @@ function paint(){
   if(!D.live){$('hero').style.display='none';return}
   $('kicker').textContent=D.kicker;
   $('title').innerHTML=D.title;
-  $('sub').textContent=D.sub;
+  $('sub').innerHTML=D.sub;
   $('closes').textContent=D.closesLabel;
   $('aligned').innerHTML=D.aligned.map(a=>`<p><b>${a.lead}</b>${a.text}</p>`).join('');
   $('grid').innerHTML=CONFIG.shelf.map((p,i)=>`
@@ -335,7 +335,7 @@ function tick(){
   if(left<=0){
     $('kicker').textContent='Closed';
     $('title').innerHTML='Then<br>It\'s Gone';
-    $('sub').textContent='The gate closed. The next one opens with the next transit.';
+    $('sub').innerHTML='The gate closed. The next one opens with the next transit.';
     ['cd','ch','cm','cs'].forEach(k=>$(k).textContent='00');
     $('closes').textContent=D.gone;
     $('ladder').innerHTML='';$('aligned').innerHTML='';
