@@ -140,7 +140,7 @@ h1 .out{
 .card .go{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--grey)}
 
 /* featured signup card */
-.card.featured{cursor:default;margin-bottom:14px}
+.card.featured{cursor:default;margin-bottom:14px;scroll-margin-top:76px}
 .card.featured:hover{transform:none;box-shadow:none}
 .signup-form{display:flex;flex-direction:column;gap:10px;margin-top:12px}
 .signup-form input{
@@ -217,7 +217,7 @@ footer a{border-bottom:2px solid var(--ink);color:var(--ink)}
 
   <div class="rule blk" id="shelf">Always open</div>
 
-  <div class="card featured" id="fast-cash-card">
+  <div class="card featured" id="fast-cash">
     <img class="cover" src="fast-cash-cover.jpg" alt="">
     <span class="meta">
       <h3 class="blk">Fast Cash Challenge</h3>
@@ -372,13 +372,19 @@ function bindSignup(){
     // real POST fires into the hidden iframe target above, so this page never navigates.
     // Kit's response can't be read cross-origin, so this optimistically confirms after a beat.
     setTimeout(()=>{
-      $('fast-cash-card').classList.add('done');
+      $('fast-cash').classList.add('done');
       $('signupNote').textContent="You're in — check your inbox to confirm.";
     },900);
   });
 }
 
 paint();tick();setInterval(tick,1000);bindSignup();
+
+if(location.hash){
+  const jump=()=>{const el=document.querySelector(location.hash);if(el)el.scrollIntoView({block:'start'});};
+  requestAnimationFrame(jump);
+  window.addEventListener('load',jump);
+}
 </script>
 </body>
 </html>
