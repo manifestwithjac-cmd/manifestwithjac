@@ -3,6 +3,11 @@
  * Vanilla JS, no build step, no framework — matches the rest of this site.
  * Reads config + engine + analytics off the shared `UIC` namespace (see the
  * <script> load order in universe-is-calling.html).
+ *
+ * Flow: call -> intro -> question (x7, with "tidbit" interstitials after
+ * questions 2/4/6) -> connecting -> email gate -> sent -> reveal-hero ->
+ * audio-gate (only if the result has audio configured; listening required
+ * before continuing) -> transition -> reveal (the full reading).
  */
 (function () {
   'use strict';
@@ -12,6 +17,10 @@
   var QUESTIONS = UIC.QUESTIONS;
   var COPY = UIC.COPY;
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Show a brief engagement "tidbit" after finishing these question indices
+  // (0-based) — i.e. after Q2, Q4, Q6 out of 7. See CONTENT_GUIDE.md.
+  var TIDBIT_AFTER_INDEX = [1, 3, 5];
 
   function uuid() {
     if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
@@ -52,14 +61,19 @@
     sessionId: uuid(),
     result: null,
     kitStatus: null,
-    activation: { step: 1, choice1: null, choice1Label: '', choice2: null },
     submitting: false,
-    submitError: null
+    submitError: null,
+    tidbitCount: 0,
+    tidbitNextIndex: 0,
+    audioUnlocked: false,
+    showTranscript: false
   };
 
   UIC.analytics.setSessionProps(Object.assign({ utm_source: utm.source, utm_medium: utm.medium, utm_campaign: utm.campaign }, {}));
 
-  // ---- dev-only preview mode: ?uic_preview=1&result=money_surge&pattern=checking ----
+  // ---- dev-only preview mode ----
+  // /universe-is-calling?uic_preview=1&result=money_surge&pattern=checking&name=Sarah
+  //   &stage=hero|audio|transition|full (default full)  &audio=1 (force a QA test-tone)
   var qp = new URLSearchParams(window.location.search);
   if (qp.get('uic_preview') === '1') {
     var forcedResult = qp.get('result');
@@ -68,14 +82,19 @@
     var r = RESULTS.find(function (x) { return x.key === forcedResult; }) || RESULTS[0];
     var p = PATTERNS.find(function (x) { return x.key === forcedPattern; }) || PATTERNS[0];
     var ctx = { firstName: qp.get('name') || 'Preview', manifestingNoun: r.manifestingNoun, resultTitle: r.title };
+    var audio = r.audio;
+    if (qp.get('audio') === '1') {
+      audio = { enabled: true, url: '/uic/audio/qa-test-tone.wav', title: 'QA Test Tone (2s)', duration: '0:02', transcript: 'This is a placeholder transcript for QA — a two-second test tone, not a real message.' };
+    }
     state.firstName = ctx.firstName;
     state.result = {
       resultKey: r.key, resultTitle: r.title, identity: r.identity, manifestingNoun: r.manifestingNoun,
       redVelvetCake: r.redVelvetCake, declaration: r.declaration, patternKey: p.key, patternLabel: p.label,
-      patternText: p.interpret(ctx), activation: r.activation, shareCard: r.shareCard, audio: r.audio,
+      patternText: p.interpret(ctx), shareCard: r.shareCard, audio: audio,
       product: PRODUCTS[r.productSlug], primaryDesire: r.desireKey, secondaryDesire: null
     };
-    state.screen = 'reveal';
+    var stage = qp.get('stage') || 'full';
+    state.screen = stage === 'hero' ? 'reveal-hero' : stage === 'audio' ? 'audio-gate' : stage === 'transition' ? 'transition' : 'reveal';
   }
 
   function setAnswer(questionId, optionId, freeText) {
@@ -108,11 +127,11 @@
     window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
 
     if (name === 'gate') UIC.analytics.track('uic_email_gate_viewed', {});
-    if (name === 'reveal' && state.result) {
+    if (name === 'reveal-hero' && state.result) {
       UIC.analytics.track('uic_result_revealed', { result: state.result.resultKey, pattern: state.result.patternKey });
-      if (state.result.product) {
-        UIC.analytics.track('uic_product_viewed', { result: state.result.resultKey, product: state.result.product.title });
-      }
+    }
+    if (name === 'reveal' && state.result && state.result.product) {
+      UIC.analytics.track('uic_product_viewed', { result: state.result.resultKey, product: state.result.product.title });
     }
   }
 
@@ -123,7 +142,7 @@
         '<div class="uic-call-card">' +
           '<div class="uic-ring' + (reducedMotion ? '' : ' uic-ring--pulse') + '" aria-hidden="true"></div>' +
           '<p class="uic-eyebrow">incoming call</p>' +
-          '<h1 class="uic-caller" data-uic-focus tabindex="-1">' + escapeHtml(COPY.incomingCall.caller) + '</h1>' +
+          '<h1 class="uic-caller uic-blk" data-uic-focus tabindex="-1">' + escapeHtml(COPY.incomingCall.caller) + '</h1>' +
           '<p class="uic-newmessage">' + escapeHtml(COPY.incomingCall.newMessage) + '</p>' +
           '<div class="uic-call-actions">' +
             '<button class="uic-btn uic-btn--primary uic-btn--full" data-action="answer-call">' + escapeHtml(COPY.incomingCall.primaryCta) + '</button>' +
@@ -150,15 +169,25 @@
     );
   }
 
-  // ------------------------------------------------------------ QUESTION ----
-  function renderProgress() {
-    var dots = QUESTIONS.map(function (q, i) {
-      var cls = 'uic-dot' + (i < state.questionIndex ? ' uic-dot--done' : '') + (i === state.questionIndex ? ' uic-dot--active' : '');
-      return '<span class="' + cls + '"></span>';
-    }).join('');
-    return '<div class="uic-progress" role="presentation">' + dots + '</div>';
+  // ---------------------------------------------------------- TOP PROGRESS ----
+  function renderTopbar() {
+    if (state.screen !== 'question' && state.screen !== 'tidbit') return '';
+    var total = QUESTIONS.length;
+    var current = Math.min(state.questionIndex + 1, total);
+    var pct = Math.round((state.questionIndex / total) * 100);
+    return (
+      '<div class="uic-topbar">' +
+        '<div class="uic-topbar-in">' +
+          '<span class="uic-topbar-label uic-blk">' + current + ' / ' + total + '</span>' +
+          '<div class="uic-topbar-track" role="progressbar" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100">' +
+            '<div class="uic-topbar-fill" style="width:' + pct + '%"></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
   }
 
+  // ------------------------------------------------------------ QUESTION ----
   function renderQuestion() {
     var q = currentQuestion();
     var options = optionsForQuestion(q);
@@ -185,7 +214,6 @@
 
     return (
       '<section class="uic-screen uic-screen--question">' +
-        renderProgress() +
         '<div class="uic-question-card">' +
           (state.questionIndex > 0
             ? '<button class="uic-back" data-action="back" aria-label="' + escapeHtml(COPY.a11y.backButton) + '">&larr;</button>'
@@ -195,6 +223,37 @@
         '</div>' +
       '</section>'
     );
+  }
+
+  // ------------------------------------------------------------- TIDBIT ----
+  function renderTidbit() {
+    var line = COPY.tidbits[state.tidbitCount % COPY.tidbits.length];
+    return (
+      '<section class="uic-screen uic-screen--tidbit" data-action="tidbit-continue">' +
+        '<div class="uic-tidbit-card">' +
+          '<div class="uic-tidbit-mark uic-blk" aria-hidden="true">?</div>' +
+          '<p class="uic-tidbit-line" data-uic-focus tabindex="-1">' + escapeHtml(line) + '</p>' +
+        '</div>' +
+      '</section>'
+    );
+  }
+
+  function showTidbitThenAdvance(nextIndex) {
+    state.tidbitNextIndex = nextIndex;
+    setScreen('tidbit');
+    var delay = reducedMotion ? 700 : 1700;
+    var timer = setTimeout(advanceFromTidbit, delay);
+    ROOT.dataset.tidbitTimer = 'pending';
+    ROOT._uicTidbitTimer = timer;
+  }
+
+  function advanceFromTidbit() {
+    if (ROOT._uicTidbitTimer) { clearTimeout(ROOT._uicTidbitTimer); ROOT._uicTidbitTimer = null; }
+    if (state.screen !== 'tidbit') return;
+    state.tidbitCount += 1;
+    state.questionIndex = state.tidbitNextIndex;
+    UIC.analytics.track('uic_question_viewed', { question_id: currentQuestion().id, index: state.questionIndex });
+    setScreen('question');
   }
 
   // Minimal line-art marks — no external image assets required. Swap for real
@@ -220,7 +279,7 @@
       '<section class="uic-screen uic-screen--connecting">' +
         '<div class="uic-connecting-card">' +
           '<div class="uic-orb" aria-hidden="true"></div>' +
-          '<p class="uic-connecting-line" id="uic-connecting-line" data-uic-focus tabindex="-1" aria-live="polite">' + escapeHtml(COPY.connecting.steps[0]) + '</p>' +
+          '<p class="uic-connecting-line uic-blk" id="uic-connecting-line" data-uic-focus tabindex="-1" aria-live="polite">' + escapeHtml(COPY.connecting.steps[0]) + '</p>' +
         '</div>' +
       '</section>'
     );
@@ -248,7 +307,7 @@
       '<section class="uic-screen uic-screen--gate">' +
         '<div class="uic-gate-card">' +
           '<p class="uic-eyebrow" data-uic-focus tabindex="-1">' + escapeHtml(COPY.emailGate.eyebrow) + '</p>' +
-          '<h1 class="uic-gate-headline">' + escapeHtml(COPY.emailGate.headline) + '</h1>' +
+          '<h1 class="uic-gate-headline uic-blk">' + escapeHtml(COPY.emailGate.headline) + '</h1>' +
           '<form id="uic-gate-form" novalidate>' +
             '<label class="uic-sr-only" for="uic-first-name">First name</label>' +
             '<input class="uic-input" id="uic-first-name" name="firstName" type="text" autocomplete="given-name" placeholder="' + escapeHtml(COPY.emailGate.firstNamePlaceholder) + '" value="' + escapeHtml(state.firstName) + '" required maxlength="60" />' +
@@ -299,7 +358,7 @@
       state.submitting = false;
       UIC.analytics.track('uic_kit_submission_success', { result: data.result.resultKey, kit_status: data.kitStatus });
       setScreen('sent');
-      setTimeout(function () { setScreen('reveal'); }, reducedMotion ? 400 : 1400);
+      setTimeout(function () { setScreen('reveal-hero'); }, reducedMotion ? 400 : 1400);
     } catch (err) {
       state.submitting = false;
       state.submitError = COPY.emailGate.errorGeneric;
@@ -313,73 +372,92 @@
     return (
       '<section class="uic-screen uic-screen--sent">' +
         '<div class="uic-sent-card">' +
-          '<div class="uic-checkmark" aria-hidden="true">&#10003;</div>' +
-          '<h1 data-uic-focus tabindex="-1">' + escapeHtml(COPY.sent.headline) + '</h1>' +
+          '<div class="uic-checkmark uic-blk" aria-hidden="true">&#10003;</div>' +
+          '<h1 class="uic-blk" data-uic-focus tabindex="-1">' + escapeHtml(COPY.sent.headline) + '</h1>' +
           '<p>' + escapeHtml(COPY.sent.sub) + '</p>' +
         '</div>' +
       '</section>'
     );
   }
 
-  // --------------------------------------------------------------- REVEAL ----
-  function renderAudioSection(audio) {
-    if (!audio || !audio.enabled || !audio.url) return '';
+  // ---------------------------------------------------------- REVEAL: HERO ----
+  function renderRevealHero() {
+    var r = state.result;
+    if (!r) return renderRevealError();
+    var greeting = state.firstName ? escapeHtml(state.firstName) + '...' : '';
     return (
-      '<section class="uic-card uic-reveal-section" data-reveal>' +
-        '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.audioEyebrow) + '</p>' +
-        '<div class="uic-audio-player" data-audio-src="' + escapeHtml(audio.url) + '">' +
-          '<audio class="uic-sr-only" preload="none" src="' + escapeHtml(audio.url) + '"></audio>' +
-          '<button class="uic-audio-play" data-action="audio-toggle" aria-label="' + escapeHtml(COPY.a11y.audioPlay) + '">' +
-            '<span class="uic-audio-icon" data-audio-icon>&#9658;</span>' +
-          '</button>' +
-          '<div class="uic-audio-meta">' +
-            '<p class="uic-audio-title">' + escapeHtml(audio.title || 'Your message') + '</p>' +
-            '<div class="uic-audio-bar"><div class="uic-audio-bar-fill" data-audio-fill></div></div>' +
-            '<p class="uic-audio-time"><span data-audio-current>0:00</span> / <span data-audio-duration>' + escapeHtml(audio.duration || '--:--') + '</span></p>' +
-          '</div>' +
+      '<section class="uic-screen uic-screen--reveal-hero">' +
+        '<div class="uic-reveal-hero">' +
+          (greeting ? '<p class="uic-greeting" data-uic-focus tabindex="-1">' + greeting + '</p>' : '<p class="uic-greeting" data-uic-focus tabindex="-1"></p>') +
+          '<p class="uic-know-why">' + escapeHtml(COPY.reveal.knowWhy) + '</p>' +
+          '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.manifestingEyebrow) + '</p>' +
+          '<h1 class="uic-result-title uic-blk">' + escapeHtml(r.resultTitle) + '</h1>' +
+          '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:0 auto" data-action="hero-continue">Continue</button>' +
         '</div>' +
       '</section>'
     );
   }
 
-  function renderActivation(activation) {
-    if (!activation) return '';
-    var a = state.activation;
-    var body = '';
-    if (a.step === 1) {
-      body =
-        '<p class="uic-activation-prompt">' + escapeHtml(activation.prompt1) + '</p>' +
-        '<div class="uic-option-list">' + activation.options1.map(function (o) {
-          return '<button class="uic-option" data-action="activation-1" data-option="' + escapeHtml(o.id) + '" data-label="' + escapeHtml(o.label) + '">' + escapeHtml(o.label) + '</button>';
-        }).join('') + '</div>';
-    } else if (a.step === 2) {
-      body =
-        '<p class="uic-activation-transition">' + escapeHtml(activation.transition) + '</p>' +
-        '<p class="uic-activation-prompt">' + escapeHtml(activation.prompt2) + '</p>' +
-        '<div class="uic-option-list">' + activation.options2.map(function (o) {
-          return '<button class="uic-option" data-action="activation-2" data-option="' + escapeHtml(o.id) + '">' + escapeHtml(o.label) + '</button>';
-        }).join('') + '</div>';
-    } else {
-      body = '<p class="uic-declaration uic-declaration--activation">' + escapeHtml(activation.closing) + '</p>';
-    }
+  function renderRevealError() {
+    return '<section class="uic-screen"><p>Something went wrong. <a href="/universe-is-calling">Start over</a>.</p></section>';
+  }
+
+  // ------------------------------------------------------- REVEAL: AUDIO ----
+  function renderAudioGate() {
+    var r = state.result;
+    if (!r) return renderRevealError();
+    var audio = r.audio;
     return (
-      '<section class="uic-card uic-reveal-section" data-reveal>' +
-        '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.activationIntro) + '</p>' +
-        '<div class="uic-activation" data-activation-step="' + a.step + '">' + body + '</div>' +
+      '<section class="uic-screen uic-screen--audio-gate">' +
+        '<div class="uic-audio-gate-card">' +
+          '<p class="uic-eyebrow" data-uic-focus tabindex="-1">' + escapeHtml(COPY.audioGate.eyebrow) + '</p>' +
+          '<h1 class="uic-transition-headline uic-blk">' + escapeHtml(COPY.audioGate.headline) + '</h1>' +
+          '<div class="uic-audio-player" style="max-width:340px;margin:22px auto 0">' +
+            '<audio class="uic-sr-only" preload="metadata" src="' + escapeHtml(audio.url) + '"></audio>' +
+            '<button class="uic-audio-play" data-action="audio-toggle" aria-label="' + escapeHtml(COPY.a11y.audioPlay) + '">' +
+              '<span class="uic-audio-icon" data-audio-icon>&#9658;</span>' +
+            '</button>' +
+            '<div class="uic-audio-meta">' +
+              '<p class="uic-audio-title">' + escapeHtml(audio.title || 'Your message') + '</p>' +
+              '<div class="uic-audio-bar"><div class="uic-audio-bar-fill" data-audio-fill></div></div>' +
+              '<p class="uic-audio-time"><span data-audio-current>0:00</span> / <span data-audio-duration>' + escapeHtml(audio.duration || '--:--') + '</span></p>' +
+            '</div>' +
+          '</div>' +
+          '<p class="uic-audio-gate-note">' + escapeHtml(COPY.audioGate.note) + '</p>' +
+          '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:0 auto" data-action="audio-gate-continue" ' + (state.audioUnlocked ? '' : 'disabled') + '>' + escapeHtml(COPY.audioGate.continueCta) + '</button>' +
+          (audio.transcript ? (
+            '<button class="uic-transcript-toggle" data-action="toggle-transcript">' + escapeHtml(state.showTranscript ? COPY.audioGate.transcriptToggleOff : COPY.audioGate.transcriptToggleOn) + '</button>' +
+            (state.showTranscript ? '<p class="uic-transcript-text">' + escapeHtml(audio.transcript) + '</p>' : '')
+          ) : '') +
+        '</div>' +
       '</section>'
     );
   }
 
+  // -------------------------------------------------- REVEAL: TRANSITION ----
+  function renderTransition() {
+    return (
+      '<section class="uic-screen uic-screen--transition">' +
+        '<div class="uic-transition-card">' +
+          '<h1 class="uic-transition-headline uic-blk" data-uic-focus tabindex="-1">' + escapeHtml(COPY.transition.headline) + '</h1>' +
+          '<p class="uic-transition-sub">' + escapeHtml(COPY.transition.sub) + '</p>' +
+          '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:0 auto" data-action="transition-continue">' + escapeHtml(COPY.transition.cta) + '</button>' +
+        '</div>' +
+      '</section>'
+    );
+  }
+
+  // ------------------------------------------------------- REVEAL: FULL ----
   function renderProduct(product) {
     if (!product) return '';
     return (
       '<section class="uic-card uic-reveal-section uic-product-card" data-reveal>' +
         '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.productEyebrow) + '</p>' +
         '<p class="uic-eyebrow uic-eyebrow--gold">' + escapeHtml(COPY.reveal.productSubEyebrow) + '</p>' +
-        '<h3 class="uic-product-title">' + escapeHtml(product.title) + '</h3>' +
+        '<h3 class="uic-product-title uic-blk">' + escapeHtml(product.title) + '</h3>' +
         '<p class="uic-product-pitch">' + escapeHtml(product.pitchIntro) + '</p>' +
         '<p class="uic-product-desc">' + escapeHtml(product.description) + '</p>' +
-        '<p class="uic-product-price">' + escapeHtml(product.price) + '</p>' +
+        '<p class="uic-product-price uic-blk">' + escapeHtml(product.price) + '</p>' +
         '<a class="uic-btn uic-btn--primary uic-btn--full" href="' + escapeHtml(product.checkoutUrl) + '" data-action="product-click">' + escapeHtml(product.cta) + '</a>' +
       '</section>'
     );
@@ -387,21 +465,13 @@
 
   function renderReveal() {
     var r = state.result;
-    if (!r) return '<section class="uic-screen"><p>Something went wrong. <a href="/universe-is-calling">Start over</a>.</p></section>';
+    if (!r) return renderRevealError();
 
-    var greeting = state.firstName ? escapeHtml(state.firstName) + '...' : '';
     var cakeHtml = r.redVelvetCake.map(function (p) { return '<p>' + escapeHtml(p) + '</p>'; }).join('');
     var patternParas = r.patternText.split('\n\n').map(function (p) { return '<p>' + escapeHtml(p) + '</p>'; }).join('');
 
     return (
       '<section class="uic-screen uic-screen--reveal">' +
-        '<div class="uic-reveal-hero" data-reveal>' +
-          (greeting ? '<p class="uic-greeting" data-uic-focus tabindex="-1">' + greeting + '</p>' : '<p class="uic-greeting" data-uic-focus tabindex="-1"></p>') +
-          '<p class="uic-know-why">' + escapeHtml(COPY.reveal.knowWhy) + '</p>' +
-          '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.manifestingEyebrow) + '</p>' +
-          '<h1 class="uic-result-title">' + escapeHtml(r.resultTitle) + '</h1>' +
-        '</div>' +
-
         '<section class="uic-card uic-reveal-section" data-reveal>' +
           '<div class="uic-cake">' + cakeHtml + '</div>' +
         '</section>' +
@@ -413,16 +483,14 @@
 
         '<section class="uic-card uic-reveal-section uic-declaration-card" data-reveal>' +
           '<p class="uic-eyebrow">' + escapeHtml(COPY.reveal.messageEyebrow) + '</p>' +
-          '<blockquote class="uic-declaration">&ldquo;' + escapeHtml(r.declaration) + '&rdquo;</blockquote>' +
+          '<blockquote class="uic-declaration uic-blk">&ldquo;' + escapeHtml(r.declaration) + '&rdquo;</blockquote>' +
           '<button class="uic-btn uic-btn--ghost" data-action="share">' + escapeHtml(COPY.reveal.shareCta) + '</button>' +
         '</section>' +
 
-        renderAudioSection(r.audio) +
-        renderActivation(r.activation) +
         renderProduct(r.product) +
 
         '<section class="uic-reveal-footer" data-reveal>' +
-          '<p class="uic-disclaimer">' + escapeHtml(COPY.disclaimer) + '</p>' +
+          '<p class="uic-disclaimer">' + escapeHtml(COPY.disclaimer) + ' <a href="' + escapeHtml(COPY.legal.disclaimerUrl) + '">Read more</a>.</p>' +
           '<button class="uic-btn uic-btn--text" data-action="restart">' + escapeHtml(COPY.reveal.restartCta) + '</button>' +
         '</section>' +
       '</section>'
@@ -436,13 +504,17 @@
       case 'call': html = renderCall(); break;
       case 'intro': html = renderIntro(); break;
       case 'question': html = renderQuestion(); break;
+      case 'tidbit': html = renderTidbit(); break;
       case 'connecting': html = renderConnecting(); break;
       case 'gate': html = renderGate(); break;
       case 'sent': html = renderSent(); break;
+      case 'reveal-hero': html = renderRevealHero(); break;
+      case 'audio-gate': html = renderAudioGate(); break;
+      case 'transition': html = renderTransition(); break;
       case 'reveal': html = renderReveal(); break;
       default: html = renderCall();
     }
-    ROOT.innerHTML = html;
+    ROOT.innerHTML = renderTopbar() + html;
     if (state.screen === 'reveal') initRevealObservers();
   }
 
@@ -486,33 +558,50 @@
     } else if (action === 'answer') {
       var q = currentQuestion();
       var optionId = btn.getAttribute('data-option');
+      var answeredIndex = state.questionIndex;
       setAnswer(q.id, optionId);
-      UIC.analytics.track('uic_question_answered', { question_id: q.id, option_id: optionId, index: state.questionIndex });
-      if (state.questionIndex < QUESTIONS.length - 1) {
-        state.questionIndex += 1;
-        UIC.analytics.track('uic_question_viewed', { question_id: currentQuestion().id, index: state.questionIndex });
-        render();
+      UIC.analytics.track('uic_question_answered', { question_id: q.id, option_id: optionId, index: answeredIndex });
+
+      if (answeredIndex < QUESTIONS.length - 1) {
+        var nextIndex = answeredIndex + 1;
+        if (TIDBIT_AFTER_INDEX.indexOf(answeredIndex) !== -1) {
+          showTidbitThenAdvance(nextIndex);
+        } else {
+          state.questionIndex = nextIndex;
+          UIC.analytics.track('uic_question_viewed', { question_id: currentQuestion().id, index: state.questionIndex });
+          render();
+        }
       } else {
         UIC.analytics.track('uic_questions_completed', { total: QUESTIONS.length });
         setScreen('connecting');
         runConnectingSequence();
         UIC.analytics.track('uic_result_calculated', {});
       }
+    } else if (action === 'tidbit-continue') {
+      advanceFromTidbit();
+    } else if (action === 'hero-continue') {
+      var r = state.result;
+      if (r && r.audio && r.audio.enabled && r.audio.url) {
+        state.audioUnlocked = false;
+        state.showTranscript = false;
+        setScreen('audio-gate');
+      } else {
+        setScreen('transition');
+      }
     } else if (action === 'audio-toggle') {
       toggleAudio(btn);
-    } else if (action === 'activation-1') {
-      state.activation.step = 2;
-      state.activation.choice1 = btn.getAttribute('data-option');
-      state.activation.choice1Label = btn.getAttribute('data-label');
-      UIC.analytics.track('uic_activation_started', { result: state.result.resultKey, choice: state.activation.choice1 });
+    } else if (action === 'toggle-transcript') {
+      state.showTranscript = !state.showTranscript;
+      if (state.showTranscript) {
+        state.audioUnlocked = true; // accessibility fallback — reading counts as "listening"
+        UIC.analytics.track('uic_audio_played', { result: state.result.resultKey, via: 'transcript' });
+      }
       render();
-      var el = ROOT.querySelector('.uic-activation');
-      if (el) el.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
-    } else if (action === 'activation-2') {
-      state.activation.step = 3;
-      state.activation.choice2 = btn.getAttribute('data-option');
-      UIC.analytics.track('uic_activation_completed', { result: state.result.resultKey, choice2: state.activation.choice2 });
-      render();
+    } else if (action === 'audio-gate-continue') {
+      if (!state.audioUnlocked) return;
+      setScreen('transition');
+    } else if (action === 'transition-continue') {
+      setScreen('reveal');
     } else if (action === 'product-click') {
       UIC.analytics.track('uic_product_clicked', { result: state.result.resultKey, product: state.result.product.title });
       // let the <a> navigate normally
@@ -536,10 +625,9 @@
     }
   });
 
-  var audioEl = null;
   function toggleAudio(btn) {
     var wrap = btn.closest('.uic-audio-player');
-    audioEl = wrap.querySelector('audio');
+    var audioEl = wrap.querySelector('audio');
     var icon = wrap.querySelector('[data-audio-icon]');
     var fill = wrap.querySelector('[data-audio-fill]');
     var current = wrap.querySelector('[data-audio-current]');
@@ -548,7 +636,7 @@
       audioEl.play().catch(function () {});
       icon.innerHTML = '&#10074;&#10074;';
       btn.setAttribute('aria-label', COPY.a11y.audioPause);
-      UIC.analytics.track('uic_audio_played', { result: state.result.resultKey });
+      UIC.analytics.track('uic_audio_played', { result: state.result.resultKey, via: 'player' });
       audioEl.ontimeupdate = function () {
         if (!audioEl.duration) return;
         fill.style.width = (audioEl.currentTime / audioEl.duration * 100) + '%';
@@ -557,6 +645,11 @@
       audioEl.onended = function () {
         icon.innerHTML = '&#9658;';
         btn.setAttribute('aria-label', COPY.a11y.audioPlay);
+        if (!state.audioUnlocked) {
+          state.audioUnlocked = true;
+          UIC.analytics.track('uic_audio_gate_unlocked', { result: state.result.resultKey });
+          render();
+        }
       };
     } else {
       audioEl.pause();
@@ -598,8 +691,5 @@
 
   // ----------------------------------------------------------------- INIT ----
   UIC.analytics.track('uic_viewed', {});
-  if (state.screen === 'reveal') {
-    UIC.analytics.track('uic_result_revealed', { result: state.result.resultKey, preview: true });
-  }
   render();
 })();

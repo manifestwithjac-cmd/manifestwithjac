@@ -1,14 +1,20 @@
 # The Universe Is Calling
 
 A fast, interactive manifestation experience for Manifest With Jac. She
-answers a few questions about what she wants, gives her first name + email
-to see her result, and gets an instant personalized "message from the
-universe" — a result archetype, a pattern insight, a quotable declaration,
-an optional audio message, a 20-60 second interactive activation, and one
-matching product recommendation. Behind the scenes she's tagged and routed
-into the right Kit sequence.
+answers 7 questions (with a couple of brief "I see a pattern here" tidbit
+moments along the way, and a real top progress bar so she knows how far
+she's got left), gives her first name + email to see her result, and lands
+on an instant personalized "message from the universe" — a big reveal, a
+required-listen audio message (once you've added one — see AUDIO_ASSETS.md),
+a "your full reading is next" beat, then the full reading: a pattern
+insight, a quotable declaration, and one matching product recommendation.
+Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Live at `/universe-is-calling` once deployed.
+Visual design matches `WEBSITE/shop.html`'s system exactly (Arial / Arial
+Black, black borders, red/gold accents) rather than introducing a new look.
+
+Live at `/universe-is-calling` once deployed. Disclaimer page at
+`/disclaimer`; both are linked from the experience's footer.
 
 ## Table of contents
 
@@ -35,9 +41,11 @@ log/retry queue — see [Failure handling](#failure-handling)).
 
 ```
 WEBSITE/
-  universe-is-calling.html       entry page
+  universe-is-calling.html       entry page + persistent footer (Shop / Disclaimer)
+  disclaimer.html                 standalone disclaimer page, matches shop.html's design
   uic/
-    styles.css                    design system (cream / ink / oxblood / gold)
+    styles.css                    design system — matches shop.html's tokens exactly
+    audio/qa-test-tone.wav        tiny generated tone, QA-only, for testing the audio gate
     app.js                        state machine + rendering, vanilla JS
     engine.js                     scoring/routing — SINGLE SOURCE OF TRUTH,
                                    loaded identically in browser and server
@@ -64,6 +72,13 @@ netlify/functions/
 tests/                            node --test suite (zero extra dependencies)
 content/email-sequences/          source copy for all 21 Kit sequence emails
 ```
+
+**Screen flow:** call → intro → question ×7 (with brief "tidbit" interstitials
+after Q2/Q4/Q6, and a top progress bar throughout) → connecting → email gate
+→ sent → reveal-hero (the big title reveal) → audio-gate (only if that
+result has audio; listening is required to continue) → transition ("your
+full reading is next") → reveal (the full reading: Red Velvet Cake, pattern
+insight, declaration + share, product, footer).
 
 **Why one shared `engine.js`, loaded twice:** the scoring/routing logic is
 written once, in a small UMD-style file, and required unmodified by both the
@@ -126,14 +141,16 @@ request with a forged `result` field is simply ignored (see
 ## Content editing
 
 Full how-to for every editable piece (questions, scoring, results, patterns,
-products, prices, Kit mappings, activations, audio, copy):
-**[CONTENT_GUIDE.md](./CONTENT_GUIDE.md)**.
+products, prices, Kit mappings, tidbits, the audio gate, copy, the footer,
+the visual design system): **[CONTENT_GUIDE.md](./CONTENT_GUIDE.md)**.
 
 ## Audio
 
-The experience works with zero audio files — the "Play Your Message"
-section just doesn't render until you add one. Format/bitrate/naming/wiring
-instructions: **[AUDIO_ASSETS.md](./AUDIO_ASSETS.md)**.
+The experience works with zero audio files — the audio-gate screen is
+skipped entirely until you add a file for a result. Once you do, listening
+to it (or reading the transcript, for accessibility) is **required** before
+she sees the full reading. Format/bitrate/naming/wiring instructions:
+**[AUDIO_ASSETS.md](./AUDIO_ASSETS.md)**.
 
 ## Analytics
 
