@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Universe Is Calling — Manifest With Jac</title>
+<meta name="description" content="Answer the call. A few questions, one message from the universe, and the frequency you're a match for right now.">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="The Universe Is Calling">
+<meta property="og:description" content="You have 1 new message. Answer the call to find out what's trying to manifest for you.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manifestwithjac.netlify.app/universe-is-calling">
+<meta property="og:image" content="https://manifestwithjac.netlify.app/jac-gold-dance.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/uic/styles.css">
+
+<!--
+  Analytics providers (GA4 gtag, Meta Pixel fbq, GTM dataLayer, Plausible) are
+  auto-detected by /uic/analytics.js if present on window — nothing to wire
+  here unless you're adding one for the first time. See README.md#analytics.
+-->
+</head>
+<body class="uic-body">
+  <div id="uic-root" class="uic-app" role="main" aria-live="off"></div>
+  <div id="uic-live" class="uic-sr-only" role="status" aria-live="polite"></div>
+
+  <!-- Config (single source of truth) — order matters, each merges onto window.UIC -->
+  <script src="/uic/config/questions.js"></script>
+  <script src="/uic/config/results.js"></script>
+  <script src="/uic/config/patterns.js"></script>
+  <script src="/uic/config/products.js"></script>
+  <script src="/uic/config/copy.js"></script>
+  <script src="/uic/config/integrations.js"></script>
+  <!-- Engine + analytics also merge onto window.UIC -->
+  <script src="/uic/engine.js"></script>
+  <script src="/uic/analytics.js"></script>
+  <!-- App shell -->
+  <script src="/uic/app.js"></script>
+</body>
+</html>

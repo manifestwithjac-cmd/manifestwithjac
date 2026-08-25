@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UIC Dev Preview — not for production traffic</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/uic/styles.css">
+<style>
+  body.uic-body { display: block; }
+  .uic-preview-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+  .uic-preview-wrap h1 { font-family: var(--serif); font-size: 1.6rem; }
+  .uic-preview-wrap p.note { color: var(--ink-muted); font-size: 0.85rem; margin-bottom: 32px; }
+  .uic-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .uic-preview-grid a {
+    display: block; padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 2px;
+    text-decoration: none; color: var(--ink); font-size: 0.88rem; background: var(--white);
+  }
+  .uic-preview-grid a:hover { border-color: var(--oxblood); }
+  .uic-preview-grid a b { display: block; font-family: var(--serif); font-size: 1rem; }
+  h2 { font-family: var(--serif); margin-top: 36px; font-size: 1.15rem; }
+</style>
+</head>
+<body class="uic-body">
+  <div class="uic-preview-wrap">
+    <h1>THE UNIVERSE IS CALLING — Dev Preview</h1>
+    <p class="note">
+      Not linked from anywhere public. Jumps straight to the result reveal for QA —
+      skips the quiz, skips the email gate, does NOT call Kit. Add
+      <code>&amp;name=Sarah</code> to any link to test the greeting.
+      See QA_MATRIX.md for the full result × pattern × product × Kit-tag map.
+    </p>
+
+    <h2>Every result (default pattern)</h2>
+    <div class="uic-preview-grid" id="uic-preview-results"></div>
+
+    <h2>One result, every pattern (Money Surge)</h2>
+    <div class="uic-preview-grid" id="uic-preview-patterns"></div>
+  </div>
+
+  <script src="/uic/config/questions.js"></script>
+  <script src="/uic/config/results.js"></script>
+  <script src="/uic/config/patterns.js"></script>
+  <script src="/uic/config/products.js"></script>
+  <script src="/uic/config/copy.js"></script>
+  <script>
+    var resultsEl = document.getElementById('uic-preview-results');
+    UIC.RESULTS.forEach(function (r) {
+      var a = document.createElement('a');
+      a.href = '/universe-is-calling?uic_preview=1&result=' + r.key + '&name=Sarah';
+      a.innerHTML = '<b>' + r.title + '</b>' + r.key + ' → ' + r.productSlug;
+      resultsEl.appendChild(a);
+    });
+
+    var patternsEl = document.getElementById('uic-preview-patterns');
+    UIC.PATTERNS.forEach(function (p) {
+      var a = document.createElement('a');
+      a.href = '/universe-is-calling?uic_preview=1&result=money_surge&pattern=' + p.key + '&name=Sarah';
+      a.innerHTML = '<b>' + p.label + '</b>money_surge + ' + p.key;
+      patternsEl.appendChild(a);
+    });
+  </script>
+</body>
+</html>
