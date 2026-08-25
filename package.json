@@ -1,0 +1,15 @@
+{
+  "name": "the-universe-is-calling",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Manifest With Jac — THE UNIVERSE IS CALLING interactive experience + Kit integration.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

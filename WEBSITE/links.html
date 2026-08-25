@@ -112,6 +112,27 @@
     padding:4px 12px;border-radius:100px;white-space:nowrap;
   }
 
+  /* THE UNIVERSE IS CALLING — distinct oxblood treatment, not a product pill */
+  .pill-call{
+    display:block;text-decoration:none;text-align:center;
+    background:linear-gradient(160deg,#2a0d12,#1a0508);
+    border:1.5px solid var(--red);
+    border-radius:14px;
+    padding:22px 26px;
+    position:relative;
+    box-shadow:0 4px 16px rgba(214,56,56,0.18);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .pill-call:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(214,56,56,0.26);}
+  .pill-call:active{transform:translateY(0);}
+  .pill-call .pill-label{color:#fdf6f0;}
+  .pill-call .pill-name{color:#e8c9c9;}
+  .badge-call{
+    display:inline-block;margin-bottom:8px;
+    font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold-light);
+  }
+
   /* FOOTER */
   .footer{text-align:center;margin-top:30px;}
   .socials{display:flex;gap:14px;justify-content:center;margin-bottom:16px;}
@@ -145,6 +166,13 @@
     </div>
     <p class="cred reveal d2">100's of women helped · 5x entrepreneur · 4x certified</p>
   </header>
+
+  <!-- ===== THE UNIVERSE IS CALLING ===== -->
+  <a class="pill pill-call reveal d2" href="https://manifestwithjac.netlify.app/universe-is-calling" style="display:block;margin-bottom:26px;">
+    <span class="badge-call">☎ You have 1 new message</span>
+    <span class="pill-label">The Universe Is Calling</span>
+    <span class="pill-name">Answer a few questions. Get your message — instantly, in your browser.</span>
+  </a>
 
   <div class="section-head reveal d2"><span>Choose your portal</span></div>
 
