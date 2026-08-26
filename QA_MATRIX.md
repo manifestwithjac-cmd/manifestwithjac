@@ -23,19 +23,26 @@ results above (70 combinations), via `WEBSITE/uic/config/patterns.js`.
 
 ## One valid answer path per result (for manual QA)
 
-Take the quiz start to finish using these answers to land on each result —
-these exact paths are also asserted in `tests/engine.test.js`:
+Take the quiz start to finish, picking Q1 as shown — since Q2/Q3/Q6 are
+conditional on Q1 (see CONTENT_GUIDE.md), whichever Q1 answer you pick,
+**any** option in Q2/Q3/Q6 after it reinforces the same result, so you don't
+need to hunt for a specific line. These exact paths (using each desire's
+first conditional option) are also asserted in `tests/engine.test.js`:
 
-- **Money Surge:** Q1 "More money" → Q2 "$10,000 received." → Q6 "I have more money than I know what to do with."
-- **Sold-Out Era:** Q1 "My business / sales" → Q2 "You have 17 new orders." → Q6 "My business is absolutely blowing up."
-- **Glow-Up:** Q1 "My beauty / confidence" → Q6 "I look and feel completely different."
-- **Magnetic Era:** Q5 "Star" → Q1 "Everything, honestly"
-- **Love Upgrade:** Q1 "My love life" → Q2 "A message from someone I actually want." → Q6 "I am loved ridiculously well."
-- **Luck Streak:** Q1 "My luck / opportunities" → Q2 "An unexpected opportunity. A yes." → Q6 "Everything keeps working out for me."
-- **Life Upgrade:** Q1 "My lifestyle" → Q2 "Your reservation is confirmed." → Q6 "My life feels expensive in the best way."
+- **Money Surge:** Q1 "More money" → Q2/Q3/Q6: any option (all reinforce money)
+- **Sold-Out Era:** Q1 "My business / sales" → Q2/Q3/Q6: any option
+- **Glow-Up:** Q1 "My beauty / confidence" → Q2/Q3/Q6: any option
+- **Magnetic Era:** Q5 "Star" → Q1 "Everything, honestly" (magnetism has no
+  direct Q1 option, so it's reached via the symbol pick + a Q1 tie)
+- **Love Upgrade:** Q1 "My love life" → Q2/Q3/Q6: any option
+- **Luck Streak:** Q1 "My luck / opportunities" → Q2/Q3/Q6: any option
+- **Life Upgrade:** Q1 "My lifestyle" → Q2/Q3/Q6: any option
 
 Any unanswered questions in a path above can be answered arbitrarily — they
-won't change the outcome for that path.
+won't change the outcome for that path. If Q1 is "Everything, honestly"
+instead, Q2/Q3/Q6 fall back to the original mixed list spanning all 7
+desires (the `general` bucket in `questions.js`) — worth spot-checking too,
+since it's the one case where conditional branching doesn't apply.
 
 ## Fast QA without retaking the quiz
 

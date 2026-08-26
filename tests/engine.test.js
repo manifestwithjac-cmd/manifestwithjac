@@ -10,14 +10,17 @@ const { PRODUCTS } = require(path.join('..', 'WEBSITE', 'uic', 'config', 'produc
 const { QUESTIONS } = require(path.join('..', 'WEBSITE', 'uic', 'config', 'questions.js'));
 
 // One representative answer path per archetype (mirrors QA_MATRIX.md).
+// Q2/Q3/Q6 are conditional on Q1's leading desire (see questions.js), so
+// these paths use each desire's own option ids, not the shared "general"
+// fallback (which only appears when Q1 was "Everything, honestly").
 const PATHS_BY_RESULT = {
-  money_surge: [['q1_transform', 'money'], ['q2_notification', 'cash'], ['q6_six_months', 'more-money']],
-  sold_out_era: [['q1_transform', 'business'], ['q2_notification', 'orders'], ['q6_six_months', 'business-blowing-up']],
-  glow_up: [['q1_transform', 'beauty'], ['q6_six_months', 'look-feel-different']],
+  money_surge: [['q1_transform', 'money'], ['q2_notification', 'q2-money-1'], ['q6_six_months', 'q6-money-1']],
+  sold_out_era: [['q1_transform', 'business'], ['q2_notification', 'q2-biz-1'], ['q6_six_months', 'q6-biz-1']],
+  glow_up: [['q1_transform', 'beauty'], ['q6_six_months', 'q6-beauty-1']],
   magnetic_era: [['q5_symbol', 'star'], ['q1_transform', 'everything']],
-  love_upgrade: [['q1_transform', 'love'], ['q2_notification', 'text'], ['q6_six_months', 'loved-well']],
-  luck_streak: [['q1_transform', 'luck'], ['q2_notification', 'opportunity'], ['q6_six_months', 'working-out']],
-  life_upgrade: [['q1_transform', 'lifestyle'], ['q2_notification', 'reservation'], ['q6_six_months', 'life-expensive']]
+  love_upgrade: [['q1_transform', 'love'], ['q2_notification', 'q2-love-1'], ['q6_six_months', 'q6-love-1']],
+  luck_streak: [['q1_transform', 'luck'], ['q2_notification', 'q2-luck-1'], ['q6_six_months', 'q6-luck-1']],
+  life_upgrade: [['q1_transform', 'lifestyle'], ['q2_notification', 'q2-life-1'], ['q6_six_months', 'q6-life-1']]
 };
 
 test('every result archetype is reachable through a valid answer combination', () => {
@@ -100,16 +103,35 @@ test('conditional question 7 offers options matching the leading desire', () => 
   assert.ok(loveLeaning.every((o) => o.id.startsWith('q7-love-')));
 });
 
+test('conditional questions 2, 3, and 6 all reflect the leading desire — not a mixed generic list', () => {
+  const byId = (id) => QUESTIONS.find((q) => q.id === id);
+  const beautyScores = { money: 0, business: 0, beauty: 10, magnetism: 0, love: 0, luck: 0, lifestyle: 0 };
+
+  ['q2_notification', 'q3_thinking', 'q6_six_months'].forEach((qid) => {
+    const q = byId(qid);
+    const opts = q.resolveOptions([], beautyScores);
+    assert.ok(opts.length > 0, `${qid} returned no options`);
+    assert.ok(opts.every((o) => o.id.startsWith('q' + qid[1] + '-beauty-')), `${qid} did not return beauty-flavored options: ${opts.map((o) => o.id)}`);
+  });
+});
+
+test('Q2/Q3/Q6 fall back to the shared "general" mixed list only when Q1 was "Everything, honestly" (a tie)', () => {
+  const q2 = QUESTIONS.find((q) => q.id === 'q2_notification');
+  const tiedScores = { money: 1, business: 1, beauty: 1, magnetism: 1, love: 1, luck: 1, lifestyle: 1 };
+  const opts = q2.resolveOptions([], tiedScores);
+  assert.ok(opts.some((o) => o.id === 'cash'), 'expected the original general-fallback option ids when nothing is leading');
+});
+
 test('secondary desire is the runner-up, and null when nothing else scored', () => {
   const answers = [{ questionId: 'q1_transform', optionId: 'money' }];
   const result = engine.resolveResult(answers, { firstName: 'Test' });
   assert.equal(result.secondaryDesire, null);
 
   const answersTwo = [
-    { questionId: 'q1_transform', optionId: 'money' },   // money +4
-    { questionId: 'q2_notification', optionId: 'text' }  // love +5 (outright leader, no tie)
+    { questionId: 'q1_transform', optionId: 'money' },        // money +4
+    { questionId: 'q2_notification', optionId: 'q2-money-5' } // "Refund: $2,400." -> money +4, luck +1
   ];
   const resultTwo = engine.resolveResult(answersTwo, { firstName: 'Test' });
-  assert.equal(resultTwo.resultKey, 'love_upgrade');
-  assert.equal(resultTwo.secondaryDesire, 'money');
+  assert.equal(resultTwo.resultKey, 'money_surge');
+  assert.equal(resultTwo.secondaryDesire, 'luck');
 });
