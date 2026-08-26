@@ -310,6 +310,37 @@
     ]
   };
 
+  // The three-card reading, pulled AFTER all real questions (not mixed into
+  // the numbered quiz — see CONTENT_GUIDE.md "The three-card reading").
+  // Purely atmospheric beyond the light desire weights below — same role
+  // the single symbol pick used to play, now staged as an actual reading
+  // instead of one isolated pick in the middle of the quiz.
+  var CARD_SYMBOLS = [
+    { id: 'coin', label: 'The Gold Coin', meaning: 'Abundance, arriving in tangible form.', image: '/uic/symbols/coin.svg', weights: { desire: { money: 3 } } },
+    { id: 'key', label: 'The Key', meaning: 'An unlock. A door about to open.', image: '/uic/symbols/key.svg', weights: { desire: { lifestyle: 2, luck: 1 } } },
+    { id: 'mirror', label: 'The Mirror', meaning: 'Self-recognition — the glow that was already underneath.', image: '/uic/symbols/mirror.svg', weights: { desire: { beauty: 3 } } },
+    { id: 'crystal', label: 'The Crystal', meaning: 'Clarity. A frequency, amplified.', image: '/uic/symbols/crystal.svg', weights: { desire: { magnetism: 2, luck: 1 } } },
+    { id: 'star', label: 'The Star', meaning: 'Being seen. Being remembered.', image: '/uic/symbols/star.svg', weights: { desire: { magnetism: 3 } } },
+    { id: 'flame', label: 'The Flame', meaning: 'Desire. Chemistry. Ignition.', image: '/uic/symbols/flame.svg', weights: { desire: { love: 2, magnetism: 1 } } },
+    { id: 'doorway', label: 'The Golden Doorway', meaning: 'A new chapter — already open.', image: '/uic/symbols/doorway.svg', weights: { desire: { lifestyle: 3, luck: 1 } } }
+  ];
+
+  /** Card ids already committed at positions before `uptoPosition`. */
+  function pickedCardIds(answersSoFar, uptoPosition) {
+    var ids = [];
+    for (var i = 1; i < uptoPosition; i++) {
+      var qid = 'card_pull_' + i;
+      var found = null;
+      (answersSoFar || []).forEach(function (a) { if (a.questionId === qid) found = a; });
+      if (found) ids.push(found.optionId);
+    }
+    return ids;
+  }
+
+  function cardOptionsExcluding(excludeIds) {
+    return CARD_SYMBOLS.filter(function (o) { return excludeIds.indexOf(o.id) === -1; });
+  }
+
   var QUESTIONS = [
     {
       id: 'q1_transform',
@@ -358,24 +389,6 @@
       ]
     },
     {
-      id: 'q5_symbol',
-      // 'card-pull': a blind spread of face-down cards — she picks one
-      // without seeing what it is, then it flips to reveal the symbol +
-      // meaning. Purely atmospheric beyond the light desire weights below
-      // (same role the old visible symbol-grid played) — see CONTENT_GUIDE.md.
-      type: 'card-pull',
-      prompt: "Don't think. Pick the one pulling you in.",
-      options: [
-        { id: 'coin', label: 'The Gold Coin', meaning: 'Abundance, arriving in tangible form.', image: '/uic/symbols/coin.svg', weights: { desire: { money: 3 } } },
-        { id: 'key', label: 'The Key', meaning: 'An unlock. A door about to open.', image: '/uic/symbols/key.svg', weights: { desire: { lifestyle: 2, luck: 1 } } },
-        { id: 'mirror', label: 'The Mirror', meaning: 'Self-recognition — the glow that was already underneath.', image: '/uic/symbols/mirror.svg', weights: { desire: { beauty: 3 } } },
-        { id: 'crystal', label: 'The Crystal', meaning: 'Clarity. A frequency, amplified.', image: '/uic/symbols/crystal.svg', weights: { desire: { magnetism: 2, luck: 1 } } },
-        { id: 'star', label: 'The Star', meaning: 'Being seen. Being remembered.', image: '/uic/symbols/star.svg', weights: { desire: { magnetism: 3 } } },
-        { id: 'flame', label: 'The Flame', meaning: 'Desire. Chemistry. Ignition.', image: '/uic/symbols/flame.svg', weights: { desire: { love: 2, magnetism: 1 } } },
-        { id: 'doorway', label: 'The Golden Doorway', meaning: 'A new chapter — already open.', image: '/uic/symbols/doorway.svg', weights: { desire: { lifestyle: 3, luck: 1 } } }
-      ]
-    },
-    {
       id: 'q6_six_months',
       type: 'select',
       decisive: true,
@@ -392,6 +405,26 @@
         var lead = leadingDesire(runningDesireScores) || 'lifestyle';
         return Q7_BY_DESIRE[lead] || Q7_BY_DESIRE.lifestyle;
       }
+    },
+    // ---- the three-card reading (not counted in the numbered progress bar
+    // — app.js's renderTopbar() excludes type:'card-pull' from the count) ----
+    {
+      id: 'card_pull_1',
+      type: 'card-pull',
+      prompt: "Pull three cards. Don't think.",
+      resolveOptions: function () { return CARD_SYMBOLS; }
+    },
+    {
+      id: 'card_pull_2',
+      type: 'card-pull',
+      prompt: "Pull three cards. Don't think.",
+      resolveOptions: function (answersSoFar) { return cardOptionsExcluding(pickedCardIds(answersSoFar, 2)); }
+    },
+    {
+      id: 'card_pull_3',
+      type: 'card-pull',
+      prompt: "Pull three cards. Don't think.",
+      resolveOptions: function (answersSoFar) { return cardOptionsExcluding(pickedCardIds(answersSoFar, 3)); }
     }
   ];
 

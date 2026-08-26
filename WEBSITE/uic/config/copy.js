@@ -83,19 +83,23 @@
       productEyebrow: 'BEFORE I GO...',
       productSubEyebrow: 'YOUR FREQUENCY MATCH:',
       shareCta: 'Save / Share My Message',
+      // The reading (cake/pattern/declaration) and the product recommendation
+      // are two separate screens on purpose — she finishes the reading, then
+      // taps through to "here's what I recommend and why."
+      readingContinueCta: "There's One More Thing",
       restartCta: 'Answer Another Call'
     },
     // Shown after the hero reveal, before the full reading — only when the
     // result has audio configured (see results.js audio.enabled). Skipped
     // entirely if there's no audio yet.
     audioGate: {
-      eyebrow: 'ONE MORE THING BEFORE YOUR READING',
+      eyebrow: 'YOUR MESSAGE IS RECORDED',
       // {{duration}} is replaced with result.audio.duration when set (e.g. "0:47");
-      // otherwise headlineDefault is used, which promises "under a minute" —
+      // otherwise headlineDefault is used, which promises "a short audio" —
       // keep that promise true when you record real messages. See AUDIO_ASSETS.md.
-      headlineWithDuration: "Press play — this one's {{duration}}.",
-      headlineDefault: "Press play — this one's under a minute.",
-      note: 'Your full reading is on the other side of this.',
+      headlineWithDuration: 'Your reading is available after this — just {{duration}}.',
+      headlineDefault: 'Your reading is available after this short audio.',
+      note: "Press play. No skipping ahead — I need you to hear all of it.",
       continueCta: 'See My Full Reading',
       transcriptToggleOn: "Can't listen right now? Read the transcript instead.",
       transcriptToggleOff: 'Hide transcript'

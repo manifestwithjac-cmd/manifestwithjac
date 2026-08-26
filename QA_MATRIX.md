@@ -32,8 +32,9 @@ first conditional option) are also asserted in `tests/engine.test.js`:
 - **Money Surge:** Q1 "More money" → Q2/Q3/Q6: any option (all reinforce money)
 - **Sold-Out Era:** Q1 "My business / sales" → Q2/Q3/Q6: any option
 - **Glow-Up:** Q1 "My beauty / confidence" → Q2/Q3/Q6: any option
-- **Magnetic Era:** Q5 "Star" → Q1 "Everything, honestly" (magnetism has no
-  direct Q1 option, so it's reached via the symbol pick + a Q1 tie)
+- **Magnetic Era:** Q1 "Everything, honestly" → pull "The Star" as any one of
+  your three cards (magnetism has no direct Q1 option, so it's reached via
+  a Q1 tie + the card reading)
 - **Love Upgrade:** Q1 "My love life" → Q2/Q3/Q6: any option
 - **Luck Streak:** Q1 "My luck / opportunities" → Q2/Q3/Q6: any option
 - **Life Upgrade:** Q1 "My lifestyle" → Q2/Q3/Q6: any option
@@ -51,9 +52,12 @@ generates links to `/universe-is-calling?uic_preview=1&result={key}&pattern={key
 for every result and every pattern. This mode **never calls Kit** — safe to
 click through repeatedly. Extra query params for testing the staged reveal:
 
-- `&stage=hero|audio|transition|full` — jump straight to any point in the
-  reveal sequence (default `full`, i.e. the complete reading — the old
-  behavior).
+- `&stage=hero|audio|transition|full|product` — jump straight to any point
+  in the reveal sequence: `hero` (result name/identity reveal), `audio`
+  (the required-listen gate), `transition` ("your full reading is next"),
+  `full` (default — the reading screen: cake, pattern, declaration, share
+  card, no product), `product` (the second screen — product recommendation
+  + why + disclaimer + footer).
 - `&audio=1` — force the result's audio to the bundled 2-second QA test tone
   (`WEBSITE/uic/audio/qa-test-tone.wav`), so you can test the required-listen
   gate and its disabled/enabled continue button before real audio exists.
@@ -73,7 +77,9 @@ Example: `/universe-is-calling?uic_preview=1&result=money_surge&stage=audio&audi
 | Client tries to submit a fabricated `result` field | Ignored — server always recomputes from raw answers | `tests/uic-submit.test.js` |
 | No audio configured for a result | Audio-gate screen skipped entirely, straight to the "full reading is next" transition | `hero-continue` handler in `app.js` |
 | Audio configured, not yet finished playing | "See My Full Reading" stays disabled | `renderAudioGate()` / `audioUnlocked` in `app.js` |
+| User tries to scrub/seek/fast-forward the audio | Playhead is silently snapped back to the last position actually heard — no seeking ahead, no way to skip to the end | `onseeking`/`ontimeupdate` handlers in `toggleAudio()` in `app.js` |
 | Can't listen (accessibility) | "Read the transcript instead" link also unlocks continuing | `toggle-transcript` handler in `app.js` |
+| User closes the reading screen before seeing the product | Reading and product recommendation are two separate sequential screens (`reveal` → `reveal-product`); product/pitch/disclaimer/footer only exist on the second screen, reached via "There's One More Thing" | `renderReveal()` / `renderRevealProduct()` in `app.js` |
 | Missing/placeholder product checkout URL | Button still renders (don't silently hide a CTA); fix the URL in `products.js` before launch | `products.js` `placeholder: true` flag |
 | Refresh mid-quiz | Restarts at the call screen (session isn't persisted across reload by design — quiz is short) | — |
 | Back button on question 2+ | Previous answer preserved, re-answering replaces it (no double-counted weight) | `setAnswer()` in `app.js` |
@@ -83,6 +89,8 @@ Example: `/universe-is-calling?uic_preview=1&result=money_surge&stage=audio&audi
 ## Automated tests
 
 `npm test` runs `tests/engine.test.js` (scoring, tie-breaking, routing,
-product mapping, conditional Q7) and `tests/uic-submit.test.js` (validation,
-honeypot, Kit success/failure paths, forged-result rejection) — 18 assertions
-total, all passing as of this build.
+product mapping, conditional Q2/Q3/Q6/Q7, and the three-card reading —
+draw-without-replacement across positions 1–3, confirming `q5_symbol` no
+longer exists as a standalone question) and `tests/uic-submit.test.js`
+(validation, honeypot, Kit success/failure paths, forged-result rejection)
+— 22 assertions total, all passing as of this build.

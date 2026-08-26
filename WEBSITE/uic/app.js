@@ -4,10 +4,13 @@
  * Reads config + engine + analytics off the shared `UIC` namespace (see the
  * <script> load order in universe-is-calling.html).
  *
- * Flow: call -> intro -> question (x7, with "tidbit" interstitials after
- * questions 2/4/6) -> connecting -> email gate -> sent -> reveal-hero ->
- * audio-gate (only if the result has audio configured; listening required
- * before continuing) -> transition -> reveal (the full reading).
+ * Flow: call -> intro -> question (x6, with "tidbit" interstitials after
+ * Q2/Q4/Q7) -> the three-card reading (card_pull_1/2/3, not counted in the
+ * numbered progress bar) -> connecting -> email gate -> sent -> reveal-hero
+ * -> audio-gate (only if the result has audio configured; listening
+ * required, no seeking, before continuing) -> transition -> reveal (the
+ * reading) -> reveal-product (the frequency-match recommendation, its own
+ * screen — see PHASE notes in CONTENT_GUIDE.md).
  */
 (function () {
   'use strict';
@@ -15,11 +18,13 @@
   var ROOT = document.getElementById('uic-root');
   var LIVE = document.getElementById('uic-live');
   var QUESTIONS = UIC.QUESTIONS;
+  var PROGRESS_QUESTIONS = QUESTIONS.filter(function (q) { return q.type !== 'card-pull'; });
   var COPY = UIC.COPY;
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Show a brief engagement "tidbit" after finishing these question indices
-  // (0-based) — i.e. after Q2, Q4, Q6 out of 7. See CONTENT_GUIDE.md.
+  // Show a brief engagement "tidbit" after finishing these indices within
+  // PROGRESS_QUESTIONS (0-based) — after Q2, Q4, and the last real question
+  // (right before the card reading begins). See CONTENT_GUIDE.md.
   var TIDBIT_AFTER_INDEX = [1, 3, 5];
 
   function uuid() {
@@ -95,7 +100,7 @@
       product: PRODUCTS[r.productSlug], primaryDesire: r.desireKey, secondaryDesire: null
     };
     var stage = qp.get('stage') || 'full';
-    state.screen = stage === 'hero' ? 'reveal-hero' : stage === 'audio' ? 'audio-gate' : stage === 'transition' ? 'transition' : 'reveal';
+    state.screen = stage === 'hero' ? 'reveal-hero' : stage === 'audio' ? 'audio-gate' : stage === 'transition' ? 'transition' : stage === 'product' ? 'reveal-product' : 'reveal';
   }
 
   function setAnswer(questionId, optionId, freeText) {
@@ -131,7 +136,7 @@
     if (name === 'reveal-hero' && state.result) {
       UIC.analytics.track('uic_result_revealed', { result: state.result.resultKey, pattern: state.result.patternKey });
     }
-    if (name === 'reveal' && state.result && state.result.product) {
+    if (name === 'reveal-product' && state.result && state.result.product) {
       UIC.analytics.track('uic_product_viewed', { result: state.result.resultKey, product: state.result.product.title });
     }
   }
@@ -173,7 +178,8 @@
   // ---------------------------------------------------------- TOP PROGRESS ----
   function renderTopbar() {
     if (state.screen !== 'question' && state.screen !== 'tidbit') return '';
-    var total = QUESTIONS.length;
+    if (currentQuestion().type === 'card-pull') return ''; // the reading has its own pacing, not a numbered step
+    var total = PROGRESS_QUESTIONS.length;
     var current = Math.min(state.questionIndex + 1, total);
     var pct = Math.round((state.questionIndex / total) * 100);
     return (
@@ -228,19 +234,80 @@
   }
 
   // ---------------------------------------------------------- CARD PULL ----
-  // A blind spread of face-down cards. She picks one without seeing what's
-  // under it, then it flips to reveal — matches "Don't think" far better
-  // than a grid of fully-visible labeled options ever could.
+  // A blind spread of face-down cards, drawn one at a time across 3
+  // positions — a real 3-card reading (not one isolated pick mid-quiz).
+  // She picks without seeing what's under it, then it flips to reveal.
+  var CARD_POSITION_LABELS = {
+    card_pull_1: "What's Already Moving",
+    card_pull_2: "What You've Been Missing",
+    card_pull_3: "What's About to Shift"
+  };
+  var ALL_CARDS = UIC.QUESTIONS.find(function (q) { return q.id === 'card_pull_1'; }).resolveOptions([]);
+
+  function findCardById(id) {
+    var found = null;
+    ALL_CARDS.forEach(function (o) { if (o.id === id) found = o; });
+    return found;
+  }
+
+  function cardPosition(questionId) {
+    var m = /card_pull_(\d)/.exec(questionId);
+    return m ? parseInt(m[1], 10) : 1;
+  }
+
+  function priorCardsBefore(position) {
+    var out = [];
+    for (var i = 1; i < position; i++) {
+      var a = getAnswer('card_pull_' + i);
+      if (a) out.push({ position: i, card: findCardById(a.optionId) });
+    }
+    return out;
+  }
+
+  function cardPriorStripHtml(priorCards) {
+    if (!priorCards.length) return '';
+    return '<div class="uic-card-prior-strip">' + priorCards.map(function (p) {
+      return (
+        '<div class="uic-card-prior-chip">' +
+          '<span class="uic-card-prior-glyph" aria-hidden="true">' + symbolGlyph(p.card.id) + '</span>' +
+          '<span class="uic-card-prior-label">' + escapeHtml(CARD_POSITION_LABELS['card_pull_' + p.position]) + '</span>' +
+        '</div>'
+      );
+    }).join('') + '</div>';
+  }
+
   function renderCardPull(q) {
+    var position = cardPosition(q.id);
     var options = optionsForQuestion(q);
     var existing = getAnswer(q.id);
     var revealedId = state.cardPullPending || (existing && existing.optionId);
-    var revealed = revealedId ? options.find(function (o) { return o.id === revealedId; }) : null;
+    var revealed = revealedId ? findCardById(revealedId) : null;
+    var priorCards = priorCardsBefore(position);
+    var isFinalReading = position === 3 && revealed;
 
     var body;
-    if (revealed) {
+    if (isFinalReading) {
+      var allThree = priorCards.concat([{ position: 3, card: revealed }]);
       body = (
+        '<p class="uic-card-reading-intro">Your Reading</p>' +
+        '<div class="uic-card-final-row">' + allThree.map(function (p) {
+          return (
+            '<div class="uic-card-final">' +
+              '<p class="uic-card-position-label">' + escapeHtml(CARD_POSITION_LABELS['card_pull_' + p.position]) + '</p>' +
+              '<div class="uic-card-face uic-card-face--small">' +
+                '<span class="uic-card-face-glyph" aria-hidden="true">' + symbolGlyph(p.card.id) + '</span>' +
+                '<p class="uic-card-face-title uic-blk">' + escapeHtml(p.card.label) + '</p>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join('') + '</div>' +
+        '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:22px auto 0" data-action="card-pull-continue">Continue</button>'
+      );
+    } else if (revealed) {
+      body = (
+        cardPriorStripHtml(priorCards) +
         '<div class="uic-card-revealed">' +
+          '<p class="uic-card-position-label">' + escapeHtml(CARD_POSITION_LABELS[q.id]) + '</p>' +
           '<div class="uic-card-face">' +
             '<span class="uic-card-face-glyph" aria-hidden="true">' + symbolGlyph(revealed.id) + '</span>' +
             '<p class="uic-card-face-title uic-blk">' + escapeHtml(revealed.label) + '</p>' +
@@ -254,16 +321,17 @@
       var cardsHtml = options.map(function (o) {
         return '<button class="uic-card-back" data-action="pull-card" data-option="' + escapeHtml(o.id) + '" aria-label="Pull a card"><span class="uic-card-back-mark" aria-hidden="true">&#10022;</span></button>';
       }).join('');
-      body = '<div class="uic-card-spread">' + cardsHtml + '</div>';
+      body = cardPriorStripHtml(priorCards) + '<div class="uic-card-spread">' + cardsHtml + '</div>';
     }
 
+    var promptText = typeof q.prompt === 'function' ? q.prompt(state.answers) : q.prompt;
     return (
       '<section class="uic-screen uic-screen--question uic-screen--card-pull">' +
         '<div class="uic-question-card">' +
           (state.questionIndex > 0
             ? '<button class="uic-back" data-action="back" aria-label="' + escapeHtml(COPY.a11y.backButton) + '">&larr;</button>'
             : '') +
-          '<h2 class="uic-question-prompt" data-uic-focus tabindex="-1">' + escapeHtml(q.prompt) + '</h2>' +
+          '<h2 class="uic-question-prompt" data-uic-focus tabindex="-1">' + escapeHtml(promptText) + '</h2>' +
           body +
         '</div>' +
       '</section>'
@@ -484,7 +552,7 @@
           '<p class="uic-eyebrow" data-uic-focus tabindex="-1">' + escapeHtml(COPY.audioGate.eyebrow) + '</p>' +
           '<h1 class="uic-transition-headline uic-blk">' + escapeHtml(headline) + '</h1>' +
           '<div class="uic-audio-player" style="max-width:340px;margin:22px auto 0">' +
-            '<audio class="uic-sr-only" preload="metadata" src="' + escapeHtml(audio.url) + '"></audio>' +
+            '<audio class="uic-sr-only" preload="metadata" tabindex="-1" controlslist="nodownload noplaybackrate" disableremoteplayback src="' + escapeHtml(audio.url) + '"></audio>' +
             '<button class="uic-audio-play" data-action="audio-toggle" aria-label="' + escapeHtml(COPY.a11y.audioPlay) + '">' +
               '<span class="uic-audio-icon" data-audio-icon>&#9658;</span>' +
             '</button>' +
@@ -558,8 +626,22 @@
           '<button class="uic-btn uic-btn--ghost" data-action="share">' + escapeHtml(COPY.reveal.shareCta) + '</button>' +
         '</section>' +
 
-        renderProduct(r.product) +
+        '<section class="uic-reveal-continue" data-reveal>' +
+          '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:0 auto" data-action="reveal-continue">' + escapeHtml(COPY.reveal.readingContinueCta) + '</button>' +
+        '</section>' +
+      '</section>'
+    );
+  }
 
+  // ---------------------------------------------------- REVEAL: PRODUCT ----
+  // Its own screen, on purpose — the reading finishes, she taps through,
+  // THEN gets "here's what I recommend and why."
+  function renderRevealProduct() {
+    var r = state.result;
+    if (!r) return renderRevealError();
+    return (
+      '<section class="uic-screen uic-screen--reveal-product">' +
+        renderProduct(r.product) +
         '<section class="uic-reveal-footer" data-reveal>' +
           '<p class="uic-disclaimer">' + escapeHtml(COPY.disclaimer) + ' <a href="' + escapeHtml(COPY.legal.disclaimerUrl) + '">Read more</a>.</p>' +
           '<button class="uic-btn uic-btn--text" data-action="restart">' + escapeHtml(COPY.reveal.restartCta) + '</button>' +
@@ -583,10 +665,11 @@
       case 'audio-gate': html = renderAudioGate(); break;
       case 'transition': html = renderTransition(); break;
       case 'reveal': html = renderReveal(); break;
+      case 'reveal-product': html = renderRevealProduct(); break;
       default: html = renderCall();
     }
     ROOT.innerHTML = renderTopbar() + html;
-    if (state.screen === 'reveal') initRevealObservers();
+    if (state.screen === 'reveal' || state.screen === 'reveal-product') initRevealObservers();
   }
 
   function initRevealObservers() {
@@ -668,6 +751,8 @@
       setScreen('transition');
     } else if (action === 'transition-continue') {
       setScreen('reveal');
+    } else if (action === 'reveal-continue') {
+      setScreen('reveal-product');
     } else if (action === 'product-click') {
       UIC.analytics.track('uic_product_clicked', { result: state.result.resultKey, product: state.result.product.title });
       // let the <a> navigate normally
@@ -703,8 +788,23 @@
       icon.innerHTML = '&#10074;&#10074;';
       btn.setAttribute('aria-label', COPY.a11y.audioPause);
       UIC.analytics.track('uic_audio_played', { result: state.result.resultKey, via: 'player' });
+
+      // Required listen, no skipping ahead: track the furthest point actually
+      // played and snap back any jump beyond it (media-key "skip forward",
+      // a stray keyboard seek, scrubbing via devtools, etc). Pausing/resuming
+      // is still fine — that's not a skip, just a delay.
+      var lastSafeTime = audioEl._uicLastSafeTime || 0;
+      audioEl.onseeking = function () {
+        if (audioEl.currentTime > lastSafeTime + 0.5) {
+          audioEl.currentTime = lastSafeTime;
+        }
+      };
       audioEl.ontimeupdate = function () {
         if (!audioEl.duration) return;
+        if (audioEl.currentTime > lastSafeTime) {
+          lastSafeTime = audioEl.currentTime;
+          audioEl._uicLastSafeTime = lastSafeTime;
+        }
         fill.style.width = (audioEl.currentTime / audioEl.duration * 100) + '%';
         current.textContent = formatTime(audioEl.currentTime);
       };

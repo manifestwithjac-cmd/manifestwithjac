@@ -17,7 +17,7 @@ const PATHS_BY_RESULT = {
   money_surge: [['q1_transform', 'money'], ['q2_notification', 'q2-money-1'], ['q6_six_months', 'q6-money-1']],
   sold_out_era: [['q1_transform', 'business'], ['q2_notification', 'q2-biz-1'], ['q6_six_months', 'q6-biz-1']],
   glow_up: [['q1_transform', 'beauty'], ['q6_six_months', 'q6-beauty-1']],
-  magnetic_era: [['q5_symbol', 'star'], ['q1_transform', 'everything']],
+  magnetic_era: [['card_pull_1', 'star'], ['q1_transform', 'everything']],
   love_upgrade: [['q1_transform', 'love'], ['q2_notification', 'q2-love-1'], ['q6_six_months', 'q6-love-1']],
   luck_streak: [['q1_transform', 'luck'], ['q2_notification', 'q2-luck-1'], ['q6_six_months', 'q6-luck-1']],
   life_upgrade: [['q1_transform', 'lifestyle'], ['q2_notification', 'q2-life-1'], ['q6_six_months', 'q6-life-1']]
@@ -120,6 +120,32 @@ test('Q2/Q3/Q6 fall back to the shared "general" mixed list only when Q1 was "Ev
   const tiedScores = { money: 1, business: 1, beauty: 1, magnetism: 1, love: 1, luck: 1, lifestyle: 1 };
   const opts = q2.resolveOptions([], tiedScores);
   assert.ok(opts.some((o) => o.id === 'cash'), 'expected the original general-fallback option ids when nothing is leading');
+});
+
+test('the three-card reading draws without replacement across positions 1, 2, and 3', () => {
+  const byId = (id) => QUESTIONS.find((q) => q.id === id);
+  const pull1 = byId('card_pull_1');
+  const pull2 = byId('card_pull_2');
+  const pull3 = byId('card_pull_3');
+
+  const opts1 = pull1.resolveOptions([]);
+  assert.equal(opts1.length, 7, 'all 7 cards available at position 1');
+
+  const afterOne = [{ questionId: 'card_pull_1', optionId: 'star' }];
+  const opts2 = pull2.resolveOptions(afterOne);
+  assert.equal(opts2.length, 6);
+  assert.ok(!opts2.some((o) => o.id === 'star'), 'the card drawn at position 1 is not offered again at position 2');
+
+  const afterTwo = afterOne.concat([{ questionId: 'card_pull_2', optionId: 'coin' }]);
+  const opts3 = pull3.resolveOptions(afterTwo);
+  assert.equal(opts3.length, 5);
+  assert.ok(!opts3.some((o) => o.id === 'star' || o.id === 'coin'), 'neither prior draw is offered again at position 3');
+});
+
+test('card_pull_1/2/3 questions are excluded from the question 5 slot — Q5 is a normal conditional question again', () => {
+  assert.ok(!QUESTIONS.some((q) => q.id === 'q5_symbol'), 'q5_symbol should no longer exist as a standalone question');
+  const ids = QUESTIONS.map((q) => q.id);
+  assert.deepEqual(ids, ['q1_transform', 'q2_notification', 'q3_thinking', 'q4_when_quiet', 'q6_six_months', 'q7_proof', 'card_pull_1', 'card_pull_2', 'card_pull_3']);
 });
 
 test('secondary desire is the runner-up, and null when nothing else scored', () => {

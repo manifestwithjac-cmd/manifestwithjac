@@ -1,16 +1,26 @@
 /* THE UNIVERSE IS CALLING — design system
-   Matches WEBSITE/shop.html's tokens exactly: Arial/Arial Black, black 3px
-   borders, hard-shadow hover states, red/gold accents, white paper.
+   Dark, cosmic, high-contrast: this is "the universe calling," not a
+   coaching landing page — so unlike shop.html's white/black system, this
+   inverts to a near-black sky with cream type. Keeps shop.html's actual
+   bones (Arial/Arial Black, thick borders, hard-shadow hover states, the
+   same red/gold accent pair) so it's still recognizably the same brand,
+   just staged at night instead of in daylight.
    Mobile-first. No dependency on any framework. */
 
 :root {
-  --ink: #000;
-  --paper: #fff;
-  --gold: #c9a449;
-  --red: #e11d1d;
-  --grey: #767676;
-  --grey-light: #e5e5e5;
-  --line: #000;
+  --ink: #F3EEE3;
+  --paper: #0B0A0F;
+  --gold: #D9B15C;
+  --red: #FF4438;
+  --grey: #9A94A6;
+  --grey-light: #262330;
+  --line: #F3EEE3;
+
+  /* The card face (Q5's revealed side) and the top of every card back are
+     deliberately NOT tied to --ink/--paper — a card should read as an
+     object catching light against the dark page, not a page-colored panel. */
+  --card-face-bg: #F3EEE3;
+  --card-face-ink: #16130F;
 
   --sans: Arial, Helvetica, sans-serif;
   --blk: "Arial Black", "Arial Bold", Arial, Helvetica, sans-serif;
@@ -48,10 +58,10 @@ body.uic-body {
   position: relative;
 }
 
-/* Restrained atmosphere — the type system stays flat/graphic (matches
-   shop.html on purpose) but the space around it should still feel like
-   something is happening. A faint star-field + soft red/gold glow, fixed
-   to the viewport so it never competes with content or scrolls oddly. */
+/* Night sky. A faint star-field (light dots read as stars against a dark
+   ground — the same dots on white would just look like dust) plus soft
+   red/gold glow, fixed to the viewport so it never competes with content
+   or scrolls oddly. */
 body.uic-body::before {
   content: '';
   position: fixed;
@@ -59,10 +69,18 @@ body.uic-body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 42% at 50% -6%, rgba(225,29,29,0.16), transparent 62%),
-    radial-gradient(ellipse 55% 38% at 102% 8%, rgba(201,164,73,0.14), transparent 60%),
-    radial-gradient(ellipse 65% 42% at -2% 100%, rgba(201,164,73,0.12), transparent 60%),
-    radial-gradient(ellipse 55% 40% at 100% 100%, rgba(225,29,29,0.10), transparent 60%);
+    radial-gradient(1.5px 1.5px at 14% 22%, rgba(243,238,227,0.55), transparent 60%),
+    radial-gradient(1px 1px at 78% 14%, rgba(243,238,227,0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 42%, rgba(217,177,92,0.5), transparent 60%),
+    radial-gradient(1px 1px at 30% 64%, rgba(243,238,227,0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 88% 74%, rgba(243,238,227,0.45), transparent 60%),
+    radial-gradient(1px 1px at 48% 88%, rgba(217,177,92,0.4), transparent 60%),
+    radial-gradient(1px 1px at 10% 92%, rgba(243,238,227,0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 94% 40%, rgba(243,238,227,0.4), transparent 60%),
+    radial-gradient(ellipse 60% 42% at 50% -6%, rgba(255,68,56,0.22), transparent 62%),
+    radial-gradient(ellipse 55% 38% at 102% 8%, rgba(217,177,92,0.16), transparent 60%),
+    radial-gradient(ellipse 65% 42% at -2% 100%, rgba(217,177,92,0.14), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 100% 100%, rgba(255,68,56,0.14), transparent 60%);
 }
 .uic-app, .uic-screen, .uic-site-footer { position: relative; z-index: 1; }
 
@@ -304,19 +322,20 @@ a { color: inherit; }
   aspect-ratio: 5 / 7;
   border: 2px solid var(--gold);
   background:
-    radial-gradient(circle at 50% 42%, rgba(201,164,73,0.22), transparent 70%),
-    var(--ink);
+    radial-gradient(circle at 50% 42%, rgba(217,177,92,0.28), transparent 70%),
+    #060509;
   border-radius: 4px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--gold);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
   transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
 }
 .uic-card-back:nth-child(odd) { transform: rotate(-2.5deg); }
 .uic-card-back:nth-child(even) { transform: rotate(2.5deg); }
 .uic-card-back:hover {
   transform: translateY(-4px) rotate(0deg);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.6), 0 0 16px rgba(217,177,92,0.25);
 }
 .uic-card-back-mark { font-size: 1.3rem; }
 
@@ -325,11 +344,13 @@ a { color: inherit; }
   max-width: 260px;
   margin: 0 auto;
   aspect-ratio: 5 / 7;
-  border: var(--border) solid var(--ink);
+  border: var(--border) solid var(--card-face-ink);
   border-radius: 6px;
   background:
-    radial-gradient(circle at 50% 32%, rgba(225,29,29,0.10), transparent 65%),
-    var(--paper);
+    radial-gradient(circle at 50% 28%, rgba(255,68,56,0.10), transparent 60%),
+    var(--card-face-bg);
+  color: var(--card-face-ink);
+  box-shadow: 0 0 32px rgba(217,177,92,0.22), 0 10px 30px rgba(0,0,0,0.5);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 12px;
   padding: 24px 18px;
@@ -340,8 +361,26 @@ a { color: inherit; }
   to { transform: rotateY(0deg); opacity: 1; }
 }
 .uic-card-face-glyph { width: 56px; height: 56px; color: var(--red); }
-.uic-card-face-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
-.uic-card-face-meaning { font-size: 0.92rem; color: var(--grey); margin: 0; font-style: italic; }
+.uic-card-face-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; color: var(--card-face-ink); }
+.uic-card-face-meaning { font-size: 0.92rem; color: #5a5248; margin: 0; font-style: italic; }
+
+/* prior-picks strip (shown while picking card 2 and 3) */
+.uic-card-prior-strip { display: flex; gap: 12px; justify-content: center; margin: 0 0 22px; flex-wrap: wrap; }
+.uic-card-prior-chip { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 64px; }
+.uic-card-prior-glyph { width: 30px; height: 30px; color: var(--gold); }
+.uic-card-prior-glyph svg { width: 100%; height: 100%; }
+.uic-card-prior-label { font-size: 0.6rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.02em; text-align: center; line-height: 1.2; }
+
+.uic-card-position-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 14px; }
+
+/* final 3-card spread */
+.uic-card-reading-intro { text-align: center; font-family: var(--blk); text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold); margin: 0 0 20px; }
+.uic-card-final-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.uic-card-final { flex: 1 1 90px; max-width: 110px; text-align: center; }
+.uic-card-final .uic-card-face--small { max-width: 100%; aspect-ratio: 5/7; padding: 12px 8px; gap: 6px; }
+.uic-card-final .uic-card-face-glyph { width: 32px; height: 32px; }
+.uic-card-final .uic-card-face-title { font-size: 0.72rem; }
+.uic-card-final .uic-card-position-label { font-size: 0.6rem; margin: 0 0 8px; }
 .uic-symbol-glyph svg { width: 100%; height: 100%; }
 .uic-symbol-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.02em; text-align: center; text-transform: uppercase; }
 
@@ -399,12 +438,13 @@ a { color: inherit; }
 .uic-audio-gate-note { font-size: 0.85rem; color: var(--grey); font-weight: 700; margin: 16px 0 22px; }
 .uic-transcript-toggle { font-size: 0.78rem; text-decoration: underline; color: var(--grey); background: none; border: none; cursor: pointer; margin-top: 14px; }
 .uic-transcript-toggle:hover { color: var(--ink); }
-.uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); border: 2px solid var(--ink); padding: 16px; margin-top: 16px; }
+.uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); background: var(--grey-light); border: 2px solid var(--ink); padding: 16px; margin-top: 16px; }
 .uic-transition-headline { font-family: var(--blk); font-size: clamp(1.8rem, 8vw, 2.4rem); text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 14px; }
 .uic-transition-sub { color: var(--grey); font-weight: 700; margin: 0 0 30px; }
 
 /* ---- reveal: full reading ---- */
-.uic-screen--reveal { padding-top: 24px; }
+.uic-screen--reveal, .uic-screen--reveal-product { padding-top: 24px; }
+.uic-reveal-continue { text-align: center; margin-top: 8px; }
 .uic-card {
   background: var(--paper);
   border: var(--border) solid var(--ink);
