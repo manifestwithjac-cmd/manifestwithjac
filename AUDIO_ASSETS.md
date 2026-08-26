@@ -1,9 +1,22 @@
 # Audio Assets — THE UNIVERSE IS CALLING
 
-The experience works completely without audio — the "PLAY YOUR MESSAGE"
-section simply doesn't render until you add a file (see `renderAudioSection`
-in `WEBSITE/uic/app.js`). This is the guide for when you're ready to add
+The experience works completely without audio — the audio-gate screen is
+skipped entirely (straight from the reveal hero to "your full reading is
+next") until you add a file for a result (see `renderAudioGate` in
+`WEBSITE/uic/app.js`). This is the guide for when you're ready to add
 ElevenLabs-generated messages.
+
+## The "must listen" gate
+
+Once a result has audio configured, listening to it becomes **required**
+before she can see the full reading (Red Velvet Cake / pattern / declaration
+/ product) — that's intentional, per direction: play the message, then tell
+her the full reading is next. The custom player has no seek/scrub control,
+so the only way to unlock "See My Full Reading" is to let it play to the
+end. For accessibility, a "Can't listen right now? Read the transcript
+instead" link is also offered — clicking it unlocks the same continue button
+(see `audio.transcript` below). Fill in a real transcript for every result
+you add audio to.
 
 ## What to generate
 
@@ -57,11 +70,22 @@ audio: {
 }
 ```
 
-Set `enabled: true` and fill in `url` + `duration` — that's it, the custom
-audio player (play/pause/progress/time, in `app.js`'s `renderAudioSection` /
-`toggleAudio`) picks it up automatically. Leave `enabled: false` on any
-result you haven't recorded yet; that section just stays hidden for that
-result only, nothing else breaks.
+Set `enabled: true` and fill in `url` + `duration` + `transcript` — that's
+it, the custom audio player (play/pause/progress/time, in `app.js`'s
+`renderAudioGate` / `toggleAudio`) and the required-listen gate pick it up
+automatically. Leave `enabled: false` on any result you haven't recorded
+yet; the audio-gate screen is skipped entirely for that result, nothing else
+breaks.
+
+## QA without real audio yet
+
+`WEBSITE/uic/audio/qa-test-tone.wav` is a tiny (2-second, self-generated)
+tone checked into the repo for testing the gate before real recordings
+exist. Use it via the dev-only preview tool:
+`/universe-is-calling?uic_preview=1&result=money_surge&stage=audio&audio=1`
+— this forces that result's audio to the test tone so you can verify the
+"must listen before continuing" behavior end to end. It's QA-only; nothing
+in the real funnel references it.
 
 ## Future: per-pattern audio
 

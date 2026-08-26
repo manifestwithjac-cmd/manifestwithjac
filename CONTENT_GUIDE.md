@@ -106,13 +106,34 @@ result recommends, change that result's `productSlug` in `results.js` — you
 don't need to touch `products.js` unless you're changing the product itself
 (price, URL, copy).
 
-## Change an activation (the in-browser quick win)
+## Change the "tidbit" interstitials during the quiz
 
-File: `WEBSITE/uic/config/results.js`, the `activation` field on each
-result: `prompt1` + `options1` (first round of buttons), `transition` text,
-`prompt2` + `options2` (second round), and `closing` (the declaration shown
-after both rounds). Keep it to 2 short rounds — this is meant to take
-20-60 seconds, not become a second quiz.
+File: `WEBSITE/uic/config/copy.js`, the `tidbits` array — short lines like
+"Mm. I'm starting to see something." shown as a brief full-screen beat
+between certain questions, to keep her engaged without turning it into
+another Q&A round. Which question indices trigger one is set by
+`TIDBIT_AFTER_INDEX` near the top of `WEBSITE/uic/app.js` (currently after
+questions 2, 4, and 6 — 0-indexed as `[1, 3, 5]`). Add/remove indices there
+to change when they fire; add/remove lines in `copy.js` to change what they
+say. They auto-advance after a couple seconds, or on tap.
+
+## Change the required-listen audio gate or the "full reading is next" transition
+
+File: `WEBSITE/uic/config/copy.js`, the `audioGate` and `transition` blocks.
+`audioGate` only ever shows for a result that has `audio.enabled: true` (see
+AUDIO_ASSETS.md) — listening to the end (or reading the transcript, for
+accessibility) is required before the "See My Full Reading" button unlocks.
+If a result has no audio configured, the audio-gate screen is skipped
+entirely and she goes straight from the hero reveal to the `transition`
+screen ("Your full reading is next").
+
+## Change the top progress bar
+
+File: `WEBSITE/uic/app.js`, `renderTopbar()`. It only shows during the
+question flow (and the "tidbit" interstitials), and displays both a
+numeric "X / 7" label and a filled bar — both driven off
+`state.questionIndex` and `QUESTIONS.length`, so adding/removing a question
+in `questions.js` updates it automatically.
 
 ## Change a Kit tag or sequence mapping
 
@@ -146,3 +167,23 @@ extremely short" rule). If your jurisdiction needs an explicit opt-in
 checkbox, add one to the form in `renderGate()` in `app.js` and wire its
 checked state into the `consent` field already sent to
 `/.netlify/functions/uic-submit`.
+
+## Footer (Shop / Disclaimer links) and the Disclaimer page
+
+The site footer (Shop link, Disclaimer link, contact email) is static markup
+in `WEBSITE/universe-is-calling.html` right below `#uic-root`, styled by
+`.uic-site-footer` in `styles.css` — edit the HTML directly to change the
+links or text. The Disclaimer page itself is a standalone file,
+`WEBSITE/disclaimer.html` — it's plain HTML matching `shop.html`'s design
+system, not part of the config-driven app, so edit its copy directly in that
+file.
+
+## Visual design system
+
+`WEBSITE/uic/styles.css` is intentionally matched to `WEBSITE/shop.html`'s
+tokens: Arial / "Arial Black" (no external fonts to load), black 3px
+borders, white background, red `#e11d1d` + gold `#c9a449` accents, hard
+drop-shadow on button/card hover, uppercase tight-tracking headlines. If
+Shop's palette or type changes, update the `:root` custom properties at the
+top of `styles.css` to match — everything else in the file references those
+variables.

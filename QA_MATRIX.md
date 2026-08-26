@@ -41,8 +41,17 @@ won't change the outcome for that path.
 
 `/uic/preview.html` (dev-only, not linked anywhere public, `noindex`):
 generates links to `/universe-is-calling?uic_preview=1&result={key}&pattern={key}&name=X`
-for every result and every pattern. This mode skips straight to the reveal
-screen and **never calls Kit** — safe to click through repeatedly.
+for every result and every pattern. This mode **never calls Kit** — safe to
+click through repeatedly. Extra query params for testing the staged reveal:
+
+- `&stage=hero|audio|transition|full` — jump straight to any point in the
+  reveal sequence (default `full`, i.e. the complete reading — the old
+  behavior).
+- `&audio=1` — force the result's audio to the bundled 2-second QA test tone
+  (`WEBSITE/uic/audio/qa-test-tone.wav`), so you can test the required-listen
+  gate and its disabled/enabled continue button before real audio exists.
+
+Example: `/universe-is-calling?uic_preview=1&result=money_surge&stage=audio&audio=1`
 
 ## Critical failure states to test before launch
 
@@ -55,11 +64,13 @@ screen and **never calls Kit** — safe to click through repeatedly.
 | Kit API times out / 5xx | Result still reveals; lead saved with `kitStatus: "failed"`; scheduled retry picks it up within 15 min | `uic-retry-kit.js` |
 | Duplicate/returning subscriber email | Upserted, not duplicated (Kit's own upsert-by-email behavior); latest result's tag/fields applied | Kit API `/v4/subscribers` |
 | Client tries to submit a fabricated `result` field | Ignored — server always recomputes from raw answers | `tests/uic-submit.test.js` |
-| No audio configured for a result | Audio section doesn't render at all | `renderAudioSection()` in `app.js` |
+| No audio configured for a result | Audio-gate screen skipped entirely, straight to the "full reading is next" transition | `hero-continue` handler in `app.js` |
+| Audio configured, not yet finished playing | "See My Full Reading" stays disabled | `renderAudioGate()` / `audioUnlocked` in `app.js` |
+| Can't listen (accessibility) | "Read the transcript instead" link also unlocks continuing | `toggle-transcript` handler in `app.js` |
 | Missing/placeholder product checkout URL | Button still renders (don't silently hide a CTA); fix the URL in `products.js` before launch | `products.js` `placeholder: true` flag |
 | Refresh mid-quiz | Restarts at the call screen (session isn't persisted across reload by design — quiz is short) | — |
 | Back button on question 2+ | Previous answer preserved, re-answering replaces it (no double-counted weight) | `setAnswer()` in `app.js` |
-| `prefers-reduced-motion` | Animations shortened/disabled, no auto-playing motion loops | CSS `@media (prefers-reduced-motion)` + `reducedMotion` checks in `app.js` |
+| `prefers-reduced-motion` | Animations shortened/disabled, tidbit interstitials advance faster, no auto-playing motion loops | CSS `@media (prefers-reduced-motion)` + `reducedMotion` checks in `app.js` |
 | Rate limit exceeded (>8 submits/IP/10min) | 429, generic error shown, funnel not otherwise broken | `netlify/functions/lib/rate-limit.js` |
 
 ## Automated tests

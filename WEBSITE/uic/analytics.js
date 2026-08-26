@@ -12,8 +12,8 @@
  *   uic_viewed, uic_answer_call_clicked, uic_question_viewed, uic_question_answered,
  *   uic_questions_completed, uic_result_calculated, uic_email_gate_viewed,
  *   uic_email_submitted, uic_kit_submission_success, uic_kit_submission_failed,
- *   uic_result_revealed, uic_audio_played, uic_activation_started,
- *   uic_activation_completed, uic_product_viewed, uic_product_clicked, uic_share_clicked
+ *   uic_result_revealed, uic_audio_played, uic_audio_gate_unlocked,
+ *   uic_product_viewed, uic_product_clicked, uic_share_clicked
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
