@@ -276,41 +276,46 @@ file.
 ## Visual design system
 
 `WEBSITE/uic/styles.css` keeps `WEBSITE/shop.html`'s structural bones —
-thick 3px borders, hard drop-shadow on button/card hover, uppercase
-tight-tracking headlines — but **inverts the palette to a dark, mystical
-theme** (deep purple background, warm white type, a gold accent, a faint
-star-field with indigo pooling in the corners) rather than Shop's white
+thick 3px borders, hard drop-shadow on button/card hover — but **inverts
+the palette to a dark, mystical theme** (a purple-to-navy night-sky
+gradient, warm white type, a gold accent, a dense field of tiny twinkling
+star specs with indigo pooling in the corners) rather than Shop's white
 background, and swaps Shop's Arial/Arial Black pairing for its own type
-system. This was a deliberate choice, iterated twice: a bright white page
-reads as a coaching/SaaS landing page, and a first dark-theme pass (near-
-black + violet/blue + a rounded sans) still read more "brand-brutalist"
-than "tarot reading" — so the palette moved to a purple-and-gold night sky
-and the type moved fully into serif.
+system. This has been iterated three times: a bright white page read as a
+coaching/SaaS landing page; a first dark-theme pass (near-black + violet/
+blue + a rounded sans) still read "brand-brutalist"; a second pass
+(flat purple + gold, all-serif, shouting all-caps headlines) still read
+too close to plain/default and too loud — so headline text moved to mixed
+case (full sentences in all-caps read as yelling), a real sans came back
+for UI chrome, and the flat background became a gradient with visible
+stars.
 
-**Type:** two Google Fonts, loaded via a `<link>` in
+**Type:** three Google Fonts, loaded via a `<link>` in
 `universe-is-calling.html` and `preview.html` (falls back to system Georgia
-if that link is ever removed) — `--blk` (`Cinzel`, the classic tarot/
-astrology display serif) for anything that's "the universe speaking": the
-call screen, question prompts, tidbits, the result reveal, product titles.
-`--serif` (`Cormorant Garamond`) for the declaration specifically, set in
-italic — Cinzel has no italic, and the declaration is the one quotable
-line, so it deliberately reads as a different, more intimate voice than
-the display headlines around it. `--sans` also resolves to Cormorant
-Garamond now (it keeps its old name only because ~20 rules already
-reference `var(--sans)`) — UI chrome (buttons, the progress-bar label,
-body prose) used to be a rounded sans (`Poppins`), which still read too
-much like a plain UI font; consolidating everything into the two serifs
-made the whole page feel like one voice instead of "headline vs. app."
+/ Futura if that link is ever removed), each with one job — `--blk`
+(`Cinzel`, the classic tarot/astrology display serif) for anything that's
+"the universe speaking": the call screen, question prompts, tidbits, the
+result reveal, product titles, set in **mixed case**, not all-caps (a
+multi-line question in shouting caps reads as yelling at her — if you add
+a new headline-style element, don't reach for `text-transform: uppercase`
+unless it's a short 2-4 word title, not a sentence). `--serif` (`Cormorant
+Garamond`) for the declaration specifically, set in italic — Cinzel has no
+italic, and the declaration is the one quotable line, so it deliberately
+reads as a different, more intimate voice than the display headlines
+around it. `--sans` (`Josefin Sans`, an elegant geometric sans, distinct
+from Arial/system defaults) for UI chrome — buttons, labels, body prose.
 Every selector that references `var(--blk)` sets its own `font-weight`
 (Cinzel tops out around 700) — if you add a new headline-style element,
 set `font-weight: 600;` alongside it or it'll render at the browser
 default (400) and look thin.
 
 **Color:** all colors run through `:root` custom properties at the top of
-the file — `--ink` (warm white, text/borders), `--paper` (deep purple, page
-background), `--gold-accent` (the one definitive accent — hovers, focus,
-price, the progress fill, card glows, position labels), `--indigo`
-(atmospheric-only depth in the star-field, never a UI color), `--grey`.
+the file — `--ink` (warm white, text/borders), `--paper` (deep purple, the
+solid fill used on cards/buttons/screens — the page's ambient background
+itself is a purple-to-navy gradient set directly on `body`, not this
+token), `--gold-accent` (the one definitive accent — hovers, focus, price,
+the progress fill, card glows, position labels), `--indigo` (atmospheric-
+only depth in the star-field, never a UI color), `--grey`.
 `--violet`, `--blue`, `--red`, and `--gold` all still exist purely as
 aliases chaining back to `--gold-accent` (`--violet`/`--blue` point at
 `--gold-accent` directly; `--red`/`--gold` point at those) — this is the
@@ -335,8 +340,9 @@ progress bar (when present) sticking directly beneath it via
 `--brand-header-h`; change that one variable if you resize the header and
 the progress bar will follow without extra edits.
 
-**Sizing:** headline `clamp()` sizes, screen padding, and tap-target sizing
-were all trimmed down a notch from the original build — the whole
-experience was reading oversized on an actual iPhone screen. If you add a
-new full-bleed headline, look at a sibling's `clamp()` values (e.g.
-`.uic-question-prompt`) rather than reaching for the old Arial-era sizes.
+**Sizing:** headline `clamp()` sizes, body text, button padding, and
+tap-target sizing have been trimmed down twice now from the original
+build — it kept reading oversized on an actual iPhone screen. If you add a
+new full-bleed headline or body element, look at a sibling's current
+values (e.g. `.uic-question-prompt`, `.uic-option`) rather than reaching
+for the original build's sizes.
