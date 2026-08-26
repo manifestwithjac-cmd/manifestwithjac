@@ -175,6 +175,14 @@
     );
   }
 
+  // ------------------------------------------------------------ BRAND BAR ----
+  // Persistent sticky strip across the whole experience — just enough that
+  // she never forgets whose message this is, without competing with the
+  // "incoming call" moment.
+  function renderBrandHeader() {
+    return '<div class="uic-brand-header">Manifest With Jac</div>';
+  }
+
   // ---------------------------------------------------------- TOP PROGRESS ----
   function renderTopbar() {
     if (state.screen !== 'question' && state.screen !== 'tidbit') return '';
@@ -377,7 +385,9 @@
   function showTidbitThenAdvance(nextIndex) {
     state.tidbitNextIndex = nextIndex;
     setScreen('tidbit');
-    var delay = reducedMotion ? 700 : 1700;
+    // Long enough to actually read a short sentence, not just glimpse it —
+    // still tap-anywhere-to-skip for anyone who wants to move faster.
+    var delay = reducedMotion ? 1300 : 3400;
     var timer = setTimeout(advanceFromTidbit, delay);
     ROOT.dataset.tidbitTimer = 'pending';
     ROOT._uicTidbitTimer = timer;
@@ -668,7 +678,7 @@
       case 'reveal-product': html = renderRevealProduct(); break;
       default: html = renderCall();
     }
-    ROOT.innerHTML = renderTopbar() + html;
+    ROOT.innerHTML = renderBrandHeader() + renderTopbar() + html;
     if (state.screen === 'reveal' || state.screen === 'reveal-product') initRevealObservers();
   }
 
