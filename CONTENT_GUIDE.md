@@ -188,14 +188,29 @@ the intro framed as the universe already knowing why it's calling — she's
 tuning in to find out, not explaining herself to it (avoid anything that
 reads like "tell me why you're reaching out").
 
-## Symbols (question 5)
+## The card pull (question 5)
 
-Currently rendered as simple inline line-art (no image files needed) — see
-`SYMBOL_PATHS` in `WEBSITE/uic/app.js`. `questions.js` already has an
-`image` field per symbol option reserved for real artwork later; to switch
-to real images, add files under `WEBSITE/uic/symbols/` matching those paths
-and update `renderQuestion()` in `app.js` to render `<img src="o.image">`
-instead of calling `symbolGlyph(o.id)`.
+Question 5 is a blind "pull one card" moment, not a visible grid — she taps
+a face-down card without knowing what's under it, then it flips to reveal
+the symbol, a tarot-style title ("THE GOLD COIN"), and a one-line meaning.
+This is deliberately atmospheric only — it uses the same light desire
+weights the old symbol grid used, nothing more. It's implemented as
+`type: 'card-pull'` in `questions.js` (`renderCardPull()` in `app.js`), a
+distinct interaction from `type: 'select'`.
+
+- To **edit a card's title/meaning**, edit that option's `label` /
+  `meaning` in `questions.js` (the `q5_symbol` question).
+- To **add/remove a card**, add/remove an option the same as any other
+  question — the spread grid and everything else adapts automatically.
+- The icons are simple inline line-art (no image files needed) — see
+  `SYMBOL_PATHS` in `WEBSITE/uic/app.js`. `questions.js` already has an
+  `image` field per option reserved for real artwork later; to switch to
+  real images, add files under `WEBSITE/uic/symbols/` matching those paths
+  and render `<img src="o.image">` in `renderCardPull()`'s revealed-card
+  markup instead of calling `symbolGlyph(o.id)`.
+- She can change her pick before continuing ("Pull a different card" on the
+  revealed view) — same as any other question's back-button, just phrased
+  to fit the ritual.
 
 ## Consent checkbox / legal links
 

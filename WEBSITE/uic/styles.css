@@ -28,7 +28,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root { --dur-fast: 0ms; --dur-med: 0ms; --dur-slow: 0ms; }
-  .uic-ring::after, .uic-ring--pulse::before, .uic-orb {
+  .uic-ring::after, .uic-ring--pulse::before, .uic-orb, .uic-card-face {
     animation: none !important;
   }
 }
@@ -291,6 +291,57 @@ a { color: inherit; }
 .uic-symbol:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
 .uic-symbol--selected { background: var(--ink); color: var(--paper); }
 .uic-symbol-glyph { width: 32px; height: 32px; }
+
+/* ---- card pull (Q5) — blind spread, flips to reveal ---- */
+.uic-card-spread {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.uic-card-back {
+  aspect-ratio: 5 / 7;
+  border: 2px solid var(--gold);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(201,164,73,0.22), transparent 70%),
+    var(--ink);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+.uic-card-back:nth-child(odd) { transform: rotate(-2.5deg); }
+.uic-card-back:nth-child(even) { transform: rotate(2.5deg); }
+.uic-card-back:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+}
+.uic-card-back-mark { font-size: 1.3rem; }
+
+.uic-card-revealed { text-align: center; }
+.uic-card-face {
+  max-width: 260px;
+  margin: 0 auto;
+  aspect-ratio: 5 / 7;
+  border: var(--border) solid var(--ink);
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(225,29,29,0.10), transparent 65%),
+    var(--paper);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px;
+  padding: 24px 18px;
+  animation: uicCardFlip var(--dur-slow) var(--ease);
+}
+@keyframes uicCardFlip {
+  from { transform: rotateY(90deg); opacity: 0; }
+  to { transform: rotateY(0deg); opacity: 1; }
+}
+.uic-card-face-glyph { width: 56px; height: 56px; color: var(--red); }
+.uic-card-face-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
+.uic-card-face-meaning { font-size: 0.92rem; color: var(--grey); margin: 0; font-style: italic; }
 .uic-symbol-glyph svg { width: 100%; height: 100%; }
 .uic-symbol-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.02em; text-align: center; text-transform: uppercase; }
 

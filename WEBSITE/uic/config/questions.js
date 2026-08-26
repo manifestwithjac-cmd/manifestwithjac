@@ -359,16 +359,20 @@
     },
     {
       id: 'q5_symbol',
-      type: 'image-select',
+      // 'card-pull': a blind spread of face-down cards — she picks one
+      // without seeing what it is, then it flips to reveal the symbol +
+      // meaning. Purely atmospheric beyond the light desire weights below
+      // (same role the old visible symbol-grid played) — see CONTENT_GUIDE.md.
+      type: 'card-pull',
       prompt: "Don't think. Pick the one pulling you in.",
       options: [
-        { id: 'coin', label: 'Gold coin', image: '/uic/symbols/coin.svg', weights: { desire: { money: 3 } } },
-        { id: 'key', label: 'Key', image: '/uic/symbols/key.svg', weights: { desire: { lifestyle: 2, luck: 1 } } },
-        { id: 'mirror', label: 'Mirror', image: '/uic/symbols/mirror.svg', weights: { desire: { beauty: 3 } } },
-        { id: 'crystal', label: 'Crystal', image: '/uic/symbols/crystal.svg', weights: { desire: { magnetism: 2, luck: 1 } } },
-        { id: 'star', label: 'Star', image: '/uic/symbols/star.svg', weights: { desire: { magnetism: 3 } } },
-        { id: 'flame', label: 'Flame', image: '/uic/symbols/flame.svg', weights: { desire: { love: 2, magnetism: 1 } } },
-        { id: 'doorway', label: 'Golden doorway', image: '/uic/symbols/doorway.svg', weights: { desire: { lifestyle: 3, luck: 1 } } }
+        { id: 'coin', label: 'The Gold Coin', meaning: 'Abundance, arriving in tangible form.', image: '/uic/symbols/coin.svg', weights: { desire: { money: 3 } } },
+        { id: 'key', label: 'The Key', meaning: 'An unlock. A door about to open.', image: '/uic/symbols/key.svg', weights: { desire: { lifestyle: 2, luck: 1 } } },
+        { id: 'mirror', label: 'The Mirror', meaning: 'Self-recognition — the glow that was already underneath.', image: '/uic/symbols/mirror.svg', weights: { desire: { beauty: 3 } } },
+        { id: 'crystal', label: 'The Crystal', meaning: 'Clarity. A frequency, amplified.', image: '/uic/symbols/crystal.svg', weights: { desire: { magnetism: 2, luck: 1 } } },
+        { id: 'star', label: 'The Star', meaning: 'Being seen. Being remembered.', image: '/uic/symbols/star.svg', weights: { desire: { magnetism: 3 } } },
+        { id: 'flame', label: 'The Flame', meaning: 'Desire. Chemistry. Ignition.', image: '/uic/symbols/flame.svg', weights: { desire: { love: 2, magnetism: 1 } } },
+        { id: 'doorway', label: 'The Golden Doorway', meaning: 'A new chapter — already open.', image: '/uic/symbols/doorway.svg', weights: { desire: { lifestyle: 3, luck: 1 } } }
       ]
     },
     {

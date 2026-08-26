@@ -64,6 +64,7 @@
     submitting: false,
     submitError: null,
     tidbitCount: 0,
+    cardPullPending: null,
     tidbitNextIndex: 0,
     audioUnlocked: false,
     showTranscript: false
@@ -190,6 +191,7 @@
   // ------------------------------------------------------------ QUESTION ----
   function renderQuestion() {
     var q = currentQuestion();
+    if (q.type === 'card-pull') return renderCardPull(q);
     var options = optionsForQuestion(q);
     var existing = getAnswer(q.id);
     var isImage = q.type === 'image-select';
@@ -223,6 +225,72 @@
         '</div>' +
       '</section>'
     );
+  }
+
+  // ---------------------------------------------------------- CARD PULL ----
+  // A blind spread of face-down cards. She picks one without seeing what's
+  // under it, then it flips to reveal — matches "Don't think" far better
+  // than a grid of fully-visible labeled options ever could.
+  function renderCardPull(q) {
+    var options = optionsForQuestion(q);
+    var existing = getAnswer(q.id);
+    var revealedId = state.cardPullPending || (existing && existing.optionId);
+    var revealed = revealedId ? options.find(function (o) { return o.id === revealedId; }) : null;
+
+    var body;
+    if (revealed) {
+      body = (
+        '<div class="uic-card-revealed">' +
+          '<div class="uic-card-face">' +
+            '<span class="uic-card-face-glyph" aria-hidden="true">' + symbolGlyph(revealed.id) + '</span>' +
+            '<p class="uic-card-face-title uic-blk">' + escapeHtml(revealed.label) + '</p>' +
+            '<p class="uic-card-face-meaning">' + escapeHtml(revealed.meaning || '') + '</p>' +
+          '</div>' +
+          '<button class="uic-btn uic-btn--primary uic-btn--full" style="max-width:320px;margin:18px auto 0" data-action="card-pull-continue">Continue</button>' +
+          '<button class="uic-btn uic-btn--text" data-action="card-pull-reset">Pull a different card</button>' +
+        '</div>'
+      );
+    } else {
+      var cardsHtml = options.map(function (o) {
+        return '<button class="uic-card-back" data-action="pull-card" data-option="' + escapeHtml(o.id) + '" aria-label="Pull a card"><span class="uic-card-back-mark" aria-hidden="true">&#10022;</span></button>';
+      }).join('');
+      body = '<div class="uic-card-spread">' + cardsHtml + '</div>';
+    }
+
+    return (
+      '<section class="uic-screen uic-screen--question uic-screen--card-pull">' +
+        '<div class="uic-question-card">' +
+          (state.questionIndex > 0
+            ? '<button class="uic-back" data-action="back" aria-label="' + escapeHtml(COPY.a11y.backButton) + '">&larr;</button>'
+            : '') +
+          '<h2 class="uic-question-prompt" data-uic-focus tabindex="-1">' + escapeHtml(q.prompt) + '</h2>' +
+          body +
+        '</div>' +
+      '</section>'
+    );
+  }
+
+  /** Shared by the normal 'answer' click and the card-pull's 'Continue'. */
+  function commitAnswerAndAdvance(questionId, optionId) {
+    var answeredIndex = state.questionIndex;
+    setAnswer(questionId, optionId);
+    UIC.analytics.track('uic_question_answered', { question_id: questionId, option_id: optionId, index: answeredIndex });
+
+    if (answeredIndex < QUESTIONS.length - 1) {
+      var nextIndex = answeredIndex + 1;
+      if (TIDBIT_AFTER_INDEX.indexOf(answeredIndex) !== -1) {
+        showTidbitThenAdvance(nextIndex);
+      } else {
+        state.questionIndex = nextIndex;
+        UIC.analytics.track('uic_question_viewed', { question_id: currentQuestion().id, index: state.questionIndex });
+        render();
+      }
+    } else {
+      UIC.analytics.track('uic_questions_completed', { total: QUESTIONS.length });
+      setScreen('connecting');
+      runConnectingSequence();
+      UIC.analytics.track('uic_result_calculated', {});
+    }
   }
 
   // ------------------------------------------------------------- TIDBIT ----
@@ -561,25 +629,20 @@
     } else if (action === 'answer') {
       var q = currentQuestion();
       var optionId = btn.getAttribute('data-option');
-      var answeredIndex = state.questionIndex;
-      setAnswer(q.id, optionId);
-      UIC.analytics.track('uic_question_answered', { question_id: q.id, option_id: optionId, index: answeredIndex });
-
-      if (answeredIndex < QUESTIONS.length - 1) {
-        var nextIndex = answeredIndex + 1;
-        if (TIDBIT_AFTER_INDEX.indexOf(answeredIndex) !== -1) {
-          showTidbitThenAdvance(nextIndex);
-        } else {
-          state.questionIndex = nextIndex;
-          UIC.analytics.track('uic_question_viewed', { question_id: currentQuestion().id, index: state.questionIndex });
-          render();
-        }
-      } else {
-        UIC.analytics.track('uic_questions_completed', { total: QUESTIONS.length });
-        setScreen('connecting');
-        runConnectingSequence();
-        UIC.analytics.track('uic_result_calculated', {});
-      }
+      commitAnswerAndAdvance(q.id, optionId);
+    } else if (action === 'pull-card') {
+      state.cardPullPending = btn.getAttribute('data-option');
+      render();
+    } else if (action === 'card-pull-continue') {
+      var cardQ = currentQuestion();
+      var existing = getAnswer(cardQ.id);
+      var chosen = state.cardPullPending || (existing && existing.optionId);
+      state.cardPullPending = null;
+      if (chosen) commitAnswerAndAdvance(cardQ.id, chosen);
+    } else if (action === 'card-pull-reset') {
+      state.cardPullPending = null;
+      state.answers = state.answers.filter(function (a) { return a.questionId !== currentQuestion().id; });
+      render();
     } else if (action === 'tidbit-continue') {
       advanceFromTidbit();
     } else if (action === 'hero-continue') {
