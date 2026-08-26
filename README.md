@@ -13,11 +13,13 @@ pattern insight, a quotable declaration, and a share card — followed by a
 second screen with the one matching product recommendation and why.
 Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Visual design is a dark/cosmic pivot of `WEBSITE/shop.html`'s system — same
-typographic bones (Arial / Arial Black, thick borders, hard-shadow hovers,
-red/gold accents) inverted onto a near-black background with a subtle
-star field, so it reads as "the same brand at night" rather than a bright
-coaching-landing-page look.
+Visual design is a dark/cosmic take on `WEBSITE/shop.html`'s bones (thick
+borders, hard-shadow hovers) inverted onto a near-black background with a
+subtle star field and a violet/blue galactic glow — but with its own type
+system rather than Shop's Arial/Arial Black: a soft serif (Cormorant
+Garamond) for anything that's "the universe speaking" — headlines, the
+result reveal, the declaration — plus a rounded sans (Poppins) for UI
+chrome and body prose.
 
 Live at `/universe-is-calling` once deployed. Disclaimer page at
 `/disclaimer`; both are linked from the experience's footer.
