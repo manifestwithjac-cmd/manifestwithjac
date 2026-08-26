@@ -251,6 +251,7 @@
       return (
         '<button class="uic-option' + (selected ? ' uic-option--selected' : '') + '" data-action="answer" data-option="' + escapeHtml(o.id) + '" aria-pressed="' + !!selected + '">' +
           '<span>' + escapeHtml(o.label) + '</span>' +
+          '<span class="uic-option-radio" aria-hidden="true"></span>' +
         '</button>'
       );
     }).join('');
