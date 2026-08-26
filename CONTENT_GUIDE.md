@@ -275,20 +275,24 @@ file.
 
 ## Visual design system
 
-`WEBSITE/uic/styles.css` keeps `WEBSITE/shop.html`'s structural bones —
-thick 3px borders, hard drop-shadow on button/card hover — but **inverts
-the palette to a dark, mystical theme** (a purple-to-navy night-sky
-gradient, warm white type, a gold accent, a dense field of tiny twinkling
-star specs with indigo pooling in the corners) rather than Shop's white
-background, and swaps Shop's Arial/Arial Black pairing for its own type
-system. This has been iterated three times: a bright white page read as a
-coaching/SaaS landing page; a first dark-theme pass (near-black + violet/
-blue + a rounded sans) still read "brand-brutalist"; a second pass
-(flat purple + gold, all-serif, shouting all-caps headlines) still read
-too close to plain/default and too loud — so headline text moved to mixed
-case (full sentences in all-caps read as yelling), a real sans came back
-for UI chrome, and the flat background became a gradient with visible
-stars.
+`WEBSITE/uic/styles.css` no longer shares `WEBSITE/shop.html`'s structural
+bones — it started as Shop's hard-edged system (thick 3px borders, sharp
+corners, hard offset-shadow on hover) and has since moved to its own soft,
+rounded shape language (generous `border-radius`, pill buttons/answer
+rows, gentle drop shadows instead of hard offsets) inspired by a reference
+funnel the client liked the *feel* of, translated onto **our own dark,
+mystical palette** (a purple-to-navy night-sky gradient, warm white type,
+a gold accent, a dense field of tiny twinkling star specs with indigo
+pooling in the corners) rather than that reference's cream/black/red — the
+shape language moved, the color didn't. This has been iterated several
+times: a bright white page read as a coaching/SaaS landing page; a first
+dark-theme pass (near-black + violet/blue + a rounded sans) still read
+"brand-brutalist"; a second pass (flat purple + gold, all-serif, shouting
+all-caps headlines) still read too plain and too loud, so headline text
+moved to mixed case and a real sans came back for UI chrome; a third pass
+lightened every font-weight (nothing above 500 now — 600/700 read as
+aggressive); this pass replaced the sharp hard-bordered geometry with the
+soft rounded/shadow one described below.
 
 **Type:** three Google Fonts, loaded via a `<link>` in
 `universe-is-calling.html` and `preview.html` (falls back to system Georgia
@@ -363,3 +367,17 @@ star, deliberately subtle. They're appended straight to `<body>` (not
 box's own bounding rect, specifically so they survive the re-render that
 immediately follows an answer click and finish their ~600ms animation
 before self-removing. Skipped entirely under `prefers-reduced-motion`.
+
+**Shape language.** Two radius tokens: `--radius` (22px, used on cards,
+inputs, the transcript box, the symbol grid) and `--radius-pill` (999px,
+used on buttons, answer rows, and the two progress bars). `--border`
+dropped from 3px to 1.5px and most bordered boxes (`.uic-card`,
+`.uic-option`, `.uic-btn--ghost`) now use a soft `box-shadow` instead of a
+visible border for definition — a transparent border is kept in the rule
+(not removed) specifically so the `--selected`/hover states that DO set a
+visible border-color don't cause a layout jump. The old hover pattern
+(`transform: translate(-Npx,-Npx)` + a hard offset `box-shadow`, borrowed
+from `shop.html`) is gone site-wide, replaced by a small `translateY(-2px)`
+lift plus a softer shadow. If you add a new bordered/boxed element, start
+from `.uic-option` or `.uic-card` as the reference, not an older screenshot
+of this file's history.

@@ -53,10 +53,16 @@
   --sans: 'Josefin Sans', Futura, 'Century Gothic', sans-serif;
   --blk: 'Cinzel', Georgia, 'Times New Roman', serif;
 
-  --radius: 0;
+  /* Soft, rounded system — pill buttons/answer rows, generously rounded
+     cards — instead of the old hard-edged brutalist borders. Borrowed the
+     shape language (not the colors) from a reference the client liked:
+     soft cream card, black pill CTA, filled rounded answer rows. Ours
+     keeps the dark-purple/gold palette; only the geometry changed. */
+  --radius: 22px;
+  --radius-pill: 999px;
   --max-width: 560px;
   --tap-min: 48px;
-  --border: 3px;
+  --border: 1.5px;
   --brand-header-h: 34px;
 
   --dur-fast: 120ms;
@@ -171,28 +177,30 @@ a { color: inherit; }
   font-family: var(--sans);
   font-weight: 500;
   font-size: 0.85rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  border-radius: 0;
-  border: var(--border) solid var(--ink);
-  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink);
+  padding: 14px 24px;
   min-height: var(--tap-min);
   cursor: pointer;
   background: var(--paper);
   color: var(--ink);
-  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease, opacity var(--dur-fast) ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   text-decoration: none;
 }
-.uic-btn:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--red); }
-.uic-btn:active { transform: none; box-shadow: none; }
+.uic-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.38); }
+.uic-btn:active { transform: none; box-shadow: 0 2px 8px rgba(0,0,0,0.28); }
 .uic-btn--full { width: 100%; }
 .uic-btn--primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.uic-btn--primary:hover { box-shadow: 6px 6px 0 var(--red); }
-.uic-btn--ghost { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+.uic-btn--primary:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.4); }
+.uic-btn--ghost { border-color: var(--ink); color: var(--ink); background: transparent; box-shadow: none; }
+.uic-btn--ghost:hover { box-shadow: none; background: var(--grey-light); }
 .uic-btn--text { border: none; text-decoration: underline; text-underline-offset: 3px; color: var(--grey); padding: 12px; font-family: var(--sans); font-weight: 400; text-transform: none; letter-spacing: 0; }
 .uic-btn--text:hover { transform: none; box-shadow: none; color: var(--ink); }
 .uic-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
@@ -202,12 +210,12 @@ a { color: inherit; }
   width: 100%;
   font-family: var(--sans);
   font-size: 1.05rem;
-  padding: 16px 14px;
+  padding: 16px 18px;
   min-height: var(--tap-min);
   margin-bottom: 14px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
-  border-radius: 0;
+  border: 1.5px solid var(--grey);
+  background: var(--grey-light);
+  border-radius: var(--radius);
   color: var(--ink);
 }
 .uic-input::placeholder { color: var(--grey); }
@@ -251,8 +259,8 @@ a { color: inherit; }
   font-family: var(--sans); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   white-space: nowrap; flex: none;
 }
-.uic-topbar-track { flex: 1; height: 6px; background: var(--grey-light); border: 1px solid var(--ink); }
-.uic-topbar-fill { height: 100%; background: var(--red); transition: width var(--dur-med) var(--ease); }
+.uic-topbar-track { flex: 1; height: 5px; background: var(--grey-light); border-radius: var(--radius-pill); overflow: hidden; }
+.uic-topbar-fill { height: 100%; background: var(--red); border-radius: var(--radius-pill); transition: width var(--dur-med) var(--ease); }
 
 /* ---------- screens ---------- */
 .uic-screen { width: 100%; padding: 32px 0 44px; animation: uicFadeIn var(--dur-med) var(--ease); }
@@ -359,37 +367,60 @@ a { color: inherit; }
 .uic-option-list { display: flex; flex-direction: column; gap: 12px; }
 .uic-option {
   min-height: var(--tap-min);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   text-align: left;
-  padding: 13px 16px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
-  border-radius: 0;
+  padding: 15px 18px;
+  border: 1.5px solid transparent;
+  background: var(--grey-light);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   font-family: var(--sans);
   font-weight: 400;
   font-size: 0.92rem;
   color: var(--ink);
   cursor: pointer;
-  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease, background var(--dur-fast) ease;
+  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease, border-color var(--dur-fast) ease;
 }
-.uic-option:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
-.uic-option:active { transform: none; box-shadow: none; }
-.uic-option--selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.uic-option--selected:hover { box-shadow: 5px 5px 0 var(--red); }
+.uic-option:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+.uic-option:active { transform: none; }
+.uic-option-radio {
+  flex: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--grey);
+  position: relative;
+}
+.uic-option-radio::after {
+  content: '';
+  position: absolute; inset: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: scale(0);
+  transition: transform var(--dur-fast) ease;
+}
+.uic-option--selected { border-color: var(--gold); }
+.uic-option--selected .uic-option-radio { border-color: var(--gold); }
+.uic-option--selected .uic-option-radio::after { transform: scale(1); }
 
 .uic-symbol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .uic-symbol {
   aspect-ratio: 1;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
-  border-radius: 0;
+  border: 1.5px solid transparent;
+  background: var(--grey-light);
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   cursor: pointer;
   padding: 10px;
   color: var(--ink);
   transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
 }
-.uic-symbol:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-.uic-symbol--selected { background: var(--ink); color: var(--paper); }
+.uic-symbol:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+.uic-symbol--selected { border-color: var(--gold); background: var(--grey-light); }
 .uic-symbol-glyph { width: 32px; height: 32px; }
 
 /* ---- card pull (Q5) — blind spread, flips to reveal ---- */
@@ -406,7 +437,7 @@ a { color: inherit; }
   background:
     radial-gradient(circle at 50% 42%, rgba(217,175,82,0.28), transparent 70%),
     #060509;
-  border-radius: 4px;
+  border-radius: 12px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--gold);
@@ -427,7 +458,7 @@ a { color: inherit; }
   margin: 0 auto;
   aspect-ratio: 5 / 7;
   border: var(--border) solid var(--card-face-ink);
-  border-radius: 6px;
+  border-radius: 14px;
   background:
     radial-gradient(circle at 50% 28%, rgba(217,175,82,0.10), transparent 60%),
     var(--card-face-bg);
@@ -520,7 +551,7 @@ a { color: inherit; }
 .uic-audio-gate-note { font-size: 0.85rem; color: var(--grey); font-weight: 400; margin: 16px 0 22px; }
 .uic-transcript-toggle { font-size: 0.78rem; text-decoration: underline; color: var(--grey); background: none; border: none; cursor: pointer; margin-top: 14px; }
 .uic-transcript-toggle:hover { color: var(--ink); }
-.uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); background: var(--grey-light); border: 2px solid var(--ink); padding: 16px; margin-top: 16px; }
+.uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); background: var(--grey-light); border-radius: var(--radius); padding: 16px 18px; margin-top: 16px; }
 .uic-transition-headline { font-family: var(--blk); font-weight: 500; font-size: clamp(1.25rem, 5.5vw, 1.6rem); letter-spacing: 0; line-height: 1.2; margin: 0 0 14px; }
 .uic-transition-sub { color: var(--grey); font-weight: 400; margin: 0 0 30px; }
 
@@ -528,9 +559,10 @@ a { color: inherit; }
 .uic-screen--reveal, .uic-screen--reveal-product { padding-top: 24px; }
 .uic-reveal-continue { text-align: center; margin-top: 8px; }
 .uic-card {
-  background: var(--paper);
-  border: var(--border) solid var(--ink);
-  border-radius: 0;
+  background: var(--grey-light);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.22);
   padding: 26px 20px;
   margin-bottom: 16px;
 }
@@ -563,12 +595,12 @@ a { color: inherit; }
 .uic-audio-play:hover { box-shadow: 4px 4px 0 var(--red); }
 .uic-audio-meta { flex: 1; min-width: 0; }
 .uic-audio-title { font-weight: 500; font-size: 0.9rem; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.02em; }
-.uic-audio-bar { height: 5px; background: var(--grey-light); border: 1px solid var(--ink); overflow: hidden; margin-bottom: 6px; }
-.uic-audio-bar-fill { height: 100%; width: 0%; background: var(--red); }
+.uic-audio-bar { height: 5px; background: var(--grey-light); border-radius: var(--radius-pill); overflow: hidden; margin-bottom: 6px; }
+.uic-audio-bar-fill { height: 100%; width: 0%; background: var(--red); border-radius: var(--radius-pill); }
 .uic-audio-time { font-size: 0.75rem; color: var(--grey); margin: 0; }
 
 /* product */
-.uic-product-card { text-align: center; border-color: var(--ink); }
+.uic-product-card { text-align: center; border-color: var(--gold); }
 .uic-product-title { font-family: var(--blk); font-weight: 500; font-size: clamp(1.1rem, 4.5vw, 1.4rem); text-transform: uppercase; margin: 6px 0 14px; letter-spacing: 0; }
 .uic-product-pitch { font-weight: 500; color: var(--ink); margin: 0 0 14px; }
 .uic-product-desc { color: var(--grey); margin: 0 0 16px; }
