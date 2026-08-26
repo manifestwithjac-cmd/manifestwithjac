@@ -38,6 +38,33 @@
     });
   }
 
+  // A small 4-point "twinkle" sparkle, not a cartoon 5-point star — a quick,
+  // subtle burst on tap so choosing an answer feels alive without being loud.
+  var SPARKLE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6 2 10 6 12-4 2-6 6-6 12 0-6-2-10-6-12 4-2 6-6 6-12z"/></svg>';
+
+  function spawnSparkles(originEl) {
+    if (reducedMotion || !originEl) return;
+    var rect = originEl.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var count = 5;
+    for (var i = 0; i < count; i++) {
+      var angle = (Math.PI * 2 * i) / count + (Math.random() * 0.5 - 0.25);
+      var dist = 14 + Math.random() * 12;
+      var dx = Math.cos(angle) * dist;
+      var dy = Math.sin(angle) * dist;
+      var el = document.createElement('div');
+      el.className = 'uic-sparkle';
+      el.style.left = cx + 'px';
+      el.style.top = cy + 'px';
+      el.style.setProperty('--dx', dx + 'px');
+      el.style.setProperty('--dy', dy + 'px');
+      el.innerHTML = SPARKLE_SVG;
+      document.body.appendChild(el);
+      (function (node) { setTimeout(function () { node.remove(); }, 650); })(el);
+    }
+  }
+
   function readUtm() {
     var params = new URLSearchParams(window.location.search);
     var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
@@ -722,6 +749,7 @@
     } else if (action === 'answer') {
       var q = currentQuestion();
       var optionId = btn.getAttribute('data-option');
+      spawnSparkles(btn);
       commitAnswerAndAdvance(q.id, optionId);
     } else if (action === 'pull-card') {
       state.cardPullPending = btn.getAttribute('data-option');
