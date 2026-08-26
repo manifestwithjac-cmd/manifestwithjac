@@ -39,6 +39,36 @@ Each question is one object in the `QUESTIONS` array:
   quiz).
 - To **remove a question**, delete its object. Nothing else needs updating.
 
+### Conditional questions (Q2, Q3, Q6, Q7)
+
+These four don't use a static `options` array — they use
+`resolveOptions(answersSoFar, runningDesireScores)` instead, so the options
+she sees are phrased for whichever desire is currently leading (usually
+locked in by her Q1 pick). Pick "My beauty / confidence" in Q1 and every one
+of these becomes a beauty-flavored line — not a mixed list of money/business/
+love notifications she has to squint at to find something relevant.
+
+Each of these questions has one option table per desire
+(`Q2_BY_DESIRE.money`, `Q2_BY_DESIRE.beauty`, etc. — same shape for Q3_BY_DESIRE
+and Q6_BY_DESIRE, near the top of `questions.js`) plus a `general` bucket
+used only when nothing is clearly leading yet (i.e. she picked "Everything,
+honestly" in Q1 — a genuine 7-way tie).
+
+- To **edit an option's wording/weights**, find it inside the right desire's
+  array (e.g. `Q3_BY_DESIRE.money`) and edit it like any other option.
+- To **add an option to one desire**, add another object to that desire's
+  array — try to keep every desire's array the same length so the quiz feels
+  balanced, but it's not required.
+- To **make a currently-static question conditional** (or vice versa), copy
+  the pattern from Q2/Q3/Q6: build a `{money: [...], business: [...], ...,
+  general: [...]}` table, then set the question's `resolveOptions` to
+  `function (answersSoFar, runningDesireScores) { return byDesire(TABLE,
+  runningDesireScores); }` instead of a static `options` array.
+- Q1 and Q4 are deliberately **not** conditional — Q1 is the anchor pick
+  that establishes the leading desire in the first place, and Q4 asks about
+  a *behavior pattern* (not a desire), so it stays universal on purpose. Q5's
+  symbol pick also stays universal — it's meant to be instinctive/non-verbal.
+
 ## How scoring works (so your edits behave predictably)
 
 1. Every answered option's weights get added into two running totals across
@@ -127,6 +157,12 @@ If a result has no audio configured, the audio-gate screen is skipped
 entirely and she goes straight from the hero reveal to the `transition`
 screen ("Your full reading is next").
 
+The audio-gate headline tells her up front that it's short:
+`audioGate.headlineWithDuration` (used when that result's `audio.duration`
+is set, e.g. "Press play — this one's 0:47") or `audioGate.headlineDefault`
+("...this one's under a minute") when no duration is set. Keep whichever one
+you use true to the actual recording length.
+
 ## Change the top progress bar
 
 File: `WEBSITE/uic/app.js`, `renderTopbar()`. It only shows during the
@@ -146,8 +182,11 @@ the id in the env var, or change the env var name here and set a new one.
 ## Change fixed flow copy (buttons, screen headlines, disclaimer, etc.)
 
 File: `WEBSITE/uic/config/copy.js` — every string that isn't tied to a
-specific result or question lives here (incoming call screen, "Tell Me"
-intro, connecting-screen steps, email gate labels, disclaimer, etc.).
+specific result or question lives here (incoming call screen, "Tune In"
+intro, connecting-screen steps, email gate labels, disclaimer, etc.). Keep
+the intro framed as the universe already knowing why it's calling — she's
+tuning in to find out, not explaining herself to it (avoid anything that
+reads like "tell me why you're reaching out").
 
 ## Symbols (question 5)
 

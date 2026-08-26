@@ -407,11 +407,14 @@
     var r = state.result;
     if (!r) return renderRevealError();
     var audio = r.audio;
+    var headline = audio.duration
+      ? COPY.audioGate.headlineWithDuration.replace('{{duration}}', audio.duration)
+      : COPY.audioGate.headlineDefault;
     return (
       '<section class="uic-screen uic-screen--audio-gate">' +
         '<div class="uic-audio-gate-card">' +
           '<p class="uic-eyebrow" data-uic-focus tabindex="-1">' + escapeHtml(COPY.audioGate.eyebrow) + '</p>' +
-          '<h1 class="uic-transition-headline uic-blk">' + escapeHtml(COPY.audioGate.headline) + '</h1>' +
+          '<h1 class="uic-transition-headline uic-blk">' + escapeHtml(headline) + '</h1>' +
           '<div class="uic-audio-player" style="max-width:340px;margin:22px auto 0">' +
             '<audio class="uic-sr-only" preload="metadata" src="' + escapeHtml(audio.url) + '"></audio>' +
             '<button class="uic-audio-play" data-action="audio-toggle" aria-label="' + escapeHtml(COPY.a11y.audioPlay) + '">' +

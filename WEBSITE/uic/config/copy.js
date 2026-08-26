@@ -24,13 +24,16 @@
       primaryCta: 'Answer the Call',
       secondaryCta: 'Not Now'
     },
+    // NOTE: the universe already knows why it's calling — she's not
+    // explaining herself to it. Frame this as tuning in, not "tell me why
+    // you're reaching out." (See CONTENT_GUIDE.md.)
     intro: {
       lines: [
         "I've been trying to reach you.",
-        "Something you've been asking for wants to move.",
-        "But first, I need to know what you've been asking me for."
+        "Something you've been asking for is already moving.",
+        "Let's tune in — so I can show you exactly what it is."
       ],
-      cta: 'Tell Me'
+      cta: 'Tune In'
     },
     connecting: {
       steps: [
@@ -86,9 +89,13 @@
     // result has audio configured (see results.js audio.enabled). Skipped
     // entirely if there's no audio yet.
     audioGate: {
-      eyebrow: 'YOUR MESSAGE IS RECORDED',
-      headline: "Press play. I'll tell you the rest after.",
-      note: 'Your full reading unlocks once you’ve listened.',
+      eyebrow: 'ONE MORE THING BEFORE YOUR READING',
+      // {{duration}} is replaced with result.audio.duration when set (e.g. "0:47");
+      // otherwise headlineDefault is used, which promises "under a minute" —
+      // keep that promise true when you record real messages. See AUDIO_ASSETS.md.
+      headlineWithDuration: "Press play — this one's {{duration}}.",
+      headlineDefault: "Press play — this one's under a minute.",
+      note: 'Your full reading is on the other side of this.',
       continueCta: 'See My Full Reading',
       transcriptToggleOn: "Can't listen right now? Read the transcript instead.",
       transcriptToggleOff: 'Hide transcript'
