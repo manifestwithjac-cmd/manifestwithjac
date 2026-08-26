@@ -346,3 +346,20 @@ build — it kept reading oversized on an actual iPhone screen. If you add a
 new full-bleed headline or body element, look at a sibling's current
 values (e.g. `.uic-question-prompt`, `.uic-option`) rather than reaching
 for the original build's sizes.
+
+**Weight:** nothing in the flow goes above `font-weight: 500` anymore —
+an earlier pass leaned on 600/700 everywhere (headlines, buttons, answer
+boxes, even body copy), which read as aggressive/shouty regardless of
+casing. Most body text and UI labels now sit at 400 (true "regular");
+headlines and anything that needs a touch more presence sit at 500. If you
+add a new element, start at 400 and only go to 500 if it's genuinely not
+legible enough — never reach for 600+.
+
+**Sparkle on answer.** Tapping an answer box spawns a brief burst of tiny
+gold sparkles (`spawnSparkles()` in `app.js`, `.uic-sparkle` in
+`styles.css`) — a small 4-point "twinkle" shape, not a cartoon 5-point
+star, deliberately subtle. They're appended straight to `<body>` (not
+`#uic-root`) with `position: fixed` coordinates taken from the clicked
+box's own bounding rect, specifically so they survive the re-render that
+immediately follows an answer click and finish their ~600ms animation
+before self-removing. Skipped entirely under `prefers-reduced-motion`.

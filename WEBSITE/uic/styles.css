@@ -130,7 +130,7 @@ body.uic-body::before {
 }
 .uic-app, .uic-screen, .uic-site-footer { position: relative; z-index: 1; }
 
-.uic-blk { font-family: var(--blk); font-weight: 600; }
+.uic-blk { font-family: var(--blk); font-weight: 500; }
 
 .uic-app {
   position: relative;
@@ -159,7 +159,7 @@ a { color: inherit; }
 .uic-eyebrow {
   font-family: var(--sans);
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--red);
@@ -169,7 +169,7 @@ a { color: inherit; }
 
 .uic-btn {
   font-family: var(--sans);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -193,7 +193,7 @@ a { color: inherit; }
 .uic-btn--primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .uic-btn--primary:hover { box-shadow: 6px 6px 0 var(--red); }
 .uic-btn--ghost { border-color: var(--ink); color: var(--ink); background: var(--paper); }
-.uic-btn--text { border: none; text-decoration: underline; text-underline-offset: 3px; color: var(--grey); padding: 12px; font-family: var(--sans); font-weight: 700; text-transform: none; letter-spacing: 0; }
+.uic-btn--text { border: none; text-decoration: underline; text-underline-offset: 3px; color: var(--grey); padding: 12px; font-family: var(--sans); font-weight: 400; text-transform: none; letter-spacing: 0; }
 .uic-btn--text:hover { transform: none; box-shadow: none; color: var(--ink); }
 .uic-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 .uic-btn[disabled]:hover { transform: none; box-shadow: none; }
@@ -217,7 +217,7 @@ a { color: inherit; }
 
 :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 
-.uic-error { color: var(--red); font-size: 0.9rem; font-weight: 700; margin: -6px 0 12px; }
+.uic-error { color: var(--red); font-size: 0.9rem; font-weight: 500; margin: -6px 0 12px; }
 .uic-privacy-note { font-size: 0.75rem; color: var(--grey); text-align: center; margin-top: 12px; letter-spacing: 0.02em; }
 .uic-disclaimer { font-size: 0.72rem; color: var(--grey); text-align: center; line-height: 1.5; max-width: 46ch; margin: 0 auto 18px; }
 .uic-disclaimer a { color: var(--ink); border-bottom: 1px solid var(--ink); }
@@ -248,7 +248,7 @@ a { color: inherit; }
   display: flex; align-items: center; gap: 12px;
 }
 .uic-topbar-label {
-  font-family: var(--sans); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--sans); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   white-space: nowrap; flex: none;
 }
 .uic-topbar-track { flex: 1; height: 6px; background: var(--grey-light); border: 1px solid var(--ink); }
@@ -257,6 +257,27 @@ a { color: inherit; }
 /* ---------- screens ---------- */
 .uic-screen { width: 100%; padding: 32px 0 44px; animation: uicFadeIn var(--dur-med) var(--ease); }
 @keyframes uicFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Small sparkle burst on answering a question — see spawnSparkles() in
+   app.js. Appended straight to <body> (not #uic-root) so it survives the
+   immediate re-render that follows an answer click, positioned with fixed
+   coordinates from the clicked box's own bounding rect. */
+.uic-sparkle {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  width: 9px; height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  color: var(--gold);
+  opacity: 0;
+  animation: uicSparkleBurst 600ms ease-out forwards;
+}
+.uic-sparkle svg { width: 100%; height: 100%; display: block; }
+@keyframes uicSparkleBurst {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.2) rotate(0deg); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1) rotate(45deg); }
+}
 
 /* ---- call ---- */
 .uic-screen--call { min-height: 100vh; display: flex; align-items: center; }
@@ -296,8 +317,8 @@ a { color: inherit; }
   0%, 100% { box-shadow: 0 0 14px 3px rgba(217,175,82,0.4); }
   50% { box-shadow: 0 0 24px 7px rgba(217,175,82,0.55); }
 }
-.uic-caller { font-family: var(--blk); font-weight: 600; font-size: clamp(1.5rem, 7.5vw, 1.9rem); letter-spacing: -0.01em; text-transform: uppercase; margin: 0 0 8px; line-height: 1.05; }
-.uic-newmessage { color: var(--grey); margin: 0 0 40px; font-weight: 700; }
+.uic-caller { font-family: var(--blk); font-weight: 500; font-size: clamp(1.5rem, 7.5vw, 1.9rem); letter-spacing: -0.01em; text-transform: uppercase; margin: 0 0 8px; line-height: 1.05; }
+.uic-newmessage { color: var(--grey); margin: 0 0 40px; font-weight: 400; }
 .uic-call-actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin: 0 auto; }
 
 /* ---- intro ---- */
@@ -306,7 +327,7 @@ a { color: inherit; }
 .uic-intro-line {
   font-family: var(--sans);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--ink);
   margin: 0 0 16px;
   opacity: 0;
@@ -324,12 +345,12 @@ a { color: inherit; }
   margin: 0 0 14px -8px;
   border: none; background: transparent; cursor: pointer;
   font-size: 1.3rem; color: var(--grey);
-  font-family: var(--sans); font-weight: 700;
+  font-family: var(--sans); font-weight: 400;
 }
 .uic-back:hover { color: var(--ink); }
 .uic-question-prompt {
   font-family: var(--blk);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.15rem, 4.5vw, 1.45rem);
   letter-spacing: 0;
   line-height: 1.25;
@@ -344,7 +365,7 @@ a { color: inherit; }
   background: var(--paper);
   border-radius: 0;
   font-family: var(--sans);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.92rem;
   color: var(--ink);
   cursor: pointer;
@@ -432,10 +453,10 @@ a { color: inherit; }
 .uic-card-prior-glyph svg { width: 100%; height: 100%; }
 .uic-card-prior-label { font-size: 0.6rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.02em; text-align: center; line-height: 1.2; }
 
-.uic-card-position-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 14px; }
+.uic-card-position-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin: 0 0 14px; }
 
 /* final 3-card spread */
-.uic-card-reading-intro { text-align: center; font-family: var(--blk); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold); margin: 0 0 20px; }
+.uic-card-reading-intro { text-align: center; font-family: var(--blk); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold); margin: 0 0 20px; }
 .uic-card-final-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .uic-card-final { flex: 1 1 90px; max-width: 110px; text-align: center; }
 .uic-card-final .uic-card-face--small { max-width: 100%; aspect-ratio: 5/7; padding: 12px 8px; gap: 6px; }
@@ -443,13 +464,13 @@ a { color: inherit; }
 .uic-card-final .uic-card-face-title { font-size: 0.72rem; }
 .uic-card-final .uic-card-position-label { font-size: 0.6rem; margin: 0 0 8px; }
 .uic-symbol-glyph svg { width: 100%; height: 100%; }
-.uic-symbol-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.02em; text-align: center; text-transform: uppercase; }
+.uic-symbol-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.02em; text-align: center; text-transform: uppercase; }
 
 /* ---- tidbit interstitial ---- */
 .uic-screen--tidbit { min-height: 100vh; display: flex; align-items: center; }
 .uic-tidbit-card { text-align: center; width: 100%; }
 .uic-tidbit-mark { width: 40px; height: 40px; margin: 0 auto 20px; border: 2px solid var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--blk); color: var(--red); }
-.uic-tidbit-line { font-family: var(--blk); font-weight: 600; font-size: clamp(1rem, 4.5vw, 1.25rem); letter-spacing: 0; line-height: 1.35; }
+.uic-tidbit-line { font-family: var(--blk); font-weight: 500; font-size: clamp(1rem, 4.5vw, 1.25rem); letter-spacing: 0; line-height: 1.35; }
 
 /* ---- connecting ---- */
 .uic-screen--connecting { min-height: 100vh; display: flex; align-items: center; }
@@ -465,12 +486,12 @@ a { color: inherit; }
   0%, 100% { transform: scale(1); box-shadow: 0 0 16px 3px rgba(217,175,82,0.4); }
   50% { transform: scale(1.16); box-shadow: 0 0 30px 9px rgba(217,175,82,0.6); }
 }
-.uic-connecting-line { font-family: var(--blk); font-weight: 600; font-size: 1.15rem; text-transform: uppercase; letter-spacing: -0.01em; color: var(--ink); min-height: 2.6em; }
+.uic-connecting-line { font-family: var(--blk); font-weight: 500; font-size: 1.15rem; text-transform: uppercase; letter-spacing: -0.01em; color: var(--ink); min-height: 2.6em; }
 
 /* ---- gate ---- */
 .uic-screen--gate { min-height: 100vh; display: flex; align-items: center; }
 .uic-gate-card { width: 100%; text-align: center; }
-.uic-gate-headline { font-family: var(--blk); font-weight: 600; font-size: clamp(1.2rem, 5vw, 1.5rem); letter-spacing: 0; margin: 0 0 22px; line-height: 1.25; }
+.uic-gate-headline { font-family: var(--blk); font-weight: 500; font-size: clamp(1.2rem, 5vw, 1.5rem); letter-spacing: 0; margin: 0 0 22px; line-height: 1.25; }
 .uic-gate-card form { text-align: left; max-width: 380px; margin: 0 auto; }
 
 /* ---- sent ---- */
@@ -482,26 +503,26 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   color: var(--red); font-size: 1.2rem; font-family: var(--blk);
 }
-.uic-sent-card h1 { font-family: var(--blk); font-weight: 600; font-size: 1.3rem; margin: 0 0 8px; }
-.uic-sent-card p { color: var(--grey); font-weight: 700; }
+.uic-sent-card h1 { font-family: var(--blk); font-weight: 500; font-size: 1.3rem; margin: 0 0 8px; }
+.uic-sent-card p { color: var(--grey); font-weight: 400; }
 
 /* ---- reveal: hero ---- */
 .uic-screen--reveal-hero { min-height: 100vh; display: flex; align-items: center; }
 .uic-reveal-hero { text-align: center; width: 100%; }
-.uic-greeting { font-family: var(--sans); font-weight: 700; font-size: 1.2rem; color: var(--grey); margin: 0 0 4px; min-height: 1.4em; }
-.uic-know-why { font-family: var(--sans); font-weight: 700; font-size: 1.05rem; color: var(--ink); margin: 0 0 22px; }
-.uic-result-title { font-family: var(--blk); font-weight: 600; font-size: clamp(1.6rem, 7.5vw, 2.1rem); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1; margin: 0 0 26px; }
+.uic-greeting { font-family: var(--sans); font-weight: 400; font-size: 1.2rem; color: var(--grey); margin: 0 0 4px; min-height: 1.4em; }
+.uic-know-why { font-family: var(--sans); font-weight: 400; font-size: 1.05rem; color: var(--ink); margin: 0 0 22px; }
+.uic-result-title { font-family: var(--blk); font-weight: 500; font-size: clamp(1.6rem, 7.5vw, 2.1rem); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1; margin: 0 0 26px; }
 
 /* ---- reveal: audio gate + transition ---- */
 .uic-screen--audio-gate, .uic-screen--transition { min-height: 100vh; display: flex; align-items: center; }
 .uic-audio-gate-card, .uic-transition-card { text-align: center; width: 100%; }
 .uic-audio-gate-eyebrow { }
-.uic-audio-gate-note { font-size: 0.85rem; color: var(--grey); font-weight: 700; margin: 16px 0 22px; }
+.uic-audio-gate-note { font-size: 0.85rem; color: var(--grey); font-weight: 400; margin: 16px 0 22px; }
 .uic-transcript-toggle { font-size: 0.78rem; text-decoration: underline; color: var(--grey); background: none; border: none; cursor: pointer; margin-top: 14px; }
 .uic-transcript-toggle:hover { color: var(--ink); }
 .uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); background: var(--grey-light); border: 2px solid var(--ink); padding: 16px; margin-top: 16px; }
-.uic-transition-headline { font-family: var(--blk); font-weight: 600; font-size: clamp(1.25rem, 5.5vw, 1.6rem); letter-spacing: 0; line-height: 1.2; margin: 0 0 14px; }
-.uic-transition-sub { color: var(--grey); font-weight: 700; margin: 0 0 30px; }
+.uic-transition-headline { font-family: var(--blk); font-weight: 500; font-size: clamp(1.25rem, 5.5vw, 1.6rem); letter-spacing: 0; line-height: 1.2; margin: 0 0 14px; }
+.uic-transition-sub { color: var(--grey); font-weight: 400; margin: 0 0 30px; }
 
 /* ---- reveal: full reading ---- */
 .uic-screen--reveal, .uic-screen--reveal-product { padding-top: 24px; }
@@ -522,7 +543,7 @@ a { color: inherit; }
 .uic-declaration-card { text-align: center; }
 .uic-declaration {
   font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
   font-size: 1.15rem;
   letter-spacing: -0.005em;
@@ -541,17 +562,17 @@ a { color: inherit; }
 }
 .uic-audio-play:hover { box-shadow: 4px 4px 0 var(--red); }
 .uic-audio-meta { flex: 1; min-width: 0; }
-.uic-audio-title { font-weight: 700; font-size: 0.9rem; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.02em; }
+.uic-audio-title { font-weight: 500; font-size: 0.9rem; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.02em; }
 .uic-audio-bar { height: 5px; background: var(--grey-light); border: 1px solid var(--ink); overflow: hidden; margin-bottom: 6px; }
 .uic-audio-bar-fill { height: 100%; width: 0%; background: var(--red); }
 .uic-audio-time { font-size: 0.75rem; color: var(--grey); margin: 0; }
 
 /* product */
 .uic-product-card { text-align: center; border-color: var(--ink); }
-.uic-product-title { font-family: var(--blk); font-weight: 600; font-size: clamp(1.1rem, 4.5vw, 1.4rem); text-transform: uppercase; margin: 6px 0 14px; letter-spacing: 0; }
-.uic-product-pitch { font-weight: 700; color: var(--ink); margin: 0 0 14px; }
+.uic-product-title { font-family: var(--blk); font-weight: 500; font-size: clamp(1.1rem, 4.5vw, 1.4rem); text-transform: uppercase; margin: 6px 0 14px; letter-spacing: 0; }
+.uic-product-pitch { font-weight: 500; color: var(--ink); margin: 0 0 14px; }
 .uic-product-desc { color: var(--grey); margin: 0 0 16px; }
-.uic-product-price { font-family: var(--blk); font-weight: 600; font-size: 1.7rem; color: var(--red); margin: 0 0 18px; }
+.uic-product-price { font-family: var(--blk); font-weight: 500; font-size: 1.7rem; color: var(--red); margin: 0 0 18px; }
 
 .uic-reveal-footer { text-align: center; padding-top: 12px; }
 
@@ -561,7 +582,7 @@ a { color: inherit; }
   max-width: var(--max-width);
   border-top: var(--border) solid var(--ink);
   text-align: center; font-size: 11px; color: var(--grey);
-  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
   line-height: 2;
 }
 .uic-site-footer a { border-bottom: 2px solid var(--ink); color: var(--ink); padding-bottom: 1px; }
