@@ -381,3 +381,18 @@ from `shop.html`) is gone site-wide, replaced by a small `translateY(-2px)`
 lift plus a softer shadow. If you add a new bordered/boxed element, start
 from `.uic-option` or `.uic-card` as the reference, not an older screenshot
 of this file's history.
+
+**Layered contrast (dark → light panel → dark controls).** The very first
+pass at this rounded system used one flat mid-tone (`--grey-light`) for
+both the containing panels AND the controls inside them, which read as
+flat/no depth. Fixed by adding `--panel` (a distinctly lighter violet,
+`#4C3F77`) for containers — `.uic-question-card` (wraps the prompt +
+answer list) and `.uic-gate-card` (wraps the email form) now have their
+own visible panel background for the first time; they used to be
+transparent, sitting directly on the page gradient. `.uic-card` (the
+reveal panels) switched from `--grey-light` to `--panel` too. Meanwhile
+`.uic-option`, `.uic-input`, and `.uic-symbol` all switched to `--paper`
+(the darkest tone, matching the page backdrop) so the interactive controls
+read as dark cutouts against the lighter panel around them — dark page →
+light panel → dark control is the pattern; don't flatten it back to one
+tone when adding something new.
