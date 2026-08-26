@@ -13,13 +13,14 @@ pattern insight, a quotable declaration, and a share card — followed by a
 second screen with the one matching product recommendation and why.
 Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Visual design is a dark/cosmic take on `WEBSITE/shop.html`'s bones (thick
-borders, hard-shadow hovers) inverted onto a near-black background with a
-subtle star field and a violet/blue galactic glow — but with its own type
-system rather than Shop's Arial/Arial Black: a soft serif (Cormorant
-Garamond) for anything that's "the universe speaking" — headlines, the
-result reveal, the declaration — plus a rounded sans (Poppins) for UI
-chrome and body prose.
+Visual design is a dark/mystical take on `WEBSITE/shop.html`'s bones (thick
+borders, hard-shadow hovers) inverted onto a deep-purple night sky with a
+gold accent and warm white type, plus its own type system rather than
+Shop's Arial/Arial Black: `Cinzel` (the classic tarot/astrology display
+serif) for anything that's "the universe speaking" — headlines, the result
+reveal, product titles — and `Cormorant Garamond` for the declaration (in
+italic) plus UI chrome and body prose. A sticky "Manifest With Jac" header
+sits above everything on every screen.
 
 Live at `/universe-is-calling` once deployed. Disclaimer page at
 `/disclaimer`; both are linked from the experience's footer.
