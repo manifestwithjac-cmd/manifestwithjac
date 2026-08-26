@@ -9,14 +9,21 @@ ElevenLabs-generated messages.
 ## The "must listen" gate
 
 Once a result has audio configured, listening to it becomes **required**
-before she can see the full reading (Red Velvet Cake / pattern / declaration
-/ product) — that's intentional, per direction: play the message, then tell
-her the full reading is next. The custom player has no seek/scrub control,
-so the only way to unlock "See My Full Reading" is to let it play to the
-end. For accessibility, a "Can't listen right now? Read the transcript
-instead" link is also offered — clicking it unlocks the same continue button
-(see `audio.transcript` below). Fill in a real transcript for every result
-you add audio to.
+before she can see the full reading (Red Velvet Cake / pattern / declaration)
+— that's intentional, per direction: play the message start to finish, no
+skipping ahead, then tell her the full reading is next. The custom player
+has no seek/scrub control in its own UI, and the underlying `<audio>`
+element actively blocks skipping too: `toggleAudio()` in `app.js` tracks
+the furthest point actually played (`_uicLastSafeTime`) and snaps
+`currentTime` back to it on every `seeking` event, so dragging the
+native progress bar, hitting a keyboard media-skip key, or calling
+`audio.currentTime =` from devtools all get reverted instantly — there is
+no way to reach the end without actually listening. The only way to
+unlock "See My Full Reading" is to let it play through naturally. For
+accessibility, a "Can't listen right now? Read the transcript instead"
+link is also offered — clicking it unlocks the same continue button (see
+`audio.transcript` below). Fill in a real transcript for every result you
+add audio to.
 
 ## What to generate
 

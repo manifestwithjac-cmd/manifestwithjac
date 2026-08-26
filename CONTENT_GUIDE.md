@@ -159,9 +159,27 @@ screen ("Your full reading is next").
 
 The audio-gate headline tells her up front that it's short:
 `audioGate.headlineWithDuration` (used when that result's `audio.duration`
-is set, e.g. "Press play — this one's 0:47") or `audioGate.headlineDefault`
-("...this one's under a minute") when no duration is set. Keep whichever one
-you use true to the actual recording length.
+is set, e.g. "your reading is available after this — just 0:47") or
+`audioGate.headlineDefault` ("...after this short audio") when no duration
+is set. Keep whichever one you use true to the actual recording length.
+
+**No skipping ahead.** The player has no seek/scrub control at all, and
+`toggleAudio()` in `app.js` actively blocks it further: it tracks the
+furthest point she's actually played (`lastSafeTime`) and snaps any jump
+past that back down — covers manual seeking, a stray keyboard/media-key
+skip, etc. Pausing and resuming is still fine (that's not a skip). This is
+intentional per direction: she needs to hear the whole message before
+"See My Full Reading" unlocks.
+
+## Reading vs. product recommendation — two separate screens
+
+By design, finishing the reading (Red Velvet Cake / pattern / declaration)
+does **not** scroll straight into the product pitch. She taps
+`reveal.readingContinueCta` ("There's One More Thing") and lands on a
+dedicated `reveal-product` screen with the frequency-match recommendation
+and its "why" — see `renderReveal()` / `renderRevealProduct()` in `app.js`.
+Edit the CTA text in `copy.js`; edit the product pitch itself in
+`products.js` (see "Change or add a product" above).
 
 ## Change the top progress bar
 
@@ -188,29 +206,48 @@ the intro framed as the universe already knowing why it's calling — she's
 tuning in to find out, not explaining herself to it (avoid anything that
 reads like "tell me why you're reaching out").
 
-## The card pull (question 5)
+## The three-card reading
 
-Question 5 is a blind "pull one card" moment, not a visible grid — she taps
-a face-down card without knowing what's under it, then it flips to reveal
-the symbol, a tarot-style title ("THE GOLD COIN"), and a one-line meaning.
-This is deliberately atmospheric only — it uses the same light desire
-weights the old symbol grid used, nothing more. It's implemented as
-`type: 'card-pull'` in `questions.js` (`renderCardPull()` in `app.js`), a
-distinct interaction from `type: 'select'`.
+After all 6 real questions are answered (not mixed into the numbered quiz —
+this is its own ritual moment), she pulls three cards, one position at a
+time: a blind spread of face-down cards, she taps one without knowing what's
+under it, it flips to reveal a symbol + tarot-style title + one-line
+meaning, then the deck reshuffles minus that card for the next pull. After
+the third pull, all three revealed cards are shown together as "Your
+Reading" — each under a positional label (`CARD_POSITION_LABELS` in
+`app.js`: "What's Already Moving" / "What You've Been Missing" / "What's
+About to Shift").
 
-- To **edit a card's title/meaning**, edit that option's `label` /
-  `meaning` in `questions.js` (the `q5_symbol` question).
-- To **add/remove a card**, add/remove an option the same as any other
-  question — the spread grid and everything else adapts automatically.
+This is deliberately atmospheric-plus-structural, not a fourth scoring
+dimension — the position labels give it the shape of a real reading without
+requiring bespoke copy for every card × position × result combination. Each
+card still carries the same light desire weights the old single-symbol pick
+used.
+
+Implemented as three questions in `questions.js` — `card_pull_1`,
+`card_pull_2`, `card_pull_3` (`type: 'card-pull'`), appended after
+`q7_proof`. They're excluded from the numbered progress bar (see
+`PROGRESS_QUESTIONS` in `app.js`) since they're a ritual, not "question 7 of
+9." `renderCardPull()` in `app.js` handles the position-aware rendering
+(prior-picks strip, single reveal, final 3-card spread).
+
+- To **edit a card's title/meaning**, edit its `label` / `meaning` in the
+  `CARD_SYMBOLS` table near the top of `questions.js`.
+- To **add/remove a card** from the deck, add/remove an entry in
+  `CARD_SYMBOLS` — the spread, the exclusion-per-position logic, and
+  everything else adapts automatically.
+- To **change a position's label or the "Your Reading" framing**, edit
+  `CARD_POSITION_LABELS` in `app.js`.
 - The icons are simple inline line-art (no image files needed) — see
   `SYMBOL_PATHS` in `WEBSITE/uic/app.js`. `questions.js` already has an
-  `image` field per option reserved for real artwork later; to switch to
-  real images, add files under `WEBSITE/uic/symbols/` matching those paths
-  and render `<img src="o.image">` in `renderCardPull()`'s revealed-card
-  markup instead of calling `symbolGlyph(o.id)`.
-- She can change her pick before continuing ("Pull a different card" on the
-  revealed view) — same as any other question's back-button, just phrased
-  to fit the ritual.
+  `image` field per card reserved for real artwork later; to switch to real
+  images, add files under `WEBSITE/uic/symbols/` matching those paths and
+  render `<img src="o.image">` in `renderCardPull()`'s revealed-card markup
+  instead of calling `symbolGlyph(o.id)`.
+- She can change a pick before continuing ("Pull a different card" on the
+  single-reveal view for positions 1-2) — same spirit as any other
+  question's back-button, phrased to fit the ritual. Position 3 skips
+  straight to the full reading instead, so the payoff is immediate.
 
 ## Consent checkbox / legal links
 
@@ -234,10 +271,23 @@ file.
 
 ## Visual design system
 
-`WEBSITE/uic/styles.css` is intentionally matched to `WEBSITE/shop.html`'s
-tokens: Arial / "Arial Black" (no external fonts to load), black 3px
-borders, white background, red `#e11d1d` + gold `#c9a449` accents, hard
-drop-shadow on button/card hover, uppercase tight-tracking headlines. If
-Shop's palette or type changes, update the `:root` custom properties at the
-top of `styles.css` to match — everything else in the file references those
-variables.
+`WEBSITE/uic/styles.css` keeps `WEBSITE/shop.html`'s actual bones — Arial /
+"Arial Black" (no external fonts to load), thick 3px borders, hard
+drop-shadow on button/card hover, uppercase tight-tracking headlines — but
+**inverts the palette to a dark, cosmic theme** (near-black background,
+cream type, a faint star-field + red/gold glow) rather than Shop's white
+background. This was a deliberate choice: a bright white page reads as a
+coaching/SaaS landing page, and this experience is supposed to feel like
+the universe calling, not a bootcamp sign-up form.
+
+All colors run through `:root` custom properties at the top of the file —
+`--ink` (now cream, used for text/borders), `--paper` (now near-black, the
+page background), `--gold`, `--red`, `--grey`. Two colors are intentionally
+**not** tied to those tokens: `--card-face-bg` / `--card-face-ink` keep the
+revealed tarot-card face light/cream regardless of the page theme (a card
+should read as an object catching light against the dark page, not a
+page-colored panel), and the card *backs* are hardcoded near-black so they
+hold their "mystery" look even against a dark page. If you ever want to go
+back to a light theme, swap the `:root` values — everything else in the
+file references those variables — but re-check `.uic-card-back` /
+`.uic-card-face` first, since those two are deliberately theme-independent.

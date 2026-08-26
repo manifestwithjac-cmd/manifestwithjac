@@ -1,17 +1,23 @@
 # The Universe Is Calling
 
 A fast, interactive manifestation experience for Manifest With Jac. She
-answers 7 questions (with a couple of brief "I see a pattern here" tidbit
+answers 6 questions (with a couple of brief "I see a pattern here" tidbit
 moments along the way, and a real top progress bar so she knows how far
-she's got left), gives her first name + email to see her result, and lands
-on an instant personalized "message from the universe" — a big reveal, a
-required-listen audio message (once you've added one — see AUDIO_ASSETS.md),
-a "your full reading is next" beat, then the full reading: a pattern
-insight, a quotable declaration, and one matching product recommendation.
+she's got left), then pulls a three-card reading (no progress bar during
+the ritual — it isn't counted as a "question"), gives her first name +
+email to see her result, and lands on an instant personalized "message
+from the universe" — a big reveal, a required-listen audio message (once
+you've added one — see AUDIO_ASSETS.md, and no, she can't scrub/skip
+ahead), a "your full reading is next" beat, then the reading itself: a
+pattern insight, a quotable declaration, and a share card — followed by a
+second screen with the one matching product recommendation and why.
 Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Visual design matches `WEBSITE/shop.html`'s system exactly (Arial / Arial
-Black, black borders, red/gold accents) rather than introducing a new look.
+Visual design is a dark/cosmic pivot of `WEBSITE/shop.html`'s system — same
+typographic bones (Arial / Arial Black, thick borders, hard-shadow hovers,
+red/gold accents) inverted onto a near-black background with a subtle
+star field, so it reads as "the same brand at night" rather than a bright
+coaching-landing-page look.
 
 Live at `/universe-is-calling` once deployed. Disclaimer page at
 `/disclaimer`; both are linked from the experience's footer.
@@ -52,7 +58,8 @@ WEBSITE/
     analytics.js                  provider-agnostic event layer
     preview.html                  dev-only QA tool, not linked publicly
     config/
-      questions.js                the 7 questions + weighted answers
+      questions.js                6 questions + weighted answers, plus the
+                                   3-card reading (draws without replacement)
       results.js                  7 result archetypes (Dimension 1)
       patterns.js                 10 secondary patterns (Dimension 2)
       products.js                 product/checkout catalog
@@ -73,12 +80,15 @@ tests/                            node --test suite (zero extra dependencies)
 content/email-sequences/          source copy for all 21 Kit sequence emails
 ```
 
-**Screen flow:** call → intro → question ×7 (with brief "tidbit" interstitials
-after Q2/Q4/Q6, and a top progress bar throughout) → connecting → email gate
-→ sent → reveal-hero (the big title reveal) → audio-gate (only if that
-result has audio; listening is required to continue) → transition ("your
-full reading is next") → reveal (the full reading: Red Velvet Cake, pattern
-insight, declaration + share, product, footer).
+**Screen flow:** call → intro → question ×6 (with brief "tidbit" interstitials
+after Q2/Q4/Q6, and a top progress bar throughout) → three-card reading (no
+progress bar; draws without replacement, ends with all three cards laid
+out as one spread) → connecting → email gate → sent → reveal-hero (the big
+title reveal) → audio-gate (only if that result has audio; listening is
+required to continue, and seeking/skipping ahead is blocked) → transition
+("your full reading is next") → reveal (the reading: Red Velvet Cake,
+pattern insight, declaration + share — no product yet) → reveal-product
+(the product recommendation + why, disclaimer, footer).
 
 **Why one shared `engine.js`, loaded twice:** the scoring/routing logic is
 written once, in a small UMD-style file, and required unmodified by both the
@@ -169,9 +179,10 @@ fields — no duplicates created).
 ## Testing
 
 `npm test` runs `tests/engine.test.js` (scoring, tie-breaking, every result
-archetype's reachability, the conditional 7th question, forged-weight
-rejection) and `tests/uic-submit.test.js` (input validation, honeypot, Kit
-success/failure handling, forged-result rejection) — see
+archetype's reachability, the conditional questions, the three-card
+reading's draw-without-replacement behavior, forged-weight rejection) and
+`tests/uic-submit.test.js` (input validation, honeypot, Kit success/failure
+handling, forged-result rejection) — see
 **[QA_MATRIX.md](./QA_MATRIX.md)** for the full result → pattern → product →
 Kit-tag → Kit-sequence map and manual QA answer paths, plus the dev-only
 `/uic/preview.html` tool for visually checking every result/pattern
