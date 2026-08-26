@@ -2,28 +2,47 @@
    Dark, cosmic, high-contrast: this is "the universe calling," not a
    coaching landing page — so unlike shop.html's white/black system, this
    inverts to a near-black sky with cream type. Keeps shop.html's actual
-   bones (Arial/Arial Black, thick borders, hard-shadow hover states, the
-   same red/gold accent pair) so it's still recognizably the same brand,
-   just staged at night instead of in daylight.
+   bones (thick borders, hard-shadow hover states) so it's still
+   recognizably the same brand, just staged at night instead of in
+   daylight. Typography and accent color are deliberately its own thing,
+   not shop.html's: a soft serif for anything that's "the universe
+   speaking" plus a rounded sans for UI chrome, over a violet/blue galactic
+   accent pair instead of shop's red/gold — see the --violet/--blue tokens
+   below. --red/--gold are kept as aliases so every existing rule in this
+   file still resolves to the new colors without being rewritten one by one.
    Mobile-first. No dependency on any framework. */
 
 :root {
   --ink: #F3EEE3;
   --paper: #0B0A0F;
-  --gold: #D9B15C;
-  --red: #FF4438;
   --grey: #9A94A6;
   --grey-light: #262330;
   --line: #F3EEE3;
 
-  /* The card face (Q5's revealed side) and the top of every card back are
-     deliberately NOT tied to --ink/--paper — a card should read as an
-     object catching light against the dark page, not a page-colored panel. */
+  /* Galactic accent pair — violet for anything that was "red" (alerts,
+     hovers, focus, price, declaration marks), blue for anything that was
+     "gold" (card backs, glows, position labels). */
+  --violet: #A276FF;
+  --blue: #5FA8FF;
+  --red: var(--violet);
+  --gold: var(--blue);
+
+  /* The card face (the revealed side of a pulled card) and the top of
+     every card back are deliberately NOT tied to --ink/--paper — a card
+     should read as an object catching light against the dark page, not a
+     page-colored panel. */
   --card-face-bg: #F3EEE3;
   --card-face-ink: #16130F;
 
-  --sans: Arial, Helvetica, sans-serif;
-  --blk: "Arial Black", "Arial Bold", Arial, Helvetica, sans-serif;
+  /* Soft rounded sans for UI chrome (buttons, labels, body prose) plus an
+     elegant serif for anything that's "the universe speaking" (headlines,
+     the reveal, the declaration) — replaces the old Arial/Arial Black
+     pairing, which read as a SaaS dashboard rather than a message from
+     somewhere bigger. Loaded via Google Fonts in universe-is-calling.html
+     and preview.html; falls back gracefully if that link is ever removed. */
+  --sans: 'Poppins', Arial, Helvetica, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --blk: var(--serif);
 
   --radius: 0;
   --max-width: 560px;
@@ -59,9 +78,9 @@ body.uic-body {
 }
 
 /* Night sky. A faint star-field (light dots read as stars against a dark
-   ground — the same dots on white would just look like dust) plus soft
-   red/gold glow, fixed to the viewport so it never competes with content
-   or scrolls oddly. */
+   ground — the same dots on white would just look like dust) plus a
+   violet/blue galactic glow, fixed to the viewport so it never competes
+   with content or scrolls oddly. */
 body.uic-body::before {
   content: '';
   position: fixed;
@@ -71,20 +90,20 @@ body.uic-body::before {
   background:
     radial-gradient(1.5px 1.5px at 14% 22%, rgba(243,238,227,0.55), transparent 60%),
     radial-gradient(1px 1px at 78% 14%, rgba(243,238,227,0.4), transparent 60%),
-    radial-gradient(1.5px 1.5px at 62% 42%, rgba(217,177,92,0.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 42%, rgba(95,168,255,0.55), transparent 60%),
     radial-gradient(1px 1px at 30% 64%, rgba(243,238,227,0.4), transparent 60%),
     radial-gradient(1.5px 1.5px at 88% 74%, rgba(243,238,227,0.45), transparent 60%),
-    radial-gradient(1px 1px at 48% 88%, rgba(217,177,92,0.4), transparent 60%),
+    radial-gradient(1px 1px at 48% 88%, rgba(95,168,255,0.45), transparent 60%),
     radial-gradient(1px 1px at 10% 92%, rgba(243,238,227,0.35), transparent 60%),
     radial-gradient(1.5px 1.5px at 94% 40%, rgba(243,238,227,0.4), transparent 60%),
-    radial-gradient(ellipse 60% 42% at 50% -6%, rgba(255,68,56,0.22), transparent 62%),
-    radial-gradient(ellipse 55% 38% at 102% 8%, rgba(217,177,92,0.16), transparent 60%),
-    radial-gradient(ellipse 65% 42% at -2% 100%, rgba(217,177,92,0.14), transparent 60%),
-    radial-gradient(ellipse 55% 40% at 100% 100%, rgba(255,68,56,0.14), transparent 60%);
+    radial-gradient(ellipse 60% 42% at 50% -6%, rgba(162,118,255,0.28), transparent 62%),
+    radial-gradient(ellipse 55% 38% at 102% 8%, rgba(95,168,255,0.22), transparent 60%),
+    radial-gradient(ellipse 65% 42% at -2% 100%, rgba(95,168,255,0.20), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 100% 100%, rgba(162,118,255,0.22), transparent 60%);
 }
 .uic-app, .uic-screen, .uic-site-footer { position: relative; z-index: 1; }
 
-.uic-blk { font-family: var(--blk); font-weight: 900; }
+.uic-blk { font-family: var(--blk); font-weight: 600; }
 
 .uic-app {
   position: relative;
@@ -122,8 +141,8 @@ a { color: inherit; }
 .uic-eyebrow--gold { color: var(--gold); margin-top: -4px; }
 
 .uic-btn {
-  font-family: var(--blk);
-  font-weight: 900;
+  font-family: var(--sans);
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -187,7 +206,7 @@ a { color: inherit; }
   display: flex; align-items: center; gap: 12px;
 }
 .uic-topbar-label {
-  font-family: var(--blk); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--sans); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   white-space: nowrap; flex: none;
 }
 .uic-topbar-track { flex: 1; height: 6px; background: var(--grey-light); border: 1px solid var(--ink); }
@@ -207,15 +226,15 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   position: relative;
   background:
-    radial-gradient(circle at 50% 45%, rgba(225,29,29,0.14), transparent 68%),
+    radial-gradient(circle at 50% 45%, rgba(162,118,255,0.16), transparent 68%),
     var(--paper);
 }
 .uic-ring::after {
   content: '';
   width: 46px; height: 46px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ff5a5a, var(--red) 60%, #9c0f0f 100%);
-  box-shadow: 0 0 18px 4px rgba(225,29,29,0.45);
+  background: radial-gradient(circle at 35% 30%, #cbaaff, var(--red) 60%, #4b2a99 100%);
+  box-shadow: 0 0 18px 4px rgba(162,118,255,0.45);
   animation: uicGlow 2.4s ease-in-out infinite;
 }
 .uic-ring--pulse::before {
@@ -232,10 +251,10 @@ a { color: inherit; }
   100% { transform: scale(1.5); opacity: 0; }
 }
 @keyframes uicGlow {
-  0%, 100% { box-shadow: 0 0 14px 3px rgba(225,29,29,0.4); }
-  50% { box-shadow: 0 0 24px 7px rgba(225,29,29,0.55); }
+  0%, 100% { box-shadow: 0 0 14px 3px rgba(162,118,255,0.4); }
+  50% { box-shadow: 0 0 24px 7px rgba(162,118,255,0.55); }
 }
-.uic-caller { font-family: var(--blk); font-size: clamp(2rem, 10vw, 2.6rem); letter-spacing: -0.03em; text-transform: uppercase; margin: 0 0 8px; line-height: 0.95; }
+.uic-caller { font-family: var(--blk); font-weight: 600; font-size: clamp(2rem, 10vw, 2.6rem); letter-spacing: -0.03em; text-transform: uppercase; margin: 0 0 8px; line-height: 0.95; }
 .uic-newmessage { color: var(--grey); margin: 0 0 40px; font-weight: 700; }
 .uic-call-actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin: 0 auto; }
 
@@ -263,11 +282,12 @@ a { color: inherit; }
   margin: 0 0 14px -8px;
   border: none; background: transparent; cursor: pointer;
   font-size: 1.3rem; color: var(--grey);
-  font-family: var(--blk);
+  font-family: var(--sans); font-weight: 700;
 }
 .uic-back:hover { color: var(--ink); }
 .uic-question-prompt {
   font-family: var(--blk);
+  font-weight: 600;
   font-size: clamp(1.5rem, 6vw, 2rem);
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -322,7 +342,7 @@ a { color: inherit; }
   aspect-ratio: 5 / 7;
   border: 2px solid var(--gold);
   background:
-    radial-gradient(circle at 50% 42%, rgba(217,177,92,0.28), transparent 70%),
+    radial-gradient(circle at 50% 42%, rgba(95,168,255,0.28), transparent 70%),
     #060509;
   border-radius: 4px;
   cursor: pointer;
@@ -335,7 +355,7 @@ a { color: inherit; }
 .uic-card-back:nth-child(even) { transform: rotate(2.5deg); }
 .uic-card-back:hover {
   transform: translateY(-4px) rotate(0deg);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.6), 0 0 16px rgba(217,177,92,0.25);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.6), 0 0 16px rgba(95,168,255,0.25);
 }
 .uic-card-back-mark { font-size: 1.3rem; }
 
@@ -347,10 +367,10 @@ a { color: inherit; }
   border: var(--border) solid var(--card-face-ink);
   border-radius: 6px;
   background:
-    radial-gradient(circle at 50% 28%, rgba(255,68,56,0.10), transparent 60%),
+    radial-gradient(circle at 50% 28%, rgba(162,118,255,0.10), transparent 60%),
     var(--card-face-bg);
   color: var(--card-face-ink);
-  box-shadow: 0 0 32px rgba(217,177,92,0.22), 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 0 32px rgba(95,168,255,0.22), 0 10px 30px rgba(0,0,0,0.5);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 12px;
   padding: 24px 18px;
@@ -374,7 +394,7 @@ a { color: inherit; }
 .uic-card-position-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 14px; }
 
 /* final 3-card spread */
-.uic-card-reading-intro { text-align: center; font-family: var(--blk); text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold); margin: 0 0 20px; }
+.uic-card-reading-intro { text-align: center; font-family: var(--blk); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold); margin: 0 0 20px; }
 .uic-card-final-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .uic-card-final { flex: 1 1 90px; max-width: 110px; text-align: center; }
 .uic-card-final .uic-card-face--small { max-width: 100%; aspect-ratio: 5/7; padding: 12px 8px; gap: 6px; }
@@ -388,7 +408,7 @@ a { color: inherit; }
 .uic-screen--tidbit { min-height: 100vh; display: flex; align-items: center; }
 .uic-tidbit-card { text-align: center; width: 100%; }
 .uic-tidbit-mark { width: 40px; height: 40px; margin: 0 auto 20px; border: 2px solid var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--blk); color: var(--red); }
-.uic-tidbit-line { font-family: var(--blk); font-size: clamp(1.3rem, 6vw, 1.7rem); text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.15; }
+.uic-tidbit-line { font-family: var(--blk); font-weight: 600; font-size: clamp(1.3rem, 6vw, 1.7rem); text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.15; }
 
 /* ---- connecting ---- */
 .uic-screen--connecting { min-height: 100vh; display: flex; align-items: center; }
@@ -397,19 +417,19 @@ a { color: inherit; }
   width: 60px; height: 60px; margin: 0 auto 32px;
   border-radius: 50%;
   border: var(--border) solid var(--ink);
-  background: radial-gradient(circle at 35% 30%, #ff5a5a, var(--red) 55%, #7a0c0c 100%);
+  background: radial-gradient(circle at 35% 30%, #cbaaff, var(--red) 55%, #3a1f80 100%);
   animation: uicBreathe 1.8s ease-in-out infinite;
 }
 @keyframes uicBreathe {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 16px 3px rgba(225,29,29,0.4); }
-  50% { transform: scale(1.16); box-shadow: 0 0 30px 9px rgba(225,29,29,0.6); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 16px 3px rgba(162,118,255,0.4); }
+  50% { transform: scale(1.16); box-shadow: 0 0 30px 9px rgba(162,118,255,0.6); }
 }
-.uic-connecting-line { font-family: var(--blk); font-size: 1.15rem; text-transform: uppercase; letter-spacing: -0.01em; color: var(--ink); min-height: 2.6em; }
+.uic-connecting-line { font-family: var(--blk); font-weight: 600; font-size: 1.15rem; text-transform: uppercase; letter-spacing: -0.01em; color: var(--ink); min-height: 2.6em; }
 
 /* ---- gate ---- */
 .uic-screen--gate { min-height: 100vh; display: flex; align-items: center; }
 .uic-gate-card { width: 100%; text-align: center; }
-.uic-gate-headline { font-family: var(--blk); font-size: clamp(1.7rem, 7vw, 2.2rem); text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 28px; line-height: 1.1; }
+.uic-gate-headline { font-family: var(--blk); font-weight: 600; font-size: clamp(1.7rem, 7vw, 2.2rem); text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 28px; line-height: 1.1; }
 .uic-gate-card form { text-align: left; max-width: 380px; margin: 0 auto; }
 
 /* ---- sent ---- */
@@ -421,7 +441,7 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   color: var(--red); font-size: 1.4rem; font-family: var(--blk);
 }
-.uic-sent-card h1 { font-family: var(--blk); font-size: 1.7rem; text-transform: uppercase; margin: 0 0 8px; }
+.uic-sent-card h1 { font-family: var(--blk); font-weight: 600; font-size: 1.7rem; text-transform: uppercase; margin: 0 0 8px; }
 .uic-sent-card p { color: var(--grey); font-weight: 700; }
 
 /* ---- reveal: hero ---- */
@@ -429,7 +449,7 @@ a { color: inherit; }
 .uic-reveal-hero { text-align: center; width: 100%; }
 .uic-greeting { font-family: var(--sans); font-weight: 700; font-size: 1.2rem; color: var(--grey); margin: 0 0 4px; min-height: 1.4em; }
 .uic-know-why { font-family: var(--sans); font-weight: 700; font-size: 1.05rem; color: var(--ink); margin: 0 0 22px; }
-.uic-result-title { font-family: var(--blk); font-size: clamp(2.2rem, 11vw, 3.2rem); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.98; margin: 0 0 34px; }
+.uic-result-title { font-family: var(--blk); font-weight: 600; font-size: clamp(2.2rem, 11vw, 3.2rem); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.98; margin: 0 0 34px; }
 
 /* ---- reveal: audio gate + transition ---- */
 .uic-screen--audio-gate, .uic-screen--transition { min-height: 100vh; display: flex; align-items: center; }
@@ -439,7 +459,7 @@ a { color: inherit; }
 .uic-transcript-toggle { font-size: 0.78rem; text-decoration: underline; color: var(--grey); background: none; border: none; cursor: pointer; margin-top: 14px; }
 .uic-transcript-toggle:hover { color: var(--ink); }
 .uic-transcript-text { text-align: left; font-size: 0.9rem; color: var(--ink); background: var(--grey-light); border: 2px solid var(--ink); padding: 16px; margin-top: 16px; }
-.uic-transition-headline { font-family: var(--blk); font-size: clamp(1.8rem, 8vw, 2.4rem); text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 14px; }
+.uic-transition-headline { font-family: var(--blk); font-weight: 600; font-size: clamp(1.8rem, 8vw, 2.4rem); text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 14px; }
 .uic-transition-sub { color: var(--grey); font-weight: 700; margin: 0 0 30px; }
 
 /* ---- reveal: full reading ---- */
@@ -461,6 +481,8 @@ a { color: inherit; }
 .uic-declaration-card { text-align: center; }
 .uic-declaration {
   font-family: var(--blk);
+  font-weight: 600;
+  font-style: italic;
   font-size: 1.35rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -486,10 +508,10 @@ a { color: inherit; }
 
 /* product */
 .uic-product-card { text-align: center; border-color: var(--ink); }
-.uic-product-title { font-family: var(--blk); font-size: clamp(1.5rem, 6vw, 1.9rem); text-transform: uppercase; margin: 6px 0 14px; letter-spacing: -0.01em; }
+.uic-product-title { font-family: var(--blk); font-weight: 600; font-size: clamp(1.5rem, 6vw, 1.9rem); text-transform: uppercase; margin: 6px 0 14px; letter-spacing: -0.01em; }
 .uic-product-pitch { font-weight: 700; color: var(--ink); margin: 0 0 14px; }
 .uic-product-desc { color: var(--grey); margin: 0 0 16px; }
-.uic-product-price { font-family: var(--blk); font-size: 1.7rem; color: var(--red); margin: 0 0 18px; }
+.uic-product-price { font-family: var(--blk); font-weight: 600; font-size: 1.7rem; color: var(--red); margin: 0 0 18px; }
 
 .uic-reveal-footer { text-align: center; padding-top: 12px; }
 

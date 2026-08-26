@@ -271,23 +271,45 @@ file.
 
 ## Visual design system
 
-`WEBSITE/uic/styles.css` keeps `WEBSITE/shop.html`'s actual bones — Arial /
-"Arial Black" (no external fonts to load), thick 3px borders, hard
-drop-shadow on button/card hover, uppercase tight-tracking headlines — but
-**inverts the palette to a dark, cosmic theme** (near-black background,
-cream type, a faint star-field + red/gold glow) rather than Shop's white
-background. This was a deliberate choice: a bright white page reads as a
-coaching/SaaS landing page, and this experience is supposed to feel like
-the universe calling, not a bootcamp sign-up form.
+`WEBSITE/uic/styles.css` keeps `WEBSITE/shop.html`'s structural bones —
+thick 3px borders, hard drop-shadow on button/card hover, uppercase
+tight-tracking headlines — but **inverts the palette to a dark, cosmic
+theme** (near-black background, cream type, a faint star-field + a
+violet/blue galactic glow) rather than Shop's white background, and swaps
+Shop's Arial/Arial Black pairing for its own type system. This was a
+deliberate choice: a bright white page reads as a coaching/SaaS landing
+page, and this experience is supposed to feel like the universe calling,
+not a bootcamp sign-up form.
 
-All colors run through `:root` custom properties at the top of the file —
-`--ink` (now cream, used for text/borders), `--paper` (now near-black, the
-page background), `--gold`, `--red`, `--grey`. Two colors are intentionally
-**not** tied to those tokens: `--card-face-bg` / `--card-face-ink` keep the
-revealed tarot-card face light/cream regardless of the page theme (a card
-should read as an object catching light against the dark page, not a
-page-colored panel), and the card *backs* are hardcoded near-black so they
-hold their "mystery" look even against a dark page. If you ever want to go
-back to a light theme, swap the `:root` values — everything else in the
-file references those variables — but re-check `.uic-card-back` /
-`.uic-card-face` first, since those two are deliberately theme-independent.
+**Type:** two Google Fonts, loaded via a `<link>` in
+`universe-is-calling.html` and `preview.html` (falls back to system Georgia
+/ Arial if that link is ever removed) — `--serif` (`Cormorant Garamond`,
+aliased as `--blk`) for anything that's "the universe speaking": the call
+screen, question prompts, tidbits, the result reveal, the declaration
+(set in italic — it's the one quotable line), product titles. `--sans`
+(`Poppins`) for UI chrome — buttons, the progress-bar label, body prose in
+the reading. This replaced the original Arial/Arial Black pairing, which
+read as a dashboard rather than a message from somewhere bigger. Every
+selector that references `var(--blk)` sets its own `font-weight` (Cormorant
+tops out at 700, unlike Arial Black's baked-in 900) — if you add a new
+headline-style element, set `font-weight: 600;` alongside it or it'll
+render at the browser default (400) and look thin.
+
+**Color:** all colors run through `:root` custom properties at the top of
+the file — `--ink` (cream, text/borders), `--paper` (near-black, page
+background), `--violet` and `--blue` (the galactic accent pair — violet
+for alerts/hovers/focus/price/declaration marks, blue for card backs/glows/
+position labels), `--grey`. `--red` and `--gold` still exist as aliases
+(`--red: var(--violet); --gold: var(--blue);`) purely so the ~40 existing
+rules that reference `var(--red)`/`var(--gold)` didn't all need rewriting
+when the accent pair moved from red/gold to violet/blue — if you're adding
+a *new* rule, reach for `--violet`/`--blue` directly rather than the alias
+names. Two colors are intentionally **not** tied to any of this:
+`--card-face-bg` / `--card-face-ink` keep the revealed tarot-card face
+light/cream regardless of the page theme (a card should read as an object
+catching light against the dark page, not a page-colored panel), and the
+card *backs* are hardcoded near-black so they hold their "mystery" look
+even against a dark page. If you ever want to go back to a light theme,
+swap the `:root` values — everything else in the file references those
+variables — but re-check `.uic-card-back` / `.uic-card-face` first, since
+those two are deliberately theme-independent.
