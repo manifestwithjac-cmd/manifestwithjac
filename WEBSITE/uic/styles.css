@@ -76,7 +76,7 @@
   --max-width: 560px;
   --tap-min: 48px;
   --border: 1.5px;
-  --brand-header-h: 34px;
+  --brand-header-h: 28px;
 
   --dur-fast: 120ms;
   --dur-med: 320ms;
@@ -171,7 +171,14 @@ body.uic-body::before {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* flex-start, not center: each screen section centers its own content
+     within its own min-height:100vh box already (see .uic-screen--call
+     etc.), so this outer centering only ever mattered for the aggregate
+     stack (brand header + topbar + screen), which is always taller than
+     100vh by at least the header's height — with justify-content:center
+     that overflow gets split evenly, pushing the brand header itself
+     above the fold on every single screen. */
+  justify-content: flex-start;
 }
 
 .uic-sr-only {
@@ -277,7 +284,7 @@ a { color: inherit; }
   border-bottom: var(--border) solid var(--ink);
 }
 .uic-topbar-in {
-  max-width: var(--max-width); margin: 0 auto; padding: 12px 18px;
+  max-width: var(--max-width); margin: 0 auto; padding: 8px 18px;
   display: flex; align-items: center; gap: 12px;
 }
 .uic-topbar-label {
@@ -370,13 +377,18 @@ a { color: inherit; }
 .uic-intro-cta { margin-top: 28px; max-width: 320px; margin-left: auto; margin-right: auto; }
 
 /* ---- question ---- */
-.uic-screen--question { min-height: calc(100vh - 34px); display: flex; flex-direction: column; justify-content: center; }
+/* flex-start, not center — with 6-7 options this screen is often taller
+   than the viewport, and centering an overflowing flex child pushes its
+   top edge above the fold (she'd have to scroll up to see the question).
+   Anchoring to the top keeps the heading visible on load no matter how
+   many options there are. */
+.uic-screen--question { min-height: calc(100vh - var(--brand-header-h) - 34px); display: flex; flex-direction: column; justify-content: flex-start; padding-top: 1.5vh; padding-bottom: 12px; }
 .uic-question-card {
   position: relative;
   background: var(--panel);
   border-radius: var(--radius);
   box-shadow: 0 8px 28px rgba(0,0,0,0.3);
-  padding: 26px 20px;
+  padding: 16px 14px;
 }
 .uic-back {
   display: flex; align-items: center; justify-content: center;
@@ -391,21 +403,21 @@ a { color: inherit; }
   font-family: var(--blk);
   font-weight: 400;
   font-synthesis: none;
-  font-size: clamp(1.3rem, 5vw, 1.6rem);
+  font-size: clamp(1.45rem, 5.2vw, 1.75rem);
   letter-spacing: 0;
-  line-height: 1.3;
-  margin: 0 0 24px;
+  line-height: 1.28;
+  margin: 0 0 16px;
 }
-.uic-option-list { display: flex; flex-direction: column; gap: 12px; }
+.uic-option-list { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .uic-option {
   min-height: var(--tap-min);
-  width: 100%;
+  width: 92%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   text-align: left;
-  padding: 15px 18px;
+  padding: 11px 16px;
   border: 1.5px solid transparent;
   background: var(--paper);
   border-radius: var(--radius);
