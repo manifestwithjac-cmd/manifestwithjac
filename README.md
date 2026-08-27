@@ -18,11 +18,15 @@ gold accent, warm white type, and tiny twinkling stars, in a soft rounded
 shape language (pill buttons and answer rows, generously rounded cards,
 gentle drop shadows — not `shop.html`'s sharp corners and hard-offset
 hover shadows), plus its own type system rather than Shop's Arial/Arial
-Black: `Cinzel` (the classic tarot/astrology display serif, set in mixed
-case — not shouting all-caps, and never above weight 500) for anything
-that's "the universe speaking" — headlines, the result reveal, product
-titles — `Cormorant Garamond` for the declaration specifically (in
-italic), and `Josefin Sans` for UI chrome and body prose. A sticky
+Black: `'Seriously Nostalgic'` — a licensed display font vendored locally
+at `WEBSITE/uic/fonts/seriously-nostalgic.otf` (extracted from the
+`@font-face` already embedded in `WEBSITE/quantum-blueprint.html`), always
+set in mixed case, never all-caps, weight 400 only — for anything that's
+"the universe speaking": headlines, the result reveal, product titles.
+`Cormorant Garamond` for the declaration specifically (in italic), and
+`Josefin Sans` for UI chrome and body prose (small tracked-caps utility
+labels like eyebrows stay uppercase on purpose — different font, not a
+sentence). A sticky
 "Manifest With Jac" header sits above everything on
 every screen.
 

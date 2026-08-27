@@ -294,24 +294,42 @@ lightened every font-weight (nothing above 500 now — 600/700 read as
 aggressive); this pass replaced the sharp hard-bordered geometry with the
 soft rounded/shadow one described below.
 
-**Type:** three Google Fonts, loaded via a `<link>` in
-`universe-is-calling.html` and `preview.html` (falls back to system Georgia
-/ Futura if that link is ever removed), each with one job — `--blk`
-(`Cinzel`, the classic tarot/astrology display serif) for anything that's
-"the universe speaking": the call screen, question prompts, tidbits, the
-result reveal, product titles, set in **mixed case**, not all-caps (a
-multi-line question in shouting caps reads as yelling at her — if you add
-a new headline-style element, don't reach for `text-transform: uppercase`
-unless it's a short 2-4 word title, not a sentence). `--serif` (`Cormorant
-Garamond`) for the declaration specifically, set in italic — Cinzel has no
-italic, and the declaration is the one quotable line, so it deliberately
-reads as a different, more intimate voice than the display headlines
-around it. `--sans` (`Josefin Sans`, an elegant geometric sans, distinct
-from Arial/system defaults) for UI chrome — buttons, labels, body prose.
-Every selector that references `var(--blk)` sets its own `font-weight`
-(Cinzel tops out around 700) — if you add a new headline-style element,
-set `font-weight: 600;` alongside it or it'll render at the browser
-default (400) and look thin.
+**Type:** three fonts, each with one job — `--blk` (`'Seriously
+Nostalgic'`) for anything that's "the universe speaking": the call screen,
+question prompts, tidbits, the result reveal, product titles. This is a
+**licensed display font, not a Google Font** — it's the same font already
+embedded in `WEBSITE/quantum-blueprint.html` (as a base64 `@font-face`),
+extracted once and vendored as a real file at
+`WEBSITE/uic/fonts/seriously-nostalgic.otf`, loaded via the `@font-face`
+rule near the top of `styles.css`. It only ships one weight (400/normal) —
+every selector using `var(--blk)` sets `font-weight: 400;` and
+`font-synthesis: none;` together, so the browser never tries to fake a
+bold/italic that doesn't exist (which looks broken on a stylized display
+face). It's **always mixed case, never `text-transform: uppercase`** — two
+reasons stack here: a multi-line question in shouting caps reads as
+yelling at her, and this specific font is stylized enough that forcing
+caps breaks its character entirely. Two Google Fonts round out the
+system, loaded via a `<link>` in `universe-is-calling.html` and
+`preview.html` (falls back to system Georgia if that link is ever
+removed): `--serif` (`Cormorant Garamond`) for the declaration
+specifically, set in italic — Seriously Nostalgic has no italic, and the
+declaration is the one quotable line, so it deliberately reads as a
+different, more intimate voice than the display headlines around it.
+`--sans` (`Josefin Sans`, an elegant geometric sans, distinct from Arial/
+system defaults) for UI chrome — buttons, labels, body prose, and the
+small tracked-caps labels (eyebrows, the brand header, the progress
+counter) — those stay uppercase on purpose; they're short 2-4 word
+utility labels in a different font, not sentences, so they don't read as
+yelling the way a full headline in caps would.
+
+**If you ever need to re-extract or replace the font file:** the source
+`@font-face` lives in `WEBSITE/quantum-blueprint.html` — search that file
+for `Seriously Nostalgic` to find it (it's a single long `src:url(data:
+font/otf;base64,...)` line). Decode the base64 payload after
+`base64,` and before `) format(` into a `.otf` file — don't paste the
+base64 directly into `styles.css`, that bloats every page load with a
+~37KB inline string; a real file at `WEBSITE/uic/fonts/` is cacheable and
+keeps the stylesheet readable.
 
 **Color:** all colors run through `:root` custom properties at the top of
 the file — `--ink` (warm white, text/borders), `--paper` (deep purple, the
