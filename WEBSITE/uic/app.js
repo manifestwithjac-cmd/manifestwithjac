@@ -708,6 +708,14 @@
     }
     ROOT.innerHTML = renderBrandHeader() + renderTopbar() + html;
     if (state.screen === 'reveal' || state.screen === 'reveal-product') initRevealObservers();
+
+    // The persistent Shop/Disclaimer footer is static markup in
+    // universe-is-calling.html, always in the DOM — only show it on the
+    // final product screen. Mid-quiz it just adds dead weight to an
+    // already-tall page for no reason (she can't act on "Shop" while
+    // answering question 2 of 6).
+    var siteFooter = document.querySelector('.uic-site-footer');
+    if (siteFooter) siteFooter.style.display = state.screen === 'reveal-product' ? '' : 'none';
   }
 
   function initRevealObservers() {

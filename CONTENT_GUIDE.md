@@ -331,28 +331,38 @@ base64 directly into `styles.css`, that bloats every page load with a
 ~37KB inline string; a real file at `WEBSITE/uic/fonts/` is cacheable and
 keeps the stylesheet readable.
 
-**Color:** all colors run through `:root` custom properties at the top of
-the file — `--ink` (warm white, text/borders), `--paper` (deep purple, the
-solid fill used on cards/buttons/screens — the page's ambient background
-itself is a purple-to-navy gradient set directly on `body`, not this
-token), `--gold-accent` (the one definitive accent — hovers, focus, price,
-the progress fill, card glows, position labels), `--indigo` (atmospheric-
-only depth in the star-field, never a UI color), `--grey`.
-`--violet`, `--blue`, `--red`, and `--gold` all still exist purely as
-aliases chaining back to `--gold-accent` (`--violet`/`--blue` point at
-`--gold-accent` directly; `--red`/`--gold` point at those) — this is the
-second palette pivot, and rather than rewrite the ~40 rules referencing
-`var(--red)`/`var(--gold)` again, the alias chain just got re-pointed. If
-you're adding a *new* rule, reach for `--gold-accent` directly rather than
-any of the legacy names. Two colors are intentionally **not** tied to any
-of this: `--card-face-bg` / `--card-face-ink` keep the revealed tarot-card
-face light/cream regardless of the page theme (a card should read as an
-object catching light against the dark page, not a page-colored panel),
-and the card *backs* are hardcoded near-black so they hold their "mystery"
-look even against a dark page. If you ever want to go back to a light
-theme, swap the `:root` values — everything else in the file references
-those variables — but re-check `.uic-card-back` / `.uic-card-face` first,
-since those two are deliberately theme-independent.
+**Color: charcoal + gold, no third hue.** All colors run through `:root`
+custom properties at the top of the file — `--ink` (warm white, text/
+borders), `--paper` (deep warm charcoal, the solid fill used on cards/
+buttons/screens — the page's ambient background itself is a charcoal
+gradient set directly on `body`, not this token), `--panel` (a lighter
+charcoal for containers — see the layered-contrast note below),
+`--gold-accent` (the one definitive accent — hovers, focus, price, the
+progress fill, card glows, position labels, the star-field's corner
+pooling), `--grey` (warm taupe-grey, not neutral grey — keeps small text
+in the same warm family as everything else). This is the **third** base
+palette this project has had — near-black + violet/blue, then purple +
+gold, and now charcoal + gold — the client rejected the entire purple
+base (panel, options, backdrop, all of it) in one go and named the
+replacement herself: "deep charcoal + gold," keeping only the accent.
+Don't reintroduce a second hue anywhere (no more `--indigo`-style
+atmospheric color) — every glow, pool, and star in the background is
+gold-toned or warm-white now, on purpose. `--violet`, `--blue`, `--red`,
+and `--gold` all still exist purely as aliases chaining back to
+`--gold-accent` (`--violet`/`--blue` point at `--gold-accent` directly;
+`--red`/`--gold` point at those) — rather than rewrite the ~40 rules
+referencing `var(--red)`/`var(--gold)` a third time, the alias chain just
+got re-pointed again. If you're adding a *new* rule, reach for
+`--gold-accent` directly rather than any of the legacy names. Two colors
+are intentionally **not** tied to any of this: `--card-face-bg` /
+`--card-face-ink` keep the revealed tarot-card face light/cream regardless
+of the page theme (a card should read as an object catching light against
+the dark page, not a page-colored panel), and the card *backs* are
+hardcoded near-black so they hold their "mystery" look even against a
+dark page. If you ever want to change the base palette again, swap the
+`:root` values — everything else in the file references those variables —
+but re-check `.uic-card-back` / `.uic-card-face` first, since those two
+are deliberately theme-independent.
 
 **Persistent brand header:** a thin sticky strip reading "Manifest With
 Jac" (`renderBrandHeader()` in `app.js`, `.uic-brand-header` in
@@ -363,11 +373,33 @@ progress bar (when present) sticking directly beneath it via
 the progress bar will follow without extra edits.
 
 **Sizing:** headline `clamp()` sizes, body text, button padding, and
-tap-target sizing have been trimmed down twice now from the original
-build — it kept reading oversized on an actual iPhone screen. If you add a
-new full-bleed headline or body element, look at a sibling's current
-values (e.g. `.uic-question-prompt`, `.uic-option`) rather than reaching
-for the original build's sizes.
+tap-target sizing have been trimmed down several times now from the
+original build — it kept reading oversized on an actual iPhone screen. If
+you add a new full-bleed headline or body element, look at a sibling's
+current values (e.g. `.uic-question-prompt`, `.uic-option`) rather than
+reaching for the original build's sizes.
+
+**Why the question screen used to overflow the viewport (and the fix).**
+Two compounding bugs, not just "too much padding": (1) the persistent
+Shop/Disclaimer `<footer class="uic-site-footer">` is static markup in
+`universe-is-calling.html`, always in the DOM regardless of which screen
+is showing — it was rendering (and adding real height) underneath every
+screen, including mid-quiz, where it's dead weight. `render()` in `app.js`
+now toggles its `display` directly, showing it only on `reveal-product`.
+(2) `.uic-app` (the outer wrapper — brand header + progress bar + the
+active screen, all stacked) had `justify-content: center`, and that
+aggregate stack is *always* taller than `100vh` by at least the brand
+header's own height — centering an overflowing flex column pushes its top
+edge above the fold. Each screen already centers its own content within
+its own `min-height: 100vh` box (see `.uic-screen--call`), so the outer
+centering was redundant at best and actively harmful when content ran
+long (a 6-7-option question). Changed to `justify-content: flex-start`.
+`.uic-screen--question`'s own `min-height` calc was also updated to
+subtract *both* `--brand-header-h` and the topbar's height, not just the
+topbar — before, on tall screens the min-height slightly overshot,
+adding a few pixels of otherwise-invisible extra scroll. If a screen ever
+needs the footer visible again, add its screen name to the check in
+`render()`, not by removing the `display:none` toggle wholesale.
 
 **Weight:** nothing in the flow goes above `font-weight: 500` anymore —
 an earlier pass leaned on 600/700 everywhere (headlines, buttons, answer

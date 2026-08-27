@@ -13,12 +13,13 @@ pattern insight, a quotable declaration, and a share card — followed by a
 second screen with the one matching product recommendation and why.
 Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Visual design is dark/mystical: a purple-to-navy night-sky gradient with a
-gold accent, warm white type, and tiny twinkling stars, in a soft rounded
-shape language (pill buttons and answer rows, generously rounded cards,
-gentle drop shadows — not `shop.html`'s sharp corners and hard-offset
-hover shadows), plus its own type system rather than Shop's Arial/Arial
-Black: `'Seriously Nostalgic'` — a licensed display font vendored locally
+Visual design is dark/mystical: a deep charcoal gradient with a gold
+accent, warm white type, and tiny twinkling stars (no second hue anywhere
+— charcoal + gold only, top to bottom), in a soft rounded shape language
+(pill buttons and answer rows, generously rounded cards, gentle drop
+shadows — not `shop.html`'s sharp corners and hard-offset hover shadows),
+plus its own type system rather than Shop's Arial/Arial Black:
+`'Seriously Nostalgic'` — a licensed display font vendored locally
 at `WEBSITE/uic/fonts/seriously-nostalgic.otf` (extracted from the
 `@font-face` already embedded in `WEBSITE/quantum-blueprint.html`), always
 set in mixed case, never all-caps, weight 400 only — for anything that's
