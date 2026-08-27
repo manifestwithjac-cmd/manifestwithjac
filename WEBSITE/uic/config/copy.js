@@ -18,7 +18,7 @@
       brand: 'Manifest With Jac'
     },
     incomingCall: {
-      caller: 'THE UNIVERSE',
+      caller: 'The Universe',
       subline: 'incoming call',
       newMessage: 'You have 1 new message.',
       primaryCta: 'Answer the Call',
