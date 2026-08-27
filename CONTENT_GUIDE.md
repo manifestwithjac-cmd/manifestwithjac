@@ -280,19 +280,20 @@ bones — it started as Shop's hard-edged system (thick 3px borders, sharp
 corners, hard offset-shadow on hover) and has since moved to its own soft,
 rounded shape language (generous `border-radius`, pill buttons/answer
 rows, gentle drop shadows instead of hard offsets) inspired by a reference
-funnel the client liked the *feel* of, translated onto **our own dark,
-mystical palette** (a purple-to-navy night-sky gradient, warm white type,
-a gold accent, a dense field of tiny twinkling star specs with indigo
-pooling in the corners) rather than that reference's cream/black/red — the
-shape language moved, the color didn't. This has been iterated several
-times: a bright white page read as a coaching/SaaS landing page; a first
-dark-theme pass (near-black + violet/blue + a rounded sans) still read
-"brand-brutalist"; a second pass (flat purple + gold, all-serif, shouting
-all-caps headlines) still read too plain and too loud, so headline text
-moved to mixed case and a real sans came back for UI chrome; a third pass
+funnel the client liked the *feel* of. The color went through several
+passes before landing where it started, ironically close to that
+reference: a bright white page first read as a coaching/SaaS landing
+page, so it went dark — near-black + violet/blue + a rounded sans still
+read "brand-brutalist"; flat purple + gold, all-serif, shouting all-caps
+headlines still read too plain and too loud, so headline text moved to
+mixed case and a real sans came back for UI chrome; a third pass
 lightened every font-weight (nothing above 500 now — 600/700 read as
-aggressive); this pass replaced the sharp hard-bordered geometry with the
-soft rounded/shadow one described below.
+aggressive); a fourth replaced the sharp hard-bordered geometry with the
+soft rounded/shadow one described below; a fifth swapped purple for "deep
+charcoal + gold" (still dark); and the client ultimately asked for the
+inverse of all of it — **cream/white with charcoal text and a gold
+accent** — see the Color section below. The shape language never
+changed; only the color kept moving until it landed light.
 
 **Type:** three fonts, each with one job — `--blk` (`'Seriously
 Nostalgic'`) for anything that's "the universe speaking": the call screen,
@@ -331,38 +332,46 @@ base64 directly into `styles.css`, that bloats every page load with a
 ~37KB inline string; a real file at `WEBSITE/uic/fonts/` is cacheable and
 keeps the stylesheet readable.
 
-**Color: charcoal + gold, no third hue.** All colors run through `:root`
-custom properties at the top of the file — `--ink` (warm white, text/
-borders), `--paper` (deep warm charcoal, the solid fill used on cards/
-buttons/screens — the page's ambient background itself is a charcoal
-gradient set directly on `body`, not this token), `--panel` (a lighter
-charcoal for containers — see the layered-contrast note below),
-`--gold-accent` (the one definitive accent — hovers, focus, price, the
-progress fill, card glows, position labels, the star-field's corner
-pooling), `--grey` (warm taupe-grey, not neutral grey — keeps small text
-in the same warm family as everything else). This is the **third** base
-palette this project has had — near-black + violet/blue, then purple +
-gold, and now charcoal + gold — the client rejected the entire purple
-base (panel, options, backdrop, all of it) in one go and named the
-replacement herself: "deep charcoal + gold," keeping only the accent.
-Don't reintroduce a second hue anywhere (no more `--indigo`-style
-atmospheric color) — every glow, pool, and star in the background is
-gold-toned or warm-white now, on purpose. `--violet`, `--blue`, `--red`,
-and `--gold` all still exist purely as aliases chaining back to
-`--gold-accent` (`--violet`/`--blue` point at `--gold-accent` directly;
-`--red`/`--gold` point at those) — rather than rewrite the ~40 rules
-referencing `var(--red)`/`var(--gold)` a third time, the alias chain just
-got re-pointed again. If you're adding a *new* rule, reach for
-`--gold-accent` directly rather than any of the legacy names. Two colors
-are intentionally **not** tied to any of this: `--card-face-bg` /
-`--card-face-ink` keep the revealed tarot-card face light/cream regardless
-of the page theme (a card should read as an object catching light against
-the dark page, not a page-colored panel), and the card *backs* are
-hardcoded near-black so they hold their "mystery" look even against a
-dark page. If you ever want to change the base palette again, swap the
-`:root` values — everything else in the file references those variables —
-but re-check `.uic-card-back` / `.uic-card-face` first, since those two
-are deliberately theme-independent.
+**Color: cream/white + charcoal text + one gold accent.** All colors run
+through `:root` custom properties at the top of the file — `--ink`
+(charcoal, the text/border color), `--paper` (a pale warm cream, the fill
+used on buttons/inputs/answer rows — the page's ambient background itself
+is a slightly deeper cream gradient set directly on `body`, not this
+token), `--panel` (white, for containers — see the layered-contrast note
+below), `--gold-accent` (the one definitive accent — hovers, focus, price,
+the progress fill, card glows, position labels, the background glimmer),
+`--grey` (warm taupe, not neutral grey — keeps small text in the same warm
+family as everything else). This is the **fourth** base palette this
+project has had — near-black + violet/blue, then purple + gold, then a
+dark "deep charcoal + gold" pass, and now this light one — the client
+called the dark charcoal pass too dark and asked for the inverse:
+charcoal reserved for *text*, gold for accents, and the backdrop itself
+white/cream. `--ink` and `--paper` simply swapped hex values from the
+dark-mode pass (they'd been light-text/dark-fill; now they're
+charcoal-text/light-fill) so none of the ~40 rules referencing
+`var(--ink)`/`var(--paper)` needed touching — only `--panel`, the body
+background gradient, and the background glimmer's speck colors (hardcoded
+`rgba()`, not tokens) needed new values, since white specks that read as
+stars on a dark page are invisible on a light one. Don't reintroduce a
+second hue anywhere (no more `--indigo`-style atmospheric color, no red)
+— every glow, pool, and speck in the background is gold-toned, on
+purpose. `--violet`, `--blue`, `--red`, and `--gold` all still exist
+purely as aliases chaining back to `--gold-accent` (`--violet`/`--blue`
+point at `--gold-accent` directly; `--red`/`--gold` point at those) —
+rather than rewrite the ~40 rules referencing `var(--red)`/`var(--gold)`
+a third time, the alias chain just carries forward unchanged (gold itself
+never moved through any of these passes). If you're adding a *new* rule,
+reach for `--gold-accent` directly rather than any of the legacy names.
+Two colors are intentionally **not** tied to any of this: `--card-face-bg`
+/ `--card-face-ink` keep the revealed tarot-card face light-cream-with-
+near-black-text regardless of the page theme (a card should read as its
+own object, not a page-colored panel), and the card *backs* are hardcoded
+near-black so they hold their "mystery" look even against a light page —
+a small dark object sitting on a cream table, deliberately. If you ever
+want to change the base palette again, swap the `:root` values —
+everything else in the file references those variables — but re-check
+`.uic-card-back` / `.uic-card-face` first, since those two are
+deliberately theme-independent.
 
 **Persistent brand header:** a thin sticky strip reading "Manifest With
 Jac" (`renderBrandHeader()` in `app.js`, `.uic-brand-header` in

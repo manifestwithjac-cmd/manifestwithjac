@@ -13,10 +13,10 @@ pattern insight, a quotable declaration, and a share card — followed by a
 second screen with the one matching product recommendation and why.
 Behind the scenes she's tagged and routed into the right Kit sequence.
 
-Visual design is dark/mystical: a deep charcoal gradient with a gold
-accent, warm white type, and tiny twinkling stars (no second hue anywhere
-— charcoal + gold only, top to bottom), in a soft rounded shape language
-(pill buttons and answer rows, generously rounded cards, gentle drop
+Visual design is light and warm: a cream/white gradient with charcoal
+type, a gold accent, and a soft gold glimmer in the background (no second
+hue anywhere — charcoal + gold only, top to bottom), in a soft rounded
+shape language (pill buttons and answer rows, generously rounded cards, gentle drop
 shadows — not `shop.html`'s sharp corners and hard-offset hover shadows),
 plus its own type system rather than Shop's Arial/Arial Black:
 `'Seriously Nostalgic'` — a licensed display font vendored locally
