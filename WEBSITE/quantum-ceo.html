@@ -327,20 +327,62 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 }
 .offer li:last-child{border-bottom:none}
 .offer li i{font-style:normal;color:var(--clay-lt);font-size:11px;line-height:1.8}
-.price{
+.founding{
+  display:inline-block;font-family:var(--sans);
+  font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--ink);background:var(--clay-lt);
+  border-radius:50px;padding:7px 16px;margin-bottom:20px;
+}
+
+.pay-label{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--clay-lt);
+  text-align:center;display:block;
+  border-top:3px solid var(--clay);padding-top:26px;margin-bottom:20px;
+}
+
+.plans{display:grid;gap:16px;grid-template-columns:1fr;margin-bottom:22px}
+.plan{
+  border:2px solid rgba(245,238,229,.3);
+  padding:24px 22px;display:flex;flex-direction:column;text-align:center;
+  position:relative;
+}
+.plan.best{border-color:var(--clay-lt);background:rgba(224,131,74,.09)}
+.plan .save{
+  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink);background:var(--clay-lt);
+  border-radius:50px;padding:4px 12px;white-space:nowrap;
+}
+.plan .pname{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--clay-lt);margin-bottom:12px;
+}
+.plan .pamt{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(46px,6.4vw,82px);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
+  font-size:clamp(44px,6vw,70px);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
   color:var(--paper);
-  border-top:3px solid var(--clay);border-bottom:3px solid var(--clay);
-  padding:24px 0;margin-bottom:24px;text-align:center;
 }
-.price small{
-  display:block;margin-top:10px;font-family:var(--sans);
-  font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--clay-lt);
+.plan .pper{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--clay-lt);margin-top:8px;
 }
-.offer .btn{width:100%;background:var(--clay);border-color:var(--clay);color:var(--white)}
+.plan .pnote{
+  font-size:14px;line-height:1.45;color:rgba(245,238,229,.72);
+  margin:14px 0 20px;
+}
+.plan .btn{width:100%;margin-top:auto}
+.offer .btn{background:var(--clay);border-color:var(--clay);color:var(--white)}
 .offer .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.plan:not(.best) .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
+.plan:not(.best) .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+
+.anchor-note{
+  text-align:center;font-family:var(--sans);
+  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(245,238,229,.72);margin-bottom:22px;
+}
+.anchor-note s{color:rgba(245,238,229,.45);text-decoration-thickness:1px}
 .terms{margin-top:20px;text-align:center}
 .terms p{
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
@@ -372,6 +414,7 @@ footer p{
   :root{--gut:32px}
   .sec{padding:104px 0}
   .hero{padding:90px 0 98px}
+  .plans{grid-template-columns:1fr 1fr;gap:20px}
 }
 
 @media (min-width:1024px){
@@ -380,7 +423,7 @@ footer p{
 }
 
 @media (max-width:719px){
-  .btn{padding:19px 26px;width:100%}
+  .btn{padding:19px 22px;width:100%}
   .bar .btn{width:auto;padding:12px 16px;letter-spacing:.12em}
   .cta-block .btn{max-width:440px}
   .block h3{gap:9px}
@@ -883,6 +926,7 @@ footer p{
     </div>
 
     <div class="offer" style="margin-top:46px">
+      <span class="founding" data-offer="badge">Founding cohort</span>
       <p class="name" data-offer="name">Quantum CEO</p>
       <p class="sub" data-offer="tagline">High-touch ongoing business mentorship with Jac</p>
 
@@ -891,15 +935,17 @@ footer p{
         <!-- rendered from the OFFER config at the bottom of this file -->
       </ul>
 
-      <div class="price">
-        <span data-offer="price">$500</span>
-        <small data-offer="priceNote">per month</small>
+      <span class="pay-label">Choose how you pay</span>
+
+      <p class="anchor-note" data-offer="anchorNote">Founding rate. <s>$500</s> per month after the founding cohort.</p>
+
+      <div class="plans" id="plans">
+        <!-- rendered from the OFFER config at the bottom of this file -->
       </div>
 
-      <a class="btn" id="joinBtn" href="#">Join Quantum CEO</a>
-
       <div class="terms">
-        <p><span class="tbd">[ADD MEMBERSHIP / CANCELLATION TERMS]</span></p>
+        <p data-offer="commitment">Three month commitment</p>
+        <p><span class="tbd">[ADD CANCELLATION / RENEWAL TERMS]</span></p>
         <p><span class="tbd">[ADD CALL TIME]</span></p>
         <p><span class="tbd">[ADD REPLAY DETAILS]</span></p>
       </div>
@@ -976,12 +1022,40 @@ var OFFER = {
   name: "Quantum CEO",
   tagline: "High-touch ongoing business mentorship with Jac",
 
-  price: "$500",
-  priceNote: "per month",
+  badge: "Founding cohort",
+  commitment: "Three month commitment",
 
-  /* Swap "#" for the real ThriveCart link when checkout is live. */
-  ctaUrl: "#",
-  ctaLabel: "Join Quantum CEO",
+  /* The standard rate the founding price is discounted from.
+     Delete this line to drop the struck-through anchor entirely. */
+  anchorNote: "Founding rate. <s>$500</s> per month after the founding cohort.",
+
+  /* ----------------------------------------------------------
+     PAYMENT OPTIONS
+     Two plans sit side by side, one plan centres on its own.
+     best:true gives the card the orange highlight and the
+     ribbon. Swap each url for the real ThriveCart link.
+     ---------------------------------------------------------- */
+  plans: [
+    {
+      name: "Monthly",
+      amount: "$333",
+      per: "per month",
+      note: "Billed monthly for three months. $999 total.",
+      cta: "Join monthly",
+      url: "#",
+      best: false
+    },
+    {
+      name: "Paid in full",
+      amount: "$888",
+      per: "three months",
+      note: "Paid today. Covers the full commitment.",
+      ribbon: "Save $111",
+      cta: "Join, pay in full",
+      url: "#",
+      best: true
+    }
+  ],
 
   includes: [
     "Biweekly live mentorship + hot-seat coaching",
@@ -1011,8 +1085,15 @@ var OFFER = {
   /* fill every [data-offer] slot from the config */
   var nodes = document.querySelectorAll('[data-offer]');
   for (var i = 0; i < nodes.length; i++){
-    var val = OFFER[nodes[i].getAttribute('data-offer')];
-    if (typeof val === 'string') nodes[i].innerHTML = mark(val);
+    var key = nodes[i].getAttribute('data-offer');
+    var val = OFFER[key];
+    if (typeof val !== 'string'){
+      /* a config key that was deleted removes the element it filled */
+      if (!(key in OFFER)) nodes[i].remove();
+      continue;
+    }
+    /* anchorNote is the one field allowed to carry markup (the <s> anchor) */
+    nodes[i].innerHTML = (key === 'anchorNote') ? val : mark(val);
   }
 
   /* the membership list */
@@ -1025,11 +1106,24 @@ var OFFER = {
     list.innerHTML = html;
   }
 
-  /* every join button points at checkout once ctaUrl is set */
-  var btn = document.getElementById('joinBtn');
-  if (btn){
-    btn.href = OFFER.ctaUrl || '#';
-    btn.innerHTML = mark(OFFER.ctaLabel || 'Join');
+  /* the payment options */
+  var plans = document.getElementById('plans');
+  if (plans){
+    var rows = OFFER.plans || [];
+    if (rows.length === 1) plans.style.maxWidth = '340px', plans.style.margin = '0 auto 22px';
+    var out = '';
+    for (var k = 0; k < rows.length; k++){
+      var pl = rows[k];
+      out += '<div class="plan' + (pl.best ? ' best' : '') + '">';
+      if (pl.ribbon) out += '<span class="save">' + mark(pl.ribbon) + '</span>';
+      out += '<div class="pname">' + mark(pl.name) + '</div>';
+      out += '<div class="pamt">' + mark(pl.amount) + '</div>';
+      if (pl.per) out += '<div class="pper">' + mark(pl.per) + '</div>';
+      if (pl.note) out += '<p class="pnote">' + mark(pl.note) + '</p>';
+      out += '<a class="btn" href="' + esc(pl.url || '#') + '">' + mark(pl.cta || 'Join') + '</a>';
+      out += '</div>';
+    }
+    plans.innerHTML = out;
   }
 })();
 </script>
