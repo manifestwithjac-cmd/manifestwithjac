@@ -383,6 +383,60 @@ a.ul:hover{background:rgba(187,92,38,.16)}
   text-transform:uppercase;color:rgba(245,238,229,.6);margin-bottom:8px;
 }
 
+/* ---------- photography ---------- */
+.split{display:grid;gap:36px;align-items:center;max-width:1000px;margin:0 auto}
+.split .sp-copy p:last-child{margin-bottom:0}
+
+.photo{position:relative;isolation:isolate}
+.photo img{width:100%;height:auto;display:block;position:relative;z-index:1}
+/* an offset orange frame peeking out behind the photo */
+.photo::after{
+  content:"";position:absolute;z-index:0;
+  inset:18px -18px -18px 18px;
+  border:2px solid var(--clay);
+}
+.dark .photo::after,.orange .photo::after{border-color:var(--clay-lt)}
+.orange .photo::after{border-color:rgba(255,255,255,.55)}
+
+/* circular portraits */
+.circ{
+  position:relative;width:clamp(180px,42vw,260px);aspect-ratio:1;margin:0 auto;
+}
+.circ img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:3px solid var(--clay);display:block;
+}
+.dark .circ img{border-color:var(--clay-lt)}
+.orange .circ img{border-color:var(--white)}
+.circ .sp{
+  position:absolute;color:var(--clay);font-size:15px;line-height:1;
+  animation:tw 5.5s ease-in-out infinite;
+}
+.dark .circ .sp{color:var(--clay-lt)}
+.orange .circ .sp{color:var(--white)}
+.circ .sp:nth-of-type(1){top:-6px;right:2%}
+.circ .sp:nth-of-type(2){bottom:4%;left:-10px;font-size:11px;animation-delay:1.6s}
+.circ .sp:nth-of-type(3){top:34%;right:-14px;font-size:12px;animation-delay:2.8s}
+
+.circ-lg{width:clamp(210px,54vw,320px)}
+
+/* ---------- hand-drawn circle for emphasis ---------- */
+.circled{position:relative;display:inline-block;white-space:nowrap}
+/* em-based padding so the loop stays generous around short words
+   like "big" as well as longer phrases */
+.circled svg{
+  position:absolute;pointer-events:none;z-index:2;overflow:visible;
+  left:-.34em;width:calc(100% + .68em);
+  top:-.22em;height:calc(100% + .44em);
+}
+.circled svg path{
+  fill:none;stroke:var(--clay);stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.dark .circled svg path{stroke:var(--clay-lt)}
+.orange .circled svg path{stroke:var(--white)}
+
 /* ---------- closer ---------- */
 .closer{text-align:center;padding:90px 0 98px}
 
@@ -409,6 +463,11 @@ footer p{
   .sec{padding:104px 0}
   .hero{padding:90px 0 98px}
   .plans{grid-template-columns:1fr 1fr;gap:20px}
+}
+
+@media (min-width:900px){
+  .split{grid-template-columns:1fr 1fr;gap:60px}
+  .split.rev .sp-img{order:2}
 }
 
 @media (min-width:1024px){
@@ -456,6 +515,11 @@ footer p{
     <span style="top:46%;left:96%;animation-delay:3.1s;font-size:10px">&#10022;</span>
   </div>
   <div class="wrap">
+    <div class="circ circ-lg" style="margin-bottom:34px">
+      <img src="/qc-jac-5-circle.webp" width="760" height="760" alt="Jac laughing, holding a small gold star to her eye" />
+      <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
+    </div>
+
     <h1 class="caps">Quantum CEO</h1>
 
     <p class="tag">High-touch business mentorship where quantum energetics meets real business expansion</p>
@@ -463,7 +527,7 @@ footer p{
     <div class="rule-orange" aria-hidden="true"></div>
 
     <div class="measure">
-      <p class="beat" style="margin-top:0">You&rsquo;ve already built something good. Now let&rsquo;s see how fucking big it can get.</p>
+      <p class="beat" style="margin-top:0">You&rsquo;ve already built something good. Now let&rsquo;s see how fucking <span class="circled">big<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span> it can get.</p>
     </div>
 
     <ul class="qs" style="margin-top:34px;text-align:left">
@@ -518,7 +582,7 @@ footer p{
     <div class="measure" style="margin-top:36px">
       <p>Those assumptions don&rsquo;t stay tucked away in your subconscious.</p>
 
-      <p class="beat">They become business decisions.</p>
+      <p class="beat">They become <span class="circled">business decisions<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8 52C8 22 58 4 104 4C156 4 192 20 192 50C192 82 143 97 97 97C48 97 11 82 9 51C8 33 22 18 46 9"/></svg></span>.</p>
 
       <p>And those decisions compound.</p>
 
@@ -553,18 +617,25 @@ footer p{
       </div>
     </div>
 
-    <div class="measure" style="margin-top:40px">
-      <p class="hit">Quantum CEO merges both sides of business expansion.</p>
+    <div class="split" style="margin-top:56px">
+      <div class="sp-img photo">
+        <img src="/qc-jac-4.webp" width="1000" height="1250" loading="lazy"
+             alt="Jac seated with her eyes closed, hands resting open" />
+      </div>
+      <div class="sp-copy">
+        <p class="hit">Quantum CEO merges both sides of business expansion.</p>
+        <p>The tangible decisions, strategy and action required to grow the business.</p>
+        <p>And the quantum, subconscious and energetic work that expands what you allow yourself to create, receive and hold as you grow it.</p>
+      </div>
+    </div>
 
-      <p>The tangible decisions, strategy and action required to grow the business.</p>
-
-      <p>And the quantum, subconscious and energetic work that expands what you allow yourself to create, receive and hold as you grow it.</p>
+    <div class="measure" style="margin-top:52px">
 
       <p>Because you can have the best strategy in the world and still execute it through assumptions that belong to the version of your business you say you&rsquo;re ready to outgrow.</p>
 
       <p>And you can do every energetic practice imaginable, but eventually you still have to send the proposal, publish the price, market to the better client, become more visible and make the fucking move.</p>
 
-      <p class="beat">Both.</p>
+      <p class="beat"><span class="circled">Both.<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span></p>
 
       <p>That&rsquo;s where expansion gets interesting.</p>
     </div>
@@ -597,6 +668,12 @@ footer p{
       <p>That matters.</p>
     </div>
 
+    <div class="circ" style="margin:44px auto 8px">
+      <img src="/qc-jac-3-circle.webp" width="760" height="760" loading="lazy"
+           alt="Jac laughing, resting her chin on her hand" />
+      <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
+    </div>
+
     <ul class="qs" style="margin-top:32px">
       <li><i aria-hidden="true">&#10022;</i>Being busy and being well paid are not the same thing.</li>
       <li><i aria-hidden="true">&#10022;</i>Being known and being profitable are not the same thing.</li>
@@ -620,7 +697,7 @@ footer p{
 
       <p>And somebody else creating exactly what you want doesn&rsquo;t make her the exception.</p>
 
-      <p class="beat">It makes her evidence.</p>
+      <p class="beat">It makes her <span class="circled">evidence<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8 52C8 22 58 4 104 4C156 4 192 20 192 50C192 82 143 97 97 97C48 97 11 82 9 51C8 33 22 18 46 9"/></svg></span>.</p>
 
       <p class="hit">What you normalize will materialize.</p>
     </div>
@@ -656,6 +733,12 @@ footer p{
       <p>A capacity for bigger numbers, bigger opportunities, bigger decisions and bigger visibility to stop feeling like something that belongs to somebody else.</p>
     </div>
 
+    <div class="circ" style="margin:44px auto 8px">
+      <img src="/qc-jac-1-circle.webp" width="760" height="760" loading="lazy"
+           alt="Jac in warm sunlight, looking away from camera" />
+      <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
+    </div>
+
     <ul class="qs" style="margin-top:32px">
       <li><i aria-hidden="true">&#10022;</i>The number changes. Then that number becomes normal.</li>
       <li><i aria-hidden="true">&#10022;</i>The room changes. Then that room becomes normal.</li>
@@ -682,7 +765,18 @@ footer p{
       <p class="measure" style="margin-top:22px">This is ongoing mentorship around the business you are actually running and the expansion you are actually creating.</p>
     </div>
 
-    <div class="blocks" style="margin-top:46px">
+    <div class="split rev" style="margin-top:50px">
+      <div class="sp-img photo">
+        <img src="/qc-jac-8.webp" width="1000" height="1250" loading="lazy"
+             alt="Jac working at a kitchen island with a laptop and her phone" />
+      </div>
+      <div class="sp-copy">
+        <p class="beat" style="margin-top:0">Bring the business you are actually running.</p>
+        <p>Not the tidy version. The one with the decision you keep reopening and the number you want next.</p>
+      </div>
+    </div>
+
+    <div class="blocks" style="margin-top:56px">
 
       <div class="block">
         <h3><i aria-hidden="true">&#10022;</i>Biweekly live mentorship + hot-seat coaching</h3>
@@ -794,6 +888,12 @@ footer p{
       <p class="beat">And you are ready for significantly more from it.</p>
     </div>
 
+    <div class="circ" style="margin:44px auto 8px">
+      <img src="/qc-jac-6-circle.webp" width="760" height="760" loading="lazy"
+           alt="Jac smiling, hand resting under her chin" />
+      <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
+    </div>
+
     <ul class="qs" style="margin-top:30px">
       <li><i aria-hidden="true">&#10022;</i>You want more money moving through the business.</li>
       <li><i aria-hidden="true">&#10022;</i>You want to be paid extremely well for what you do.</li>
@@ -813,7 +913,7 @@ footer p{
 
       <p>Then you do something with what you learn.</p>
 
-      <p class="beat">That woman will eat this room alive.</p>
+      <p class="beat">That woman will eat this room <span class="circled">alive<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span>.</p>
     </div>
   </div>
 </section>
@@ -825,10 +925,18 @@ footer p{
       <h2 class="caps">Meet Jac</h2>
     </div>
 
-    <div class="measure" style="margin-top:38px">
-      <p>I run two multi-six-figure businesses I genuinely love and have built $40K+ sales months without building a company that requires me to sacrifice the life I wanted the money for in the first place.</p>
+    <div class="split" style="margin-top:50px">
+      <div class="sp-img photo">
+        <img src="/qc-jac-2.webp" width="1000" height="1250" loading="lazy"
+             alt="Jac seated in a burnt orange chair beside her desk" />
+      </div>
+      <div class="sp-copy">
+        <p>I run two multi-six-figure businesses I genuinely love and have built $40K+ sales months without building a company that requires me to sacrifice the life I wanted the money for in the first place.</p>
+        <p class="hit">And I did not arrive here with a perfectly clean financial story.</p>
+      </div>
+    </div>
 
-      <p>And I did not arrive here with a perfectly clean financial story.</p>
+    <div class="measure" style="margin-top:52px">
 
       <p>I know what it&rsquo;s like to have the ambition, the businesses, the ideas and the work ethic while the financial reality underneath all of it looks nothing like where you know you&rsquo;re going.</p>
 
@@ -906,7 +1014,7 @@ footer p{
 
       <p class="beat">Good.</p>
 
-      <p class="hit">Expand again.</p>
+      <p class="hit">Expand <span class="circled">again<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8 52C8 22 58 4 104 4C156 4 192 20 192 50C192 82 143 97 97 97C48 97 11 82 9 51C8 33 22 18 46 9"/></svg></span>.</p>
     </div>
   </div>
 </section>
@@ -955,6 +1063,12 @@ footer p{
   </div>
   <div class="wrap">
     <div class="closer">
+      <div class="circ" style="margin:0 auto 32px;width:clamp(150px,34vw,200px)">
+        <img src="/qc-jac-7-circle.webp" width="760" height="760" loading="lazy"
+             alt="Jac laughing, hand raised to her cheek" />
+        <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
+      </div>
+
       <p class="eyebrow center"><span class="st">&#10022;</span> Last thing <span class="st">&#10022;</span></p>
 
       <p class="mega">You already know there&rsquo;s more here.</p>
