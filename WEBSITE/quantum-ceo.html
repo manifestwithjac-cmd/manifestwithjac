@@ -377,12 +377,6 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 .plan:not(.best) .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
 .plan:not(.best) .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 
-.anchor-note{
-  text-align:center;font-family:var(--sans);
-  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(245,238,229,.72);margin-bottom:22px;
-}
-.anchor-note s{color:rgba(245,238,229,.45);text-decoration-thickness:1px}
 .terms{margin-top:20px;text-align:center}
 .terms p{
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
@@ -937,8 +931,6 @@ footer p{
 
       <span class="pay-label">Choose how you pay</span>
 
-      <p class="anchor-note" data-offer="anchorNote">Founding rate. <s>$500</s> per month after the founding cohort.</p>
-
       <div class="plans" id="plans">
         <!-- rendered from the OFFER config at the bottom of this file -->
       </div>
@@ -1025,15 +1017,16 @@ var OFFER = {
   badge: "Founding cohort",
   commitment: "Three month commitment",
 
-  /* The standard rate the founding price is discounted from.
-     Delete this line to drop the struck-through anchor entirely. */
-  anchorNote: "Founding rate. <s>$500</s> per month after the founding cohort.",
+  /* One ThriveCart cart carries both payment options, so every button
+     on the page points here. Swap the "#" for the real link once the
+     cart is live and the whole page is wired. If you ever split them
+     into separate carts, give a plan its own url and that one wins. */
+  checkoutUrl: "#",
 
   /* ----------------------------------------------------------
      PAYMENT OPTIONS
      Two plans sit side by side, one plan centres on its own.
-     best:true gives the card the orange highlight and the
-     ribbon. Swap each url for the real ThriveCart link.
+     best:true gives the card the orange highlight and the ribbon.
      ---------------------------------------------------------- */
   plans: [
     {
@@ -1042,7 +1035,6 @@ var OFFER = {
       per: "per month",
       note: "Billed monthly for three months. $999 total.",
       cta: "Join monthly",
-      url: "#",
       best: false
     },
     {
@@ -1052,7 +1044,6 @@ var OFFER = {
       note: "Paid today. Covers the full commitment.",
       ribbon: "Save $111",
       cta: "Join, pay in full",
-      url: "#",
       best: true
     }
   ],
@@ -1092,8 +1083,7 @@ var OFFER = {
       if (!(key in OFFER)) nodes[i].remove();
       continue;
     }
-    /* anchorNote is the one field allowed to carry markup (the <s> anchor) */
-    nodes[i].innerHTML = (key === 'anchorNote') ? val : mark(val);
+    nodes[i].innerHTML = mark(val);
   }
 
   /* the membership list */
@@ -1120,7 +1110,7 @@ var OFFER = {
       out += '<div class="pamt">' + mark(pl.amount) + '</div>';
       if (pl.per) out += '<div class="pper">' + mark(pl.per) + '</div>';
       if (pl.note) out += '<p class="pnote">' + mark(pl.note) + '</p>';
-      out += '<a class="btn" href="' + esc(pl.url || '#') + '">' + mark(pl.cta || 'Join') + '</a>';
+      out += '<a class="btn" href="' + esc(pl.url || OFFER.checkoutUrl || '#') + '">' + mark(pl.cta || 'Join') + '</a>';
       out += '</div>';
     }
     plans.innerHTML = out;
