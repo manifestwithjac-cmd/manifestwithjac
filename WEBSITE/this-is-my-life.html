@@ -250,6 +250,17 @@ a.ul:hover{background:rgba(187,92,38,.16)}
   font-size:clamp(19px,2.1vw,26px);line-height:1.15;letter-spacing:-.018em;word-spacing:.1em;
 }
 
+/* tight group of consecutive one-line statements */
+.stack p{margin-bottom:9px}
+
+/* the line a section turns on: bigger than the list that follows it */
+.turn{
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:clamp(32px,4.8vw,58px);line-height:1.05;
+  letter-spacing:.012em;word-spacing:.14em;
+  margin:30px 0 4px;
+}
+
 /* ---------- quote ---------- */
 .pull{border-left:4px solid var(--clay);padding:4px 0 4px 22px;margin:30px 0}
 .pull p{
@@ -583,7 +594,7 @@ footer p{
       <p>You know you&rsquo;re good at what you do.</p>
       <p class="hit">And you also know your business should be making way more money than it is right now.</p>
 
-      <p>You know you should raise the price, but one person told you it was expensive three months ago and apparently she&rsquo;s been sitting on your <span class="circled">imaginary board of directors<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span> ever since.</p>
+      <p>You know you should raise the price, but one person told you it was expensive three months ago and apparently she&rsquo;s been sitting on your imaginary board of directors ever since.</p>
 
       <p>You say you want better clients, then the client you don&rsquo;t really want is the only inquiry that week and suddenly &ldquo;some business is better than no business&rdquo; starts sounding reasonable.</p>
 
@@ -597,19 +608,26 @@ footer p{
     </div>
 
     <div class="beliefs">
-      <p class="belief">&ldquo;People here won&rsquo;t pay that.&rdquo;</p>
+      <p class="belief">&ldquo;People won&rsquo;t pay that.&rdquo;</p>
       <p class="belief">&ldquo;My audience doesn&rsquo;t buy expensive offers.&rdquo;</p>
       <p class="belief">&ldquo;This industry is oversaturated.&rdquo;</p>
       <p class="belief">&ldquo;I tried that already.&rdquo;</p>
       <p class="belief">&ldquo;That doesn&rsquo;t work for me.&rdquo;</p>
     </div>
 
-    <div class="measure" style="margin-top:30px">
-      <p class="hit">And I need you to stop calling something a FACT just because your brain has gotten really fucking good at finding evidence for it.</p>
+    <div class="split" style="margin-top:44px">
+      <div class="sp-img photo">
+        <img src="/qc-jac-8.webp" width="1000" height="1250" loading="lazy"
+             alt="Jac working at a kitchen island with a laptop and her phone" />
+      </div>
+      <div class="sp-copy">
+        <p class="hit">And I need you to stop calling something a FACT just because your brain has gotten really fucking good at finding evidence for it.</p>
+        <p>Sometimes the problem is underneath the strategy.</p>
+        <p>And sometimes?</p>
+      </div>
+    </div>
 
-      <p>Sometimes the problem is underneath the strategy.</p>
-
-      <p>And sometimes?</p>
+    <div class="measure" style="margin-top:44px">
 
       <p>Your messaging is unclear. Your offer needs work. Nobody knows the thing exists. You&rsquo;re talking to the wrong people. Your marketing isn&rsquo;t doing its job.</p>
 
@@ -617,7 +635,7 @@ footer p{
         <p>Sometimes it&rsquo;s your mindset. Sometimes your strategy just fucking sucks.</p>
       </div>
 
-      <p class="beat">Good. We can work with both.</p>
+      <p class="beat"><span class="circled">Good.<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span> We can work with both.</p>
     </div>
 
     <div class="starrow" aria-hidden="true"><span>&#10022; &#10022; &#10022;</span></div>
@@ -689,11 +707,12 @@ footer p{
 
     <p class="mega center" style="margin-top:34px;color:var(--clay-lt)">Holy fuck.<br />This is my life.</p>
 
-    <div class="measure center" style="margin-top:36px">
-      <p class="beat">That&rsquo;s what I want for you.</p>
-      <p>Not my life.</p>
-      <p class="hit">Yours.</p>
+    <div class="measure center" style="margin-top:44px">
+      <p class="beat" style="margin:0">That&rsquo;s what I want for you.</p>
+      <p class="lede" style="margin:18px 0 0;color:rgba(245,238,229,.7)">Not my life.</p>
     </div>
+
+    <p class="mega center" style="margin-top:14px">Yours.</p>
   </div>
 </section>
 
@@ -707,12 +726,13 @@ footer p{
   <div class="wrap">
     <p class="mega">You&rsquo;re manifesting your business all day long.</p>
 
-    <div class="measure" style="margin-top:42px">
+    <div class="measure stack" style="margin-top:40px">
       <p>Not only when you meditate.</p>
       <p>Not only when you visualize.</p>
       <p>Not only when you journal.</p>
-      <p class="beat">When you run it.</p>
     </div>
+
+    <p class="turn caps center">When you run it.</p>
 
     <ul class="qs" style="margin-top:28px">
       <li><i aria-hidden="true">&#10022;</i>When you decide what to charge.</li>
@@ -734,60 +754,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 5. MANIFESTATION REQUIRES ACTION ============ -->
-<section class="sec">
-  <div class="wrap">
-    <p class="mega center">Manifestation requires action.</p>
-
-    <div class="measure center" style="margin-top:30px">
-      <p class="beat">Heavy on the ACTION.</p>
-    </div>
-
-    <div class="measure" style="margin-top:20px">
-      <p>I will never teach you to decide something is yours and then sit there waiting for it to find your address.</p>
-      <p>You want the bigger business?</p>
-      <p class="hit">Do something.</p>
-    </div>
-
-    <div class="split" style="margin-top:46px">
-      <div class="sp-img photo">
-        <img src="/qc-jac-8.webp" width="1000" height="1250" loading="lazy"
-             alt="Jac working at a kitchen island with a laptop and her phone" />
-      </div>
-      <div class="sp-copy">
-        <ul class="checks" style="max-width:none">
-          <li><i aria-hidden="true">&#10022;</i>Raise the price when raising the price makes sense.</li>
-          <li><i aria-hidden="true">&#10022;</i>Make the offer. Send the pitch. Follow up.</li>
-          <li><i aria-hidden="true">&#10022;</i>Post the opinion. Fix the messaging. Get more visible.</li>
-          <li><i aria-hidden="true">&#10022;</i>Have the conversation. Say no to the client. Say yes to the opportunity.</li>
-          <li><i aria-hidden="true">&#10022;</i>Create the thing. Launch it. Market it. Sell it.</li>
-          <li><i aria-hidden="true">&#10022;</i>Change the strategy when the strategy genuinely needs changing.</li>
-          <li><i aria-hidden="true">&#10022;</i>Leave the fucking strategy alone when the only reason you want to change it is because you&rsquo;re uncomfortable.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="measure center" style="margin-top:44px">
-      <p class="beat">DO SOMETHING.</p>
-    </div>
-
-    <div class="measure" style="margin-top:20px">
-      <p>Manifestation changes what you believe is available to you.</p>
-      <p>What you notice. What you pursue. What you expect. What you tolerate. How you interpret what happens.</p>
-      <p>And what you do when your current reality hasn&rsquo;t caught up yet.</p>
-      <p class="hit">Then you move.</p>
-      <p>Because manifestation was never supposed to make you a spectator in your own life.</p>
-
-      <div class="pull">
-        <p>You decide the destination. You don&rsquo;t get to dictate every turn the road takes to get you there.</p>
-      </div>
-
-      <p class="beat">But you do have to fucking <span class="circled">drive<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8 52C8 22 58 4 104 4C156 4 192 20 192 50C192 82 143 97 97 97C48 97 11 82 9 51C8 33 22 18 46 9"/></svg></span>.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6. MEET JAC ============ -->
+<!-- ============ 5. MEET JAC ============ -->
 <section class="sec deep">
   <div class="wrap">
     <div class="wide">
@@ -851,7 +818,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 7. THIS IS HOW WE WORK ============ -->
+<!-- ============ 6. THIS IS HOW WE WORK ============ -->
 <section class="sec dark">
   <div class="starfield" aria-hidden="true">
     <span style="top:6%;left:7%">&#10022;</span>
@@ -930,7 +897,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 8. THE MENTORSHIP IS THE PRODUCT (orange, core offer) ============ -->
+<!-- ============ 7. THE MENTORSHIP IS THE PRODUCT (orange, core offer) ============ -->
 <section class="sec orange">
   <div class="starfield" aria-hidden="true">
     <span style="top:5%;left:5%">&#10022;</span>
@@ -997,7 +964,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 9. AUDIO VAULT ============ -->
+<!-- ============ 8. AUDIO VAULT ============ -->
 <section class="sec deep">
   <div class="wrap">
     <div class="wide">
@@ -1035,7 +1002,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 10. BUSINESS VAULT ============ -->
+<!-- ============ 9. BUSINESS VAULT ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="wide">
@@ -1069,7 +1036,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 11. THE ROOM ============ -->
+<!-- ============ 10. THE ROOM ============ -->
 <section class="sec deep">
   <div class="wrap">
     <div class="wide">
@@ -1084,7 +1051,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 12. YOU CANNOT STRATEGY YOUR WAY ============ -->
+<!-- ============ 11. YOU CANNOT STRATEGY YOUR WAY ============ -->
 <section class="sec dark">
   <div class="starfield" aria-hidden="true">
     <span style="top:8%;left:6%">&#10022;</span>
@@ -1119,7 +1086,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 13. NOT MY DREAM LIFE (blush) ============ -->
+<!-- ============ 12. NOT MY DREAM LIFE (blush) ============ -->
 <section class="sec blush">
   <div class="starfield" aria-hidden="true">
     <span style="top:10%;left:6%">&#10022;</span>
@@ -1170,7 +1137,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 14. I DIDN'T LEARN TO WANT LESS ============ -->
+<!-- ============ 13. I DIDN'T LEARN TO WANT LESS ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="wide">
@@ -1211,7 +1178,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 15. PROOF ============ -->
+<!-- ============ 14. PROOF ============ -->
 <section class="sec deep">
   <div class="wrap">
     <div class="wide center">
@@ -1259,7 +1226,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 16 + 17. FOR / NOT FOR ============ -->
+<!-- ============ 15 + 16. FOR / NOT FOR ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="fits">
@@ -1301,7 +1268,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 18 + 19. WHAT YOU GET + JOIN ============ -->
+<!-- ============ 17 + 18. WHAT YOU GET + JOIN ============ -->
 <section class="sec deep" id="join">
   <div class="wrap">
     <div class="wide center">
@@ -1335,7 +1302,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 20. FAQ ============ -->
+<!-- ============ 19. FAQ ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="wide center">
@@ -1505,7 +1472,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 21. CLOSER ============ -->
+<!-- ============ 20. CLOSER ============ -->
 <section class="dark">
   <div class="starfield" aria-hidden="true">
     <span style="top:10%;left:8%">&#10022;</span>
@@ -1566,7 +1533,7 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 22. DISCLAIMER ============ -->
+<!-- ============ 21. DISCLAIMER ============ -->
 <section class="legal">
   <div class="wrap">
     <h2>Important disclaimer</h2>
