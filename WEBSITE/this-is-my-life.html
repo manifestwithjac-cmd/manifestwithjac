@@ -343,6 +343,11 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 .deep .block,.deep .block:first-child{border-color:var(--line)}
 .deep .block h3 i{color:var(--clay)}
 
+.cadence{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:14px;opacity:.85;
+}
+
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
 .tag-chip{
   font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;
@@ -917,6 +922,7 @@ footer p{
 
       <div class="block">
         <h3 class="caps"><i aria-hidden="true">&#10022;</i>Biweekly live business mentorship</h3>
+        <p class="cadence">Every other Tuesday &middot; 10 AM Eastern &middot; 60 to 90 minutes</p>
         <p class="beat" style="margin-top:0">Bring me the business.</p>
 
         <div class="tags">
@@ -954,6 +960,14 @@ footer p{
         <p>That&rsquo;s the point.</p>
         <p>This isn&rsquo;t generic Q&amp;A.</p>
         <p><strong>It&rsquo;s mentorship on your actual business, while you&rsquo;re building it.</strong></p>
+      </div>
+
+      <div class="block">
+        <h3 class="caps"><i aria-hidden="true">&#10022;</i>A question thread on the off weeks</h3>
+        <p class="cadence">The Tuesdays in between</p>
+        <p>Every other Tuesday we&rsquo;re live.</p>
+        <p>On the Tuesdays in between, there&rsquo;s a question thread.</p>
+        <p><strong>Bring it there.</strong></p>
       </div>
 
     </div>
@@ -1282,7 +1296,8 @@ footer p{
       <li><i aria-hidden="true">&#10022;</i>Complete and growing Audio Vault with subconscious recoding, self-hypnosis, breathwork, tapping, meditation and more for your business and life</li>
       <li><i aria-hidden="true">&#10022;</i>Growing Business Vault with practical trainings and tools</li>
       <li><i aria-hidden="true">&#10022;</i>Private member community</li>
-      <li><i aria-hidden="true">&#10022;</i><span class="tbd">[ADD CALL TIME]</span></li>
+      <li><i aria-hidden="true">&#10022;</i>Live calls every other Tuesday at 10 AM Eastern, 60 to 90 minutes</li>
+      <li><i aria-hidden="true">&#10022;</i>A question thread on the Tuesdays in between</li>
       <li><i aria-hidden="true">&#10022;</i><span class="tbd">[ADD REPLAY DETAILS]</span></li>
     </ul>
 
@@ -1295,7 +1310,7 @@ footer p{
 
       <div class="terms">
         <p data-offer="commitment">Three month minimum commitment</p>
-        <p><span class="tbd">[CONFIRM EXACT ACCESS LENGTH FOR PAID-IN-FULL OPTION]</span></p>
+        <p>Live calls every other Tuesday at 10 AM Eastern</p>
         <p><span class="tbd">[THRIVECART LINK]</span></p>
       </div>
     </div>
@@ -1442,7 +1457,9 @@ footer p{
       <details>
         <summary>When are the calls?</summary>
         <div class="ans">
-          <p><span class="tbd">[INSERT CALL SCHEDULE]</span></p>
+          <p>Every other Tuesday at 10 AM Eastern.</p>
+          <p>They run 60 to 90 minutes.</p>
+          <p>On the Tuesdays in between, there&rsquo;s a question thread. Bring it there.</p>
         </div>
       </details>
 
@@ -1463,7 +1480,7 @@ footer p{
       <details>
         <summary>Can I cancel anytime?</summary>
         <div class="ans">
-          <p>There is a three-month minimum commitment.</p>
+          <p>There is a six-month minimum commitment.</p>
           <p><span class="tbd">[INSERT CANCELLATION DETAILS AFTER MINIMUM TERM]</span></p>
         </div>
       </details>
@@ -1566,7 +1583,7 @@ footer p{
 var OFFER = {
 
   name: "Join Holy Fuck, This Is My Life.",
-  commitment: "Three month minimum commitment",
+  commitment: "Six month minimum commitment",
 
   /* One ThriveCart cart carries both payment options, so every plan
      button points here. Swap the "#" for the real link once it's live. */
@@ -1575,16 +1592,16 @@ var OFFER = {
   plans: [
     {
       name: "Monthly",
-      amount: "$333",
-      note: "Per month. Three month minimum commitment.",
+      amount: "$555",
+      note: "Per month. Six month minimum commitment. $3,330 total.",
       cta: "Join monthly",
       best: false
     },
     {
       name: "Paid in full",
-      amount: "$888",
-      note: "Paid today. Covers the full commitment.",
-      ribbon: "Save $111",
+      amount: "$3,200",
+      note: "Paid today. Covers all six months.",
+      ribbon: "Save $130",
       cta: "Join, pay in full",
       best: true
     }
