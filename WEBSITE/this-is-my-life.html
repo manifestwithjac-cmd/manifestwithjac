@@ -19,7 +19,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" href="/uic/fonts/seriously-nostalgic.otf" as="font" type="font/otf" crossorigin>
 
 <style>
@@ -343,9 +343,11 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 .deep .block,.deep .block:first-child{border-color:var(--line)}
 .deep .block h3 i{color:var(--clay)}
 
-.cadence{
+/* .block p:not(.beat) is more specific, so this needs .block in front
+   of it to win. Without it the cadence line renders at body size. */
+.cadence,.block p.cadence{
   font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;margin-bottom:14px;opacity:.85;
+  text-transform:uppercase;margin-bottom:14px;opacity:.85;line-height:1.6;
 }
 
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
