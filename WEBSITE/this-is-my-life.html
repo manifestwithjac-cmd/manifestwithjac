@@ -173,8 +173,12 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   max-width:var(--shell);margin:0 auto;padding:12px var(--gut);
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.mark{font-size:var(--s4);font-weight:600;letter-spacing:.2em;text-transform:uppercase}
-.bar .btn{width:auto;padding:11px 18px;font-size:var(--s4);letter-spacing:.14em}
+.mark{
+  font-size:var(--s4);font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  line-height:1.3;min-width:0;
+}
+@media (min-width:600px){.mark{letter-spacing:.2em}}
+.bar .btn{width:auto;padding:11px 18px;font-size:var(--s4);letter-spacing:.14em;white-space:nowrap;flex:0 0 auto}
 #join{scroll-margin-top:78px}
 
 /* ---------- hero ---------- */
@@ -521,7 +525,7 @@ footer p{
 
 <header class="bar">
   <div class="bar-in">
-    <a class="mark" href="/">Manifest With Jac</a>
+    <span class="mark">Holy Fuck, This Is My Life</span>
     <a class="btn" href="#join">Join now</a>
   </div>
 </header>
