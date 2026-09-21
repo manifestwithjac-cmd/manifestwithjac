@@ -181,9 +181,8 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .hero{padding:52px 0 70px;text-align:center}
 .hero .tag{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:var(--d4);text-transform:uppercase;
-  letter-spacing:.012em;word-spacing:.14em;color:var(--clay);
-  max-width:760px;margin:26px auto 0;line-height:1.28;
+  font-size:var(--d4);letter-spacing:-.015em;word-spacing:.1em;color:var(--clay);
+  max-width:760px;margin:26px auto 0;line-height:1.24;
 }
 .rule-orange{width:70px;height:3px;background:var(--clay);margin:32px auto}
 
@@ -348,6 +347,41 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 }
 .dark .sourced{border-top-color:var(--line-dark);color:rgba(245,238,229,.58)}
 
+/* ---------- numbered diagnosis list ----------
+   The four things Jac watches talented women do. Deliberately unlike every
+   other list on the page: numbers instead of stars, and no rules. */
+.dial{max-width:760px;margin:0 auto;list-style:none;counter-reset:dial}
+.dial li{
+  counter-increment:dial;display:grid;grid-template-columns:auto 1fr;
+  gap:16px;align-items:baseline;padding:15px 0;
+  font-size:var(--s1);line-height:1.5;
+}
+.dial li::before{
+  content:counter(dial,decimal-leading-zero);
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:var(--d4);line-height:1.5;color:var(--clay);
+  letter-spacing:-.02em;min-width:1.6em;
+}
+.dark .dial li::before{color:var(--clay-lt)}
+
+/* ---------- the two halves of the work ----------
+   Business on one side, identity on the other, so the page shows the pair
+   instead of asking you to read two long stacked lists. */
+.both{display:grid;gap:22px;max-width:1040px;margin:0 auto}
+.half{border:2px solid var(--ink);background:var(--white);padding:28px 22px;display:flex;flex-direction:column}
+.half .hnum{
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--clay);margin-bottom:14px;
+}
+.half h3{margin-bottom:20px}
+.half ul{list-style:none}
+.half li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;
+  padding:13px 0;border-top:1px solid var(--line);
+  font-size:var(--s2);line-height:1.5;
+}
+.half li i{font-style:normal;color:var(--clay);font-size:11px;line-height:1.9}
+
 /* the wall closes on a statement, not on fine print */
 .wallclose{max-width:760px;margin:56px auto 0;padding-top:34px;border-top:1px solid var(--line-dark);text-align:center}
 .wallclose p.beat{margin:0 0 22px}
@@ -464,6 +498,8 @@ footer p{
   .split{grid-template-columns:1fr 1fr;gap:56px}
   .split.rev .sp-img{order:2}
   .assets{gap:20px}
+  .both{grid-template-columns:1fr 1fr;gap:26px}
+  .half{padding:34px 30px}
   .wins{columns:2;column-gap:34px}
   .reviews{grid-template-columns:1fr 1fr;gap:44px 40px}
 }
@@ -520,7 +556,7 @@ footer p{
 
       <p>If you know you were meant to build something way fucking bigger than what you have right now, and you&rsquo;re ready to become the woman who can hold it, run it, and make the kind of money that makes your entire life bigger&hellip;</p>
 
-      <p class="hit">You&rsquo;re in the right fucking place.</p>
+      <p class="hit">You&rsquo;re in the right place.</p>
     </div>
 
     <div class="cta-block">
@@ -537,7 +573,7 @@ footer p{
 
       <p class="beat">Puke.</p>
 
-      <p>This is where you come to build a fucking phenomenal business and a brand nobody could mistake for anyone else&rsquo;s, with high-level strategy paired with the identity, subconscious, manifestation, and regulation work that makes MORE your new normal, so you can become the woman making massive money, selling the shit out of her offers, getting opportunities she used to dream about, and building a life so fucking good she can&rsquo;t believe she gets to call it hers.</p>
+      <p>This is where you come to build a business and a brand nobody could mistake for anyone else&rsquo;s, with high-level strategy paired with the identity, subconscious, manifestation, and regulation work that makes MORE your new normal, so you can become the woman making massive money, selling the shit out of her offers, getting opportunities she used to dream about, and building a life so fucking good she can&rsquo;t believe she gets to call it hers.</p>
 
       <p class="hit">If you&rsquo;re sitting here thinking, &ldquo;I just knowww this business can go to the fucking MOON,&rdquo; you&rsquo;re exactly where you&rsquo;re meant to be.</p>
     </div>
@@ -583,9 +619,9 @@ footer p{
 
       <p class="hit">You want the money. The business. The house. The trips. The freedom. The ideas you get to fund because you fucking feel like it. The ability to take care of the people you love.</p>
 
-      <p>And you want all of it while building a business and a life that actually look like the ones YOU wanted.</p>
+      <p>And you want all of it while building a business and a life that actually looks like the one YOU want.</p>
 
-      <p>You want to wake up, look around at everything you intentionally created, and still have moments where you think:</p>
+      <p>You want to wake up, look around at everything you intentionally created, and think:</p>
     </div>
 
     <p class="mega center" style="margin-top:40px">Holy fuck.<br />This is my life</p>
@@ -667,12 +703,12 @@ footer p{
       <p>Because I see insanely talented women with businesses that could go to the fucking MOON constantly doing shit like:</p>
     </div>
 
-    <ul class="checks" style="margin-top:28px">
-      <li><i aria-hidden="true">&#10022;</i>Changing a perfectly good offer because it didn&rsquo;t sell fast enough.</li>
-      <li><i aria-hidden="true">&#10022;</i>Making their content sound like everybody else&rsquo;s because apparently some woman on Instagram decided there&rsquo;s a &ldquo;right&rdquo; way to sell.</li>
-      <li><i aria-hidden="true">&#10022;</i>Having an incredible idea and then logic-ing the absolute fuck out of it until it becomes a boring, watered-down version of what they actually wanted to create.</li>
-      <li><i aria-hidden="true">&#10022;</i>Collecting strategy after strategy after strategy until they have 47 different people&rsquo;s voices in their head and can barely fucking hear their own.</li>
-    </ul>
+    <ol class="dial" style="margin-top:30px">
+      <li>Changing a perfectly good offer because it didn&rsquo;t sell fast enough.</li>
+      <li>Making their content sound like everybody else&rsquo;s because apparently some woman on Instagram decided there&rsquo;s a &ldquo;right&rdquo; way to sell.</li>
+      <li>Having an incredible idea and then logic-ing the absolute fuck out of it until it becomes a boring, watered-down version of what they actually wanted to create.</li>
+      <li>Collecting strategy after strategy after strategy until they have 47 different people&rsquo;s voices in their head and can barely fucking hear their own.</li>
+    </ol>
 
     <div class="measure" style="margin-top:36px">
       <p>You do not need me to hand you another personality, another blueprint, or another set of rules for how your business is supposed to work.</p>
@@ -683,7 +719,7 @@ footer p{
 
       <p>Because the goal was never to become really good at following somebody else&rsquo;s instructions.</p>
 
-      <p class="beat">The goal is to build something so fucking good, so profitable, and so completely yours that you can&rsquo;t believe this gets to be your actual life.</p>
+      <p class="beat">The goal is to build something so fucking good, so profitable, and so completely yours that you catch yourself saying, &ldquo;Holy fuck, this is my life&rdquo;</p>
     </div>
   </div>
 </section>
@@ -786,62 +822,34 @@ footer p{
       <h2 class="caps">Inside HFTIML, you work on both.</h2>
     </div>
 
-    <div class="measure" style="margin-top:40px">
-      <p class="beat" style="margin-top:0">1. The actual BUSINESS required to make the kind of money you want to make.</p>
-    </div>
+    <div class="both" style="margin-top:44px">
 
-    <ul class="checks" style="margin-top:20px">
-      <li><i aria-hidden="true">&#10022;</i>Offers people actually fucking want to buy, and figuring out what needs to change when they don&rsquo;t.</li>
-      <li><i aria-hidden="true">&#10022;</i>Messaging and content that sounds like YOU, makes your value obvious, and gives people a reason to pay attention instead of scrolling past another person saying the exact same shit.</li>
-      <li><i aria-hidden="true">&#10022;</i>Selling without turning into somebody you don&rsquo;t recognize every time you need to make money.</li>
-      <li><i aria-hidden="true">&#10022;</i>Pricing, launches, visibility, positioning, and the actual decisions that move your business forward.</li>
-      <li><i aria-hidden="true">&#10022;</i>Building a brand people know, remember, talk about, and specifically want to buy from because YOU are the one behind it.</li>
-      <li><i aria-hidden="true">&#10022;</i>Looking at what is actually happening in your business, figuring out what the fuck the data is telling you, and changing the strategy when the strategy actually needs to change.</li>
-    </ul>
+      <div class="half">
+        <p class="hnum">One</p>
+        <h3>The actual BUSINESS required to make the kind of money you want to make.</h3>
+        <ul>
+          <li><i aria-hidden="true">&#10022;</i>Offers people actually fucking want to buy, and figuring out what needs to change when they don&rsquo;t.</li>
+          <li><i aria-hidden="true">&#10022;</i>Messaging and content that sounds like YOU, makes your value obvious, and gives people a reason to pay attention instead of scrolling past another person saying the exact same shit.</li>
+          <li><i aria-hidden="true">&#10022;</i>Selling without turning into somebody you don&rsquo;t recognize every time you need to make money.</li>
+          <li><i aria-hidden="true">&#10022;</i>Pricing, launches, visibility, positioning, and the actual decisions that move your business forward.</li>
+          <li><i aria-hidden="true">&#10022;</i>Building a brand people know, remember, talk about, and specifically want to buy from because YOU are the one behind it.</li>
+          <li><i aria-hidden="true">&#10022;</i>Looking at what is actually happening in your business, figuring out what the fuck the data is telling you, and changing the strategy when the strategy actually needs to change.</li>
+        </ul>
+      </div>
 
-    <div class="measure" style="margin-top:46px">
-      <p class="beat" style="margin-top:0">2. AND the identity, subconscious, manifestation + regulation work required to actually become the woman who can live inside everything she says she wants.</p>
-    </div>
+      <div class="half">
+        <p class="hnum">Two</p>
+        <h3>The identity, subconscious, manifestation and regulation work required to actually become the woman who can live inside everything she says she wants.</h3>
+        <ul>
+          <li><i aria-hidden="true">&#10022;</i>Finding the beliefs underneath the decisions you&rsquo;re making instead of slapping another affirmation over them and calling it manifestation.</li>
+          <li><i aria-hidden="true">&#10022;</i>Changing what feels normal around money, sales, visibility, opportunities, being wanted, being paid, and just how fucking BIG your life gets to be.</li>
+          <li><i aria-hidden="true">&#10022;</i>Learning how to have a shitty week, money go out, somebody say no, or an idea completely fucking flop and go, &ldquo;Okay. Good to know.&rdquo; Instead of turning it into an emergency and changing your entire business by dinner.</li>
+          <li><i aria-hidden="true">&#10022;</i>Trusting yourself enough to have the idea and fucking GO without needing to see how seventeen other women in your industry did it first.</li>
+          <li><i aria-hidden="true">&#10022;</i>Knowing when you&rsquo;re looking at real feedback that requires a business decision and when you&rsquo;re reacting to the fact that the 3D hasn&rsquo;t caught up yet.</li>
+          <li><i aria-hidden="true">&#10022;</i>Actually becoming the woman who can live inside the life she keeps saying she wants instead of only feeling like her when everything is going perfectly.</li>
+        </ul>
+      </div>
 
-    <ul class="checks" style="margin-top:20px">
-      <li><i aria-hidden="true">&#10022;</i>Finding the beliefs underneath the decisions you&rsquo;re making instead of slapping another affirmation over them and calling it manifestation.</li>
-      <li><i aria-hidden="true">&#10022;</i>Changing what feels normal around money, sales, visibility, opportunities, being wanted, being paid, and just how fucking BIG your life gets to be.</li>
-      <li><i aria-hidden="true">&#10022;</i>Learning how to have a shitty week, money go out, somebody say no, or an idea completely fucking flop and go, &ldquo;Okay. Good to know.&rdquo; Instead of turning it into an emergency and changing your entire business by dinner.</li>
-      <li><i aria-hidden="true">&#10022;</i>Trusting yourself enough to have the idea and fucking GO without needing to see how seventeen other women in your industry did it first.</li>
-      <li><i aria-hidden="true">&#10022;</i>Knowing when you&rsquo;re looking at real feedback that requires a business decision and when you&rsquo;re reacting to the fact that the 3D hasn&rsquo;t caught up yet.</li>
-      <li><i aria-hidden="true">&#10022;</i>Actually becoming the woman who can live inside the life she keeps saying she wants instead of only feeling like her when everything is going perfectly.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ 8. CANNOT STRATEGY / CANNOT MANIFEST (orange) ============ -->
-<section class="sec orange">
-  <div class="starfield" aria-hidden="true">
-    <span style="top:7%;left:6%">&#10022;</span>
-    <span style="top:44%;left:94%;animation-delay:1.9s">&#10022;</span>
-    <span style="top:86%;left:8%;animation-delay:.7s;font-size:11px">&#10022;</span>
-  </div>
-  <div class="wrap">
-    <p class="mega">Because you cannot strategy your way around every belief. And you cannot manifest your way around a shitty strategy.</p>
-
-    <div class="measure" style="margin-top:44px">
-      <p>You can listen to affirmations every morning telling yourself your offers always sell, but if your offer fucking sucks, you need to fix the offer.</p>
-
-      <p>And you can have a phenomenal offer, great messaging, an audience that wants it, and a strategy that makes complete sense, but if three quiet days have you panicking, discounting it, changing the messaging, and deciding you need to launch something completely different, another strategy isn&rsquo;t the answer either.</p>
-
-      <p class="hit">That&rsquo;s the shit you work on inside HFTIML.</p>
-
-      <p>Figure out what the actual fucking problem is. Then work on THAT.</p>
-
-      <p>Because the strategy-only business world gets this wrong. You can have the offer, the content plan, the sales strategy, the marketing calendar, and know exactly what you&rsquo;re &ldquo;supposed&rdquo; to do next. But if one slow week has you changing the offer, lowering the price, taking business you don&rsquo;t fucking want, or assuming you need to work twice as hard to make the money back, the strategy was never the whole problem.</p>
-
-      <p>And the manifestation-only world gets this wrong too. You can affirm that you&rsquo;re a money magnet, visualize the $100K month, regulate your nervous system, and know with every cell in your body that you&rsquo;re meant for MORE. But if nobody knows what the fuck you sell, your offer isn&rsquo;t good, your messaging isn&rsquo;t landing, or you&rsquo;re not actually doing anything to move the business forward, you do not need another affirmation. You need to fix the fucking business.</p>
-
-      <p>That is why the two never get separated inside HFTIML.</p>
-
-      <p>You&rsquo;re not choosing between being really fucking good at business and believing you can create whatever the hell you want.</p>
-
-      <p class="beat">You&rsquo;re becoming the woman who does both.</p>
     </div>
   </div>
 </section>
@@ -971,22 +979,13 @@ footer p{
 
     </div>
 
-    <div class="wallclose">
-      <p class="beat">This is the first time I have ever run a six-month mentormind. Every one of these came from years of trial and error and coaching women and business owners before it.</p>
-      <p class="credit"><span>Vondie C.</span><span class="amp">&#10022;</span><span>Sarah R.</span><span class="amp">&#10022;</span><span>Lori C.</span><span class="amp">&#10022;</span><span>Steph V.</span></p>
-      <p class="sourced">Among the past clients whose messages are in this section. Their words, unedited. Nothing here is from HOLY FUCK, THIS IS MY LIFE, and what happened for them is not a promise of what will happen for you.</p>
-    </div>
   </div>
 </section>
 
 <!-- ============ 10c. COACHES WHO HIRED ME ============ -->
-<section class="sec deep">
+<section class="sec">
   <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">And the coaches who hired me.</h2>
-    </div>
-
-    <div class="reviews" style="margin-top:50px">
+    <div class="reviews">
       <figure class="review">
         <div class="stars" aria-label="Five out of five stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>&ldquo;I love your energy, you&rsquo;re real, honest but also able to convey it in a nice way. You know what you&rsquo;re talking about but also give us space to do our own thing&hellip; I love that you want to see your clients grow and have massive results!&rdquo;</blockquote>
@@ -1009,10 +1008,27 @@ footer p{
       </figure>
     </div>
 
-    <p class="sourced">[Jac] appears in brackets where these women used my full name. Trimmed for length, never reworded.</p>
-
     <div class="cta-block">
       <a class="btn" href="#join">Join now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10d. THE OFFER ============
+     Sits immediately above the questions, so the price is on the table
+     before the objections get answered. -->
+<section class="sec deep" id="join">
+  <div class="wrap">
+    <div class="offer">
+      <p class="term" data-offer="term">Six months</p>
+      <p class="price" data-offer="price">$5,000</p>
+      <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life</p>
+      <a class="btn" id="joinBtn" href="#">Join now</a>
+      <div class="terms">
+        <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
+        <p>No refunds &middot; no trial period</p>
+        <p><span class="tbd">[THRIVECART LINK]</span></p>
+      </div>
     </div>
   </div>
 </section>
@@ -1076,7 +1092,7 @@ footer p{
 </section>
 
 <!-- ============ 12. CLOSER + JOIN ============ -->
-<section class="dark" id="join">
+<section class="dark">
   <div class="starfield" aria-hidden="true">
     <span style="top:8%;left:8%">&#10022;</span>
     <span style="top:22%;left:90%;animation-delay:1.7s">&#10022;</span>
@@ -1091,44 +1107,15 @@ footer p{
         <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
       </div>
 
-      <p class="mega">This is six months of building the business and the life that actually look like yours.</p>
-
-      <div class="measure stack" style="margin-top:40px;text-align:left">
-        <p class="lede">Not mine.</p>
-        <p class="lede">Not your last coach&rsquo;s.</p>
-        <p class="lede">Not the woman whose Instagram you keep dissecting.</p>
-      </div>
-
-      <div class="measure" style="margin-top:22px">
-        <p class="beat" style="margin:0">Yours.</p>
-      </div>
-
-      <ul class="qs" style="margin-top:36px">
-        <li><i aria-hidden="true">&#10022;</i>The business people become obsessed with.</li>
-        <li><i aria-hidden="true">&#10022;</i>The offers you sell the shit out of.</li>
-        <li><i aria-hidden="true">&#10022;</i>The money that changes what&rsquo;s possible for your family and your life.</li>
-        <li><i aria-hidden="true">&#10022;</i>The opportunities that used to live on the vision board.</li>
-        <li><i aria-hidden="true">&#10022;</i>The ideas you finally trust yourself enough to fucking execute.</li>
-        <li><i aria-hidden="true">&#10022;</i>And the version of you who can have all of it without needing every single Tuesday to go perfectly before she believes it&rsquo;s hers.</li>
-      </ul>
-
-      <div class="offer" style="margin-top:56px">
-        <p class="term" data-offer="term">Six months</p>
-        <p class="price" data-offer="price">$5,000</p>
-        <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life</p>
-        <a class="btn" id="joinBtn" href="#">Join now</a>
-        <div class="terms">
-          <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
-          <p>No refunds &middot; no trial period</p>
-          <p><span class="tbd">[THRIVECART LINK]</span></p>
-        </div>
-      </div>
-
-      <div class="measure" style="margin-top:52px">
+      <div class="measure">
         <p class="hit">You already know how big you want this thing to get.</p>
       </div>
 
       <p class="mega" style="margin-top:24px;color:var(--clay-lt)">Now build the fucking thing.</p>
+
+      <div class="cta-block">
+        <a class="btn" href="#join">Join now</a>
+      </div>
     </div>
   </div>
 </section>
