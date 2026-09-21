@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="light only" />
 <meta name="supported-color-schemes" content="light" />
 
-<title>HOLY FUCK, THIS IS MY LIFE. | Manifest With Jac</title>
+<title>HOLY FUCK, THIS IS MY LIFE | Manifest With Jac</title>
 <meta name="description" content="The 6-month business mentorship for the woman ready to build the kind of brand people become obsessed with, make massive money being more of who she actually is, and create a life so big she keeps looking around thinking, holy fuck, this is my life." />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Manifest With Jac" />
-<meta property="og:title" content="HOLY FUCK, THIS IS MY LIFE." />
+<meta property="og:title" content="HOLY FUCK, THIS IS MY LIFE" />
 <meta property="og:description" content="The 6-month business mentorship for the woman ready to build the kind of brand people become obsessed with and make massive money being more of who she actually is." />
 <meta property="og:url" content="https://manifestwithjac.netlify.app/this-is-my-life" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,7 +24,7 @@
 
 <style>
 /* ============================================================
-   HOLY FUCK, THIS IS MY LIFE. | MANIFEST WITH JAC
+   HOLY FUCK, THIS IS MY LIFE | MANIFEST WITH JAC
    Palette and type supplied by Jac. Orange leads, ink carries the
    big statements. Stars only, no flames.
    Display face is the licensed 'Seriously Nostalgic' vendored at
@@ -52,6 +52,18 @@
   --line-orange:rgba(255,255,255,.3);
   --display:'Seriously Nostalgic','Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  /* TYPE SCALE. Four display sizes, four sans sizes, nothing else.
+     Every rule below pulls from these, so the page cannot drift back
+     into two dozen one-off sizes. */
+  --d1:clamp(44px,8.6vw,104px);   /* hero headline, the price            */
+  --d2:clamp(31px,4.8vw,58px);    /* section headlines, full-bleed lines */
+  --d3:clamp(23px,2.9vw,34px);    /* sub-heads, beats, quotes, questions */
+  --d4:clamp(19px,2vw,25px);      /* list items, short quotes            */
+  --s1:17px;                      /* body                                */
+  --s2:15.5px;                    /* dense body                          */
+  --s3:13px;                      /* fine print                          */
+  --s4:11px;                      /* caps labels                         */
+
   --shell:1080px;--measure:640px;--gut:20px;
 }
 
@@ -59,7 +71,7 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--paper)}
 body{
   background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  font-size:var(--s1);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -93,16 +105,16 @@ h1,h2,h3,.disp{
   word-spacing:.1em;letter-spacing:-.02em;line-height:1.05;
 }
 .caps{text-transform:uppercase;letter-spacing:.012em;word-spacing:.14em}
-h1{font-size:clamp(42px,8.4vw,116px)}
-h2{font-size:clamp(29px,4vw,52px);line-height:1.04}
-h3{font-size:clamp(22px,2.3vw,30px);line-height:1.1}
+h1{font-size:var(--d1)}
+h2{font-size:var(--d2);line-height:1.04}
+h3{font-size:var(--d3);line-height:1.1}
 .mega{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(40px,6.6vw,88px);line-height:1;
+  font-size:var(--d2);line-height:1.02;
   letter-spacing:.012em;word-spacing:.14em;text-transform:uppercase;
 }
 .eyebrow{
-  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.28em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:500;letter-spacing:.28em;
   text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;
 }
 .eyebrow .st{color:var(--clay);letter-spacing:0;margin:0 .5em}
@@ -111,11 +123,11 @@ h3{font-size:clamp(22px,2.3vw,30px);line-height:1.1}
 /* ---------- body type ---------- */
 p{margin-bottom:18px;color:rgba(19,19,19,.82)}
 p:last-child{margin-bottom:0}
-p.hit{color:var(--ink);font-weight:600;font-size:19px;line-height:1.45}
-p.lede{font-size:19.5px;line-height:1.55}
+p.hit{color:var(--ink);font-weight:600;font-size:var(--s1);line-height:1.5}
+p.lede{font-size:var(--s1);line-height:1.62}
 p.beat{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(25px,3vw,38px);line-height:1.08;
+  font-size:var(--d3);line-height:1.1;
   letter-spacing:-.02em;word-spacing:.1em;color:var(--ink);margin:26px 0;
 }
 .dark p.beat{color:var(--paper)}
@@ -161,16 +173,17 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   max-width:var(--shell);margin:0 auto;padding:12px var(--gut);
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.mark{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
-.bar .btn{width:auto;padding:11px 18px;font-size:10px;letter-spacing:.14em}
+.mark{font-size:var(--s4);font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.bar .btn{width:auto;padding:11px 18px;font-size:var(--s4);letter-spacing:.14em}
 #join{scroll-margin-top:78px}
 
 /* ---------- hero ---------- */
 .hero{padding:52px 0 70px;text-align:center}
 .hero .tag{
-  font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--clay);
-  max-width:700px;margin:24px auto 0;line-height:1.75;
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:var(--d4);text-transform:uppercase;
+  letter-spacing:.012em;word-spacing:.14em;color:var(--clay);
+  max-width:760px;margin:26px auto 0;line-height:1.28;
 }
 .rule-orange{width:70px;height:3px;background:var(--clay);margin:32px auto}
 
@@ -179,7 +192,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .pains li{
   padding:24px 0;border-bottom:1px solid var(--line-dark);
   display:grid;grid-template-columns:auto 1fr;gap:16px;
-  font-size:17px;line-height:1.55;color:rgba(245,238,229,.86);
+  font-size:var(--s1);line-height:1.55;color:rgba(245,238,229,.86);
 }
 .pains li:first-child{border-top:1px solid var(--line-dark)}
 .pains li i{font-style:normal;color:var(--clay-lt);font-size:13px;line-height:1.7}
@@ -189,7 +202,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .nots li{
   padding:20px 0;border-bottom:1px solid var(--line);
   display:grid;grid-template-columns:auto 1fr;gap:15px;
-  font-size:17px;line-height:1.5;
+  font-size:var(--s1);line-height:1.5;
 }
 .nots li:first-child{border-top:1px solid var(--line)}
 .nots li i{font-style:normal;color:var(--clay);font-size:16px;line-height:1.4;font-weight:600}
@@ -200,7 +213,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   display:grid;grid-template-columns:auto 1fr;gap:13px;
   padding:13px 0;border-bottom:1px solid var(--line);
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(20px,2.3vw,28px);line-height:1.14;letter-spacing:-.018em;word-spacing:.1em;
+  font-size:var(--d4);line-height:1.2;letter-spacing:-.018em;word-spacing:.1em;
 }
 .qs li:first-child{border-top:1px solid var(--line)}
 .qs li i{font-style:normal;color:var(--clay);font-size:11px;line-height:2}
@@ -213,7 +226,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .checks li{
   display:grid;grid-template-columns:auto 1fr;gap:13px;
   padding:16px 0;border-bottom:1px solid var(--line);
-  font-size:17px;line-height:1.5;
+  font-size:var(--s1);line-height:1.5;
 }
 .checks li:first-child{border-top:1px solid var(--line)}
 .checks li i{font-style:normal;color:var(--clay);font-size:12px;line-height:1.7}
@@ -225,7 +238,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .pull{border-left:4px solid var(--clay);padding:4px 0 4px 22px;margin:30px 0}
 .pull p{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(24px,2.8vw,36px);line-height:1.1;letter-spacing:-.02em;word-spacing:.1em;
+  font-size:var(--d3);line-height:1.1;letter-spacing:-.02em;word-spacing:.1em;
   color:var(--ink);
 }
 .dark .pull{border-color:var(--clay-lt)}
@@ -239,17 +252,17 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 }
 .asset .aname{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(26px,3.2vw,40px);line-height:1;
+  font-size:var(--d3);line-height:1.04;
   letter-spacing:.012em;word-spacing:.14em;text-transform:uppercase;
   color:var(--paper);margin-bottom:10px;
   display:flex;gap:12px;align-items:baseline;
 }
 .asset .aname i{font-style:normal;color:var(--clay-lt);font-size:14px;flex:0 0 auto}
 .asset .acount{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.22em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:var(--clay-lt);margin-bottom:14px;line-height:1.6;
 }
-.asset p{font-size:16.5px;line-height:1.55;margin-bottom:0}
+.asset p{font-size:var(--s2);line-height:1.6;margin-bottom:0}
 .asset.lead{border-color:var(--clay-lt);background:rgba(224,131,74,.1)}
 
 /* ---------- photography ---------- */
@@ -277,16 +290,16 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 /* one quote lifted out on its own, high on the page */
 .spotlight{max-width:820px;margin:0 auto;border-top:2px solid var(--clay);border-bottom:2px solid var(--clay);padding:38px 0}
 .spotlight .slabel{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
   text-transform:uppercase;color:var(--clay);margin-bottom:20px;display:block;
 }
 .spotlight blockquote{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(24px,3.4vw,42px);line-height:1.12;letter-spacing:-.018em;word-spacing:.1em;
+  font-size:var(--d3);line-height:1.12;letter-spacing:-.018em;word-spacing:.1em;
   color:var(--ink);
 }
 .spotlight .after{
-  font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--muted);
+  font-family:var(--sans);font-size:var(--s3);line-height:1.6;color:var(--muted);
   margin-top:22px;
 }
 
@@ -294,7 +307,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .cluster{margin-top:52px}
 .cluster:first-of-type{margin-top:0}
 .clabel{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
   text-transform:uppercase;color:var(--clay-lt);
   display:flex;align-items:center;gap:12px;margin-bottom:24px;
 }
@@ -307,7 +320,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 }
 .win p{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(19px,2.1vw,25px);line-height:1.2;letter-spacing:-.015em;word-spacing:.1em;
+  font-size:var(--d4);line-height:1.2;letter-spacing:-.015em;word-spacing:.1em;
   color:var(--paper);margin:0;
 }
 
@@ -319,11 +332,11 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 }
 .review blockquote{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(20px,2.2vw,28px);line-height:1.16;letter-spacing:-.018em;word-spacing:.1em;
+  font-size:var(--d4);line-height:1.2;letter-spacing:-.018em;word-spacing:.1em;
   color:var(--ink);margin-bottom:18px;
 }
 .review cite{
-  font-style:normal;font-family:var(--sans);font-size:11px;font-weight:600;
+  font-style:normal;font-family:var(--sans);font-size:var(--s4);font-weight:600;
   letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1.7;display:block;
 }
 .review cite b{color:var(--clay);font-weight:600}
@@ -331,7 +344,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 /* the honesty line that has to sit with any proof block */
 .sourced{
   max-width:680px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--line);
-  font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--muted);text-align:center;
+  font-family:var(--sans);font-size:var(--s3);line-height:1.6;color:var(--muted);text-align:center;
 }
 .dark .sourced{border-top-color:var(--line-dark);color:rgba(245,238,229,.58)}
 
@@ -345,7 +358,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   display:grid;grid-template-columns:1fr auto;align-items:start;gap:18px;
   padding:26px 0;
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(21px,2.4vw,30px);line-height:1.12;
+  font-size:var(--d3);line-height:1.12;
   text-transform:uppercase;letter-spacing:.012em;word-spacing:.14em;
   color:var(--ink);
   transition:color .16s ease;
@@ -366,7 +379,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .faq-item[open] > summary{color:var(--clay)}
 .faq-item[open] > summary .sign::after{opacity:0;transform:translate(-50%,-50%) rotate(90deg)}
 .faq-ans{padding:0 0 30px;max-width:640px}
-.faq-ans p{font-size:16.5px;margin-bottom:14px}
+.faq-ans p{font-size:var(--s2);margin-bottom:14px}
 .faq-ans p:last-child{margin-bottom:0}
 
 /* ---------- offer card ---------- */
@@ -375,23 +388,23 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   padding:34px 24px;max-width:640px;margin:0 auto;text-align:center;
 }
 .offer .term{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
   text-transform:uppercase;color:var(--clay-lt);margin-bottom:18px;
 }
 .offer .price{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(64px,12vw,120px);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
+  font-size:var(--d1);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
   color:var(--paper);margin-bottom:12px;
 }
 .offer .sub{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:rgba(245,238,229,.7);margin-bottom:30px;line-height:1.7;
 }
 .offer .btn{background:var(--clay);border-color:var(--clay);color:var(--white)}
 .offer .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .terms{margin-top:20px}
 .terms p{
-  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:500;letter-spacing:.16em;
   text-transform:uppercase;color:rgba(245,238,229,.62);margin-bottom:8px;line-height:1.7;
 }
 
@@ -402,14 +415,14 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .legal{background:#e9dfd2;padding:44px 0}
 .legal .wrap{max-width:820px}
 .legal h2{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.28em;
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.28em;
   text-transform:uppercase;color:var(--muted);margin-bottom:16px;line-height:1.6;
 }
-.legal p{font-size:13.5px;line-height:1.6;color:rgba(19,19,19,.7);margin-bottom:12px}
+.legal p{font-size:var(--s3);line-height:1.6;color:rgba(19,19,19,.7);margin-bottom:12px}
 
 footer{border-top:1px solid var(--line);padding:38px 0 50px;text-align:center}
 footer p{
-  font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  font-size:var(--s4);font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   color:var(--muted);margin-bottom:10px;
 }
 
@@ -440,7 +453,6 @@ footer p{
 }
 @media (min-width:1024px){
   .sec{padding:118px 0}
-  body{font-size:17.5px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -479,16 +491,16 @@ footer p{
       <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
     </div>
 
-    <h1 class="caps">Holy fuck, this is my life.</h1>
+    <h1 class="caps">Holy fuck, this is my life</h1>
 
-    <p class="tag">The 6-month business mentorship for the woman ready to build the kind of brand people become fucking obsessed with, make massive money being MORE of who you actually are, and create a life so big you keep looking around thinking, HOLY FUCK, THIS IS MY LIFE.</p>
+    <p class="tag">The 6-month business mentorship for the woman ready to build the kind of brand people become fucking obsessed with, make massive money being MORE of who you actually are, and create a life so big you keep looking around thinking, HOLY FUCK, THIS IS MY LIFE</p>
 
     <div class="rule-orange" aria-hidden="true"></div>
 
     <div class="measure" style="text-align:left">
       <p>If you&rsquo;re ready to find out what happens when you stop looking at what everyone else is doing, build the business YOU actually want, become fucking undeniable at what you do, and make the kind of money that changes what&rsquo;s possible for your entire life&hellip;</p>
 
-      <p class="beat">Welcome to HOLY FUCK, THIS IS MY LIFE.</p>
+      <p class="beat">Welcome to HOLY FUCK, THIS IS MY LIFE</p>
 
       <p>If you know you were meant to build something way fucking bigger than what you have right now, and you&rsquo;re ready to become the woman who can hold it, run it, and make the kind of money that makes your entire life bigger&hellip;</p>
 
@@ -560,7 +572,7 @@ footer p{
       <p>You want to wake up, look around at everything you intentionally created, and still have moments where you think:</p>
     </div>
 
-    <p class="mega center" style="margin-top:40px">Holy fuck.<br />This is my life.</p>
+    <p class="mega center" style="margin-top:40px">Holy fuck.<br />This is my life</p>
   </div>
 </section>
 
@@ -943,7 +955,7 @@ footer p{
 
     </div>
 
-    <p class="sourced">These are real messages from women I have coached in my previous programs, workshops and one-to-one work. They are not from HOLY FUCK, THIS IS MY LIFE. Their words, unedited. What happened for them is not a promise of what will happen for you.</p>
+    <p class="sourced">These are real messages from women I have coached in my previous programs, workshops and one-to-one work. They are not from HOLY FUCK, THIS IS MY LIFE, and their words are unedited. What happened for them is not a promise of what will happen for you.</p>
   </div>
 </section>
 
@@ -1083,7 +1095,7 @@ footer p{
       <div class="offer" style="margin-top:56px">
         <p class="term" data-offer="term">Six months</p>
         <p class="price" data-offer="price">$5,000</p>
-        <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life.</p>
+        <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life</p>
         <a class="btn" id="joinBtn" href="#">Join now</a>
         <div class="terms">
           <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
@@ -1105,7 +1117,7 @@ footer p{
 <section class="legal">
   <div class="wrap">
     <h2>Important disclaimer</h2>
-    <p>HOLY FUCK, THIS IS MY LIFE. provides business education, coaching and mentorship only. No income, revenue, business growth, financial, personal or other results are guaranteed or promised.</p>
+    <p>HOLY FUCK, THIS IS MY LIFE provides business education, coaching and mentorship only. No income, revenue, business growth, financial, personal or other results are guaranteed or promised.</p>
     <p>Examples of Jac&rsquo;s business results, experiences, revenue or prior client outcomes are provided for context and illustration only and should not be interpreted as typical or guaranteed outcomes.</p>
     <p>Every business and individual is different. Results depend on numerous factors, including experience, skills, market conditions, decisions, implementation, consistency, offers, pricing, marketing, audience and other circumstances outside Jac&rsquo;s control.</p>
     <p>Participants remain responsible for their own business, financial and personal decisions and results.</p>
@@ -1132,7 +1144,7 @@ footer p{
 var OFFER = {
   term: "Six months",
   price: "$5,000",
-  priceNote: "Holy Fuck, This Is My Life.",
+  priceNote: "Holy Fuck, This Is My Life",
   cadence: "Biweekly live coaching · hot seats",
   checkoutUrl: "#",
   ctaLabel: "Join now"
