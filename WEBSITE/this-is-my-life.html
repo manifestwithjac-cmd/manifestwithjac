@@ -7,15 +7,15 @@
 <meta name="supported-color-schemes" content="light" />
 
 <title>HOLY FUCK, THIS IS MY LIFE. | Manifest With Jac</title>
-<meta name="description" content="High-touch business mentorship for the woman who already built something good and is ready to find out how far she can take it. Biweekly live mentorship and hot-seat coaching with Jac." />
+<meta name="description" content="The 6-month business mentorship for the woman ready to build the kind of brand people become obsessed with, make massive money being more of who she actually is, and create a life so big she keeps looking around thinking, holy fuck, this is my life." />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Manifest With Jac" />
 <meta property="og:title" content="HOLY FUCK, THIS IS MY LIFE." />
-<meta property="og:description" content="The high-touch business mentorship for the woman who already built something good and is ready to find out how far she can take it." />
+<meta property="og:description" content="The 6-month business mentorship for the woman ready to build the kind of brand people become obsessed with and make massive money being more of who she actually is." />
 <meta property="og:url" content="https://manifestwithjac.netlify.app/this-is-my-life" />
 <meta name="twitter:card" content="summary_large_image" />
-<!-- TODO: add og:image once the graphic exists -> <meta property="og:image" content="https://manifestwithjac.netlify.app/this-is-my-life-og.jpg" /> -->
+<!-- TODO: add og:image once the graphic exists -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,14 +25,11 @@
 <style>
 /* ============================================================
    HOLY FUCK, THIS IS MY LIFE. | MANIFEST WITH JAC
-   Brand palette and type supplied by Jac. Do not substitute.
-   Orange leads, blush gets one full section, ink carries the
-   big statements. Stars are the only graphic motif.
-   Display face is the licensed 'Seriously Nostalgic' already
-   vendored on this site (single weight 400, so font-synthesis
-   is off wherever it is used).
-   Built mobile-first: base rules are the phone, media queries
-   only add.
+   Palette and type supplied by Jac. Orange leads, ink carries the
+   big statements. Stars only, no flames.
+   Display face is the licensed 'Seriously Nostalgic' vendored at
+   /uic/fonts/ (single weight 400, font-synthesis off).
+   Mobile-first: base rules are the phone, queries only add.
    ============================================================ */
 @font-face{
   font-family:'Seriously Nostalgic';
@@ -42,34 +39,27 @@
 
 :root{
   color-scheme:light only;
-
   --ink:#131313;
   --paper:#f5eee5;
-  --clay:#bb5c26;          /* brand orange: large type, rules, accents on light */
-  --clay-lt:#e0834a;       /* lifted orange: small accent text on ink, 6.6:1     */
-  --clay-deep:#9c4a1c;     /* deepened orange: full-bleed panels, white on it    */
-  --pink:#fccfd4;          /* blush: one full section plus small accents         */
+  --clay:#bb5c26;
+  --clay-lt:#e0834a;
+  --clay-deep:#9c4a1c;
+  --pink:#fccfd4;
   --muted:#6B6B6B;
   --white:#ffffff;
-
   --line:rgba(19,19,19,.16);
   --line-dark:rgba(245,238,229,.2);
   --line-orange:rgba(255,255,255,.3);
-
   --display:'Seriously Nostalgic','Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
-
-  --shell:1080px;
-  --measure:640px;
-  --gut:20px;
+  --shell:1080px;--measure:640px;--gut:20px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--paper)}
 body{
-  background:var(--paper);color:var(--ink);
-  font-family:var(--sans);font-size:17px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -95,10 +85,6 @@ section{position:relative}
 .orange .eyebrow{color:rgba(255,255,255,.8)}
 .orange .hit,.orange strong{color:var(--white)}
 
-.blush{background:var(--pink);color:var(--ink)}
-.blush .eyebrow{color:#7a4a20}
-.blush p{color:rgba(19,19,19,.8)}
-
 .deep{background:#efe5d8}
 
 /* ---------- display type ---------- */
@@ -106,27 +92,21 @@ h1,h2,h3,.disp{
   font-family:var(--display);font-weight:400;font-synthesis:none;
   word-spacing:.1em;letter-spacing:-.02em;line-height:1.05;
 }
-/* condensed high-contrast face, so caps need positive tracking */
 .caps{text-transform:uppercase;letter-spacing:.012em;word-spacing:.14em}
-
 h1{font-size:clamp(42px,8.4vw,116px)}
-h2{font-size:clamp(30px,4.2vw,54px);line-height:1.04}
+h2{font-size:clamp(29px,4vw,52px);line-height:1.04}
 h3{font-size:clamp(22px,2.3vw,30px);line-height:1.1}
-
-/* the six statements Jac called out for major treatment */
 .mega{
   font-family:var(--display);font-weight:400;font-synthesis:none;
   font-size:clamp(40px,6.6vw,88px);line-height:1;
   letter-spacing:.012em;word-spacing:.14em;text-transform:uppercase;
 }
-
 .eyebrow{
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.28em;
   text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;
 }
 .eyebrow .st{color:var(--clay);letter-spacing:0;margin:0 .5em}
 .dark .eyebrow .st{color:var(--clay-lt)}
-.orange .eyebrow .st,.blush .eyebrow .st{color:currentColor}
 
 /* ---------- body type ---------- */
 p{margin-bottom:18px;color:rgba(19,19,19,.82)}
@@ -140,10 +120,11 @@ p.beat{
 }
 .dark p.beat{color:var(--paper)}
 .orange p.beat{color:var(--white)}
-.blush p.beat{color:var(--ink)}
 strong,b{font-weight:600;color:inherit}
 a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
-a.ul:hover{background:rgba(187,92,38,.16)}
+
+/* tight group of consecutive one-line statements */
+.stack p{margin-bottom:9px}
 
 /* ---------- buttons ---------- */
 .btn{
@@ -160,17 +141,8 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 .dark .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .orange .btn{background:var(--white);border-color:var(--white);color:var(--clay-deep)}
 .orange .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.blush .btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.blush .btn:hover{background:var(--clay-deep);border-color:var(--clay-deep);color:var(--white)}
-
 .cta-block{text-align:center;margin-top:40px}
-.cta-block .btn{max-width:440px}
-.cta-note{
-  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--muted);margin-top:16px;
-}
-.dark .cta-note{color:rgba(245,238,229,.62)}
-.orange .cta-note{color:rgba(255,255,255,.75)}
+.cta-block .btn{max-width:460px}
 
 /* ---------- stars ---------- */
 .starfield{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
@@ -179,17 +151,9 @@ a.ul:hover{background:rgba(187,92,38,.16)}
   animation:tw 5.5s ease-in-out infinite;
 }
 .dark .starfield span{color:var(--clay-lt);opacity:.3}
-.orange .starfield span,.blush .starfield span{color:currentColor;opacity:.28}
+.orange .starfield span{color:currentColor;opacity:.28}
 @keyframes tw{0%,100%{opacity:.08}50%{opacity:.34}}
 .sec > .wrap{position:relative;z-index:1}
-
-.starrow{
-  display:flex;align-items:center;gap:14px;color:var(--clay);
-  font-size:13px;line-height:1;max-width:var(--measure);margin:48px auto 0;
-}
-.starrow::before,.starrow::after{content:"";flex:1;height:1px;background:var(--line)}
-.dark .starrow{color:var(--clay-lt)}
-.dark .starrow::before,.dark .starrow::after{background:var(--line-dark)}
 
 /* ---------- top bar ---------- */
 .bar{position:sticky;top:0;z-index:80;background:var(--paper);border-bottom:1px solid var(--line)}
@@ -202,64 +166,60 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 #join{scroll-margin-top:78px}
 
 /* ---------- hero ---------- */
-.hero{padding:56px 0 72px;text-align:center}
+.hero{padding:52px 0 70px;text-align:center}
 .hero .tag{
-  font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.18em;
+  font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--clay);
-  max-width:640px;margin:24px auto 0;line-height:1.7;
+  max-width:700px;margin:24px auto 0;line-height:1.75;
 }
 .rule-orange{width:70px;height:3px;background:var(--clay);margin:32px auto}
 
-/* ---------- lists ---------- */
-.qs{max-width:720px;margin:0 auto}
+/* ---------- pain list (on ink) ---------- */
+.pains{max-width:780px;margin:0 auto;list-style:none}
+.pains li{
+  padding:24px 0;border-bottom:1px solid var(--line-dark);
+  display:grid;grid-template-columns:auto 1fr;gap:16px;
+  font-size:17px;line-height:1.55;color:rgba(245,238,229,.86);
+}
+.pains li:first-child{border-top:1px solid var(--line-dark)}
+.pains li i{font-style:normal;color:var(--clay-lt);font-size:13px;line-height:1.7}
+
+/* ---------- exclusion list ---------- */
+.nots{max-width:780px;margin:0 auto;list-style:none}
+.nots li{
+  padding:20px 0;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:auto 1fr;gap:15px;
+  font-size:17px;line-height:1.5;
+}
+.nots li:first-child{border-top:1px solid var(--line)}
+.nots li i{font-style:normal;color:var(--clay);font-size:16px;line-height:1.4;font-weight:600}
+
+/* ---------- starred display list ---------- */
+.qs{max-width:760px;margin:0 auto;list-style:none}
 .qs li{
-  list-style:none;display:grid;grid-template-columns:auto 1fr;gap:13px;
+  display:grid;grid-template-columns:auto 1fr;gap:13px;
   padding:13px 0;border-bottom:1px solid var(--line);
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(20px,2.3vw,28px);line-height:1.12;letter-spacing:-.018em;word-spacing:.1em;
+  font-size:clamp(20px,2.3vw,28px);line-height:1.14;letter-spacing:-.018em;word-spacing:.1em;
 }
 .qs li:first-child{border-top:1px solid var(--line)}
 .qs li i{font-style:normal;color:var(--clay);font-size:11px;line-height:2}
 .dark .qs li{border-color:var(--line-dark);color:var(--paper)}
 .dark .qs li:first-child{border-top-color:var(--line-dark)}
 .dark .qs li i{color:var(--clay-lt)}
-.orange .qs li,.blush .qs li{border-color:var(--line-orange);color:currentColor}
-.orange .qs li:first-child,.blush .qs li:first-child{border-top-color:var(--line-orange)}
-.orange .qs li i,.blush .qs li i{color:currentColor}
-.blush .qs li{border-color:rgba(19,19,19,.18)}
-.blush .qs li:first-child{border-top-color:rgba(19,19,19,.18)}
 
-/* plain checklist */
-.checks{list-style:none;max-width:700px;margin:0 auto}
+/* ---------- plain body list ---------- */
+.checks{list-style:none;max-width:760px;margin:0 auto}
 .checks li{
   display:grid;grid-template-columns:auto 1fr;gap:13px;
-  padding:14px 0;border-bottom:1px solid var(--line);
-  font-size:17px;line-height:1.45;
+  padding:16px 0;border-bottom:1px solid var(--line);
+  font-size:17px;line-height:1.5;
 }
 .checks li:first-child{border-top:1px solid var(--line)}
 .checks li i{font-style:normal;color:var(--clay);font-size:12px;line-height:1.7}
 .dark .checks li{border-color:var(--line-dark)}
 .dark .checks li:first-child{border-top-color:var(--line-dark)}
 .dark .checks li i{color:var(--clay-lt)}
-
-/* the belief quotes she repeats */
-.beliefs{display:grid;gap:12px;max-width:700px;margin:26px auto}
-.belief{
-  background:var(--white);border:2px solid var(--ink);padding:18px 20px;
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(19px,2.1vw,26px);line-height:1.15;letter-spacing:-.018em;word-spacing:.1em;
-}
-
-/* tight group of consecutive one-line statements */
-.stack p{margin-bottom:9px}
-
-/* the line a section turns on: bigger than the list that follows it */
-.turn{
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(32px,4.8vw,58px);line-height:1.05;
-  letter-spacing:.012em;word-spacing:.14em;
-  margin:30px 0 4px;
-}
 
 /* ---------- quote ---------- */
 .pull{border-left:4px solid var(--clay);padding:4px 0 4px 22px;margin:30px 0}
@@ -270,8 +230,27 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 }
 .dark .pull{border-color:var(--clay-lt)}
 .dark .pull p{color:var(--paper)}
-.orange .pull,.blush .pull{border-color:currentColor}
-.orange .pull p,.blush .pull p{color:currentColor}
+
+/* ---------- THE ASSETS: named product cards ---------- */
+.assets{max-width:920px;margin:0 auto;display:grid;gap:18px}
+.asset{
+  border:2px solid var(--line-dark);padding:26px 22px;
+  background:rgba(245,238,229,.03);
+}
+.asset .aname{
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:clamp(26px,3.2vw,40px);line-height:1;
+  letter-spacing:.012em;word-spacing:.14em;text-transform:uppercase;
+  color:var(--paper);margin-bottom:10px;
+  display:flex;gap:12px;align-items:baseline;
+}
+.asset .aname i{font-style:normal;color:var(--clay-lt);font-size:14px;flex:0 0 auto}
+.asset .acount{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--clay-lt);margin-bottom:14px;line-height:1.6;
+}
+.asset p{font-size:16.5px;line-height:1.55;margin-bottom:0}
+.asset.lead{border-color:var(--clay-lt);background:rgba(224,131,74,.1)}
 
 /* ---------- photography ---------- */
 .split{display:grid;gap:34px;align-items:center;max-width:1000px;margin:0 auto}
@@ -279,183 +258,54 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 .photo img{width:100%;height:auto;display:block;position:relative;z-index:1}
 .photo::after{content:"";position:absolute;z-index:0;inset:16px -16px -16px 16px;border:2px solid var(--clay)}
 .dark .photo::after{border-color:var(--clay-lt)}
-.orange .photo::after,.blush .photo::after{border-color:currentColor}
 
 .circ{position:relative;width:clamp(180px,44vw,260px);aspect-ratio:1;margin:0 auto}
 .circ img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid var(--clay);display:block}
 .dark .circ img{border-color:var(--clay-lt)}
-.orange .circ img{border-color:var(--white)}
-.blush .circ img{border-color:var(--ink)}
 .circ .sp{position:absolute;color:var(--clay);font-size:15px;line-height:1;animation:tw 5.5s ease-in-out infinite}
 .dark .circ .sp{color:var(--clay-lt)}
-.orange .circ .sp{color:var(--white)}
-.blush .circ .sp{color:var(--ink)}
 .circ .sp:nth-of-type(1){top:-6px;right:2%}
 .circ .sp:nth-of-type(2){bottom:4%;left:-10px;font-size:11px;animation-delay:1.6s}
 .circ .sp:nth-of-type(3){top:34%;right:-14px;font-size:12px;animation-delay:2.8s}
 .circ-lg{width:clamp(200px,52vw,300px)}
 
-/* ---------- hand-drawn circle for emphasis ---------- */
-.circled{position:relative;display:inline-block;white-space:nowrap}
-.circled svg{
-  position:absolute;pointer-events:none;z-index:2;overflow:visible;
-  left:-.34em;width:calc(100% + .68em);top:-.22em;height:calc(100% + .44em);
-}
-.circled svg path{
-  fill:none;stroke:var(--clay);stroke-width:2.5;
-  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;
-}
-.dark .circled svg path{stroke:var(--clay-lt)}
-.orange .circled svg path,.blush .circled svg path{stroke:currentColor}
-
-/* ---------- numbered method ---------- */
-.steps{max-width:820px;margin:0 auto}
-.step{padding:30px 0;border-bottom:1px solid var(--line-dark)}
-.step:first-child{border-top:1px solid var(--line-dark)}
-.stepnum{
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(40px,6vw,72px);line-height:.9;color:var(--clay-lt);
-  letter-spacing:-.03em;margin-bottom:8px;
-}
-.step h3{color:var(--paper);margin-bottom:14px}
-.step p{font-size:16.5px;margin-bottom:11px}
-
-.flow{
-  max-width:560px;margin:40px auto 0;padding:26px 24px;
-  border:2px solid var(--clay-lt);text-align:center;
-}
-.flow p{
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(21px,2.4vw,29px);line-height:1.3;letter-spacing:-.018em;word-spacing:.1em;
-  color:var(--paper);margin:0;
-}
-.flow .last{color:var(--clay-lt)}
-
-/* ---------- offer blocks ---------- */
-.blocks{max-width:820px;margin:0 auto}
-.block{padding:32px 0;border-bottom:1px solid var(--line-orange)}
-.block:first-child{border-top:1px solid var(--line-orange)}
-.block h3{margin-bottom:14px;display:flex;gap:11px;align-items:baseline}
-.block h3 i{font-style:normal;font-size:13px;flex:0 0 auto}
-/* :not(.beat) so the display-size beats inside a block keep their size,
-   since .block p and p.beat have equal specificity and this rule is later */
-.block p:not(.beat){font-size:16.5px;margin-bottom:11px}
-.deep .block,.deep .block:first-child{border-color:var(--line)}
-.deep .block h3 i{color:var(--clay)}
-
-/* .block p:not(.beat) is more specific, so this needs .block in front
-   of it to win. Without it the cadence line renders at body size. */
-.cadence,.block p.cadence{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;margin-bottom:14px;opacity:.85;line-height:1.6;
-}
-
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-.tag-chip{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;border:1px solid var(--clay);color:var(--clay);
-  border-radius:50px;padding:7px 14px;
-}
-.orange .tag-chip{border-color:var(--line-orange);color:var(--white)}
-.dark .tag-chip{border-color:var(--clay-lt);color:var(--clay-lt)}
-
-/* ---------- proof ---------- */
-.proof{display:grid;gap:16px;max-width:960px;margin:0 auto}
-.proof-slot{
-  border:2px dashed var(--clay);background:rgba(187,92,38,.07);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:26px 18px;min-height:190px;
-}
-.proof-slot .kind{
-  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--clay);margin-bottom:8px;
-}
-.proof-slot .hint{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
-.proof-slot.tall{min-height:300px}
-.proof-note{
-  max-width:620px;margin:0 auto 30px;text-align:center;
-  font-family:var(--sans);font-size:13px;line-height:1.5;color:var(--muted);
-}
-
-/* ---------- for / not for ---------- */
-.fits{max-width:900px;margin:0 auto;border:2px solid var(--ink)}
-.fit{padding:30px 24px}
-.fit.yes{background:var(--white)}
-.fit.no{background:var(--ink);color:var(--paper)}
-.fit h3{margin-bottom:18px}
-.fit.no h3{color:var(--paper)}
-.fit ul{list-style:none}
-.fit li{
-  display:grid;grid-template-columns:auto 1fr;gap:11px;
-  padding:12px 0;border-bottom:1px solid var(--line);font-size:16.5px;line-height:1.45;
-}
-.fit li i{font-style:normal;font-size:11px;line-height:1.8;color:var(--clay)}
-.fit.no li{border-color:var(--line-dark);color:rgba(245,238,229,.84)}
-.fit.no li i{color:var(--clay-lt)}
+/* ---------- faq ---------- */
+.faq{max-width:780px;margin:0 auto}
+.faq-item{padding:36px 0;border-bottom:1px solid var(--line)}
+.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-item h3{margin-bottom:18px}
+.faq-item p{font-size:17px}
 
 /* ---------- offer card ---------- */
 .offer{
   background:var(--ink);color:var(--paper);border:3px solid var(--clay);
-  padding:28px 22px;max-width:740px;margin:0 auto;
+  padding:34px 24px;max-width:640px;margin:0 auto;text-align:center;
 }
-.offer .name{
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(28px,4.2vw,50px);line-height:1;
-  letter-spacing:.012em;word-spacing:.14em;text-transform:uppercase;
-  color:var(--paper);margin-bottom:26px;text-align:center;
-}
-.plans{display:grid;gap:16px;margin-bottom:22px}
-.plan{border:2px solid rgba(245,238,229,.3);padding:24px 20px;text-align:center;position:relative;display:flex;flex-direction:column}
-.plan.best{border-color:var(--clay-lt);background:rgba(224,131,74,.09)}
-.plan .save{
-  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
-  font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--ink);background:var(--clay-lt);
-  border-radius:50px;padding:4px 12px;white-space:nowrap;
-}
-.plan .pname{
+.offer .term{
   font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--clay-lt);margin-bottom:12px;
+  text-transform:uppercase;color:var(--clay-lt);margin-bottom:18px;
 }
-.plan .pamt{
+.offer .price{
   font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(42px,6vw,68px);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
-  color:var(--paper);
+  font-size:clamp(64px,12vw,120px);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
+  color:var(--paper);margin-bottom:12px;
 }
-.plan .pnote{font-size:14px;line-height:1.45;color:rgba(245,238,229,.74);margin:14px 0 20px}
-.plan .btn{margin-top:auto}
-.plan:not(.best) .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
-.plan:not(.best) .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.plan.best .btn{background:var(--clay);border-color:var(--clay);color:var(--white)}
-.plan.best .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.terms{margin-top:6px;text-align:center}
+.offer .sub{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(245,238,229,.7);margin-bottom:30px;line-height:1.7;
+}
+.offer .btn{background:var(--clay);border-color:var(--clay);color:var(--white)}
+.offer .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.terms{margin-top:20px}
 .terms p{
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(245,238,229,.62);margin-bottom:8px;
+  text-transform:uppercase;color:rgba(245,238,229,.62);margin-bottom:8px;line-height:1.7;
 }
-
-/* ---------- faq ---------- */
-.faq{max-width:760px;margin:0 auto;border-top:1px solid var(--line)}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{
-  list-style:none;cursor:pointer;padding:22px 38px 22px 0;position:relative;
-  font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(19px,2vw,25px);line-height:1.18;letter-spacing:-.018em;word-spacing:.1em;
-}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{
-  content:"+";position:absolute;right:2px;top:20px;
-  font-family:var(--sans);font-size:21px;font-weight:400;color:var(--clay);
-}
-.faq details[open] summary::after{content:"\2212"}
-.faq summary:hover{color:var(--clay)}
-.faq .ans{padding:0 0 24px}
-.faq .ans p{font-size:16.5px;margin-bottom:12px}
 
 /* ---------- closer ---------- */
-.closer{text-align:center;padding:84px 0 92px}
+.closer{text-align:center;padding:80px 0 90px}
 
-/* ---------- disclaimer ---------- */
+/* ---------- legal ---------- */
 .legal{background:#e9dfd2;padding:44px 0}
 .legal .wrap{max-width:820px}
 .legal h2{
@@ -464,7 +314,6 @@ a.ul:hover{background:rgba(187,92,38,.16)}
 }
 .legal p{font-size:13.5px;line-height:1.6;color:rgba(19,19,19,.7);margin-bottom:12px}
 
-/* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding:38px 0 50px;text-align:center}
 footer p{
   font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
@@ -472,45 +321,31 @@ footer p{
 }
 
 /* ---------- editable placeholders ---------- */
-.tbd{
-  background:rgba(187,92,38,.16);border-bottom:2px dotted var(--clay);
-  padding:0 .22em;font-style:normal;
-}
+.tbd{background:rgba(187,92,38,.16);border-bottom:2px dotted var(--clay);padding:0 .22em}
 .dark .tbd,.offer .tbd{background:rgba(224,131,74,.2);border-bottom-color:var(--clay-lt)}
 
 /* ============================================================
-   RESPONSIVE (mobile-first: these only add)
+   RESPONSIVE
    ============================================================ */
-@media (min-width:600px){
-  .proof{grid-template-columns:1fr 1fr}
-  .beliefs{grid-template-columns:1fr 1fr}
-}
-
 @media (min-width:720px){
   :root{--gut:32px}
   .sec{padding:100px 0}
-  .hero{padding:80px 0 92px}
+  .hero{padding:76px 0 90px}
   .btn{width:auto;padding:20px 42px}
   .bar .btn{padding:12px 22px}
-  .plans{grid-template-columns:1fr 1fr;gap:20px}
-  .plan .btn{width:100%}
-  .fits{display:grid;grid-template-columns:1fr 1fr}
-  .fit.yes{border-right:2px solid var(--ink)}
-  .offer{padding:clamp(28px,4vw,54px)}
-  .fit{padding:clamp(28px,3.2vw,40px)}
+  .offer{padding:clamp(34px,4vw,54px)}
+  .asset{padding:32px 30px}
+  .faq-item{padding:44px 0}
 }
-
 @media (min-width:900px){
   .split{grid-template-columns:1fr 1fr;gap:56px}
   .split.rev .sp-img{order:2}
-  .proof{grid-template-columns:repeat(3,1fr)}
+  .assets{gap:20px}
 }
-
 @media (min-width:1024px){
-  .sec{padding:120px 0}
+  .sec{padding:118px 0}
   body{font-size:17.5px}
 }
-
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{
@@ -550,34 +385,18 @@ footer p{
 
     <h1 class="caps">Holy fuck, this is my life.</h1>
 
-    <p class="tag">The high-touch business mentorship for the woman who already built something good and is ready to find out how fucking far she can take it</p>
+    <p class="tag">The 6-month business mentorship for the woman ready to build the kind of brand people become fucking obsessed with, make massive money being MORE of who you actually are, and create a life so big you keep looking around thinking, HOLY FUCK, THIS IS MY LIFE.</p>
 
     <div class="rule-orange" aria-hidden="true"></div>
 
     <div class="measure" style="text-align:left">
-      <p class="beat" style="margin-top:0">You want to make more money. A lot more.</p>
-      <p>Not because your life sucks.</p>
-      <p>Because it doesn&rsquo;t.</p>
-      <p class="hit">You just have a much bigger life in mind.</p>
-    </div>
+      <p>If you&rsquo;re ready to find out what happens when you stop looking at what everyone else is doing, build the business YOU actually want, become fucking undeniable at what you do, and make the kind of money that changes what&rsquo;s possible for your entire life&hellip;</p>
 
-    <ul class="qs" style="margin-top:32px;text-align:left">
-      <li><i aria-hidden="true">&#10022;</i>The house.</li>
-      <li><i aria-hidden="true">&#10022;</i>The ridiculous backyard.</li>
-      <li><i aria-hidden="true">&#10022;</i>The investments.</li>
-      <li><i aria-hidden="true">&#10022;</i>The business-class flights.</li>
-      <li><i aria-hidden="true">&#10022;</i>The random Tuesday at Disney with your kids.</li>
-      <li><i aria-hidden="true">&#10022;</i>The ability to spend $2,000 without turning it into a three-day internal investigation.</li>
-      <li><i aria-hidden="true">&#10022;</i>The ability to help someone you love without checking what it does to your month first.</li>
-      <li><i aria-hidden="true">&#10022;</i>The freedom to have an idea at 9AM and start building the damn thing by noon because you WANT to.</li>
-    </ul>
+      <p class="beat">Welcome to HOLY FUCK, THIS IS MY LIFE.</p>
 
-    <div class="measure" style="margin-top:34px;text-align:left">
-      <p>Whatever your version is.</p>
-      <p>You don&rsquo;t want money to become the most important thing in your life.</p>
-      <p class="hit">You want enough of it that it gets to support the things that are.</p>
-      <p>And you already have a business capable of becoming a much bigger vehicle for that life.</p>
-      <p class="beat">So let&rsquo;s fucking build it.</p>
+      <p>If you know you were meant to build something way fucking bigger than what you have right now, and you&rsquo;re ready to become the woman who can hold it, run it, and make the kind of money that makes your entire life bigger&hellip;</p>
+
+      <p class="hit">You&rsquo;re in the right fucking place.</p>
     </div>
 
     <div class="cta-block">
@@ -586,180 +405,74 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 2. RECOGNITION ============ -->
+<!-- ============ 2. NOT / IS ============ -->
 <section class="sec deep">
   <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">Most of the women I want in this room are probably a lot like you.</h2>
-    </div>
+    <div class="measure">
+      <p class="lede">HFTIML is not where you come to copy my business, follow somebody else&rsquo;s blueprint, or become another watered-down version of everyone else in your industry.</p>
 
-    <div class="measure" style="margin-top:36px">
-      <p>You already have a business.</p>
-      <p>Real people already pay you.</p>
-      <p>You have proof.</p>
-      <p>You have skills.</p>
-      <p>You know you&rsquo;re good at what you do.</p>
-      <p class="hit">And you also know your business should be making way more money than it is right now.</p>
+      <p class="beat">Puke.</p>
 
-      <p>You know you should raise the price, but one person told you it was expensive three months ago and apparently she&rsquo;s been sitting on your imaginary board of directors ever since.</p>
+      <p>This is where you come to build a fucking phenomenal business and a brand nobody could mistake for anyone else&rsquo;s, with high-level strategy paired with the identity, subconscious, manifestation, and regulation work that makes MORE your new normal, so you can become the woman making massive money, selling the shit out of her offers, getting opportunities she used to dream about, and building a life so fucking good she can&rsquo;t believe she gets to call it hers.</p>
 
-      <p>You say you want better clients, then the client you don&rsquo;t really want is the only inquiry that week and suddenly &ldquo;some business is better than no business&rdquo; starts sounding reasonable.</p>
-
-      <p>You make a decision Friday and reopen the entire case Monday because the weekend didn&rsquo;t immediately validate it.</p>
-
-      <p>You have an idea that could be huge and immediately start measuring it against what your business has done before.</p>
-
-      <p>You want more visibility, then edit the strongest sentence out of the post because you can already imagine who might have something to say about it.</p>
-
-      <p>You&rsquo;ve repeated certain things about your business so many times that you don&rsquo;t even hear them as beliefs anymore.</p>
-    </div>
-
-    <div class="beliefs">
-      <p class="belief">&ldquo;People won&rsquo;t pay that.&rdquo;</p>
-      <p class="belief">&ldquo;My audience doesn&rsquo;t buy expensive offers.&rdquo;</p>
-      <p class="belief">&ldquo;This industry is oversaturated.&rdquo;</p>
-      <p class="belief">&ldquo;I tried that already.&rdquo;</p>
-      <p class="belief">&ldquo;That doesn&rsquo;t work for me.&rdquo;</p>
-    </div>
-
-    <div class="split" style="margin-top:44px">
-      <div class="sp-img photo">
-        <img src="/qc-jac-8.webp" width="1000" height="1250" loading="lazy"
-             alt="Jac working at a kitchen island with a laptop and her phone" />
-      </div>
-      <div class="sp-copy">
-        <p class="hit">And I need you to stop calling something a FACT just because your brain has gotten really fucking good at finding evidence for it.</p>
-        <p>Sometimes the problem is underneath the strategy.</p>
-        <p>And sometimes?</p>
-      </div>
-    </div>
-
-    <div class="measure" style="margin-top:44px">
-
-      <p>Your messaging is unclear. Your offer needs work. Nobody knows the thing exists. You&rsquo;re talking to the wrong people. Your marketing isn&rsquo;t doing its job.</p>
-
-      <div class="pull">
-        <p>Sometimes it&rsquo;s your mindset. Sometimes your strategy just fucking sucks.</p>
-      </div>
-
-      <p class="beat"><span class="circled">Good.<svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M190 44C190 13 141 3 100 3C46 3 10 18 10 49C10 79 56 96 105 96C159 96 193 79 193 45C193 25 177 13 151 6"/></svg></span> We can work with both.</p>
-    </div>
-
-    <div class="starrow" aria-hidden="true"><span>&#10022; &#10022; &#10022;</span></div>
-
-    <div class="measure" style="margin-top:44px">
-      <p class="eyebrow">But more than anything?</p>
-      <h3 class="caps">You know this isn&rsquo;t as big as it gets.</h3>
-    </div>
-
-    <ul class="qs" style="margin-top:28px">
-      <li><i aria-hidden="true">&#10022;</i>More money.</li>
-      <li><i aria-hidden="true">&#10022;</i>Better clients.</li>
-      <li><i aria-hidden="true">&#10022;</i>Bigger opportunities.</li>
-      <li><i aria-hidden="true">&#10022;</i>More visibility.</li>
-      <li><i aria-hidden="true">&#10022;</i>More sales.</li>
-      <li><i aria-hidden="true">&#10022;</i>More choices.</li>
-      <li><i aria-hidden="true">&#10022;</i>A business that actually reflects how capable you are.</li>
-    </ul>
-
-    <div class="measure" style="margin-top:32px">
-      <p>You&rsquo;re not looking for somebody to convince you that you can do it.</p>
-      <p>You already know.</p>
-      <p>You&rsquo;re ready to find out:</p>
-    </div>
-
-    <p class="mega center" style="margin-top:30px">How far can I actually take this?</p>
-
-    <div class="cta-block">
-      <a class="btn" href="#join">Join now</a>
+      <p class="hit">If you&rsquo;re sitting here thinking, &ldquo;I just knowww this business can go to the fucking MOON,&rdquo; you&rsquo;re exactly where you&rsquo;re meant to be.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 3. I DESIGNED IT ============ -->
+<!-- ============ 3. MY CLIENTS ARE JUSTTT LIKE YOU ============ -->
 <section class="sec dark">
   <div class="starfield" aria-hidden="true">
-    <span style="top:7%;left:5%">&#10022;</span>
-    <span style="top:24%;left:93%;animation-delay:1.8s">&#10022;</span>
+    <span style="top:6%;left:5%">&#10022;</span>
+    <span style="top:22%;left:93%;animation-delay:1.8s">&#10022;</span>
     <span style="top:72%;left:4%;animation-delay:.9s;font-size:11px">&#10022;</span>
-    <span style="top:90%;left:90%;animation-delay:2.6s">&#10022;</span>
+    <span style="top:92%;left:90%;animation-delay:2.6s">&#10022;</span>
   </div>
-  <div class="wrap">
-    <p class="mega">I didn&rsquo;t accidentally end up with a life I love. I designed it.</p>
-
-    <div class="measure" style="margin-top:44px">
-      <p>I decided what I wanted.</p>
-      <p>I stopped assuming the normal way was automatically the way I had to do it.</p>
-      <p>I changed what I believed was available to me.</p>
-      <p>I stopped letting my current circumstances act like a prophecy.</p>
-      <p>I made different decisions.</p>
-      <p>I took action.</p>
-      <p>I built businesses capable of supporting those decisions.</p>
-      <p>And then I actually lived it.</p>
-      <p class="hit">I&rsquo;m not a bystander in my own life. And I don&rsquo;t want you to be one in yours.</p>
-      <p>Because one day, the thing that once felt huge or ridiculous or &ldquo;maybe someday&rdquo; starts becoming&hellip; normal.</p>
-    </div>
-
-    <ul class="qs" style="margin-top:30px">
-      <li><i aria-hidden="true">&#10022;</i>The house is just your house.</li>
-      <li><i aria-hidden="true">&#10022;</i>The trip is already on the calendar.</li>
-      <li><i aria-hidden="true">&#10022;</i>The amount of money that once sounded insane is a normal business month.</li>
-      <li><i aria-hidden="true">&#10022;</i>The opportunity that would have made you lose your mind two years ago lands in your inbox and now you&rsquo;re like, &ldquo;Yeah. That makes sense.&rdquo;</li>
-      <li><i aria-hidden="true">&#10022;</i>The random Tuesday looks suspiciously similar to the Tuesday you used to daydream about.</li>
-    </ul>
-
-    <div class="measure" style="margin-top:34px">
-      <p>And every once in a while you catch yourself in the middle of it and think:</p>
-    </div>
-
-    <p class="mega center" style="margin-top:34px;color:var(--clay-lt)">Holy fuck.<br />This is my life.</p>
-
-  </div>
-</section>
-
-<!-- ============ 4. MANIFESTING ALL DAY (orange) ============ -->
-<section class="sec orange">
-  <div class="starfield" aria-hidden="true">
-    <span style="top:9%;left:6%">&#10022;</span>
-    <span style="top:36%;left:93%;animation-delay:1.5s">&#10022;</span>
-    <span style="top:84%;left:7%;animation-delay:2.6s;font-size:11px">&#10022;</span>
-  </div>
-  <div class="wrap">
-    <p class="mega">You&rsquo;re manifesting your business all day long.</p>
-
-    <div class="measure stack" style="margin-top:40px">
-      <p>Not only when you meditate.</p>
-      <p>Not only when you visualize.</p>
-      <p>Not only when you journal.</p>
-    </div>
-
-    <p class="turn caps center">When you run it.</p>
-
-    <ul class="qs" style="margin-top:28px">
-      <li><i aria-hidden="true">&#10022;</i>When you decide what to charge.</li>
-      <li><i aria-hidden="true">&#10022;</i>When somebody tells you it&rsquo;s too expensive.</li>
-      <li><i aria-hidden="true">&#10022;</i>When the client you don&rsquo;t really want to work with is the only person sitting in your inbox.</li>
-      <li><i aria-hidden="true">&#10022;</i>When sales are quiet and suddenly you want to change the entire offer.</li>
-      <li><i aria-hidden="true">&#10022;</i>When an idea comes to you and your first question is whether it&rsquo;s &ldquo;realistic.&rdquo;</li>
-      <li><i aria-hidden="true">&#10022;</i>When you see somebody in your industry charging twice what you charge and booked solid while you keep telling yourself, &ldquo;people won&rsquo;t pay that.&rdquo;</li>
-      <li><i aria-hidden="true">&#10022;</i>When you post. When you don&rsquo;t.</li>
-      <li><i aria-hidden="true">&#10022;</i>When you say yes. When you say no.</li>
-      <li><i aria-hidden="true">&#10022;</i>When you follow the idea. When you talk yourself out of it.</li>
-    </ul>
-
-    <div class="measure" style="margin-top:34px">
-      <p>Your assumptions don&rsquo;t sit quietly in your journal.</p>
-      <p class="beat">They show up in the way you run your fucking business.</p>
-      <p class="hit">And that&rsquo;s exactly why I don&rsquo;t separate manifestation from business.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. MEET JAC ============ -->
-<section class="sec deep">
   <div class="wrap">
     <div class="wide">
-      <h2 class="caps">Meet Jac.</h2>
+      <h2 class="caps">My clients are justtt like you&hellip;</h2>
+    </div>
+
+    <ul class="pains" style="margin-top:44px">
+      <li><i aria-hidden="true">&#10022;</i>You have BIG fucking ideas and execution has never been the problem. You can have an idea at 9 AM and have the sales page done by noon. The problem is how often you edit the idea, overthink it, or run it through the filter of what everyone else in your industry is doing before you just trust yourself and GO.</li>
+      <li><i aria-hidden="true">&#10022;</i>You&rsquo;re posting. You&rsquo;re getting clients. It&rsquo;s working. But when you look at your content, you&rsquo;re fucking bored. You know it&rsquo;s not articulating the actual depth of who you are, what you do, or what makes being in YOUR world different from being in anyone else&rsquo;s.</li>
+      <li><i aria-hidden="true">&#10022;</i>You are SO fucking clear about what you want. It&rsquo;s on the vision board. You can see it. You fucking know it&rsquo;s happening for you. And then the 3D gives you a shitty week, money goes out, or something you were convinced would sell doesn&rsquo;t, and suddenly you&rsquo;ve created an entire story about what it means and what you need to do next. Instead of seeing it for what it is, data, and moving accordingly.</li>
+      <li><i aria-hidden="true">&#10022;</i>You&rsquo;ve collected so MUCH strategy that you don&rsquo;t even know what to listen to anymore. One coach says do this. Another tells you the exact opposite. You&rsquo;ve got a graveyard of courses all telling you conflicting shit and there&rsquo;s so much noise in your head that figuring out your actual next move has become wayyy harder than it needs to be.</li>
+      <li><i aria-hidden="true">&#10022;</i>You keep looking sideways at everyone else in your niche. Dissecting her content. Studying how she sells. Trying to figure out what she&rsquo;s saying that you should be saying too. And the whole time, the thing that would actually make your business impossible to fucking confuse with hers is the thing you keep editing out: YOU. Your opinions. Your voice. Your ideas. The shit you would say if you stopped wondering whether anybody else was going to be interested in it.</li>
+      <li><i aria-hidden="true">&#10022;</i>You&rsquo;ve done the affirmations. You know your beliefs, identity, and energy matter. You&rsquo;ve seen that shit play out in your own business. But you also know you cannot sit on your couch and wait for the universe to be your sugar daddy. There is work to do. There are offers to sell. Decisions to make. Strategy to execute. You just haven&rsquo;t found a way to put the energetic work and the actual business work together that makes sense.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4. UNDERNEATH ALL OF THAT (orange) ============ -->
+<section class="sec orange">
+  <div class="starfield" aria-hidden="true">
+    <span style="top:8%;left:6%">&#10022;</span>
+    <span style="top:34%;left:93%;animation-delay:1.5s">&#10022;</span>
+    <span style="top:82%;left:7%;animation-delay:2.6s;font-size:11px">&#10022;</span>
+  </div>
+  <div class="wrap">
+    <div class="measure">
+      <p class="beat" style="margin-top:0">And underneath all of that, you KNOW you are meant for so much fucking more.</p>
+
+      <p>You know you can build exactly what you desire and make a shitload of money doing it. You know you weren&rsquo;t put here to spend your entire life struggling for money, making yourself smaller, or carrying the same stories about what you can and cannot afford that have been passed down for fucking generations.</p>
+
+      <p class="hit">You want the money. The business. The house. The trips. The freedom. The ideas you get to fund because you fucking feel like it. The ability to take care of the people you love.</p>
+
+      <p>And you want all of it while building a business and a life that actually look like the ones YOU wanted.</p>
+
+      <p>You want to wake up, look around at everything you intentionally created, and still have moments where you think:</p>
+    </div>
+
+    <p class="mega center" style="margin-top:40px">Holy fuck.<br />This is my life.</p>
+  </div>
+</section>
+
+<!-- ============ 5. MEET YOUR MENTOR ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="wide">
+      <h2 class="caps">Meet your mentor: Jac.</h2>
     </div>
 
     <div class="split" style="margin-top:44px">
@@ -768,128 +481,159 @@ footer p{
              alt="Jac seated in a burnt orange chair beside her desk" />
       </div>
       <div class="sp-copy">
-        <p>I&rsquo;ve owned businesses since I was 16.</p>
-        <p>I have a B.S. in Mechanical Engineering.</p>
-        <p>I spent years teaching middle school math.</p>
-        <p>I built a multi-six-figure coaching business.</p>
-        <p class="hit">Today, I run two multi-six-figure businesses, and $40K+ months are normal in my world.</p>
+        <p>A mom of 2, wife, former middle school math teacher with a mechanical engineering degree, and a woman who has been starting businesses since I was 16 because one career was never going to fucking cut it for me.</p>
+        <p class="hit">I have always known how to work and make money. I can sell. I can build shit. I can have an idea and have the entire thing up and running before most people finished their breakfast.</p>
       </div>
     </div>
 
-    <div class="measure" style="margin-top:48px">
-      <p>And I also went close to six figures into debt hiring coaches because I was convinced there had to be something I didn&rsquo;t know.</p>
-      <p>Some strategy.</p>
-      <p>Some funnel.</p>
-      <p>Some secret way everybody else had figured out how to make business work that I somehow missed.</p>
-      <p class="beat">There wasn&rsquo;t.</p>
-      <p>And that experience changed the way I think about business, money, manifestation and mentorship.</p>
-      <p>Because I believe in strategy. Strongly.</p>
-      <p>But I also know what happens when you keep outsourcing your decisions because you think somebody else must know your business better than you do.</p>
-      <p class="beat">They don&rsquo;t.</p>
-      <p>And I don&rsquo;t want you dependent on me either.</p>
+    <div class="measure" style="margin-top:50px">
+      <p>And for a long time, I thought that was enough. I was working like crazy, saying yes to business I had absolutely no business saying yes to, taking clients I couldn&rsquo;t fucking stand because money was money, and constantly making decisions from this underlying feeling of I need this. I need more. I need to make sure more is coming.</p>
+
+      <p>I always knew I&rsquo;d be successful. I always have been.</p>
+
+      <p class="hit">You can make a lot of fucking money while operating from lack.</p>
+
+      <p>And you can also burn out, reach a cap, and drive yourself insane trying to maintain it.</p>
+
+      <p>At one point, I did a moon ritual and saw an entirely different version of my life. I literally saw myself creating a space like the one you&rsquo;re sitting here reading about right now.</p>
+
+      <p>And from there, I made a bunch of switcheroos.</p>
+
+      <p>I shut down my coaching business, essentially took a year off from coaching, started a completely different business, and made six figures my first year, including $30K in the first four months.</p>
+
+      <p class="beat">And then shit started getting really fucking fun.</p>
+
+      <p>I went from saying yes to clients I couldn&rsquo;t stand because I was afraid of where the next dollar was coming from to having clients pay me multiple five figures. I&rsquo;ve worked with Fortune 500 companies. NBA teams. Companies I once would&rsquo;ve thought were completely fucking out of reach were suddenly sitting in my inbox asking ME to work with them.</p>
+
+      <p class="hit">Mentors I hired wanted to hire ME.</p>
+
+      <p>Not because I stopped working. I fucking love working. And not because I found some magical strategy that suddenly made everything easier.</p>
+
+      <p>I was already doing the affirmations. I had them saved all over my fucking phone. I visualized. I journaled. I believed in manifestation.</p>
+
+      <p>And then I&rsquo;d close the app and spend the rest of the day making decisions from lack.</p>
 
       <div class="pull">
-        <p>My job isn&rsquo;t to make you dependent on my brain. My job is to use mine to help you get better at using yours.</p>
+        <p>Affirmations don&rsquo;t mean shit if your underlying identity and the way you&rsquo;re actually running your business say the exact opposite.</p>
       </div>
 
-      <p>Your numbers matter. Your customers matter. Feedback matters. Your bank account matters.</p>
-      <p>Your current reality matters.</p>
-      <p class="hit">It just doesn&rsquo;t get the final vote.</p>
-      <p class="beat">You don&rsquo;t ignore the 3D. You stop treating the 3D like a prophecy.</p>
-      <p>If something isn&rsquo;t working, we look at it.</p>
+      <p>Because you&rsquo;re manifesting when you decide what to charge. Who you&rsquo;ll work with. What you expect when you launch. What you make a slow week mean. How you react when money goes out. Whether you trust the idea or immediately run to Instagram to see how somebody else did it first.</p>
+
+      <p>I changed what I believed about money. I stopped letting what was happening right now dictate what I believed was coming next. I stopped saying yes from lack. I learned how to calm the fuck down when the 3D showed me something I didn&rsquo;t like, see it as data, and move accordingly.</p>
+
+      <p>And I started trusting myself enough to actually ACT on the things I said I wanted.</p>
+
+      <p class="hit">Today, I run two multi-six-figure businesses and $40K+ months are normal in my world.</p>
+
+      <p>And that is exactly why I will never teach manifestation over here and business strategy over there. They go hand in hand.</p>
+
+      <p>Because I see insanely talented women with businesses that could go to the fucking MOON constantly doing shit like:</p>
     </div>
 
-    <ul class="qs" style="margin-top:28px">
-      <li><i aria-hidden="true">&#10022;</i>Is the strategy wrong?</li>
-      <li><i aria-hidden="true">&#10022;</i>Is the messaging wrong?</li>
-      <li><i aria-hidden="true">&#10022;</i>Does the offer need changing?</li>
-      <li><i aria-hidden="true">&#10022;</i>Are you barely visible?</li>
-      <li><i aria-hidden="true">&#10022;</i>Are you making decisions based on an old experience you&rsquo;ve turned into a prediction?</li>
-      <li><i aria-hidden="true">&#10022;</i>Or are you about to blow up a perfectly good decision because your old way of doing business gave you faster reassurance?</li>
+    <ul class="checks" style="margin-top:28px">
+      <li><i aria-hidden="true">&#10022;</i>Changing a perfectly good offer because it didn&rsquo;t sell fast enough.</li>
+      <li><i aria-hidden="true">&#10022;</i>Making their content sound like everybody else&rsquo;s because apparently some woman on Instagram decided there&rsquo;s a &ldquo;right&rdquo; way to sell.</li>
+      <li><i aria-hidden="true">&#10022;</i>Having an incredible idea and then logic-ing the absolute fuck out of it until it becomes a boring, watered-down version of what they actually wanted to create.</li>
+      <li><i aria-hidden="true">&#10022;</i>Collecting strategy after strategy after strategy until they have 47 different people&rsquo;s voices in their head and can barely fucking hear their own.</li>
     </ul>
 
-    <div class="measure" style="margin-top:32px">
-      <p>Those require completely different responses.</p>
-      <p class="beat">That&rsquo;s where I come in.</p>
-    </div>
+    <div class="measure" style="margin-top:36px">
+      <p>You do not need me to hand you another personality, another blueprint, or another set of rules for how your business is supposed to work.</p>
 
-    <div class="cta-block">
-      <a class="btn" href="#join">Join Holy Fuck, This Is My Life</a>
+      <p class="hit">You need to get so fucking connected to what YOU want, what YOU believe, how YOU want to make money, what YOU want to be known for, and what YOU want your actual life to look like that you stop outsourcing every fucking decision to somebody else.</p>
+
+      <p>Then you pair THAT with really fucking good business strategy, the subconscious identity work, and the actual action required to turn the shit you say you want into something you can look around and fucking LIVE in.</p>
+
+      <p>Because the goal was never to become really good at following somebody else&rsquo;s instructions.</p>
+
+      <p class="beat">The goal is to build something so fucking good, so profitable, and so completely yours that you can&rsquo;t believe this gets to be your actual life.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 6. THIS IS HOW WE WORK ============ -->
+<!-- ============ 6. HERE'S WHAT YOU GET ============ -->
 <section class="sec dark">
   <div class="starfield" aria-hidden="true">
-    <span style="top:6%;left:7%">&#10022;</span>
-    <span style="top:48%;left:94%;animation-delay:2.1s">&#10022;</span>
-    <span style="top:88%;left:5%;animation-delay:1.1s;font-size:11px">&#10022;</span>
+    <span style="top:4%;left:5%">&#10022;</span>
+    <span style="top:20%;left:94%;animation-delay:1.4s">&#10022;</span>
+    <span style="top:52%;left:3%;animation-delay:2.7s;font-size:11px">&#10022;</span>
+    <span style="top:88%;left:92%;animation-delay:.5s">&#10022;</span>
   </div>
   <div class="wrap">
     <div class="wide center">
-      <h2 class="caps">This is how we work.</h2>
+      <h2 class="caps">Here&rsquo;s what you get</h2>
     </div>
 
-    <div class="steps" style="margin-top:44px">
+    <div class="assets" style="margin-top:48px">
 
-      <div class="step">
-        <div class="stepnum">01</div>
-        <h3 class="caps">What do you actually want?</h3>
-        <p>Not what would be reasonable.</p>
-        <p>Not what somebody in your industry says is good.</p>
-        <p>Not the number you think you&rsquo;re allowed to say without sounding delusional.</p>
-        <p>What do you actually want?</p>
-        <p>What do you want the business to make? Who do you want to work with? What do you want your days to look like? What do you want money to make possible? What does a random Tuesday look like?</p>
-        <p><strong>Start there.</strong></p>
-      </div>
+      <article class="asset lead">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Six Months Inside The Room</h3>
+        <p class="acount" data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
+        <p>Biweekly group coaching, hot seats, and six months of bringing your actual business into the conversation. Your offers. Your content. Your sales. Your launches. Your pricing. Your ideas. Your money. We coach what is actually happening in your business instead of making you sit through another course hoping Module 7 somehow answers your question.</p>
+      </article>
 
-      <div class="step">
-        <div class="stepnum">02</div>
-        <h3 class="caps">What are you currently making normal?</h3>
-        <p>What are you expecting without realizing you&rsquo;re expecting it?</p>
-        <p>What happens when sales get quiet? What kind of client do you automatically expect? What price feels normal? What opportunity feels &ldquo;too big&rdquo;?</p>
-        <p>What have you repeated so many times that it stopped sounding like a belief and started sounding like a fact?</p>
-        <p><strong>Because what you normalize changes the way you run the business. And eventually, the way you run the business changes what becomes normal.</strong></p>
-      </div>
+      <article class="asset lead">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Between-Call Support</h3>
+        <p>Your business is not going to politely wait until the next call to do something interesting. Bring the idea you just had, the decision you&rsquo;re making, the launch that suddenly isn&rsquo;t going how you expected, the opportunity that landed in your inbox, or the moment you need another set of eyes on what the fuck is actually happening.</p>
+      </article>
 
-      <div class="step">
-        <div class="stepnum">03</div>
-        <h3 class="caps">What&rsquo;s actually in the way?</h3>
-        <p>Maybe it&rsquo;s strategy. Maybe it&rsquo;s subconscious. Maybe it&rsquo;s an old experience you turned into a prediction.</p>
-        <p>Maybe you&rsquo;re scared to be seen. Maybe the offer genuinely needs work. Maybe your marketing needs work.</p>
-        <p>Maybe you&rsquo;re running away from discomfort instead of moving toward the solution.</p>
-        <p><strong>We figure out what the actual problem is before we start throwing solutions at it.</strong></p>
-      </div>
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>The HFTIML Business Library</h3>
+        <p>My best strategy resources for offers, messaging, content, sales, launches, visibility, and building a business people actually want to buy from. This is NOT a giant curriculum you need to complete. Use what you need, leave what you don&rsquo;t, and anything new I create while you&rsquo;re inside gets added too.</p>
+      </article>
 
-      <div class="step">
-        <div class="stepnum">04</div>
-        <h3 class="caps">Get yourself ready to choose differently.</h3>
-        <p>Sometimes you already know exactly what you want to do.</p>
-        <p>You just need to stop reacting long enough to actually do it.</p>
-        <p>This is where we can use regulation, breathwork, tapping, subconscious recoding, self-hypnosis, meditation and whatever else actually helps you get out of reaction and back into discernment.</p>
-        <p>Not because you need to be perfectly healed before you&rsquo;re allowed to make money.</p>
-        <p><strong>Because I want the person making the decision to actually be YOU.</strong></p>
-      </div>
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>La La Land</h3>
+        <p class="acount">Four audios + a bonus activation</p>
+        <p>For the days when you KNOW exactly what you want and then your bank account, a slow week, a launch, or some other piece of 3D bullshit has you questioning it. Inside we get into self-concept, regulation, EFT tapping, staying with the decision before the evidence shows up, and becoming really fucking good at not letting one shitty Tuesday rewrite the future you already decided on.</p>
+      </article>
 
-      <div class="step">
-        <div class="stepnum">05</div>
-        <h3 class="caps">Make the fucking move.</h3>
-        <p>Eventually, you have to move.</p>
-        <p>Make the decision. Take the step. Create new evidence. See what happens.</p>
-        <p>Respond to actual feedback. Adjust when adjustment is actually called for.</p>
-        <p><strong>And keep going.</strong></p>
-      </div>
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Money Multiverse</h3>
+        <p class="acount">Four complete money portals</p>
+        <p>Using EFT, breathwork, subconscious work, shadow work, and identity work. We&rsquo;re getting into the money stories you inherited, the part of you that thinks she has to work her ass off to deserve more, the parts of yourself you&rsquo;ve made smaller to stay safe or liked, and your ability to actually have, spend, receive, and HOLD more money without losing your fucking mind.</p>
+      </article>
+
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>The Debt Diffusion Protocol</h3>
+        <p class="acount">Three-phase debt work</p>
+        <p>For removing all the shame and identity you&rsquo;ve attached to owing money. EFT, subconscious work, reframing, and integration so debt can be a financial circumstance you&rsquo;re dealing with instead of evidence that you&rsquo;re bad with money, behind in life, or need to panic every time you open your bank account.</p>
+      </article>
+
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Wealthy As Fuck</h3>
+        <p class="acount">Ten money audios &middot; five subliminals + five rampages</p>
+        <p>For flooding your brain with a completely different money story on repeat. Play them while you sleep, drive, get ready, work, whatever. Money showing up. Having more than enough. Spending without immediately panicking about replacing it. Being fully fucking funded. This is the everyday repetition that makes being the woman with MONEY feel a whole lot less extraordinary.</p>
+      </article>
+
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Goddess Frequency</h3>
+        <p class="acount">Six audios</p>
+        <p>Built around the identity of I fucking decide. Rampages, subliminals, sleep recoding, and frequency work for the woman who doesn&rsquo;t need seventeen signs, permission, or another person agreeing with her before she trusts what she wants. This is the one you play when you need to remember who the fuck is creating your life.</p>
+      </article>
+
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Sold Out Frequency</h3>
+        <p class="acount">Seven business + sales self-hypnosis audios</p>
+        <p>Built around making &ldquo;of course this fucking sells&rdquo; the expectation. Sales notifications. Customers finding you. Waitlists of people ready to pay. Making sales while you sleep. People wanting what you create. Because you already know how to MAKE the offer. This is the identity work for the woman who expects people to fucking buy it.</p>
+      </article>
+
+      <article class="asset">
+        <h3 class="aname"><i aria-hidden="true">&#10022;</i>Timeline Jump Sleep Portal</h3>
+        <p class="acount">Eight-hour overnight experience</p>
+        <p>Starts with a guided SATS sleep meditation and moves into an all-night subliminal. This is the one you put on when you go to bed and let it run while your conscious brain is finally asleep and not arguing with every fucking thing you&rsquo;re trying to change.</p>
+      </article>
 
     </div>
 
-    <div class="flow">
-      <p>Want it.<br />
-      Notice what you&rsquo;re normalizing.<br />
-      Figure out what&rsquo;s actually in the way.<br />
-      Work with it.<br />
-      Choose differently.<br />
-      <span class="last">ACT.</span></p>
+    <div class="measure" style="margin-top:48px">
+      <p class="beat" style="margin-top:0">And anything I create while you&rsquo;re inside? You get that too.</p>
+
+      <p>New audios. New trainings. New business resources. New processes I develop because somebody in the room asked a really fucking good question and now I need to make something about it.</p>
+
+      <p>HFTIML is not a dusty course portal I recorded three years ago and never touched again.</p>
+
+      <p class="hit">You get my work as it evolves.</p>
     </div>
 
     <div class="cta-block">
@@ -898,598 +642,202 @@ footer p{
   </div>
 </section>
 
-<!-- ============ 7. THE MENTORSHIP IS THE PRODUCT (orange, core offer) ============ -->
-<section class="sec orange">
-  <div class="starfield" aria-hidden="true">
-    <span style="top:5%;left:5%">&#10022;</span>
-    <span style="top:30%;left:94%;animation-delay:1.4s">&#10022;</span>
-    <span style="top:80%;left:6%;animation-delay:2.7s;font-size:11px">&#10022;</span>
-  </div>
+<!-- ============ 7. YOU WORK ON BOTH ============ -->
+<section class="sec deep">
   <div class="wrap">
-    <p class="mega">The mentorship is the product.</p>
+    <div class="wide">
+      <h2 class="caps">Inside HFTIML, you work on both.</h2>
+    </div>
 
     <div class="measure" style="margin-top:40px">
-      <p>I want to be really clear about that.</p>
-      <p>You are not joining because you need another portal full of 97 videos you&rsquo;ll never watch.</p>
-      <p class="hit">You&rsquo;re joining because you want me in the room with your actual business.</p>
+      <p class="beat" style="margin-top:0">1. The actual BUSINESS required to make the kind of money you want to make.</p>
     </div>
 
-    <div class="blocks" style="margin-top:50px">
+    <ul class="checks" style="margin-top:20px">
+      <li><i aria-hidden="true">&#10022;</i>Offers people actually fucking want to buy, and figuring out what needs to change when they don&rsquo;t.</li>
+      <li><i aria-hidden="true">&#10022;</i>Messaging and content that sounds like YOU, makes your value obvious, and gives people a reason to pay attention instead of scrolling past another person saying the exact same shit.</li>
+      <li><i aria-hidden="true">&#10022;</i>Selling without turning into somebody you don&rsquo;t recognize every time you need to make money.</li>
+      <li><i aria-hidden="true">&#10022;</i>Pricing, launches, visibility, positioning, and the actual decisions that move your business forward.</li>
+      <li><i aria-hidden="true">&#10022;</i>Building a brand people know, remember, talk about, and specifically want to buy from because YOU are the one behind it.</li>
+      <li><i aria-hidden="true">&#10022;</i>Looking at what is actually happening in your business, figuring out what the fuck the data is telling you, and changing the strategy when the strategy actually needs to change.</li>
+    </ul>
 
-      <div class="block">
-        <h3 class="caps"><i aria-hidden="true">&#10022;</i>Biweekly live business mentorship</h3>
-        <p class="cadence">Every other Tuesday &middot; 10 AM Eastern &middot; 60 to 90 minutes</p>
-        <p class="beat" style="margin-top:0">Bring me the business.</p>
-
-        <div class="tags">
-          <span class="tag-chip">Your offers</span>
-          <span class="tag-chip">Your marketing</span>
-          <span class="tag-chip">Your money</span>
-          <span class="tag-chip">Your clients</span>
-          <span class="tag-chip">Your pricing</span>
-          <span class="tag-chip">Your content</span>
-          <span class="tag-chip">Your visibility</span>
-          <span class="tag-chip">Your launches</span>
-          <span class="tag-chip">Your sales</span>
-        </div>
-
-        <p>The idea you can&rsquo;t stop thinking about.</p>
-        <p>The decision you keep reopening.</p>
-        <p>The thing that flopped.</p>
-        <p>The thing that&rsquo;s working and you want to make bigger.</p>
-        <p>The opportunity you don&rsquo;t know whether to take.</p>
-        <p>The thing you know you want to do but haven&rsquo;t done.</p>
-        <p>Tell me what&rsquo;s happening.</p>
-        <p>I&rsquo;ll ask questions.</p>
-        <p>We&rsquo;ll figure out what the actual problem is.</p>
-        <p><strong>And we&rsquo;ll work the problem in front of us.</strong></p>
-      </div>
-
-      <div class="block">
-        <h3 class="caps"><i aria-hidden="true">&#10022;</i>Hot-seat coaching</h3>
-        <p class="beat" style="margin-top:0">This is where I&rsquo;m at my best.</p>
-        <p>Sometimes I&rsquo;ll see the strategic problem.</p>
-        <p>Sometimes I&rsquo;ll hear the belief hiding inside the sentence.</p>
-        <p>Sometimes I&rsquo;m going to tell you the thing you&rsquo;re convinced needs changing is not the fucking problem.</p>
-        <p>Sometimes you&rsquo;ll answer your own question halfway through explaining it.</p>
-        <p>Good.</p>
-        <p>That&rsquo;s the point.</p>
-        <p>This isn&rsquo;t generic Q&amp;A.</p>
-        <p><strong>It&rsquo;s mentorship on your actual business, while you&rsquo;re building it.</strong></p>
-      </div>
-
-      <div class="block">
-        <h3 class="caps"><i aria-hidden="true">&#10022;</i>A question thread on the off weeks</h3>
-        <p class="cadence">The Tuesdays in between</p>
-        <p>Every other Tuesday we&rsquo;re live.</p>
-        <p>On the Tuesdays in between, there&rsquo;s a question thread.</p>
-        <p><strong>Bring it there.</strong></p>
-      </div>
-
+    <div class="measure" style="margin-top:46px">
+      <p class="beat" style="margin-top:0">2. AND the identity, subconscious, manifestation + regulation work required to actually become the woman who can live inside everything she says she wants.</p>
     </div>
 
-    <div class="cta-block">
-      <a class="btn" href="#join">Join now</a>
-    </div>
+    <ul class="checks" style="margin-top:20px">
+      <li><i aria-hidden="true">&#10022;</i>Finding the beliefs underneath the decisions you&rsquo;re making instead of slapping another affirmation over them and calling it manifestation.</li>
+      <li><i aria-hidden="true">&#10022;</i>Changing what feels normal around money, sales, visibility, opportunities, being wanted, being paid, and just how fucking BIG your life gets to be.</li>
+      <li><i aria-hidden="true">&#10022;</i>Learning how to have a shitty week, money go out, somebody say no, or an idea completely fucking flop and go, &ldquo;Okay. Good to know.&rdquo; Instead of turning it into an emergency and changing your entire business by dinner.</li>
+      <li><i aria-hidden="true">&#10022;</i>Trusting yourself enough to have the idea and fucking GO without needing to see how seventeen other women in your industry did it first.</li>
+      <li><i aria-hidden="true">&#10022;</i>Knowing when you&rsquo;re looking at real feedback that requires a business decision and when you&rsquo;re reacting to the fact that the 3D hasn&rsquo;t caught up yet.</li>
+      <li><i aria-hidden="true">&#10022;</i>Actually becoming the woman who can live inside the life she keeps saying she wants instead of only feeling like her when everything is going perfectly.</li>
+    </ul>
   </div>
 </section>
 
-<!-- ============ 8. AUDIO VAULT ============ -->
-<section class="sec deep">
-  <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">And you get my complete Audio Vault.</h2>
-    </div>
-
-    <div class="measure" style="margin-top:36px">
-      <p>You&rsquo;ll have access to my complete and growing collection of subconscious and regulation audios for your business and your life.</p>
-    </div>
-
-    <div class="tags" style="max-width:640px;margin:24px auto">
-      <span class="tag-chip">Subconscious recoding</span>
-      <span class="tag-chip">Self-hypnosis</span>
-      <span class="tag-chip">Breathwork</span>
-      <span class="tag-chip">Tapping</span>
-      <span class="tag-chip">Meditation</span>
-      <span class="tag-chip">Sleep audios</span>
-      <span class="tag-chip">Money work</span>
-      <span class="tag-chip">Business recoding</span>
-      <span class="tag-chip">Identity work</span>
-      <span class="tag-chip">Visibility</span>
-      <span class="tag-chip">Receiving</span>
-      <span class="tag-chip">Spending</span>
-    </div>
-
-    <div class="measure" style="margin-top:28px">
-      <p>And new work as the vault continues to grow.</p>
-      <p class="hit">Because the work doesn&rsquo;t stop when our coaching call ends.</p>
-      <p>Sometimes I&rsquo;m going to give you a strategy.</p>
-      <p>Sometimes I&rsquo;m going to send you to an audio.</p>
-      <p>Sometimes we&rsquo;re going to do both.</p>
-      <p>Because knowing intellectually that you should raise your price and being able to actually hold the new price when somebody tells you it&rsquo;s too expensive are two completely different things.</p>
-      <p>The vault gives you tools to work with what comes up between the calls, instead of letting it quietly run the business until we talk again.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 9. BUSINESS VAULT ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">You also get the Business Vault.</h2>
-    </div>
-
-    <div class="measure" style="margin-top:36px">
-      <p>A growing collection of practical trainings, tools and resources around actually running and growing the business.</p>
-    </div>
-
-    <div class="tags" style="max-width:640px;margin:24px auto">
-      <span class="tag-chip">Offers</span>
-      <span class="tag-chip">Messaging</span>
-      <span class="tag-chip">Content</span>
-      <span class="tag-chip">Sales</span>
-      <span class="tag-chip">Sales pages</span>
-      <span class="tag-chip">Pricing</span>
-      <span class="tag-chip">Visibility</span>
-      <span class="tag-chip">Marketing</span>
-      <span class="tag-chip">Money</span>
-      <span class="tag-chip">Digital products</span>
-      <span class="tag-chip">Launches</span>
-      <span class="tag-chip">Automation</span>
-    </div>
-
-    <div class="measure" style="margin-top:28px">
-      <p>And new resources based on what I see the women inside this room actually needing.</p>
-      <p>I&rsquo;m not creating a giant course graveyard just so I can put an impressive number on this sales page.</p>
-      <p class="hit">If it&rsquo;s in there, I want it to be useful.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 10. THE ROOM ============ -->
-<section class="sec deep">
-  <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">Plus, the room.</h2>
-    </div>
-
-    <div class="measure" style="margin-top:36px">
-      <p>A private community of women who already have real businesses and are ready for more.</p>
-      <p class="beat">Not 5,000 people shouting into the void.</p>
-      <p class="hit">A place to bring what&rsquo;s happening, ask questions, share what&rsquo;s working, celebrate what&rsquo;s becoming normal and build around other women doing the same.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 11. YOU CANNOT STRATEGY YOUR WAY ============ -->
-<section class="sec dark">
+<!-- ============ 8. CANNOT STRATEGY / CANNOT MANIFEST (orange) ============ -->
+<section class="sec orange">
   <div class="starfield" aria-hidden="true">
-    <span style="top:8%;left:6%">&#10022;</span>
-    <span style="top:40%;left:94%;animation-delay:1.9s">&#10022;</span>
+    <span style="top:7%;left:6%">&#10022;</span>
+    <span style="top:44%;left:94%;animation-delay:1.9s">&#10022;</span>
     <span style="top:86%;left:8%;animation-delay:.7s;font-size:11px">&#10022;</span>
   </div>
   <div class="wrap">
-    <p class="mega">You cannot strategy your way around every belief. And you cannot manifest your way around a shitty strategy.</p>
+    <p class="mega">Because you cannot strategy your way around every belief. And you cannot manifest your way around a shitty strategy.</p>
 
     <div class="measure" style="margin-top:44px">
-      <p class="beat" style="margin-top:0">That&rsquo;s it. That&rsquo;s the whole fucking thing.</p>
-    </div>
+      <p>You can listen to affirmations every morning telling yourself your offers always sell, but if your offer fucking sucks, you need to fix the offer.</p>
 
-    <ul class="qs" style="margin-top:28px">
-      <li><i aria-hidden="true">&#10022;</i>Normalize the bigger month. AND market the offer.</li>
-      <li><i aria-hidden="true">&#10022;</i>Believe better clients exist. AND stop accepting the ones you said you don&rsquo;t want.</li>
-      <li><i aria-hidden="true">&#10022;</i>Decide bigger opportunities are available. AND send the pitch.</li>
-      <li><i aria-hidden="true">&#10022;</i>Stop letting one failed launch determine what&rsquo;s possible. AND figure out why the launch failed.</li>
-      <li><i aria-hidden="true">&#10022;</i>Regulate before making the decision. AND THEN MAKE THE DECISION.</li>
-      <li><i aria-hidden="true">&#10022;</i>Believe the house is possible. AND build the business that can pay for the house.</li>
-    </ul>
+      <p>And you can have a phenomenal offer, great messaging, an audience that wants it, and a strategy that makes complete sense, but if three quiet days have you panicking, discounting it, changing the messaging, and deciding you need to launch something completely different, another strategy isn&rsquo;t the answer either.</p>
 
-    <div class="measure" style="margin-top:34px">
-      <p>I&rsquo;m not interested in making you choose between manifestation and strategy.</p>
-      <p>This is where manifestation meets actually running your business.</p>
-      <p class="hit">And that is exactly where I want to coach you.</p>
-    </div>
+      <p class="hit">That&rsquo;s the shit you work on inside HFTIML.</p>
 
-    <div class="cta-block">
-      <a class="btn" href="#join">Join now</a>
+      <p>Figure out what the actual fucking problem is. Then work on THAT.</p>
+
+      <p>Because the strategy-only business world gets this wrong. You can have the offer, the content plan, the sales strategy, the marketing calendar, and know exactly what you&rsquo;re &ldquo;supposed&rdquo; to do next. But if one slow week has you changing the offer, lowering the price, taking business you don&rsquo;t fucking want, or assuming you need to work twice as hard to make the money back, the strategy was never the whole problem.</p>
+
+      <p>And the manifestation-only world gets this wrong too. You can affirm that you&rsquo;re a money magnet, visualize the $100K month, regulate your nervous system, and know with every cell in your body that you&rsquo;re meant for MORE. But if nobody knows what the fuck you sell, your offer isn&rsquo;t good, your messaging isn&rsquo;t landing, or you&rsquo;re not actually doing anything to move the business forward, you do not need another affirmation. You need to fix the fucking business.</p>
+
+      <p>That is why the two never get separated inside HFTIML.</p>
+
+      <p>You&rsquo;re not choosing between being really fucking good at business and believing you can create whatever the hell you want.</p>
+
+      <p class="beat">You&rsquo;re becoming the woman who does both.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 12. NOT MY DREAM LIFE (blush) ============ -->
-<section class="sec blush">
-  <div class="starfield" aria-hidden="true">
-    <span style="top:10%;left:6%">&#10022;</span>
-    <span style="top:64%;left:93%;animation-delay:2.2s">&#10022;</span>
-  </div>
-  <div class="wrap">
-    <div class="wide">
-      <h2 class="caps">I don&rsquo;t want you to build my dream life.</h2>
-    </div>
-
-    <div class="measure" style="margin-top:34px">
-      <p class="beat" style="margin-top:0">That would defeat the entire point.</p>
-    </div>
-
-    <div class="split" style="margin-top:40px">
-      <div class="sp-img">
-        <div class="circ" style="width:clamp(190px,48vw,280px)">
-          <img src="/qc-jac-6-circle.webp" width="760" height="760" loading="lazy"
-               alt="Jac smiling, hand resting under her chin" />
-          <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
-        </div>
-      </div>
-      <div class="sp-copy">
-        <ul class="checks" style="max-width:none">
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want the seven-figure company.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want a tiny team and obscene profit.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want to pick your kids up every afternoon.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want to buy the building.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want to disappear to Europe for a month.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want ten employees. Maybe you want zero.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you want the designer bag.</li>
-          <li><i aria-hidden="true">&#10022;</i>Maybe you genuinely could not give less of a shit about the bag and want five acres where nobody can bother you.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="measure center" style="margin-top:44px">
-      <p class="beat">GOOD.</p>
-    </div>
-
-    <p class="mega center" style="margin-top:8px">What do you want?</p>
-
-    <div class="measure" style="margin-top:36px">
-      <p>Because if you don&rsquo;t consciously decide what you want your life to look like, you can very easily end up living according to decisions somebody else made about what &ldquo;normal&rdquo; is.</p>
-      <p>I&rsquo;m not interested in that.</p>
-      <p class="hit">And I don&rsquo;t think you are either.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 13. I DIDN'T LEARN TO WANT LESS ============ -->
+<!-- ============ 9. WITHOUT ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="wide">
-      <h2 class="caps">My life didn&rsquo;t change because I learned to want less.</h2>
+      <h2 class="caps">And you get to build the fucking huge business without:</h2>
+    </div>
+
+    <ul class="nots" style="margin-top:40px">
+      <li><i aria-hidden="true">&times;</i>Becoming a watered-down version of whoever is currently killing it in your industry because you&rsquo;ve convinced yourself she must know something you don&rsquo;t.</li>
+      <li><i aria-hidden="true">&times;</i>Saying yes to every dollar that shows up because &ldquo;some business is better than no business.&rdquo; No the fuck it is not.</li>
+      <li><i aria-hidden="true">&times;</i>Changing the plan every time something doesn&rsquo;t immediately work because one shitty week does not require a complete business identity crisis.</li>
+      <li><i aria-hidden="true">&times;</i>Buying another person&rsquo;s blueprint and trying to shove your business inside it when the entire fucking point is building the business YOU actually want.</li>
+      <li><i aria-hidden="true">&times;</i>Pretending strategy doesn&rsquo;t matter because you&rsquo;re manifesting it or pretending manifestation has nothing to do with business because you have a strategy.</li>
+      <li><i aria-hidden="true">&times;</i>Making yourself easier to understand, easier to digest, or more like everybody else because you&rsquo;re scared being fully YOU won&rsquo;t sell.</li>
+    </ul>
+
+    <div class="measure" style="margin-top:44px">
+      <p class="hit">You are allowed to make massive fucking money because you built something phenomenal, learned how to sell the shit out of it, trusted yourself enough to do it your way, and stopped letting whatever happened this week decide what you believe is possible for your life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. WHAT IS IT LIKE TO BE COACHED BY ME ============ -->
+<section class="sec deep">
+  <div class="wrap">
+    <div class="wide">
+      <h2 class="caps">What is it actually like to be coached by me?</h2>
     </div>
 
     <div class="split" style="margin-top:44px">
       <div class="sp-img">
         <div class="circ" style="width:clamp(190px,48vw,280px)">
-          <img src="/qc-jac-1-circle.webp" width="760" height="760" loading="lazy"
-               alt="Jac in warm sunlight, looking away from camera" />
+          <img src="/qc-jac-3-circle.webp" width="760" height="760" loading="lazy"
+               alt="Jac laughing, resting her chin on her hand" />
           <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
         </div>
       </div>
       <div class="sp-copy">
-        <p class="beat" style="margin-top:0">I still want more. A lot more.</p>
-        <ul class="checks" style="max-width:none">
-          <li><i aria-hidden="true">&#10022;</i>Bigger money. Bigger investments.</li>
-          <li><i aria-hidden="true">&#10022;</i>A bigger home. More land.</li>
-          <li><i aria-hidden="true">&#10022;</i>More travel. More experiences with my kids.</li>
-          <li><i aria-hidden="true">&#10022;</i>More ways to take care of the people I love.</li>
-          <li><i aria-hidden="true">&#10022;</i>More businesses. More ideas. More LIFE.</li>
-        </ul>
+        <p>I am not the coach who is going to scream &ldquo;YOU&rsquo;RE A FUCKING BADASS, REMEMBER WHO YOU ARE&rdquo; at you every time something goes wrong and call that identity work.</p>
+        <p>Sometimes you&rsquo;re going to be scared. Sometimes you&rsquo;re going to be pissed the fuck off. Something you were excited about might flop. You might make a decision you regret. Money might get weird. You might come into the room completely overwhelmed and tell me everything fucking sucks.</p>
       </div>
     </div>
 
-    <div class="measure" style="margin-top:44px">
-      <p class="hit">And wanting more has never required me to hate what I already have.</p>
-      <p>I can look around and think:</p>
-      <p class="beat">Holy shit. I love my life.</p>
-      <p>And also:</p>
-      <p class="beat">I cannot fucking wait to see what else I do with it.</p>
-      <p>You&rsquo;re allowed to be grateful.</p>
-      <p>You&rsquo;re allowed to be happy.</p>
-      <p>You&rsquo;re allowed to already have more than you once dreamed about.</p>
-      <p class="hit">And still want way fucking more.</p>
-    </div>
-  </div>
-</section>
+    <div class="measure" style="margin-top:46px">
+      <p class="beat" style="margin-top:0">I will hold space for that.</p>
 
-<!-- ============ 14. PROOF ============ -->
-<section class="sec deep">
-  <div class="wrap">
-    <div class="wide center">
-      <h2 class="caps">Real women. Real businesses. Real results.</h2>
-    </div>
+      <p>Because you are a human being running a business, not a robot who needs to maintain the correct frequency 24/7 or she gets kicked out of the manifestation club.</p>
 
-    <!-- BUILD NOTE: assets below are placeholders. Drop in real proof from
-         Jac's PREVIOUS coaching clients only. Nothing here may imply the
-         results came from HOLY FUCK, THIS IS MY LIFE. The disclaimer at the
-         foot of the page carries that distinction. -->
-    <div class="proof" style="margin-top:44px">
-      <div class="proof-slot tall">
-        <span class="kind">Video testimonial</span>
-        <p class="hint">Drop in the embed or the .mp4</p>
-      </div>
-      <div class="proof-slot">
-        <span class="kind">Client result</span>
-        <p class="hint">Real result from a previous client</p>
-      </div>
-      <div class="proof-slot">
-        <span class="kind">Written testimonial</span>
-        <p class="hint">Her words, unedited</p>
-      </div>
-      <div class="proof-slot">
-        <span class="kind">Screenshot</span>
-        <p class="hint">DM, email or dashboard</p>
-      </div>
-      <div class="proof-slot">
-        <span class="kind">Client result</span>
-        <p class="hint">Real result from a previous client</p>
-      </div>
-      <div class="proof-slot tall">
-        <span class="kind">Video testimonial</span>
-        <p class="hint">Drop in the embed or the .mp4</p>
-      </div>
-    </div>
+      <p>But you&rsquo;re also not going to live there.</p>
 
-    <div class="cta-block">
-      <a class="btn" href="#join">Join now</a>
+      <p>We&rsquo;re going to figure out what&rsquo;s actually happening.</p>
+
+      <p>Is your nervous system completely fucking lit up right now? Is there a subconscious belief underneath this? Are you making this mean something about yourself that it doesn&rsquo;t actually mean? Is old shit coming up? Or is there a legitimate problem in the business that needs a strategic solution?</p>
+
+      <p>That&rsquo;s coaching to me.</p>
+
+      <div class="pull">
+        <p>I am a fucking slut for subconscious work.</p>
+      </div>
+
+      <p>I want to know what&rsquo;s underneath the reaction, not just hype you up enough that you can temporarily bulldoze over it.</p>
+
+      <p>And when you&rsquo;re ready, we move.</p>
+
+      <p>Make the decision. Change the strategy. Have the conversation. Launch the thing. Raise the price. Scrap the idea. Keep the idea.</p>
+
+      <p>Whatever the actual situation calls for.</p>
+
+      <p>I&rsquo;m not here to make you dependent on me to feel powerful.</p>
+
+      <p class="hit">I&rsquo;m here to help you understand yourself so fucking well that when life inevitably lifes, you know how to move through it without abandoning the life you said you wanted.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 15 + 16. FOR / NOT FOR ============ -->
+<!-- ============ 11. FAQ ============ -->
 <section class="sec">
   <div class="wrap">
-    <div class="fits">
-      <div class="fit yes">
-        <p class="eyebrow"><span class="st">&#10022;</span> This room is for you if</p>
-        <h3 class="caps">Come in.</h3>
-        <ul>
-          <li><i aria-hidden="true">&#10022;</i>You already have a business.</li>
-          <li><i aria-hidden="true">&#10022;</i>People already pay you.</li>
-          <li><i aria-hidden="true">&#10022;</i>You want to make significantly more money.</li>
-          <li><i aria-hidden="true">&#10022;</i>You know your business is capable of more than what it&rsquo;s doing right now.</li>
-          <li><i aria-hidden="true">&#10022;</i>You&rsquo;re willing to look at both the strategy and the assumptions underneath the way you&rsquo;re running it.</li>
-          <li><i aria-hidden="true">&#10022;</i>You want someone who will tell you what she actually sees.</li>
-          <li><i aria-hidden="true">&#10022;</i>You don&rsquo;t need me to make every decision for you.</li>
-          <li><i aria-hidden="true">&#10022;</i>You&rsquo;re willing to act.</li>
-          <li><i aria-hidden="true">&#10022;</i>You&rsquo;re willing to change your mind when actual feedback calls for it.</li>
-          <li><i aria-hidden="true">&#10022;</i>You&rsquo;re also willing to hold a decision when the only thing telling you to change it is discomfort.</li>
-          <li><i aria-hidden="true">&#10022;</i>You understand that wanting more does not make you ungrateful.</li>
-          <li><i aria-hidden="true">&#10022;</i>And you&rsquo;re ready to intentionally build a business capable of supporting the life you actually want.</li>
-        </ul>
-        <p class="hit" style="margin-top:22px">You don&rsquo;t need to know what&rsquo;s keeping your business at its current level. You do need to be ready to change it.</p>
+    <div class="faq">
+
+      <div class="faq-item">
+        <h3 class="caps">Is HFTIML for me if I&rsquo;m nervous about joining?</h3>
+        <p>You can absolutely be nervous about making a $5,000 investment.</p>
+        <p>What I&rsquo;m not going to do is convince you to make it.</p>
+        <p>You do not need to perform certainty for me. You don&rsquo;t need to pretend $5,000 is nothing. And you don&rsquo;t need to be fearless to belong in this room.</p>
+        <p>But you do need to be able to make your own decision.</p>
+        <p>I want women in this room who are serious as fuck about what they&rsquo;re building. Women who are willing to be coached, look at their shit, try things, get information, adjust, and keep fucking moving.</p>
+        <p>Not perfectly. Not without fear. Not without having very human moments.</p>
+        <p><strong>But then you fucking move.</strong></p>
+        <p>If you need me to repeatedly convince you that you should be here, this probably isn&rsquo;t the room for you.</p>
       </div>
 
-      <div class="fit no">
-        <p class="eyebrow"><span class="st">&#10022;</span> This is not for you if</p>
-        <h3 class="caps">Not this one.</h3>
-        <ul>
-          <li><i aria-hidden="true">&#10022;</i>You don&rsquo;t have a business yet.</li>
-          <li><i aria-hidden="true">&#10022;</i>You&rsquo;re still trying to figure out what you could sell.</li>
-          <li><i aria-hidden="true">&#10022;</i>You want somebody to hand you an exact blueprint and take responsibility for whether it works.</li>
-          <li><i aria-hidden="true">&#10022;</i>You want manifestation to replace action.</li>
-          <li><i aria-hidden="true">&#10022;</i>You refuse to look at numbers, feedback or strategy because you think doing so means you &ldquo;don&rsquo;t trust.&rdquo;</li>
-          <li><i aria-hidden="true">&#10022;</i>You want business strategy without ever looking at the beliefs driving your decisions.</li>
-          <li><i aria-hidden="true">&#10022;</i>Or you want somebody else to become the authority on your business.</li>
-        </ul>
-        <p class="hit" style="margin-top:22px">That&rsquo;s not what I&rsquo;m building here.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 17 + 18. WHAT YOU GET + JOIN ============ -->
-<section class="sec deep" id="join">
-  <div class="wrap">
-    <div class="wide center">
-      <h2 class="caps">Here&rsquo;s what you get inside Holy Fuck, This Is My Life.</h2>
-    </div>
-
-    <ul class="checks" style="margin-top:40px">
-      <li><i aria-hidden="true">&#10022;</i>Biweekly live business mentorship with Jac</li>
-      <li><i aria-hidden="true">&#10022;</i>Hot-seat coaching on your actual business</li>
-      <li><i aria-hidden="true">&#10022;</i>Coaching across strategy, money, marketing, offers, pricing, clients, visibility, manifestation, subconscious beliefs and decision-making</li>
-      <li><i aria-hidden="true">&#10022;</i>Complete and growing Audio Vault with subconscious recoding, self-hypnosis, breathwork, tapping, meditation and more for your business and life</li>
-      <li><i aria-hidden="true">&#10022;</i>Growing Business Vault with practical trainings and tools</li>
-      <li><i aria-hidden="true">&#10022;</i>Private member community</li>
-      <li><i aria-hidden="true">&#10022;</i>Live calls every other Tuesday at 10 AM Eastern, 60 to 90 minutes</li>
-      <li><i aria-hidden="true">&#10022;</i>A question thread on the Tuesdays in between</li>
-      <li><i aria-hidden="true">&#10022;</i>Replays posted after every call</li>
-    </ul>
-
-    <div class="offer" style="margin-top:52px">
-      <p class="name" data-offer="name">Join Holy Fuck, This Is My Life.</p>
-
-      <div class="plans" id="plans">
-        <!-- rendered from the OFFER config at the bottom of this file -->
+      <div class="faq-item">
+        <h3 class="caps">Do you guarantee I&rsquo;ll make my investment back?</h3>
+        <p>No.</p>
+        <p>There are no guarantees around how much money you&rsquo;ll make, how quickly you&rsquo;ll make it, or what specifically will happen in your business during these six months.</p>
+        <p>I cannot promise you that because I am not the one running your fucking business. You are.</p>
+        <p>You&rsquo;ll have the room, the coaching, the strategy, the subconscious work, the tools, and the support.</p>
+        <p>What you do with them is yours.</p>
+        <p><strong>If you need a guaranteed financial outcome before you&rsquo;re willing to make the investment, don&rsquo;t join.</strong></p>
       </div>
 
-      <div class="terms">
-        <p data-offer="commitment">Three month minimum commitment</p>
-        <p>Live calls every other Tuesday at 10 AM Eastern</p>
-        <p><span class="tbd">[THRIVECART LINK]</span></p>
+      <div class="faq-item">
+        <h3 class="caps">Do you offer refunds or a trial period?</h3>
+        <p>No.</p>
+        <p>HFTIML is a six-month mentorship. There is no 30-day &ldquo;let me see if I like it&rdquo; trial period.</p>
+        <p>When you join, you&rsquo;re committing to the six months.</p>
+        <p>This isn&rsquo;t something you dabble in for three weeks and then decide whether becoming the woman who builds the fucking life she wants is working fast enough.</p>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ 19. FAQ ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="wide center">
-      <p class="eyebrow"><span class="st">&#10022;</span> Before you ask <span class="st">&#10022;</span></p>
-      <h2 class="caps">FAQ</h2>
-    </div>
-
-    <div class="faq" style="margin-top:40px">
-
-      <details>
-        <summary>Do I need to already have a business?</summary>
-        <div class="ans">
-          <p>Yes.</p>
-          <p>This is for women who already have something real people pay them for.</p>
-          <p>You do not need to hit a specific revenue number before joining.</p>
-          <p>But you should have an actual business to bring into the room.</p>
-          <p>If you&rsquo;re trying to figure out what business you should start, this isn&rsquo;t the right room yet.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Is this business coaching or manifestation?</summary>
-        <div class="ans">
-          <p>Both.</p>
-          <p>Because I don&rsquo;t separate them.</p>
-          <p>The assumptions you hold about what&rsquo;s available to you affect the way you price, market, sell, show up, interpret feedback and make decisions.</p>
-          <p>And your assumptions alone do not build the business.</p>
-          <p>Manifestation requires action.</p>
-          <p>We work with the beliefs AND the business.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Will you give me actual business strategy?</summary>
-        <div class="ans">
-          <p>Yes.</p>
-          <p>When strategy is what the situation needs.</p>
-          <p>I&rsquo;m not anti-strategy.</p>
-          <p>I&rsquo;m anti pretending every woman needs the exact same strategy.</p>
-          <p>Sometimes we&rsquo;re going to talk about your offer. Sometimes your messaging. Sometimes pricing. Sometimes visibility. Sometimes your numbers.</p>
-          <p>And sometimes I&rsquo;m going to tell you to leave the fucking strategy alone because the strategy isn&rsquo;t the problem.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What can I bring to coaching?</summary>
-        <div class="ans">
-          <p>The business.</p>
-          <p>Bring the offer that isn&rsquo;t selling. The price you&rsquo;re thinking about changing. The client situation. The content. The idea. The launch. The opportunity. The money decision.</p>
-          <p>The thing you&rsquo;re avoiding. The thing you keep changing. The decision you can&rsquo;t tell whether to trust. The belief you caught yourself repeating.</p>
-          <p>If it affects the way you&rsquo;re running your business or building the life you want, bring it.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What if I don&rsquo;t know what my &ldquo;block&rdquo; is?</summary>
-        <div class="ans">
-          <p>Perfect.</p>
-          <p>You don&rsquo;t need to diagnose yourself before you get coached.</p>
-          <p>Tell me what&rsquo;s happening.</p>
-          <p>I&rsquo;ll ask questions.</p>
-          <p>We&rsquo;ll figure out what actually needs attention.</p>
-          <p>And sometimes there isn&rsquo;t a fucking block. Sometimes we need to fix something in the business.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What is the Audio Vault?</summary>
-        <div class="ans">
-          <p>My complete and growing collection of subconscious recoding, self-hypnosis, breathwork, tapping, meditation and other audio tools designed to support you across business, money, identity, visibility, receiving and life.</p>
-          <p>It gives you tools to work with what comes up between our calls instead of waiting until the next coaching session.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Will new audios be added?</summary>
-        <div class="ans">
-          <p>Yes.</p>
-          <p>This is a growing vault.</p>
-          <p>As I create new work and see recurring needs inside the room, the library will continue expanding.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What is the Business Vault?</summary>
-        <div class="ans">
-          <p>A growing collection of practical trainings, tools and resources around actually running and growing your business.</p>
-          <p>This is not meant to become a giant graveyard of courses you never watch.</p>
-          <p>It exists to give you practical support where practical support is useful.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Do I need to be &ldquo;good&rdquo; at manifestation?</summary>
-        <div class="ans">
-          <p>No.</p>
-          <p>But you should be open to looking at what you believe is available to you and how those beliefs affect the decisions you make.</p>
-          <p>And you need to be willing to act.</p>
-          <p>Because there will be no sitting around waiting for the universe to do your marketing.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What is your coaching style?</summary>
-        <div class="ans">
-          <p>Direct.</p>
-          <p>I&rsquo;m going to tell you what I see.</p>
-          <p>Sometimes that means challenging a belief.</p>
-          <p>Sometimes it means asking why the hell you&rsquo;re about to change something that was working.</p>
-          <p>Sometimes it means telling you the strategy needs work.</p>
-          <p>I&rsquo;m not interested in making you dependent on me or making every decision for you.</p>
-          <p>I want you to get better at seeing your own business clearly and making strong decisions without constantly needing somebody else to tell you what to do.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Will this guarantee that I make more money?</summary>
-        <div class="ans">
-          <p>No.</p>
-          <p>Nobody can responsibly guarantee what your business will make.</p>
-          <p>I can coach you. I can help you see things you may not be seeing from inside the business. I can challenge the assumptions you&rsquo;re treating like facts. I can give you strategic input. I can help you work through decisions. I can give you tools for the subconscious side of the work. I can teach you what I know.</p>
-          <p>You still have to run the fucking business.</p>
-          <p>Your results depend on your decisions, execution, market, experience, consistency and plenty of factors neither you nor I completely control.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What if I&rsquo;m already in another program?</summary>
-        <div class="ans">
-          <p>Being in another program doesn&rsquo;t automatically make this a bad fit.</p>
-          <p>But honor the commitments you already made.</p>
-          <p>I&rsquo;m not interested in becoming the next thing you buy because you&rsquo;re panicking about the thing you bought last month.</p>
-          <p>If you want to be here because this is the kind of mentorship you genuinely want in your business, that&rsquo;s a different decision.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>When are the calls?</summary>
-        <div class="ans">
-          <p>Every other Tuesday at 10 AM Eastern.</p>
-          <p>They run 60 to 90 minutes.</p>
-          <p>On the Tuesdays in between, there&rsquo;s a question thread. Bring it there.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Are calls recorded?</summary>
-        <div class="ans">
-          <p>Yes.</p>
-          <p>Replays are posted after every call.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>How long do I have access?</summary>
-        <div class="ans">
-          <p><span class="tbd">[INSERT ACCESS DETAILS]</span></p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Can I cancel anytime?</summary>
-        <div class="ans">
-          <p>No.</p>
-          <p>This is a six month commitment. When you join, you&rsquo;re in for the full six months.</p>
-          <p>That&rsquo;s on purpose.</p>
-        </div>
-      </details>
+      <div class="faq-item">
+        <h3 class="caps">What if I&rsquo;m already in another program?</h3>
+        <p>Being in another program does not automatically mean HFTIML isn&rsquo;t for you.</p>
+        <p>But I&rsquo;m also not interested in telling you to abandon a commitment you&rsquo;ve already made because this shiny new thing appeared in front of you.</p>
+        <p>Look at what you&rsquo;re already committed to. Look at what you actually want. Look at why you want to be in this room too.</p>
+        <p><strong>Then make the decision like the woman you say you&rsquo;re becoming.</strong></p>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============ 20. CLOSER ============ -->
-<section class="dark">
+<!-- ============ 12. CLOSER + JOIN ============ -->
+<section class="dark" id="join">
   <div class="starfield" aria-hidden="true">
-    <span style="top:10%;left:8%">&#10022;</span>
-    <span style="top:24%;left:90%;animation-delay:1.7s">&#10022;</span>
-    <span style="top:70%;left:6%;animation-delay:.8s;font-size:11px">&#10022;</span>
-    <span style="top:88%;left:91%;animation-delay:2.9s">&#10022;</span>
+    <span style="top:8%;left:8%">&#10022;</span>
+    <span style="top:22%;left:90%;animation-delay:1.7s">&#10022;</span>
+    <span style="top:66%;left:5%;animation-delay:.8s;font-size:11px">&#10022;</span>
+    <span style="top:90%;left:91%;animation-delay:2.9s">&#10022;</span>
   </div>
   <div class="wrap">
     <div class="closer">
@@ -1499,61 +847,58 @@ footer p{
         <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
       </div>
 
-      <p class="mega">You already built the business.</p>
+      <p class="mega">This is six months of building the business and the life that actually look like yours.</p>
 
-      <div class="measure" style="margin-top:40px;text-align:left">
-        <p class="lede">Now decide what the fuck you want it to make possible.</p>
-        <p class="lede">Not what would be normal.</p>
-        <p class="lede">Not what somebody with your current revenue &ldquo;should&rdquo; expect.</p>
-        <p class="lede">Not what happened last year.</p>
-        <p class="lede">Not what happened the last time you tried.</p>
-        <p class="beat">What do you actually want?</p>
-        <p class="lede">Decide. Make it normal. Build for it. Act on it.</p>
-        <p class="lede">Respond to reality without letting reality become prophecy.</p>
-        <p class="lede">And keep going.</p>
-        <p class="lede">Because manifestation was never supposed to make you a spectator in your own life.</p>
+      <div class="measure stack" style="margin-top:40px;text-align:left">
+        <p class="lede">Not mine.</p>
+        <p class="lede">Not your last coach&rsquo;s.</p>
+        <p class="lede">Not the woman whose Instagram you keep dissecting.</p>
       </div>
 
-      <p class="mega" style="margin-top:40px;color:var(--clay-lt)">Manifestation requires action.</p>
-
-      <div class="measure" style="margin-top:40px;text-align:left">
-        <p class="lede">And eventually?</p>
-        <p class="lede">The thing that once felt huge&hellip;</p>
+      <div class="measure" style="margin-top:22px">
+        <p class="beat" style="margin:0">Yours.</p>
       </div>
 
-      <ul class="qs" style="margin-top:24px">
-        <li><i aria-hidden="true">&#10022;</i>The money.</li>
-        <li><i aria-hidden="true">&#10022;</i>The business.</li>
-        <li><i aria-hidden="true">&#10022;</i>The house.</li>
-        <li><i aria-hidden="true">&#10022;</i>The freedom.</li>
-        <li><i aria-hidden="true">&#10022;</i>The opportunities.</li>
-        <li><i aria-hidden="true">&#10022;</i>The random fucking Tuesday.</li>
+      <ul class="qs" style="margin-top:36px">
+        <li><i aria-hidden="true">&#10022;</i>The business people become obsessed with.</li>
+        <li><i aria-hidden="true">&#10022;</i>The offers you sell the shit out of.</li>
+        <li><i aria-hidden="true">&#10022;</i>The money that changes what&rsquo;s possible for your family and your life.</li>
+        <li><i aria-hidden="true">&#10022;</i>The opportunities that used to live on the vision board.</li>
+        <li><i aria-hidden="true">&#10022;</i>The ideas you finally trust yourself enough to fucking execute.</li>
+        <li><i aria-hidden="true">&#10022;</i>And the version of you who can have all of it without needing every single Tuesday to go perfectly before she believes it&rsquo;s hers.</li>
       </ul>
 
-      <div class="measure" style="margin-top:34px;text-align:left">
-        <p class="beat">&hellip;is just your life.</p>
-        <p class="lede">And you get to look around at all of it and think:</p>
+      <div class="offer" style="margin-top:56px">
+        <p class="term" data-offer="term">Six months</p>
+        <p class="price" data-offer="price">$5,000</p>
+        <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life.</p>
+        <a class="btn" id="joinBtn" href="#">Join now</a>
+        <div class="terms">
+          <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
+          <p>No refunds &middot; no trial period</p>
+          <p><span class="tbd">[THRIVECART LINK]</span></p>
+        </div>
       </div>
 
-      <p class="mega" style="margin-top:36px">Holy fuck.<br />This is my life.</p>
-
-      <div class="cta-block">
-        <a class="btn" href="#join">Join now</a>
+      <div class="measure" style="margin-top:52px">
+        <p class="hit">You already know how big you want this thing to get.</p>
       </div>
+
+      <p class="mega" style="margin-top:24px;color:var(--clay-lt)">Now build the fucking thing.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 21. DISCLAIMER ============ -->
+<!-- ============ 13. DISCLAIMER ============ -->
 <section class="legal">
   <div class="wrap">
     <h2>Important disclaimer</h2>
     <p>HOLY FUCK, THIS IS MY LIFE. provides business education, coaching and mentorship only. No income, revenue, business growth, financial, personal or other results are guaranteed or promised.</p>
     <p>Examples of Jac&rsquo;s business results, experiences, revenue or prior client outcomes are provided for context and illustration only and should not be interpreted as typical or guaranteed outcomes.</p>
-    <p>Testimonials from previous clients reflect their individual experiences and are not representations of results from HOLY FUCK, THIS IS MY LIFE. unless explicitly identified as such.</p>
     <p>Every business and individual is different. Results depend on numerous factors, including experience, skills, market conditions, decisions, implementation, consistency, offers, pricing, marketing, audience and other circumstances outside Jac&rsquo;s control.</p>
     <p>Participants remain responsible for their own business, financial and personal decisions and results.</p>
-    <p><span class="tbd">[INSERT FINAL PAYMENT, REFUND AND CANCELLATION TERMS]</span></p>
+    <p>All sales are final. There are no refunds and no trial period. When you join you are committing to the full six months.</p>
+    <p><span class="tbd">[INSERT FINAL PAYMENT AND CANCELLATION TERMS]</span></p>
   </div>
 </section>
 
@@ -1569,37 +914,16 @@ footer p{
 
 <script>
 /* ============================================================
-   EDIT EVERYTHING HERE. This is the only place you need to
-   change the name, pricing or checkout link.
-   Anything wrapped in [BRACKETS] renders with a dotted highlight
-   so unapproved details can't accidentally ship as final.
+   EDIT EVERYTHING HERE. Price, term, cadence and the checkout
+   link. Anything in [BRACKETS] renders with a dotted highlight.
    ============================================================ */
 var OFFER = {
-
-  name: "Join Holy Fuck, This Is My Life.",
-  commitment: "Six month commitment \u00b7 No cancellation",
-
-  /* One ThriveCart cart carries both payment options, so every plan
-     button points here. Swap the "#" for the real link once it's live. */
+  term: "Six months",
+  price: "$5,000",
+  priceNote: "Holy Fuck, This Is My Life.",
+  cadence: "Biweekly live coaching · hot seats",
   checkoutUrl: "#",
-
-  plans: [
-    {
-      name: "Monthly",
-      amount: "$888",
-      note: "Per month for six months. $5,328 total. No cancellation.",
-      cta: "Join monthly",
-      best: false
-    },
-    {
-      name: "Paid in full",
-      amount: "$5,000",
-      note: "Paid today. Covers all six months.",
-      ribbon: "Save $328",
-      cta: "Join, pay in full",
-      best: true
-    }
-  ]
+  ctaLabel: "Join now"
 };
 
 (function(){
@@ -1612,31 +936,16 @@ var OFFER = {
       return '<span class="tbd">' + m + '</span>';
     });
   };
-
   var nodes = document.querySelectorAll('[data-offer]');
   for (var i = 0; i < nodes.length; i++){
     var val = OFFER[nodes[i].getAttribute('data-offer')];
     if (typeof val === 'string') nodes[i].innerHTML = mark(val);
   }
-
-  var plans = document.getElementById('plans');
-  if (!plans) return;
-  var rows = OFFER.plans || [];
-  if (rows.length === 1){ plans.style.maxWidth = '340px'; plans.style.margin = '0 auto 22px'; }
-
-  var out = '';
-  for (var k = 0; k < rows.length; k++){
-    var pl = rows[k];
-    out += '<div class="plan' + (pl.best ? ' best' : '') + '">';
-    if (pl.ribbon) out += '<span class="save">' + mark(pl.ribbon) + '</span>';
-    out += '<div class="pname">' + mark(pl.name) + '</div>';
-    out += '<div class="pamt">' + mark(pl.amount) + '</div>';
-    if (pl.note) out += '<p class="pnote">' + mark(pl.note) + '</p>';
-    out += '<a class="btn" href="' + esc(pl.url || OFFER.checkoutUrl || '#') + '">' +
-           mark(pl.cta || 'Join') + '</a>';
-    out += '</div>';
+  var btn = document.getElementById('joinBtn');
+  if (btn){
+    btn.href = OFFER.checkoutUrl || '#';
+    btn.innerHTML = mark(OFFER.ctaLabel || 'Join now');
   }
-  plans.innerHTML = out;
 })();
 </script>
 
