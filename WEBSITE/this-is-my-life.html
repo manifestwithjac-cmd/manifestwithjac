@@ -269,12 +269,39 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .circ .sp:nth-of-type(3){top:34%;right:-14px;font-size:12px;animation-delay:2.8s}
 .circ-lg{width:clamp(200px,52vw,300px)}
 
-/* ---------- faq ---------- */
-.faq{max-width:780px;margin:0 auto}
-.faq-item{padding:36px 0;border-bottom:1px solid var(--line)}
-.faq-item:first-child{border-top:1px solid var(--line)}
-.faq-item h3{margin-bottom:18px}
-.faq-item p{font-size:17px}
+/* ---------- faq ----------
+   Real accordion. Answers are long, so leaving all four open turns the
+   section into a wall of text. One question per row, opened on demand. */
+.faq{max-width:780px;margin:0 auto;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item > summary{
+  list-style:none;cursor:pointer;
+  display:grid;grid-template-columns:1fr auto;align-items:start;gap:18px;
+  padding:26px 0;
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:clamp(21px,2.4vw,30px);line-height:1.12;
+  text-transform:uppercase;letter-spacing:.012em;word-spacing:.14em;
+  color:var(--ink);
+  transition:color .16s ease;
+}
+.faq-item > summary::-webkit-details-marker{display:none}
+.faq-item > summary:hover{color:var(--clay)}
+.faq-item > summary .sign{
+  position:relative;flex:0 0 auto;width:17px;height:17px;margin-top:.34em;
+}
+.faq-item > summary .sign::before,
+.faq-item > summary .sign::after{
+  content:"";position:absolute;background:var(--clay);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  transition:opacity .18s ease,transform .18s ease;
+}
+.faq-item > summary .sign::before{width:17px;height:2px}
+.faq-item > summary .sign::after{width:2px;height:17px}
+.faq-item[open] > summary{color:var(--clay)}
+.faq-item[open] > summary .sign::after{opacity:0;transform:translate(-50%,-50%) rotate(90deg)}
+.faq-ans{padding:0 0 30px;max-width:640px}
+.faq-ans p{font-size:16.5px;margin-bottom:14px}
+.faq-ans p:last-child{margin-bottom:0}
 
 /* ---------- offer card ---------- */
 .offer{
@@ -335,7 +362,7 @@ footer p{
   .bar .btn{padding:12px 22px}
   .offer{padding:clamp(34px,4vw,54px)}
   .asset{padding:32px 30px}
-  .faq-item{padding:44px 0}
+  .faq-item > summary{padding:32px 0}
 }
 @media (min-width:900px){
   .split{grid-template-columns:1fr 1fr;gap:56px}
@@ -787,10 +814,14 @@ footer p{
 <!-- ============ 11. FAQ ============ -->
 <section class="sec">
   <div class="wrap">
+    <div class="wide center" style="margin-bottom:46px">
+      <h2 class="caps">Questions.</h2>
+    </div>
     <div class="faq">
 
-      <div class="faq-item">
-        <h3 class="caps">Is HFTIML for me if I&rsquo;m nervous about joining?</h3>
+      <details class="faq-item" open>
+        <summary class="caps">Is HFTIML for me if I&rsquo;m nervous about joining?<span class="sign" aria-hidden="true"></span></summary>
+        <div class="faq-ans">
         <p>You can absolutely be nervous about making a $5,000 investment.</p>
         <p>What I&rsquo;m not going to do is convince you to make it.</p>
         <p>You do not need to perform certainty for me. You don&rsquo;t need to pretend $5,000 is nothing. And you don&rsquo;t need to be fearless to belong in this room.</p>
@@ -799,33 +830,40 @@ footer p{
         <p>Not perfectly. Not without fear. Not without having very human moments.</p>
         <p><strong>But then you fucking move.</strong></p>
         <p>If you need me to repeatedly convince you that you should be here, this probably isn&rsquo;t the room for you.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="faq-item">
-        <h3 class="caps">Do you guarantee I&rsquo;ll make my investment back?</h3>
+      <details class="faq-item">
+        <summary class="caps">Do you guarantee I&rsquo;ll make my investment back?<span class="sign" aria-hidden="true"></span></summary>
+        <div class="faq-ans">
         <p>No.</p>
         <p>There are no guarantees around how much money you&rsquo;ll make, how quickly you&rsquo;ll make it, or what specifically will happen in your business during these six months.</p>
         <p>I cannot promise you that because I am not the one running your fucking business. You are.</p>
         <p>You&rsquo;ll have the room, the coaching, the strategy, the subconscious work, the tools, and the support.</p>
         <p>What you do with them is yours.</p>
         <p><strong>If you need a guaranteed financial outcome before you&rsquo;re willing to make the investment, don&rsquo;t join.</strong></p>
-      </div>
+        </div>
+      </details>
 
-      <div class="faq-item">
-        <h3 class="caps">Do you offer refunds or a trial period?</h3>
+      <details class="faq-item">
+        <summary class="caps">Do you offer refunds or a trial period?<span class="sign" aria-hidden="true"></span></summary>
+        <div class="faq-ans">
         <p>No.</p>
         <p>HFTIML is a six-month mentorship. There is no 30-day &ldquo;let me see if I like it&rdquo; trial period.</p>
         <p>When you join, you&rsquo;re committing to the six months.</p>
         <p>This isn&rsquo;t something you dabble in for three weeks and then decide whether becoming the woman who builds the fucking life she wants is working fast enough.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="faq-item">
-        <h3 class="caps">What if I&rsquo;m already in another program?</h3>
+      <details class="faq-item">
+        <summary class="caps">What if I&rsquo;m already in another program?<span class="sign" aria-hidden="true"></span></summary>
+        <div class="faq-ans">
         <p>Being in another program does not automatically mean HFTIML isn&rsquo;t for you.</p>
         <p>But I&rsquo;m also not interested in telling you to abandon a commitment you&rsquo;ve already made because this shiny new thing appeared in front of you.</p>
         <p>Look at what you&rsquo;re already committed to. Look at what you actually want. Look at why you want to be in this room too.</p>
         <p><strong>Then make the decision like the woman you say you&rsquo;re becoming.</strong></p>
-      </div>
+        </div>
+      </details>
 
     </div>
   </div>
