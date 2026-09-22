@@ -181,12 +181,27 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .bar .btn{width:auto;padding:11px 18px;font-size:var(--s4);letter-spacing:.14em;white-space:nowrap;flex:0 0 auto}
 #join{scroll-margin-top:78px}
 
+/* hidden from the page, kept for search engines and screen readers,
+   because the banner artwork carries the headline visually */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
+
+/* ---------- hero banner ----------
+   Full bleed. The artwork already sets the title, so it runs edge to edge
+   at its own aspect rather than being cropped. */
+/* capped at a modest upscale of the artwork's own 1320px, so an ultrawide
+   window neither softens it nor turns the hero into a 1200px tall wall */
+.banner{width:100%;max-width:1440px;margin:0 auto;line-height:0;background:var(--paper)}
+.banner img{width:100%;height:auto;display:block}
+
 /* ---------- hero ---------- */
-.hero{padding:52px 0 70px;text-align:center}
+.hero{padding:0 0 70px;text-align:center}
 .hero .tag{
   font-family:var(--display);font-weight:400;font-synthesis:none;
   font-size:var(--d2);letter-spacing:-.015em;word-spacing:.1em;color:var(--clay);
-  max-width:980px;margin:30px auto 0;line-height:1.14;
+  max-width:980px;margin:48px auto 0;line-height:1.14;
 }
 .rule-orange{width:70px;height:3px;background:var(--clay);margin:32px auto}
 
@@ -439,7 +454,7 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 /* ---------- offer card ---------- */
 .offer{
   background:var(--ink);color:var(--paper);border:3px solid var(--clay);
-  padding:34px 24px;max-width:640px;margin:0 auto;text-align:center;
+  padding:34px 24px;max-width:760px;margin:0 auto;text-align:center;
 }
 .offer .term{
   font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
@@ -456,6 +471,30 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 }
 .offer .btn{background:var(--clay);border-color:var(--clay);color:var(--white)}
 .offer .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+
+/* ---------- the two ways to pay ---------- */
+.plans{display:grid;gap:18px;margin:26px 0 0;text-align:center}
+.plan{
+  border:2px solid rgba(245,238,229,.28);padding:26px 20px;
+  display:flex;flex-direction:column;
+}
+.plan.best{border-color:var(--clay-lt);background:rgba(224,131,74,.09)}
+.plan .pname{
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--clay-lt);margin-bottom:14px;
+}
+.plan .pamt{
+  font-family:var(--display);font-weight:400;font-synthesis:none;
+  font-size:var(--d2);line-height:1;letter-spacing:-.02em;word-spacing:.1em;
+  color:var(--paper);
+}
+.plan .pnote{
+  font-family:var(--sans);font-size:var(--s3);line-height:1.5;
+  color:rgba(245,238,229,.72);margin:12px 0 22px;
+}
+.plan .btn{margin-top:auto;width:100%}
+.plan:not(.best) .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
+.plan:not(.best) .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .terms{margin-top:20px}
 .terms p{
   font-family:var(--sans);font-size:var(--s4);font-weight:500;letter-spacing:.16em;
@@ -490,10 +529,11 @@ footer p{
 @media (min-width:720px){
   :root{--gut:32px}
   .sec{padding:100px 0}
-  .hero{padding:76px 0 90px}
+  .hero{padding:0 0 90px}
   .btn{width:auto;padding:20px 42px}
   .bar .btn{padding:12px 22px}
   .offer{padding:clamp(34px,4vw,54px)}
+  .plans{grid-template-columns:1fr 1fr;gap:20px}
   .asset{padding:32px 30px}
   .faq-item > summary{padding:32px 0}
   .spotlight{padding:52px 0}
@@ -541,13 +581,13 @@ footer p{
     <span style="top:80%;left:87%;animation-delay:.6s">&#10022;</span>
     <span style="top:45%;left:96%;animation-delay:3.1s;font-size:10px">&#10022;</span>
   </div>
-  <div class="wrap">
-    <div class="circ circ-lg" style="margin-bottom:30px">
-      <img src="/qc-jac-5-circle.webp" width="760" height="760" alt="Jac laughing, holding a small gold star to her eye" />
-      <span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span><span class="sp" aria-hidden="true">&#10022;</span>
-    </div>
+  <div class="banner">
+    <img src="/hftiml-hero.webp" width="1320" height="857" fetchpriority="high"
+         alt="Holy Fuck, This Is My Life. Jac at a marble desk in a cream sweater, chin resting on her hand." />
+  </div>
 
-    <h1 class="caps">Holy fuck, this is my life</h1>
+  <div class="wrap">
+    <h1 class="sr-only">Holy fuck, this is my life</h1>
 
     <p class="tag">The 6-month business mentorship for the woman ready to build the kind of brand people become fucking obsessed with, make massive money being MORE of who you actually are, and create a life so big you keep looking around thinking, HOLY FUCK, THIS IS MY LIFE</p>
 
@@ -1025,9 +1065,23 @@ footer p{
   <div class="wrap">
     <div class="offer">
       <p class="term" data-offer="term">Six months</p>
-      <p class="price" data-offer="price">$5,000</p>
-      <p class="sub" data-offer="priceNote">Holy Fuck, This Is My Life</p>
-      <a class="btn" id="joinBtn" href="#">Join now</a>
+      <p class="sub" data-offer="priceNote" style="margin-bottom:0">Holy Fuck, This Is My Life</p>
+
+      <div class="plans">
+        <div class="plan best">
+          <p class="pname">Pay in full</p>
+          <p class="pamt" data-offer="price">$5,000</p>
+          <p class="pnote">One payment. Saves you $328 against the plan.</p>
+          <a class="btn" id="joinBtn" href="#">Join now</a>
+        </div>
+        <div class="plan">
+          <p class="pname">Payment plan</p>
+          <p class="pamt" data-offer="planAmount">$888</p>
+          <p class="pnote">Per month for six months. Six month commitment.</p>
+          <a class="btn" id="joinBtnPlan" href="#">Join on the plan</a>
+        </div>
+      </div>
+
       <div class="terms">
         <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
         <p>No refunds &middot; no trial period</p>
@@ -1155,10 +1209,13 @@ footer p{
 var OFFER = {
   term: "Six months",
   price: "$5,000",
+  planAmount: "$888",
   priceNote: "Holy Fuck, This Is My Life",
   cadence: "Biweekly live coaching · hot seats",
-  checkoutUrl: "#",
-  ctaLabel: "Join now"
+  checkoutUrl: "#",          /* pay in full  */
+  planCheckoutUrl: "#",      /* payment plan */
+  ctaLabel: "Join now",
+  planCtaLabel: "Join on the plan"
 };
 
 (function(){
@@ -1176,10 +1233,15 @@ var OFFER = {
     var val = OFFER[nodes[i].getAttribute('data-offer')];
     if (typeof val === 'string') nodes[i].innerHTML = mark(val);
   }
-  var btn = document.getElementById('joinBtn');
-  if (btn){
-    btn.href = OFFER.checkoutUrl || '#';
-    btn.innerHTML = mark(OFFER.ctaLabel || 'Join now');
+  var buttons = [
+    ['joinBtn',     'checkoutUrl',     'ctaLabel',     'Join now'],
+    ['joinBtnPlan', 'planCheckoutUrl', 'planCtaLabel', 'Join on the plan']
+  ];
+  for (var b = 0; b < buttons.length; b++){
+    var el = document.getElementById(buttons[b][0]);
+    if (!el) continue;
+    el.href = OFFER[buttons[b][1]] || '#';
+    el.innerHTML = mark(OFFER[buttons[b][2]] || buttons[b][3]);
   }
 })();
 </script>
