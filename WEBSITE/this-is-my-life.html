@@ -495,12 +495,6 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
 .plan .btn{margin-top:auto;width:100%}
 .plan:not(.best) .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
 .plan:not(.best) .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.terms{margin-top:20px}
-.terms p{
-  font-family:var(--sans);font-size:var(--s4);font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(245,238,229,.62);margin-bottom:8px;line-height:1.7;
-}
-
 /* ---------- closer ---------- */
 .closer{text-align:center;padding:80px 0 90px}
 
@@ -1081,12 +1075,6 @@ footer p{
           <a class="btn" id="joinBtnPlan" href="#">Join on the plan</a>
         </div>
       </div>
-
-      <div class="terms">
-        <p data-offer="cadence">Biweekly live coaching &middot; hot seats</p>
-        <p>No refunds &middot; no trial period</p>
-        <p><span class="tbd">[THRIVECART LINK]</span></p>
-      </div>
     </div>
   </div>
 </section>
@@ -1203,8 +1191,9 @@ footer p{
 
 <script>
 /* ============================================================
-   EDIT EVERYTHING HERE. Price, term, cadence and the checkout
-   link. Anything in [BRACKETS] renders with a dotted highlight.
+   EDIT EVERYTHING HERE. Price, term, cadence and the two checkout
+   links, one per plan. Anything in [BRACKETS] renders with a dotted
+   highlight.
    ============================================================ */
 var OFFER = {
   term: "Six months",
