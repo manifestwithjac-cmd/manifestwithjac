@@ -321,6 +321,26 @@ a.ul{border-bottom:2px solid var(--clay);padding-bottom:1px}
   margin-top:22px;
 }
 
+/* ---------- screenshot proof ----------
+   A swipe rail rather than a grid, so the cards stay big enough to read
+   and the section keeps the same height however many get added. */
+.shots{
+  display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:0 0 18px;margin:0 0 6px;
+  scrollbar-width:thin;scrollbar-color:var(--clay-lt) rgba(245,238,229,.12);
+}
+.shots::-webkit-scrollbar{height:6px}
+.shots::-webkit-scrollbar-track{background:rgba(245,238,229,.12)}
+.shots::-webkit-scrollbar-thumb{background:var(--clay-lt)}
+.shot{flex:0 0 auto;width:clamp(258px,76vw,440px);scroll-snap-align:center;margin:0}
+.shot img{width:100%;height:auto;display:block}
+.swipe{
+  font-family:var(--sans);font-size:var(--s4);font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(245,238,229,.45);margin-bottom:0;
+}
+@media (min-width:900px){ .shots{gap:20px} }
+
 /* clustered short wins */
 .cluster{margin-top:52px}
 .cluster:first-of-type{margin-top:0}
@@ -983,6 +1003,26 @@ footer p{
     </div>
 
     <div style="margin-top:46px">
+    <p class="swipe">&#10022; Swipe</p>
+    <div class="shots">
+      <figure class="shot">
+        <img src="/proof-sid.webp" width="887" height="1736" loading="lazy" decoding="async"
+             alt="Sid, a sales coach: Jac's mentorship was exactly what I needed. She gives me actionable steps to keep moving forward. I ended up 5xing my sales in the one month we worked together. I would pay more than double to work with her because it saves so much time and guesswork." />
+      </figure>
+      <figure class="shot">
+        <img src="/proof-christina.webp" width="887" height="1736" loading="lazy" decoding="async"
+             alt="Christina, a life coach: I realized my business model didn't match my goals, and since working with Jac I've been able to create thousands in monthly recurring revenue by making a few simple fixes to my offers. This isn't the first time I've worked with her and I can tell you that she knows what she's talking about." />
+      </figure>
+      <figure class="shot">
+        <img src="/proof-vondie.webp" width="887" height="1736" loading="lazy" decoding="async"
+             alt="Vondie C, a business mentor: I come to you and you blow everyone out of the water. You're so good with your words, how you explain things, your language, the details. The way you describe things is unreal. I know that I am learning from the best." />
+      </figure>
+      <figure class="shot">
+        <img src="/proof-kayla.webp" width="887" height="1736" loading="lazy" decoding="async"
+             alt="Kayla, motherhood and living: Thank you so much for our one to one strategy call. I have been feeling like I was free falling for the last two months and really struggled to streamline my goals. It wasn't until our convo that you helped me realize my most treasured convos were the same things I needed to focus on in my content. Thank you for being my sounding board and veering me towards my goals. I love having you in my corner." />
+      </figure>
+    </div>
+
     <div class="cluster">
       <p class="clabel"><i aria-hidden="true">&#10022;</i>The money</p>
       <div class="wins">
@@ -1007,7 +1047,6 @@ footer p{
       <div class="wins">
       <div class="win"><p>&ldquo;It&rsquo;s definitely been eye opening. The best investment I&rsquo;ve made so far in my business&rdquo;</p></div>
       <div class="win"><p>&ldquo;Biggest take away&hellip; wow&hellip; I guess it would be your confidence&hellip; you know your shit and it shows.&rdquo;</p></div>
-      <div class="win"><p>&ldquo;Wow!! I don&rsquo;t know how you do this! You&rsquo;re so good with your words, how you explain things, your language, the details &#128293; I know that I am learning from the best!&rdquo;</p></div>
       <div class="win"><p>&ldquo;I&rsquo;ve gone through a million &lsquo;ideal client&rsquo; worksheets&hellip; never one like this. It was so good!&rdquo;</p></div>
       <div class="win"><p>&ldquo;This has been so fucking helpful. I cannot thank you enough &#10084;&#65039;&#8205;&#128293;&rdquo;</p></div>
       <div class="win"><p>&ldquo;I love that training call WOWWWW &#129327;&#129327;&rdquo;</p></div>
