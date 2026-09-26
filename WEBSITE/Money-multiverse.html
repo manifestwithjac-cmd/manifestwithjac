@@ -12,27 +12,31 @@
 
 <style>
   :root {
+    /* Jac's brand palette. Clay replaces the old gold throughout; the
+       --clay-* names carry every accent the page used to paint in gold. */
+    --clay: #bb5c26;          /* brand orange                                */
+    --clay-bright: #e0834a;   /* lifted, for gradients and highlights        */
+    --clay-deep: #9c4a1c;     /* deepened, for small accent text on light    */
+    --clay-soft: #f7dccb;     /* soft tint, for highlighter backgrounds      */
+    --green: #406641;         /* brand green, used for the included checks   */
+    --blush: #fccfd4;         /* brand pink                                  */
+
     --bg: #FFFFFF;
-    --bg-soft: #FAF7F4;
-    --bg-deeper: #F4EFEA;
+    --bg-soft: #f5eee5;       /* brand cream                                 */
+    --bg-deeper: #efe5d8;
     --bg-card: #FFFFFF;
-    --ink: #0A0A14;
-    --ink-body: #1A1A22;
-    --ink-soft: #3A3A45;
-    --ink-muted: #6B6B7A;
-    --line: #E5E0DC;
-    --periwinkle: #CED9ED;
-    --lavender: #CFC5E1;
-    --rose: #DEC5DF;
-    --blush: #EEC7DD;
-    --sage: #D6E8DA;
-    --gold: #D4A537;
-    --gold-bright: #E8B84A;
-    --gold-deep: #B0871E;
-    --gold-soft: #F5DC8C;
-    --red: #C8302E;
-    --red-bright: #E63E36;
-    --highlighter: #FFE873;
+    --ink: #131313;           /* brand ink                                   */
+    --ink-body: #262626;
+    --ink-soft: #454545;
+    --ink-muted: #6B6B6B;
+    --line: #e2d8cb;
+
+    --rose: #f6bfae;
+    --lavender: #edd0c2;
+    --sage: #cfdccf;
+    --red: #a8321f;           /* warning only, warmed to sit with the clay   */
+    --red-bright: #c43c26;
+    --highlighter: #f7dccb;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,7 +95,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 500;
     display: inline-block;
   }
@@ -101,7 +105,7 @@
   strong { color: var(--ink); font-weight: 600; }
 
   .iridescent-bg {
-    background: linear-gradient(120deg, #B0871E 0%, #D4A537 25%, #E8B84A 50%, #D4A537 75%, #B0871E 100%);
+    background: linear-gradient(120deg, #9c4a1c 0%, #bb5c26 25%, #e0834a 50%, #bb5c26 75%, #9c4a1c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -115,7 +119,7 @@
     50% { background-position: 100% 50%; }
   }
 
-  .text-gold { color: var(--gold-deep); }
+  .text-clay { color: var(--clay-deep); }
   .text-red { color: var(--red); }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
@@ -159,13 +163,13 @@
     box-shadow: 0 20px 40px -10px rgba(10, 10, 20, 0.5), 0 0 60px -10px rgba(232, 184, 74, 0.4);
   }
 
-  .cta-gold {
-    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+  .cta-clay {
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 50%, var(--clay-deep) 100%);
     color: #0A0A14;
     box-shadow: 0 12px 30px -8px rgba(212, 165, 55, 0.5);
   }
 
-  .cta-gold:hover { box-shadow: 0 20px 40px -10px rgba(212, 165, 55, 0.7); }
+  .cta-clay:hover { box-shadow: 0 20px 40px -10px rgba(212, 165, 55, 0.7); }
 
   .cta-pink {
     background: linear-gradient(135deg, var(--blush) 0%, var(--rose) 50%, var(--lavender) 100%);
@@ -198,7 +202,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     margin-bottom: 1.75rem;
     display: inline-flex;
     align-items: center;
@@ -207,7 +211,7 @@
     justify-content: center;
   }
 
-  .hero-brand::before { content: '✦'; color: var(--gold); }
+  .hero-brand::before { content: '✦'; color: var(--clay); }
 
   .hero-title { margin-bottom: 1.5rem; color: var(--ink); }
 
@@ -237,7 +241,7 @@
   }
 
   .hero-meta span { display: flex; align-items: center; gap: 0.5rem; }
-  .hero-meta span::before { content: '✦'; color: var(--gold); font-size: 0.7rem; }
+  .hero-meta span::before { content: '✦'; color: var(--clay); font-size: 0.7rem; }
 
   .hero-visual {
     position: relative;
@@ -269,20 +273,20 @@
     font-size: 0.35em;
     font-weight: 500;
     letter-spacing: 0.15em;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     vertical-align: super;
     margin-left: 0.1em;
   }
   .hero-wordmark em {
     font-style: italic;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 700;
   }
   .hero-wordmark sup {
     font-size: 0.4em;
     font-weight: 600;
     letter-spacing: 0.18em;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     vertical-align: super;
     margin-left: 0.15em;
   }
@@ -371,17 +375,17 @@
     border: 2px solid var(--ink);
     border-radius: 4px;
     padding: 14px;
-    box-shadow: 4px 4px 0 var(--gold-deep);
+    box-shadow: 4px 4px 0 var(--clay-deep);
     overflow: hidden;
     display: block;
     transition: all 0.4s;
   }
 
-  .photo-slot:nth-child(3n) { box-shadow: 4px 4px 0 var(--gold); }
+  .photo-slot:nth-child(3n) { box-shadow: 4px 4px 0 var(--clay); }
 
   .photo-slot:hover {
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 var(--gold-deep);
+    box-shadow: 5px 5px 0 var(--clay-deep);
   }
 
   .photo-slot img {
@@ -398,7 +402,7 @@
 
   .photo-slot-icon {
     font-size: 2rem;
-    color: var(--gold);
+    color: var(--clay);
   }
 
   .photo-slot-label {
@@ -406,7 +410,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     text-align: center;
     line-height: 1.5;
     font-weight: 500;
@@ -463,14 +467,14 @@
 
   .auth-list li::before {
     content: '✦ ';
-    color: var(--gold);
+    color: var(--clay);
     font-size: 0.95rem;
     margin-right: 0.45rem;
   }
 
   .auth-list li em {
     font-style: normal;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 600;
   }
 
@@ -490,7 +494,7 @@
   .pain-greeting {
     font-style: italic;
     font-size: clamp(1.1rem, 2vw, 1.3rem);
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     margin-bottom: 2.5rem;
     font-weight: 500;
   }
@@ -596,8 +600,8 @@
     text-align: center;
     margin: 3rem 0;
     padding: 2.5rem 0;
-    border-top: 2px solid var(--gold);
-    border-bottom: 2px solid var(--gold);
+    border-top: 2px solid var(--clay);
+    border-bottom: 2px solid var(--clay);
     position: relative;
     font-weight: 600;
     letter-spacing: -0.015em;
@@ -611,7 +615,7 @@
     transform: translateX(-50%);
     background: var(--bg-soft);
     padding: 0 1rem;
-    color: var(--gold);
+    color: var(--clay);
     font-size: 1.2rem;
   }
 
@@ -661,7 +665,7 @@
     font-size: 0.68rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     margin-bottom: 0.5rem;
     font-weight: 500;
   }
@@ -677,7 +681,7 @@
   .portal-tagline {
     font-style: italic;
     font-size: 1.05rem;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     margin-bottom: 1.1rem;
     font-weight: 500;
   }
@@ -711,7 +715,7 @@
   .bonus {
     padding: 2.25rem 2rem;
     background: linear-gradient(135deg, rgba(245, 220, 140, 0.18) 0%, rgba(238, 199, 221, 0.12) 100%);
-    border: 1.5px solid var(--gold);
+    border: 1.5px solid var(--clay);
     border-radius: 22px;
     position: relative;
   }
@@ -721,7 +725,7 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0.4rem 1rem;
-    background: var(--gold);
+    background: var(--clay);
     color: #0A0A14;
     font-family: 'DM Mono', monospace;
     font-size: 0.62rem;
@@ -738,7 +742,7 @@
   .bonus-value {
     font-family: 'DM Mono', monospace;
     font-size: 0.72rem;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     margin-top: 1rem;
     letter-spacing: 0.12em;
     font-weight: 600;
@@ -765,9 +769,9 @@
     font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     padding: 0.4rem 1rem;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--clay);
     border-radius: 999px;
     margin-bottom: 1.5rem;
     font-weight: 500;
@@ -790,7 +794,7 @@
     padding: 2.5rem 2rem;
     background: var(--bg-card);
     border-radius: 22px;
-    border: 2px solid var(--gold);
+    border: 2px solid var(--clay);
     box-shadow: 0 30px 80px -25px rgba(212, 165, 55, 0.3);
   }
 
@@ -815,7 +819,7 @@
     position: absolute;
     left: 0;
     top: 0.85rem;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 700;
     font-size: 1.1rem;
   }
@@ -838,12 +842,12 @@
     position: absolute;
     left: 0;
     top: 1.4rem;
-    color: var(--gold);
+    color: var(--clay);
     font-weight: 700;
   }
 
   .outcome:last-child { border-bottom: none; }
-  .outcome em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+  .outcome em { font-style: italic; color: var(--clay-deep); font-weight: 500; }
 
   /* CLIENT WINS */
   .wins { background: var(--bg-soft); }
@@ -903,7 +907,7 @@
     margin: 3rem auto 0;
     padding: 3rem 2.25rem;
     background: var(--bg-card);
-    border: 2px solid var(--gold);
+    border: 2px solid var(--clay);
     border-radius: 24px;
     text-align: left;
     box-shadow: 0 30px 80px -20px rgba(212, 165, 55, 0.3);
@@ -924,7 +928,7 @@
   .stack-line:last-of-type { border-bottom: none; }
   .stack-line span:first-child { color: var(--ink); flex: 1; }
   .stack-line span:last-child {
-    color: var(--gold-deep);
+    color: var(--green);
     font-family: 'DM Mono', monospace;
     font-size: 0.9rem;
     font-weight: 600;
@@ -937,7 +941,7 @@
     align-items: baseline;
     padding-top: 1.75rem;
     margin-top: 1rem;
-    border-top: 1px solid var(--gold);
+    border-top: 1px solid var(--clay);
     font-family: 'DM Mono', monospace;
     font-size: 0.78rem;
     letter-spacing: 0.16em;
@@ -960,7 +964,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--red);
+    color: var(--clay-deep);
     margin-bottom: 0.75rem;
     font-weight: 700;
   }
@@ -1003,7 +1007,7 @@
     font-size: 5rem;
     line-height: 1;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 50%, var(--clay-deep) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -1046,7 +1050,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.18em;
@@ -1065,13 +1069,13 @@
   .credential {
     padding: 0.5rem 1rem;
     background: var(--bg-card);
-    border: 1px solid var(--gold);
+    border: 1px solid var(--clay);
     border-radius: 999px;
     font-family: 'DM Mono', monospace;
     font-size: 0.66rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 600;
   }
 
@@ -1088,7 +1092,7 @@
     font-weight: 500;
   }
 
-  .objection p.italic { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+  .objection p.italic { font-style: italic; color: var(--clay-deep); font-weight: 500; }
 
   /* FAQ */
   .faq { background: var(--bg); }
@@ -1115,14 +1119,14 @@
   .faq-q::after {
     content: '+';
     font-size: 1.5rem;
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     transition: transform 0.3s;
     flex-shrink: 0;
     font-weight: 400;
   }
 
   .faq-item[open] .faq-q::after { transform: rotate(45deg); }
-  .faq-item[open] .faq-q { color: var(--gold-deep); }
+  .faq-item[open] .faq-q { color: var(--clay-deep); }
 
   .faq-a {
     margin-top: 0.85rem;
@@ -1189,7 +1193,7 @@
 
   .divider-stars {
     text-align: center;
-    color: var(--gold);
+    color: var(--clay);
     font-size: 0.85rem;
     letter-spacing: 1.5em;
     padding: 1.5rem 0;
@@ -1216,13 +1220,13 @@
   }
 
   .trust-bar span { display: inline-flex; align-items: center; gap: 0.5rem; }
-  .trust-bar .dot { color: var(--red); font-size: 0.5rem; }
+  .trust-bar .dot { color: var(--clay); font-size: 0.5rem; }
 
   /* CALLOUT BOX (cream box with thin border) */
   .callout-box {
     padding: 1.5rem 1.75rem;
     background: var(--bg-card);
-    border: 1px solid var(--gold);
+    border: 1px solid var(--clay);
     border-radius: 8px;
     text-align: center;
     margin: 1.5rem 0;
@@ -1243,7 +1247,7 @@
   }
 
   .callout-box strong {
-    color: var(--gold-deep);
+    color: var(--clay-deep);
     font-weight: 700;
   }
 
@@ -1261,7 +1265,7 @@
     left: -8%;
     right: -8%;
     bottom: -10%;
-    border: 3px solid var(--gold);
+    border: 3px solid var(--clay);
     border-radius: 50%;
     transform: rotate(-3deg) scale(1, 0.65);
     opacity: 0.85;
@@ -1292,15 +1296,15 @@
   }
 
   /* HIGHLIGHTED UNDERLINE INSIGHT */
-  .highlight-gold {
-    background: var(--gold-deep);
+  .highlight-clay {
+    background: var(--clay-deep);
     color: #FFFFFF;
     padding: 0.15em 0.45em;
     font-weight: 600;
   }
 
-  .highlight-gold-soft {
-    background: var(--gold-soft);
+  .highlight-clay-soft {
+    background: var(--clay-soft);
     color: var(--ink);
     padding: 0.1em 0.3em;
     font-weight: 600;
@@ -1316,14 +1320,14 @@
     display: inline-block;
   }
 
-  /* LOUD CTA — pill button, gold with subtle inner glow */
+  /* LOUD CTA — pill button, clay with subtle inner glow */
   .cta-loud {
     display: block;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
     padding: 1.35rem 2rem;
-    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 50%, var(--clay-deep) 100%);
     color: #FFFFFF;
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -1438,7 +1442,7 @@
       </p>
 
       <p class="vulnerable-story" style="font-style: normal;">
-        Then I went all in on the energy work. EFT tapping to move the blocks out of my meridians. Chakra-clearing breathwork to open the channels I'd been shutting down for years. Pineal activation. Sacred geometry recoding. <span class="highlight-gold">The block was never in my mindset. It was never in my strategy. It was sitting in my energy field.</span>
+        Then I went all in on the energy work. EFT tapping to move the blocks out of my meridians. Chakra-clearing breathwork to open the channels I'd been shutting down for years. Pineal activation. Sacred geometry recoding. <span class="highlight-clay">The block was never in my mindset. It was never in my strategy. It was sitting in my energy field.</span>
       </p>
 
       <p class="vulnerable-story" style="font-style: normal; font-weight: 600; color: var(--ink);">
@@ -1516,7 +1520,7 @@
       <h2 class="pain-question">So why does more money never actually change it? 🤔</h2>
 
       <p class="pain-line-md" style="margin-top: 1.5rem;">
-        Because <span class="highlight-gold">none of that is reaching the part of you actually running the show.</span>
+        Because <span class="highlight-clay">none of that is reaching the part of you actually running the show.</span>
       </p>
 
       <p class="pain-line-md" style="margin-top: 1.5rem;">
@@ -1549,7 +1553,7 @@
       </p>
 
       <p class="pain-line-md" style="margin-top: 1.25rem;">
-        You want money that <span class="highlight-gold">expands your life — not contracts it.</span>
+        You want money that <span class="highlight-clay">expands your life — not contracts it.</span>
       </p>
 
       <img src="jac-laugh-side.webp" alt="Jac laughing in black off-shoulder dress with gold watch and hoops" class="jac-photo-inline-lg">
@@ -1562,14 +1566,14 @@
   <div class="container-narrow">
     <div class="section-header">
       <div class="eyebrow">Here's what's actually happening</div>
-      <h2 class="display-l">The energy is <em style="font-style: italic; color: var(--gold-deep);">sabotaging</em> you.</h2>
+      <h2 class="display-l">The energy is <em style="font-style: italic; color: var(--clay-deep);">sabotaging</em> you.</h2>
     </div>
     <div class="diagnosis-content">
       <p>
         Affirmations talk to your conscious mind. Maybe 5% of you. The other 95% — your subconscious, your nervous system, your <strong>energy field</strong> — is where every block lives. And it's running programming your mom ran, your grandma ran, every woman before her ran.
       </p>
       <p>
-        That stuck energy is <span class="highlight-gold">literally broadcasting "struggle"</span> on a frequency you can't hear. So no matter how positive you stay, the universe keeps matching what your body is actually holding.
+        That stuck energy is <span class="highlight-clay">literally broadcasting "struggle"</span> on a frequency you can't hear. So no matter how positive you stay, the universe keeps matching what your body is actually holding.
       </p>
       <div class="pull-quote">
         Struggle is common.<br><span class="iridescent-bg">Struggle is not normal.</span>
@@ -1609,7 +1613,7 @@
   <div class="container">
     <div class="section-header">
       <div class="eyebrow">What's inside</div>
-      <h2 class="display-l">Four portals. <em style="font-style: italic; color: var(--gold-deep);">One full energy rewire.</em></h2>
+      <h2 class="display-l">Four portals. <em style="font-style: italic; color: var(--clay-deep);">One full energy rewire.</em></h2>
       <p class="body-lg mt-2">
         Each portal is a guided audio energy healing session. Teaching audio. EFT tapping. Chakra-clearing breathwork. Journal anchoring. Built to be experienced, not studied. Press play. Let the energy move.
       </p>
@@ -1663,7 +1667,7 @@
   <div class="container">
     <div class="section-header">
       <div class="eyebrow">Plus the overnight install</div>
-      <h2 class="display-l">The <em style="font-style: italic; color: var(--gold-deep);">Wealthy Woman Install</em>™</h2>
+      <h2 class="display-l">The <em style="font-style: italic; color: var(--clay-deep);">Wealthy Woman Install</em>™</h2>
     </div>
     <div class="bonus-grid" style="grid-template-columns: 1fr; max-width: 620px;">
       <div class="bonus">
@@ -1685,7 +1689,7 @@
   <div class="container">
     <div class="section-header">
       <div class="eyebrow">Plus a bonus to clear what's blocking the channel</div>
-      <h2 class="display-l">Because debt shame is <em style="font-style: italic; color: var(--gold-deep);">also</em> blocking your wealth.</h2>
+      <h2 class="display-l">Because debt shame is <em style="font-style: italic; color: var(--clay-deep);">also</em> blocking your wealth.</h2>
     </div>
     <div class="bonus-grid" style="grid-template-columns: 1fr; max-width: 620px;">
       <div class="bonus">
@@ -1696,15 +1700,15 @@
         </p>
         <ul style="list-style: none; padding: 0; margin: 0;">
           <li style="padding: 0.55rem 0 0.55rem 1.75rem; position: relative; font-size: 0.95rem; color: var(--ink); font-weight: 500;">
-            <span style="position: absolute; left: 0; color: var(--gold-deep); font-weight: 700;">01</span>
+            <span style="position: absolute; left: 0; color: var(--clay-deep); font-weight: 700;">01</span>
             <strong>Phase One</strong> · Releasing the shame + opening to gratitude
           </li>
           <li style="padding: 0.55rem 0 0.55rem 1.75rem; position: relative; font-size: 0.95rem; color: var(--ink); font-weight: 500;">
-            <span style="position: absolute; left: 0; color: var(--gold-deep); font-weight: 700;">02</span>
+            <span style="position: absolute; left: 0; color: var(--clay-deep); font-weight: 700;">02</span>
             <strong>Phase Two</strong> · Subconscious recoding session
           </li>
           <li style="padding: 0.55rem 0 0.55rem 1.75rem; position: relative; font-size: 0.95rem; color: var(--ink); font-weight: 500;">
-            <span style="position: absolute; left: 0; color: var(--gold-deep); font-weight: 700;">03</span>
+            <span style="position: absolute; left: 0; color: var(--clay-deep); font-weight: 700;">03</span>
             <strong>Phase Three</strong> · Daily integration
           </li>
         </ul>
@@ -1743,7 +1747,7 @@
   <div class="container">
     <div class="section-header">
       <div class="eyebrow">A full breakdown</div>
-      <h2 class="display-l">Here's everything you're <em style="font-style: italic; color: var(--gold-deep);">getting</em>.</h2>
+      <h2 class="display-l">Here's everything you're <em style="font-style: italic; color: var(--clay-deep);">getting</em>.</h2>
     </div>
     <div class="recap-card">
       <ul class="recap-list">
@@ -1764,7 +1768,7 @@
   <div class="container-narrow">
     <div class="section-header">
       <div class="eyebrow">After you walk through the portals</div>
-      <h2 class="display-l">This is what your life <em style="font-style: italic; color: var(--gold-deep);">actually</em> starts looking like.</h2>
+      <h2 class="display-l">This is what your life <em style="font-style: italic; color: var(--clay-deep);">actually</em> starts looking like.</h2>
     </div>
     <div class="outcomes-list">
       <div class="outcome">
@@ -1840,7 +1844,7 @@
   <div class="container">
     <div class="section-header">
       <div class="eyebrow">The investment</div>
-      <h2 class="display-l">Lifetime access. <em style="font-style: italic; color: var(--gold-deep);">One time.</em></h2>
+      <h2 class="display-l">Lifetime access. <em style="font-style: italic; color: var(--clay-deep);">One time.</em></h2>
     </div>
     <div class="stack-card">
       <div class="stack-line"><span>Portal One · Ancestral money clearing</span><span>✓</span></div>
@@ -1903,7 +1907,7 @@
   <div class="container-narrow">
     <div class="objection-content">
       <div class="eyebrow mb-2">One more thing before you decide</div>
-      <h2 class="display-l">The part of you saying<br>"<em style="font-style: italic; color: var(--gold-deep);">maybe next month</em>"</h2>
+      <h2 class="display-l">The part of you saying<br>"<em style="font-style: italic; color: var(--clay-deep);">maybe next month</em>"</h2>
       <p class="mt-2">
         Is the same energy that's been keeping you exactly where you are.
       </p>
