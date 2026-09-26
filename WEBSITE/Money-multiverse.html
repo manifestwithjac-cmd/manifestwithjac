@@ -287,111 +287,6 @@
     margin-left: 0.15em;
   }
 
-  /* URGENCY ALERT — price increase warning */
-  .urgency-alert {
-    padding: 3rem 0;
-    background: var(--bg-soft);
-  }
-  .urgency-alert-card {
-    background: var(--ink);
-    color: white;
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    box-shadow: 6px 6px 0 var(--gold-deep);
-    position: relative;
-  }
-  @media (min-width: 768px) {
-    .urgency-alert-card { padding: 3rem 3.5rem; }
-  }
-  .urgency-alert-eyebrow {
-    display: inline-block;
-    background: var(--red);
-    color: white;
-    font-family: 'Inter', 'Outfit', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 800;
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin-bottom: 1.5rem;
-  }
-  .urgency-alert-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 800;
-    color: white;
-    line-height: 1.2;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-  }
-  .urgency-alert-body {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.92);
-    line-height: 1.7;
-    font-weight: 500;
-    max-width: 580px;
-    margin: 0 auto;
-  }
-  .urgency-alert-body strong {
-    color: var(--gold-soft);
-    font-weight: 700;
-  }
-  .urgency-alert-body em {
-    font-style: italic;
-    color: white;
-    font-weight: 600;
-  }
-
-  /* COUNTDOWN TIMER */
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem auto 0;
-    max-width: 500px;
-  }
-  @media (max-width: 480px) {
-    .countdown { gap: 0.5rem; }
-  }
-  .countdown-block {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(232, 210, 138, 0.3);
-    border-radius: 8px;
-    padding: 1rem 0.75rem;
-    min-width: 78px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    backdrop-filter: blur(4px);
-  }
-  @media (max-width: 480px) {
-    .countdown-block { min-width: 66px; padding: 0.75rem 0.5rem; }
-  }
-  .countdown-num {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-    font-weight: 700;
-    color: var(--gold-soft);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-  .countdown-label {
-    font-family: 'Inter', 'Outfit', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
-  }
-  @media (max-width: 480px) {
-    .countdown-label { font-size: 0.58rem; letter-spacing: 0.18em; }
-  }
-
   .hero-orbit {
     width: 100%;
     max-width: 540px;
@@ -1512,7 +1407,7 @@
         </div>
 
         <div class="hero-cta-wrap">
-          <a href="#join" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
+          <a href="https://withme.so/jacnicole?p=course_7920" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
           <div class="hero-meta">
             <span>$279 one time</span>
             <span>Instant access</span>
@@ -1523,79 +1418,6 @@
     </div>
   </div>
 </header>
-
-<!-- PRICE INCREASE ALERT -->
-<section class="urgency-alert">
-  <div class="container-narrow">
-    <div class="urgency-alert-card">
-      <span class="urgency-alert-eyebrow">⚡ Final Chance at This Price ⚡</span>
-      <h3 class="urgency-alert-title">More is being added. The price is going up.</h3>
-      <p class="urgency-alert-body">
-        Money Multiverse is being expanded with <strong>more video trainings, more energy clearings, and more EFT sessions</strong> — all rolling out over the coming weeks. As soon as the full overhaul is live, the price moves to <strong>$497</strong>. <em>This is your last window to lock in $279 — and you'll get every single new addition added to your library for free, forever.</em>
-      </p>
-
-      <div class="countdown" id="mm-countdown" aria-label="Time remaining until price increase">
-        <div class="countdown-block">
-          <span class="countdown-num" id="cd-days">5</span>
-          <span class="countdown-label">Days</span>
-        </div>
-        <div class="countdown-block">
-          <span class="countdown-num" id="cd-hours">00</span>
-          <span class="countdown-label">Hours</span>
-        </div>
-        <div class="countdown-block">
-          <span class="countdown-num" id="cd-mins">00</span>
-          <span class="countdown-label">Mins</span>
-        </div>
-        <div class="countdown-block">
-          <span class="countdown-num" id="cd-secs">00</span>
-          <span class="countdown-label">Secs</span>
-        </div>
-      </div>
-
-      <a href="#join" class="cta-loud" style="margin-top: 1.5rem;">LOCK IN $279 BEFORE IT'S GONE 💸</a>
-    </div>
-  </div>
-</section>
-
-<script>
-  // Countdown to June 7, 2026 at 11:59 PM EST
-  (function() {
-    const endDate = new Date('2026-06-07T23:59:59-04:00').getTime();
-    const daysEl = document.getElementById('cd-days');
-    const hoursEl = document.getElementById('cd-hours');
-    const minsEl = document.getElementById('cd-mins');
-    const secsEl = document.getElementById('cd-secs');
-
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-    function tick() {
-      const now = new Date().getTime();
-      const diff = endDate - now;
-
-      if (diff <= 0) {
-        if (daysEl) daysEl.textContent = '00';
-        if (hoursEl) hoursEl.textContent = '00';
-        if (minsEl) minsEl.textContent = '00';
-        if (secsEl) secsEl.textContent = '00';
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-      if (daysEl) daysEl.textContent = pad(days);
-      if (hoursEl) hoursEl.textContent = pad(hours);
-      if (minsEl) minsEl.textContent = pad(mins);
-      if (secsEl) secsEl.textContent = pad(secs);
-    }
-
-    tick();
-    setInterval(tick, 1000);
-  })();
-</script>
 
 <!-- AUTHORITY — what I've accomplished (MOVED ABOVE TESTIMONIALS) -->
 <section class="authority">
@@ -1889,7 +1711,7 @@
       </div>
     </div>
     <div class="text-center mt-3">
-      <a href="#join" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
+      <a href="https://withme.so/jacnicole?p=course_7920" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
     </div>
   </div>
 </section>
@@ -2094,7 +1916,7 @@
       <p style="color: var(--ink); font-weight: 600;">
         $279. One time. Lifetime access. The version of you with everything she wants is on the other side of this portal ✦
       </p>
-      <a href="#join" class="cta-loud" style="margin-top: 2rem;">CLEAR MY MONEY BLOCKS 💸</a>
+      <a href="https://withme.so/jacnicole?p=course_7920" class="cta-loud" style="margin-top: 2rem;">CLEAR MY MONEY BLOCKS 💸</a>
     </div>
   </div>
 </section>
@@ -2164,7 +1986,7 @@
     <p class="final-sub">
       Four portals. Lifetime access. $279. The rewire your bank account has been waiting for.
     </p>
-    <a href="#join" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
+    <a href="https://withme.so/jacnicole?p=course_7920" class="cta-loud">CLEAR MY MONEY BLOCKS 💸</a>
     <div class="hero-meta" style="justify-content: center; margin-top: 2.5rem;">
       <span>$279 one time</span>
       <span>Instant access</span>
