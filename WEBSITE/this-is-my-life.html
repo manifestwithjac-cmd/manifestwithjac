@@ -128,6 +128,21 @@ strong,b{font-weight:800}
 .price .lbl{font-weight:800;letter-spacing:.16em;font-size:12px;text-transform:uppercase;margin-top:12px;color:var(--muted)}
 .price.b{background:var(--blush)}
 
+/* proof rail: the frame treatment, on a swipe track so the cards stay
+   readable and the section keeps its height however many get added */
+.proof{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;padding:10px 0 30px;margin:0;
+  scrollbar-width:thin;scrollbar-color:var(--blush) rgba(19,19,19,.14)}
+.proof::-webkit-scrollbar{height:8px}
+.proof::-webkit-scrollbar-track{background:rgba(19,19,19,.14);border-radius:99px}
+.proof::-webkit-scrollbar-thumb{background:var(--blush);border-radius:99px}
+.proof figure{flex:0 0 auto;width:clamp(256px,74vw,392px);scroll-snap-align:center;margin:0;
+  border:5px solid var(--ink);border-radius:22px;overflow:hidden;background:var(--ink);
+  box-shadow:10px 10px 0 var(--blush)}
+.proof img{width:100%;height:auto;display:block}
+.swipe{font-weight:800;letter-spacing:.2em;font-size:13px;text-transform:uppercase;
+  color:var(--muted);margin:0 0 18px}
+
 /* faq */
 .faq details{border-bottom:2px solid var(--ink);padding:6px 0}
 .faq details:first-child{border-top:2px solid var(--ink)}
@@ -140,10 +155,6 @@ strong,b{font-weight:800}
 
 .disclaimer{font-size:13px;line-height:1.6;color:var(--muted-d);padding:48px 0 60px}
 .disclaimer p{margin:0 0 .8em}
-
-/* mobile sticky */
-.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;display:none}
-.sticky a{display:flex;justify-content:center;width:100%;box-shadow:0 6px 24px rgba(0,0,0,.35)}
 
 /* "Holy fuck," is nowrap at a 56px floor, which is wider than a 320px
    screen can hold and pushed the whole page sideways. Only the smallest
@@ -167,8 +178,6 @@ strong,b{font-weight:800}
   .grid2,.grid3,.prices{grid-template-columns:1fr}
   .item{grid-template-columns:1fr;gap:6px;padding:24px}
   .item .n{font-size:40px}
-  .sticky{display:block}
-  body{padding-bottom:84px}
 }
 </style>
 </head>
@@ -480,6 +489,30 @@ strong,b{font-weight:800}
   </div>
 </section>
 
+<!-- ============ PROOF ============
+     Real client messages, unedited. Sits immediately before the price. -->
+<section class="panel">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:44px">
+      <div class="eyebrow">Receipts</div>
+      <h2 class="h" style="font-size:clamp(50px,8vw,110px)">What happens when <span class="hl">women work with me.</span></h2>
+    </div>
+    <p class="swipe">&#10022; Swipe</p>
+    <div class="proof">
+        <figure><img src="proof-sid.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Sid, a sales coach: Jac's mentorship was exactly what I needed. She gives me actionable steps to keep moving forward. I ended up 5xing my sales in the one month we worked together. I would pay more than double to work with her because it saves so much time and guesswork."></figure>
+        <figure><img src="proof-christina.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Christina, a life coach: I realized my business model didn't match my goals, and since working with Jac I've been able to create thousands in monthly recurring revenue by making a few simple fixes to my offers. This isn't the first time I've worked with her and I can tell you that she knows what she's talking about."></figure>
+        <figure><img src="proof-kehla.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kehla G, a Human Design and Gene Keys business coach: Before I connected with Jac I had a ton of dead ends in my business. After I started working with her I was able to simplify the backend to take somebody from free all the way to high ticket. I highly recommend hiring her, and absolutely to dive into her program, because she's going to make your life so much easier."></figure>
+        <figure><img src="proof-poonam.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Poonam H, a business strategist: Jac is amazing at looking at your content and pinpointing exactly what needs refining. The level of detail she goes into isn't just the basics I've heard everywhere else. As a working mum it's music to my ears to be able to make automated sales."></figure>
+        <figure><img src="proof-kristen.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kristen R, an empowerment coach: I instantly knew that Jac was the one, a perfect match, for some specific areas I needed help with. I require bold and seasoned badasses to push me, and with her black belt in automations and organization this was a no brainer. This girl has it all."></figure>
+        <figure><img src="proof-lynn.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Lynn L, a business energetics coach: I love your energy, you're real, honest but also able to convey it in a nice way. You know what you're talking about but also give us space to do our own thing. I love that you want to see your clients grow and have massive results."></figure>
+        <figure><img src="proof-vondie.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Vondie C, a business mentor: I come to you and you blow everyone out of the water. You're so good with your words, how you explain things, your language, the details. The way you describe things is unreal. I know that I am learning from the best."></figure>
+        <figure><img src="proof-kayla.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kayla, motherhood and living: Thank you so much for our one to one strategy call. I have been feeling like I was free falling and really struggled to streamline my goals. Thank you for being my sounding board and veering me towards my goals. I love having you in my corner."></figure>
+    </div>
+    <p class="lead center" style="max-width:720px;margin:20px auto 0;color:var(--muted)">Real messages from women I have coached. Their words, unedited. What happened for them is not a promise of what will happen for you.</p>
+    <div class="center" style="margin-top:44px"><a class="btn" href="https://withme.so/jacnicole?p=comm_4582">I want this too &#8594;</a><span class="btn-sub">$5,000 or $888/mo &times; 6 &middot; Six-month mentorship</span></div>
+  </div>
+</section>
+
 <!-- ============ JOIN ============ -->
 <section class="dark" id="join">
   <div class="wrap">
@@ -568,8 +601,6 @@ strong,b{font-weight:800}
     <p style="margin-top:24px;color:var(--muted)">© 2026 Jac Nicole</p>
   </div>
 </footer>
-
-<div class="sticky"><a class="btn join" href="https://withme.so/jacnicole?p=comm_4582">Join HFTIML · $5,000 →</a></div>
 
 </body>
 </html>
