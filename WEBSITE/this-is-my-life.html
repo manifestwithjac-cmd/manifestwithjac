@@ -136,12 +136,36 @@ strong,b{font-weight:800}
 .proof::-webkit-scrollbar{height:8px}
 .proof::-webkit-scrollbar-track{background:rgba(19,19,19,.14);border-radius:99px}
 .proof::-webkit-scrollbar-thumb{background:var(--blush);border-radius:99px}
-.proof figure{flex:0 0 auto;width:clamp(256px,74vw,392px);scroll-snap-align:center;margin:0;
-  border:5px solid var(--ink);border-radius:22px;overflow:hidden;background:var(--ink);
-  box-shadow:10px 10px 0 var(--blush)}
-.proof img{width:100%;height:auto;display:block}
 .swipe{font-weight:800;letter-spacing:.2em;font-size:13px;text-transform:uppercase;
   color:var(--muted);margin:0 0 18px}
+
+/* ---------- testimonials, built in type rather than imported as
+   screenshots, so the words are real text and the cards carry this page's
+   own frame treatment ---------- */
+.quote{flex:0 0 auto;width:clamp(272px,80vw,394px);scroll-snap-align:center;margin:0;
+  background:var(--cream);color:var(--ink);border:5px solid var(--ink);border-radius:22px;
+  padding:30px 28px;box-shadow:10px 10px 0 var(--blush);display:flex;flex-direction:column}
+.quote .mk{font-family:"NE Sans",Inter,sans-serif;font-size:30px;line-height:1;color:var(--sage);margin-bottom:12px}
+.quote p{font-size:17px;line-height:1.55;margin:0 0 22px}
+.quote .by{margin-top:auto;border-top:2px solid var(--ink);padding-top:14px}
+.quote .who{font-family:"NE Sans",Inter,sans-serif;text-transform:uppercase;font-size:23px;line-height:1.05}
+.quote .role{font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+/* one testimonial lifted out between sections */
+.qpull{max-width:880px;margin:0 auto;border:5px solid var(--ink);border-radius:26px;
+  padding:clamp(30px,4vw,54px);background:var(--blush);color:var(--ink);box-shadow:14px 14px 0 var(--ink)}
+.dark .qpull,.sage .qpull{box-shadow:14px 14px 0 var(--cream);border-color:var(--cream)}
+.qpull .mk{font-family:"NE Sans",Inter,sans-serif;font-size:38px;line-height:1;color:var(--sage);margin-bottom:8px}
+.qpull p{font-family:"NE Cond",Georgia,serif;font-style:italic;font-size:clamp(24px,3vw,38px);
+  line-height:1.35;margin:0 0 22px}
+.qpull .who{font-family:"NE Sans",Inter,sans-serif;text-transform:uppercase;font-size:clamp(18px,2vw,24px)}
+.qpull .role{font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* short wins, in a grid because they land as momentum */
+.wins{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.wins div{background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:18px;
+  padding:24px 22px;font-size:17px;line-height:1.5}
+.dark .wins div{box-shadow:7px 7px 0 var(--blush)}
 
 /* faq */
 .faq details{border-bottom:2px solid var(--ink);padding:6px 0}
@@ -235,6 +259,13 @@ strong,b{font-weight:800}
       <div class="card"><span class="num">04</span><p style="margin:0">You want to make a LOT of money, but you don’t want to build some giant business you secretly fucking hate just so you can say you did it. You want to make massive money doing work you genuinely love and have that money make an already-good life even bigger.</p></div>
       <div class="card"><span class="num">05</span><p style="margin:0">You’re done making decisions based on what you’re “supposed” to want. The giant team. The packed calendar. The stage. The book. The business model everybody else swears is the next level. Maybe you want those things. Maybe you don’t. You want YOUR version of success, and you’re ready to stop apologizing when it looks nothing like somebody else’s.</p></div>
       <div class="card"><span class="num">06</span><p style="margin:0">You’ve done the affirmations. You understand manifestation. You know your identity, subconscious, and energy matter because you’ve watched that shit play out in your own life. But you also know alignment MOVES. There are decisions to make. Offers to sell. Conversations to have. Boundaries to set. Things you know damn well you need to change. You’re ready for the internal work and the actual fucking action to finally live in the same room.</p></div>
+    </div>
+    <div style="margin-top:64px">
+    <div class="qpull">
+      <div class="mk">&#10022;</div>
+      <p>&ldquo;I&rsquo;ve been wanting to raise my rates for months and I keep finding reasons not to. This morning I just updated my pricing. Didn&rsquo;t overthink it, didn&rsquo;t ask anyone, just did it. Literally have no idea where that came from lol. But I&rsquo;m not questioning it.&rdquo;</p>
+      <div class="who">A woman I coached</div>
+    </div>
     </div>
     <div class="center" style="margin-top:56px"><a class="btn" href="https://withme.so/jacnicole?p=comm_4582">This is me. I'm in →</a><span class="btn-sub">$5,000 or $888/mo × 6 · Six-month mentorship</span></div>
   </div>
@@ -394,6 +425,13 @@ strong,b{font-weight:800}
       <p class="lead" style="margin-top:26px">New audios. New trainings. New business resources. New processes. New shit I create because somebody brought something into the room and I immediately thought, wait, we ALL need this.</p>
       <p class="lead">HFTIML is not a dusty course portal I recorded three years ago and never touched again.</p>
       <p class="it" style="font-size:clamp(34px,4vw,50px);color:var(--sage)">You get my work as it evolves.</p>
+      <div style="margin:64px 0 0">
+    <div class="qpull">
+      <div class="mk">&#10022;</div>
+      <p>&ldquo;It&rsquo;s definitely been eye opening. The best investment I&rsquo;ve made so far in my business.&rdquo;</p>
+      <div class="who">A woman I coached</div>
+    </div>
+      </div>
       <div class="center" style="margin-top:56px"><a class="btn" href="https://withme.so/jacnicole?p=comm_4582">Give me all of it →</a><span class="btn-sub">$5,000 or $888/mo × 6 · Six-month mentorship</span></div>
     </div>
   </div>
@@ -430,6 +468,20 @@ strong,b{font-weight:800}
           <li>Trusting yourself enough to make the decision, take the aligned action, and keep moving before you have seventeen signs confirming you chose correctly.</li>
           <li>Becoming unshakable in who you are and what you know is available to you, even when you’re having a very fucking human day.</li>
         </ul>
+      </div>
+    </div>
+    <div style="margin-top:80px">
+      <div class="center" style="margin-bottom:40px">
+        <div class="eyebrow">What starts happening</div>
+        <h3 class="h" style="font-size:clamp(40px,6vw,82px)">And then <span class="hl">this starts.</span></h3>
+      </div>
+      <div class="wins">
+        <div>&ldquo;I had 3 inquiries today. One of them already signed up! That&rsquo;s $1000 in MRR for the next 3 months &#128513; I&rsquo;m at $3000 in MRR already!!! I&rsquo;m so excited to keep growing!&rdquo;</div>
+        <div>&ldquo;I just hit my first $2k week ever!!!! This is insane and know it&rsquo;s just the beginning! I am doing this! &#128074;&#127997;&rdquo;</div>
+        <div>&ldquo;OMG okay&hellip; so I&rsquo;m in disbelief but I had my first ever over $1000 day!!! THANK YOU SO MUCH FOR ALL YOUR HELP!!!&rdquo;</div>
+        <div>&ldquo;Tapping is amazing &#128525; I signed on a $2000 client after yesterday&rsquo;s session so I think the $22 was worth it lol a huge ROI &#128514;&rdquo;</div>
+        <div>&ldquo;I made 5 sales today girl!! Ahhh! Where can I write you a review lol&rdquo;</div>
+        <div>&ldquo;There&rsquo;s been so much good news in my life ever since I used that portal.&rdquo;</div>
       </div>
     </div>
   </div>
@@ -484,6 +536,13 @@ strong,b{font-weight:800}
       <p>Whatever the actual situation calls for.</p>
       <p>I’m not here to make you dependent on me to tell you what to do every time life throws something at you.</p>
       <p class="lead"><b>I’m here to help you know yourself, trust yourself, and become so fucking unshakable in what you want that when life inevitably lifes, you know how to move through it without abandoning the reality you decided you’re creating.</b></p>
+      <div style="margin-top:64px">
+    <div class="qpull">
+      <div class="mk">&#10022;</div>
+      <p>&ldquo;Biggest take away&hellip; wow&hellip; I guess it would be your confidence&hellip; you know your shit and it shows.&rdquo;</p>
+      <div class="who">A woman I coached</div>
+    </div>
+      </div>
       <div class="center" style="margin-top:56px"><a class="btn" href="https://withme.so/jacnicole?p=comm_4582">I'm ready to move →</a><span class="btn-sub">$5,000 or $888/mo × 6 · Six-month mentorship</span></div>
     </div>
   </div>
@@ -499,14 +558,46 @@ strong,b{font-weight:800}
     </div>
     <p class="swipe">&#10022; Swipe</p>
     <div class="proof">
-        <figure><img src="proof-sid.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Sid, a sales coach: Jac's mentorship was exactly what I needed. She gives me actionable steps to keep moving forward. I ended up 5xing my sales in the one month we worked together. I would pay more than double to work with her because it saves so much time and guesswork."></figure>
-        <figure><img src="proof-christina.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Christina, a life coach: I realized my business model didn't match my goals, and since working with Jac I've been able to create thousands in monthly recurring revenue by making a few simple fixes to my offers. This isn't the first time I've worked with her and I can tell you that she knows what she's talking about."></figure>
-        <figure><img src="proof-kehla.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kehla G, a Human Design and Gene Keys business coach: Before I connected with Jac I had a ton of dead ends in my business. After I started working with her I was able to simplify the backend to take somebody from free all the way to high ticket. I highly recommend hiring her, and absolutely to dive into her program, because she's going to make your life so much easier."></figure>
-        <figure><img src="proof-poonam.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Poonam H, a business strategist: Jac is amazing at looking at your content and pinpointing exactly what needs refining. The level of detail she goes into isn't just the basics I've heard everywhere else. As a working mum it's music to my ears to be able to make automated sales."></figure>
-        <figure><img src="proof-kristen.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kristen R, an empowerment coach: I instantly knew that Jac was the one, a perfect match, for some specific areas I needed help with. I require bold and seasoned badasses to push me, and with her black belt in automations and organization this was a no brainer. This girl has it all."></figure>
-        <figure><img src="proof-lynn.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Lynn L, a business energetics coach: I love your energy, you're real, honest but also able to convey it in a nice way. You know what you're talking about but also give us space to do our own thing. I love that you want to see your clients grow and have massive results."></figure>
-        <figure><img src="proof-vondie.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Vondie C, a business mentor: I come to you and you blow everyone out of the water. You're so good with your words, how you explain things, your language, the details. The way you describe things is unreal. I know that I am learning from the best."></figure>
-        <figure><img src="proof-kayla.webp" width="887" height="1736" loading="lazy" decoding="async" alt="Kayla, motherhood and living: Thank you so much for our one to one strategy call. I have been feeling like I was free falling and really struggled to streamline my goals. Thank you for being my sounding board and veering me towards my goals. I love having you in my corner."></figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;Jac&rsquo;s mentorship was exactly what I needed! She gives me actionable steps to keep moving forward. I ended up 5xing my sales in the one month we worked together. I would pay more than double to work with her because it saves so much time and guesswork!&rdquo;</p>
+        <figcaption class="by"><div class="who">Sid</div><div class="role">Sales coach</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;I realized my business model didn&rsquo;t match my goals, and since working with [Jac] I&rsquo;ve been able to create thousands in monthly recurring revenue by making a few simple fixes to my offers. This isn&rsquo;t the first time I&rsquo;ve worked with her and I can tell you that she knows what she&rsquo;s talking about!&rdquo;</p>
+        <figcaption class="by"><div class="who">Christina</div><div class="role">Life coach</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;Before I connected with [Jac] and she shared her excitement about funnels and automations, I had a ton of dead ends in my business. After I started working with [Jac], I was able to simplify the backend of my business to create a very streamlined process to take somebody from free all the way to high-ticket. I highly recommend hiring her, and absolutely to dive into her program, because she&rsquo;s going to make your life so much easier!&rdquo;</p>
+        <figcaption class="by"><div class="who">Kehla G</div><div class="role">Human Design and Gene Keys business coach</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;[Jac] is amazing at looking at your content and pinpointing EXACTLY what needs refining. The level of detail she goes into isn&rsquo;t just the basics that I&rsquo;ve heard everywhere else. She is actually getting me to pause and think about my content with intentionality to make my messaging more potent. As a working mum, it&rsquo;s music to my ears to be able to make automated sales.&rdquo;</p>
+        <figcaption class="by"><div class="who">Poonam H</div><div class="role">Business strategist</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;We all need different inspiration or support in a mentor and that&rsquo;s how we select one. I instantly knew that [Jac] was THE ONE (a perfect match) for some specific areas I needed help with. I require bold and seasoned badasses to push me and with her black belt in automations and organization, this was a no brainer. This girl has it all &#10084;&#65039;&#8205;&#128293;&rdquo;</p>
+        <figcaption class="by"><div class="who">Kristen R</div><div class="role">Empowerment coach</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;I love your energy, you&rsquo;re real, honest but also able to convey it in a nice way. You know what you&rsquo;re talking about but also give us space to do our own thing and you&rsquo;re totally okay with that. I love working with you, I love that you want to see your clients grow and have massive results!&rdquo;</p>
+        <figcaption class="by"><div class="who">Lynn L</div><div class="role">Business energetics coach</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;I come to you and it&rsquo;s &#128293;&#128293;&#128293; you blow everyone out of the water! You&rsquo;re so good with your words, how you explain things, your language, the details. The way you describe things is unreal! I know that I am learning from the best!&rdquo;</p>
+        <figcaption class="by"><div class="who">Vondie C</div><div class="role">Business mentor</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="mk">&#10022;</div>
+        <p>&ldquo;Thank you so much for our 1:1 strategy call! I have been feeling like I was free falling for the last two months and really struggled to streamline my goals. It wasn&rsquo;t until our convo that you helped me realize my most treasured convos were the same things I needed to focus on in my content. Thank you for being my sounding board and veering me towards my goals!! I love having you in my corner.&rdquo;</p>
+        <figcaption class="by"><div class="who">Kayla</div><div class="role">Motherhood and living</div></figcaption>
+      </figure>
     </div>
     <div class="center" style="margin-top:44px"><a class="btn" href="https://withme.so/jacnicole?p=comm_4582">I want this too &#8594;</a><span class="btn-sub">$5,000 or $888/mo &times; 6 &middot; Six-month mentorship</span></div>
   </div>
