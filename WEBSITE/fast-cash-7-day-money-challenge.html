@@ -214,7 +214,7 @@ textarea:focus{outline:none;background:#fff;box-shadow:4px 4px 0 var(--blush)}
 
   <section class="calcard">
     <p class="cal-copy">First, lock in your 7 days. Set the reminders now so future you actually shows up and does the work. One ping a day to do your ritual and check in.</p>
-    <button class="cal-btn" id="calbtn">add my 7 daily reminders →</button>
+    <a class="cal-btn" id="calbtn" href="/.netlify/functions/fast-cash-ics" download="fast-cash-7-days.ics">add my 7 daily reminders →</a>
     <p class="cal-note" id="calnote"></p>
   </section>
 
@@ -590,50 +590,27 @@ function fireConfetti(){
   })();
 }
 
-// calendar reminders (.ics download, 7 daily pings)
-function pad(n){return String(n).padStart(2,'0');}
-function fmtLocal(d){return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';}
-function fmtUTC(d){return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';}
-function buildICS(){
-  const lines=[];
-  lines.push('BEGIN:VCALENDAR');
-  lines.push('VERSION:2.0');
-  lines.push('PRODID:-//Manifest With Jac//Fast Cash//EN');
-  lines.push('CALSCALE:GREGORIAN');
-  const stamp=fmtUTC(new Date());
-  const start=new Date();start.setDate(start.getDate()+1);start.setHours(9,0,0,0);
-  for(let i=0;i<7;i++){
-    const day=i+1;
-    const s=new Date(start);s.setDate(start.getDate()+i);
-    const e=new Date(s);e.setMinutes(e.getMinutes()+30);
-    lines.push('BEGIN:VEVENT');
-    lines.push('UID:fastcash-day'+day+'-'+stamp+'@manifestwithjac');
-    lines.push('DTSTAMP:'+stamp);
-    lines.push('DTSTART:'+fmtLocal(s));
-    lines.push('DTEND:'+fmtLocal(e));
-    lines.push('SUMMARY:Fast Cash, Day '+day+' money ritual');
-    lines.push('DESCRIPTION:Do today’s money ritual and log what came in. Small counts. Just do one.');
-    lines.push('BEGIN:VALARM');
-    lines.push('TRIGGER:-PT0M');
-    lines.push('ACTION:DISPLAY');
-    lines.push('DESCRIPTION:Fast Cash Day '+day);
-    lines.push('END:VALARM');
-    lines.push('END:VEVENT');
-  }
-  lines.push('END:VCALENDAR');
-  return lines.join('\r\n');
-}
-document.getElementById('calbtn').addEventListener('click',function(e){
-  e.preventDefault();
-  const blob=new Blob([buildICS()],{type:'text/calendar;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='fast-cash-7-days.ics';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  setTimeout(()=>URL.revokeObjectURL(url),1500);
+// calendar reminders, 7 daily pings
+// The file is served by /.netlify/functions/fast-cash-ics as a real
+// text/calendar response, so this is a plain link. Building the file in the
+// browser and handing it to an <a download> is silently ignored on iOS and
+// inside app browsers, which is why the old button did nothing on a phone.
+(function(){
+  const btn=document.getElementById('calbtn');
   const note=document.getElementById('calnote');
-  note.textContent='downloaded. open it to add all 7 to your calendar.';
-  note.classList.add('show');
-});
+  if(!btn)return;
+  // day 1 pings tomorrow, in the visitor's own timezone
+  const d=new Date();d.setDate(d.getDate()+1);
+  const pad=n=>String(n).padStart(2,'0');
+  const start=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  btn.href='/.netlify/functions/fast-cash-ics?start='+start+'&hour=9';
+  btn.setAttribute('download','fast-cash-7-days.ics');
+  btn.addEventListener('click',function(){
+    if(!note)return;
+    note.textContent='opening fast-cash-7-days.ics. choose add all to get all 7.';
+    note.classList.add('show');
+  });
+})();
 
 // init
 load();
